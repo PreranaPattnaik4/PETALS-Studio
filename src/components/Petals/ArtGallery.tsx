@@ -6,10 +6,61 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
-const categories = ["All", "Portraits", "Watercolor", "Landscapes", "Characters"];
+const categories = ["All", "Characters", "Portraits", "Watercolor", "Landscapes"];
 
 const artworks = [
+  { 
+    id: "featured-sisters", 
+    category: "Characters", 
+    url: PlaceHolderImages.find(img => img.id === 'gallery-sisters')?.imageUrl || "", 
+    title: "The Bond of Two Hearts: RoseBella & Lunaria",
+    description: `🌹 RoseBella
+kind-hearted, gentle, loving, and deeply adored by everyone.
+But RoseBella’s younger sister,
+🌙 Lunaria
+was different.
+Lunaria was curious, emotional, independent, and deeply connected to strange things others feared:
+dark forests
+wounded creatures
+forgotten magic
+lonely places
+
+As a child, Lunaria rescued a tiny black kitten named:
+🖤 Nyx
+Though harmless and affectionate, villagers feared the kitten because of old superstitions.
+Lunaria could never understand:
+“Why do people fear things that never hurt anyone?”
+This slowly became the beginning of her loneliness.
+
+RoseBella always comforted and protected her younger sister.
+The sisters loved each other deeply.
+They played beneath silver trees with:
+a small deer
+two little birds
+moonflowers
+songs
+magical stories
+
+But while RoseBella was naturally loved by everyone,
+Lunaria slowly began feeling emotionally different and misunderstood.
+
+One day Lunaria discovered an ancient magical book:
+📖 Moonlight Veils
+At first, the book showed only gentle magic:
+healing light
+moonfire
+emotional magic
+peaceful spells
+
+Lunaria secretly practiced harmless magic beneath moonlight while Nyx slept beside her.
+But society feared magic.
+After a misunderstanding involving Lunaria healing a wounded deer with magic, villagers began whispering that she was dangerous.
+Their fear slowly isolated her emotionally.
+
+At the same time, a dark entity named:`
+  },
   { id: 1, category: "Portraits", url: "https://picsum.photos/seed/p1/600/800", title: "The Weaver" },
   { id: 2, category: "Landscapes", url: "https://picsum.photos/seed/l1/800/600", title: "Crystal Valley" },
   { id: 3, category: "Watercolor", url: "https://picsum.photos/seed/w1/600/600", title: "Morning Mist" },
@@ -30,13 +81,16 @@ export function ArtGallery() {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 space-y-4">
           <h2 className="font-headline text-4xl md:text-5xl">Art Gallery</h2>
+          <p className="text-muted-foreground italic font-headline text-lg mb-8">
+            Explore the visual lore of our blooming universes.
+          </p>
           <div className="flex flex-wrap justify-center gap-3">
             {categories.map((cat) => (
               <Button
                 key={cat}
                 variant={activeCategory === cat ? "default" : "ghost"}
                 onClick={() => setActiveCategory(cat)}
-                className={activeCategory === cat ? "bg-rose-pink hover:bg-rose-pink" : "hover:text-rose-pink"}
+                className={activeCategory === cat ? "bg-rose-pink hover:bg-rose-pink text-white" : "hover:text-rose-pink hover:bg-rose-pink/5"}
               >
                 {cat}
               </Button>
@@ -58,30 +112,59 @@ export function ArtGallery() {
               >
                 <Dialog>
                   <DialogTrigger asChild>
-                    <div className="group relative overflow-hidden rounded-2xl cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500">
+                    <div className="group relative overflow-hidden rounded-[2rem] cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500 border border-white/40">
                       <Image
                         src={art.url}
                         alt={art.title}
                         width={600}
                         height={800}
-                        className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110"
+                        className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-rose-pink/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
                         <div className="text-white">
-                          <p className="text-xs uppercase tracking-widest mb-1">{art.category}</p>
-                          <h3 className="font-headline text-xl">{art.title}</h3>
+                          <p className="text-[10px] uppercase tracking-widest mb-2 font-bold text-rose-pink">{art.category}</p>
+                          <h3 className="font-headline text-2xl leading-tight">{art.title}</h3>
                         </div>
                       </div>
                     </div>
                   </DialogTrigger>
-                  <DialogContent className="max-w-4xl p-0 overflow-hidden bg-transparent border-none">
-                    <div className="relative w-full aspect-auto min-h-[60vh]">
-                      <Image 
-                        src={art.url} 
-                        alt={art.title} 
-                        fill 
-                        className="object-contain"
-                      />
+                  <DialogContent className="max-w-5xl p-0 overflow-hidden bg-white/95 backdrop-blur-xl border-none shadow-2xl rounded-[2.5rem]">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 max-h-[90vh]">
+                      <div className="lg:col-span-6 relative aspect-square lg:aspect-auto">
+                        <Image 
+                          src={art.url} 
+                          alt={art.title} 
+                          fill 
+                          className="object-cover"
+                        />
+                      </div>
+                      <div className="lg:col-span-6 p-8 lg:p-12 overflow-y-auto custom-scrollbar flex flex-col">
+                        <div className="space-y-6 flex-1">
+                          <div>
+                            <p className="text-xs font-bold uppercase tracking-widest text-rose-pink mb-3">{art.category}</p>
+                            <h3 className="font-headline text-4xl text-foreground leading-tight">{art.title}</h3>
+                          </div>
+                          
+                          {art.description ? (
+                            <div className="space-y-4">
+                              <div className="h-px w-24 bg-rose-pink/30" />
+                              <div className="whitespace-pre-wrap text-muted-foreground leading-relaxed italic font-headline text-lg">
+                                {art.description}
+                              </div>
+                            </div>
+                          ) : (
+                            <p className="text-muted-foreground leading-relaxed italic">
+                              A beautiful illustration from the PETALS collection, capturing a moment of wonder and magic.
+                            </p>
+                          )}
+                        </div>
+                        
+                        <div className="mt-12 flex justify-end">
+                          <Button variant="outline" className="rounded-full border-rose-pink text-rose-pink hover:bg-rose-pink hover:text-white">
+                            Close Lore
+                          </Button>
+                        </div>
+                      </div>
                     </div>
                   </DialogContent>
                 </Dialog>

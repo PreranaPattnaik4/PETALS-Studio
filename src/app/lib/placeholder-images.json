@@ -110,28 +110,10 @@
       "imageHint": "wind magic"
     },
     {
-      "id": "book-map",
-      "description": "The Forgotten Map of Floria book cover",
-      "imageUrl": "https://picsum.photos/seed/book6/600/900",
-      "imageHint": "magic map"
-    },
-    {
-      "id": "book-amber",
-      "description": "Tales from the Amber Woods book cover",
-      "imageUrl": "https://picsum.photos/seed/book7/600/900",
-      "imageHint": "amber woods"
-    },
-    {
-      "id": "book-tea",
-      "description": "The Midnight Tea Party book cover",
-      "imageUrl": "https://picsum.photos/seed/book8/600/900",
-      "imageHint": "tea party"
-    },
-    {
-      "id": "book-echoes",
-      "description": "Echoes of the Silver Valley book cover",
-      "imageUrl": "https://picsum.photos/seed/book9/600/900",
-      "imageHint": "silver valley"
+      "id": "gallery-sisters",
+      "description": "RoseBella and Lunaria featured story illustration",
+      "imageUrl": "https://www.dropbox.com/scl/fi/7l8fcqx6g6ycr3pmdh4uf/7f12c96d-f512-486d-9670-8f052f2ddbc3.png?rlkey=t0er6s7hcvpkslpheorzn00qg&st=js9p7imp&raw=1",
+      "imageHint": "fantasy sisters portrait"
     }
   ]
 }
