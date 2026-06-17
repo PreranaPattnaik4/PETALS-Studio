@@ -8,7 +8,7 @@ import { FloatingPetals } from "@/components/Petals/FloatingPetals";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { 
   ShoppingBag, 
   Users, 
@@ -22,6 +22,17 @@ import {
 } from "lucide-react";
 
 const books = [
+  {
+    id: "book-little-girl",
+    title: "Be a Little Girl",
+    subtitle: "A Journey of Self-Discovery",
+    description: "An emotionally resonant story about finding one's place in a magical world while staying true to the heart's smallest whispers.",
+    amazonUrl: "https://amazon.com",
+    whatsappUrl: "https://whatsapp.com",
+    rating: 5.0,
+    pages: 160,
+    genre: "Inspirational Fantasy"
+  },
   {
     id: "book-kids-collection",
     title: "The Enchanted Storybook",

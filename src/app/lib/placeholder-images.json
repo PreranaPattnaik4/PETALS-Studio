@@ -98,6 +98,12 @@
       "imageHint": "storybook for kids"
     },
     {
+      "id": "book-little-girl",
+      "description": "Be a Little Girl book cover",
+      "imageUrl": "https://www.dropbox.com/scl/fi/6zhnds1vmatpgukkdfut4/37e3a06e-366d-4f51-a11b-32ef955d0947.jfif?rlkey=f0gmi2faw6osjrvu452e5d403&st=son9uezs&raw=1",
+      "imageHint": "little girl book"
+    },
+    {
       "id": "book-wind",
       "description": "Chronicles of the Wind-Whisperer book cover",
       "imageUrl": "https://picsum.photos/seed/book5/600/900",
