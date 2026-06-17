@@ -15,16 +15,24 @@ import {
   Star, 
   BookOpen, 
   Sparkles, 
-  Moon, 
   Heart, 
-  Compass, 
-  Wind, 
-  Shield, 
   Play, 
-  FileText 
+  FileText,
+  Wind
 } from "lucide-react";
 
 const books = [
+  {
+    id: "book-kids-collection",
+    title: "The Enchanted Storybook",
+    subtitle: "A PETALS Collection for Kids",
+    description: "A treasure trove of gentle fantasy stories designed to inspire kindness, wonder, and imagination in young readers.",
+    amazonUrl: "https://amazon.com",
+    whatsappUrl: "https://whatsapp.com",
+    rating: 5.0,
+    pages: 180,
+    genre: "Kids Fantasy"
+  },
   {
     id: "book-mermaids",
     title: "Songs of the Shimmering Sea",

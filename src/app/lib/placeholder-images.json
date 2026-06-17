@@ -92,6 +92,12 @@
       "imageHint": "starlight lantern book cover"
     },
     {
+      "id": "book-kids-collection",
+      "description": "The Enchanted Storybook: A PETALS Collection for Kids",
+      "imageUrl": "https://www.dropbox.com/scl/fi/78rig5sx7pw6fefc430vd/storybooks-with-girl.png?rlkey=152z9tu4zddk82mu9i9899ebr&st=9qkmec99&raw=1",
+      "imageHint": "storybook for kids"
+    },
+    {
       "id": "book-wind",
       "description": "Chronicles of the Wind-Whisperer book cover",
       "imageUrl": "https://picsum.photos/seed/book5/600/900",
