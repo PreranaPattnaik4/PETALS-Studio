@@ -12,9 +12,9 @@ export function Navbar() {
 
   const navLinks = [
     { name: 'Gallery', href: '/gallery' },
+    { name: 'Books', href: '/books' },
     { name: 'Characters', href: '/characters' },
-    { name: 'Stories', href: '/stories' },
-    { name: 'About', href: '#about' },
+    { name: 'About', href: '/#about' },
     { name: 'Contact', href: '/contact' },
   ];
 
@@ -40,8 +40,8 @@ export function Navbar() {
               {link.name}
             </Link>
           ))}
-          <Button variant="outline" className="border-rose-pink text-rose-pink hover:bg-rose-pink hover:text-white rounded-full px-6">
-            Enter Universe
+          <Button asChild variant="outline" className="border-rose-pink text-rose-pink hover:bg-rose-pink hover:text-white rounded-full px-6">
+            <Link href="/books">Enter Universe</Link>
           </Button>
         </div>
 
@@ -65,8 +65,8 @@ export function Navbar() {
                     {link.name}
                   </Link>
                 ))}
-                <Button className="bg-rose-pink text-white rounded-full mt-4">
-                  Enter Universe
+                <Button asChild className="bg-rose-pink text-white rounded-full mt-4">
+                  <Link href="/books" onClick={() => setIsOpen(false)}>Enter Universe</Link>
                 </Button>
               </div>
             </SheetContent>

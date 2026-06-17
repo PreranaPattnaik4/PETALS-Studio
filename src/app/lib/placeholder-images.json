@@ -54,6 +54,24 @@
       "description": "Fantasy lore and legends illustration",
       "imageUrl": "https://picsum.photos/seed/lore/600/400",
       "imageHint": "ancient book"
+    },
+    {
+      "id": "book-whispers",
+      "description": "The Whispers of the Crystal Rose book cover",
+      "imageUrl": "https://picsum.photos/seed/book1/600/900",
+      "imageHint": "fantasy book"
+    },
+    {
+      "id": "book-mermaids",
+      "description": "Songs of the Shimmering Sea book cover",
+      "imageUrl": "https://picsum.photos/seed/book2/600/900",
+      "imageHint": "mermaid book"
+    },
+    {
+      "id": "book-guardians",
+      "description": "Guardians of the Dream Petals book cover",
+      "imageUrl": "https://picsum.photos/seed/book3/600/900",
+      "imageHint": "magic garden"
     }
   ]
 }
