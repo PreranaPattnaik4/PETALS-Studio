@@ -88,6 +88,13 @@ Their fear slowly isolated her emotionally.`
     description: "Where the shimmering waves meet the crystalline sands, the Mystic Shores are a gateway to the unknown depths of the ocean. A place where moonlight reflects the secrets of the deep."
   },
   {
+    id: "shimmering-grotto",
+    category: "Watercolor",
+    url: PlaceHolderImages.find(img => img.id === 'gallery-shimmering-grotto')?.imageUrl || "",
+    title: "The Shimmering Grotto",
+    description: "Deep beneath the crystal waves lies a grotto of infinite light. Here, the very stones are alive with the echoes of the ocean's heartbeat, illuminating the path for those who seek the deepest truths of the PETALS universe."
+  },
+  {
     id: "dream-guardians",
     category: "Characters",
     url: PlaceHolderImages.find(img => img.id === 'gallery-guardians')?.imageUrl || "",

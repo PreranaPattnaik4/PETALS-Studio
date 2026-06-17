@@ -150,6 +150,12 @@
       "description": "Mystic Shores of the Crystal Rose",
       "imageUrl": "https://www.dropbox.com/scl/fi/e20ykiyqrbvhm0rjbwi4b/OIG3.jpeg?rlkey=xd3iqsflamviagikn63epstz3&st=df474sp4&raw=1",
       "imageHint": "fantasy coastline"
+    },
+    {
+      "id": "gallery-shimmering-grotto",
+      "description": "The Shimmering Grotto of the Crystal Rose",
+      "imageUrl": "https://www.dropbox.com/scl/fi/yuztvntmayuf3jpvqkp2a/OIG3-1.jpeg?rlkey=7ttgoz2h15d1nlkjhl9fvb0vq&st=fdhc0e0l&raw=1",
+      "imageHint": "crystal cavern"
     }
   ]
 }
