@@ -74,6 +74,13 @@ Their fear slowly isolated her emotionally.`
     description: "Deep within the heart of the Crystal Palace lies the Whispering Library. Here, every petal tells a story, and the walls hum with the collective wisdom of a thousand blooming generations. It is a place of absolute peace and infinite discovery."
   },
   {
+    id: "crystal-echoes",
+    category: "Landscapes",
+    url: PlaceHolderImages.find(img => img.id === 'gallery-crystal-echoes')?.imageUrl || "",
+    title: "Echoes of the Crystal Palace",
+    description: "A mesmerizing view of the Crystal Palace gardens at twilight, where the echoes of ancient songs resonate through the air, and the glass flowers bloom with a soft, ethereal light."
+  },
+  {
     id: "dream-guardians",
     category: "Characters",
     url: PlaceHolderImages.find(img => img.id === 'gallery-guardians')?.imageUrl || "",
