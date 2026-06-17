@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTrigger, DialogClose } from '@/components/ui/dialog';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const categories = ["All", "Characters", "Portraits", "Watercolor", "Landscapes"];
@@ -72,6 +72,13 @@ Their fear slowly isolated her emotionally.`
     url: PlaceHolderImages.find(img => img.id === 'gallery-guardians')?.imageUrl || "",
     title: "Guardians of the Dream Petals",
     description: "The spectral protectors who watch over the sleeping world, weaving petals of light to ward off the encroaching shadows of night."
+  },
+  {
+    id: "songs-mermaids",
+    category: "Watercolor",
+    url: PlaceHolderImages.find(img => img.id === 'gallery-mermaids')?.imageUrl || "",
+    title: "Songs of the Shimmering Sea",
+    description: "The ancient melodies of the ocean, captured in a single frame. This watercolor-style illustration depicts the serene power of Alora as she communicates with the deep sea creatures beneath the moonlit waves."
   },
   { id: 1, category: "Portraits", url: "https://picsum.photos/seed/p1/600/800", title: "The Weaver" },
   { id: 2, category: "Landscapes", url: "https://picsum.photos/seed/l1/800/600", title: "Crystal Valley" },
@@ -172,9 +179,11 @@ export function ArtGallery() {
                         </div>
                         
                         <div className="mt-12 flex justify-end">
-                          <Button variant="outline" className="rounded-full border-rose-pink text-rose-pink hover:bg-rose-pink hover:text-white">
-                            Close Lore
-                          </Button>
+                          <DialogClose asChild>
+                            <Button variant="outline" className="rounded-full border-rose-pink text-rose-pink hover:bg-rose-pink hover:text-white">
+                              Close Lore
+                            </Button>
+                          </DialogClose>
                         </div>
                       </div>
                     </div>

@@ -126,6 +126,12 @@
       "description": "Guardians of the Dream Petals Artwork",
       "imageUrl": "https://www.dropbox.com/scl/fi/6qabvmist8f4md2icavo7/image-Copy.png?rlkey=kvvvs9k9i63bdyvpw3n2y83ca&st=0iq2wwnx&raw=1",
       "imageHint": "dream guardians illustration"
+    },
+    {
+      "id": "gallery-mermaids",
+      "description": "Songs of the Shimmering Sea Artwork",
+      "imageUrl": "https://www.dropbox.com/scl/fi/u3itgd5edbq8iwvw1n1bq/d8969c13-3598-4bf8-a96b-8a6505c55791.jfif?rlkey=lkkcglctrgry3qlp6ujvgud0y&st=a3704kd5&raw=1",
+      "imageHint": "mermaid art"
     }
   ]
 }
