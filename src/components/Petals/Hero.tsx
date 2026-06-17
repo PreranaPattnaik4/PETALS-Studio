@@ -13,14 +13,14 @@ export function Hero() {
     <section className="relative min-h-screen flex items-center justify-center py-20 bg-white">
       <div className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         
-        {/* Left: Rose Flower */}
+        {/* Left: Rose Flower - Made larger by increasing col-span and height */}
         <motion.div 
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
-          className="lg:col-span-4 relative h-[400px] lg:h-[700px] flex items-center justify-center"
+          className="lg:col-span-5 relative h-[500px] lg:h-[800px] flex items-center justify-center"
         >
-          <div className="relative w-full h-full">
+          <div className="relative w-full h-full scale-110">
             <Image 
               src={roseImg?.imageUrl || ""}
               alt="Artistic Rose"
@@ -32,12 +32,12 @@ export function Hero() {
           </div>
         </motion.div>
 
-        {/* Center: Welcome Text */}
+        {/* Center: Welcome Text - Slightly narrower to accommodate larger rose */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="lg:col-span-4 text-center space-y-6"
+          className="lg:col-span-3 text-center space-y-6"
         >
           <h2 className="font-headline text-5xl md:text-7xl italic text-foreground leading-none">
             Welcome
@@ -56,8 +56,7 @@ export function Hero() {
               <p>
                 By combining advanced creative technologies with handcrafted
                 artistic direction, PETALS creates next-generation fantasy
-                experiences designed to inspire wonder across animation,
-                illustration, interactive media, and story-driven worlds.
+                experiences designed to inspire wonder.
               </p>
             </div>
           </div>
