@@ -9,20 +9,22 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { motion } from "framer-motion";
-import { ShoppingBag, Users, Star, BookOpen } from "lucide-react";
+import { 
+  ShoppingBag, 
+  Users, 
+  Star, 
+  BookOpen, 
+  Sparkles, 
+  Moon, 
+  Heart, 
+  Compass, 
+  Wind, 
+  Shield, 
+  Play, 
+  FileText 
+} from "lucide-react";
 
 const books = [
-  {
-    id: "book-whispers",
-    title: "Whispers of the Crystal Rose",
-    subtitle: "A Journey Through the Glass Kingdom",
-    description: "Discover the hidden origins of the Crystal Rose kingdom. Follow young RoseBella as she learns the ancient language.",
-    amazonUrl: "https://amazon.com",
-    whatsappUrl: "https://whatsapp.com",
-    rating: 4.9,
-    pages: 320,
-    genre: "Fantasy"
-  },
   {
     id: "book-mermaids",
     title: "Songs of the Shimmering Sea",
@@ -113,7 +115,19 @@ const books = [
   }
 ];
 
+const featureCards = [
+  { icon: "🧜‍♀️", text: "Ocean Fantasy Adventure" },
+  { icon: "🌙", text: "Powerful Female Characters" },
+  { icon: "🌹", text: "Sisterhood & Family Bonds" },
+  { icon: "✨", text: "Magic, Mystery & Destiny" },
+  { icon: "🦋", text: "Beautiful Fantasy World" },
+  { icon: "💎", text: "Themes of Healing & Forgiveness" },
+];
+
 export default function BooksPage() {
+  const crystalRoseBg = PlaceHolderImages.find(img => img.id === 'crystal-rose-universe');
+  const featuredBookCover = PlaceHolderImages.find(img => img.id === 'book-whispers');
+
   return (
     <div className="flex min-h-screen bg-pearl-white">
       <SidebarNav />
@@ -121,35 +135,191 @@ export default function BooksPage() {
         <FloatingPetals />
         <Navbar />
 
-        <section className="pt-32 pb-24">
-          <div className="container mx-auto px-6">
-            <div className="text-center max-w-3xl mx-auto space-y-6 mb-16">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-pink/10 text-rose-pink text-sm font-bold uppercase tracking-widest"
-              >
-                <BookOpen className="w-4 h-4" /> The PETALS Collection
-              </motion.div>
-              <motion.h1 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                className="font-headline text-5xl md:text-6xl"
-              >
-                Our Storybooks
-              </motion.h1>
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="text-lg text-muted-foreground italic font-headline"
-              >
-                Immerse yourself in worlds where every page blooms with wonder.
-              </motion.p>
+        {/* Featured Hero Section */}
+        <section className="relative min-h-screen flex items-center pt-24 overflow-hidden">
+          {/* Background Elements */}
+          <div className="absolute inset-0 z-0">
+            <Image 
+              src={crystalRoseBg?.imageUrl || ""}
+              alt="Moonlit Ocean"
+              fill
+              className="object-cover opacity-30 scale-110 blur-sm"
+              data-ai-hint="moonlit ocean"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-pearl-white/80 via-transparent to-pearl-white" />
+            
+            {/* Animated Particles/Sparkles */}
+            <motion.div 
+              animate={{ 
+                opacity: [0.2, 0.5, 0.2],
+                y: [0, -20, 0]
+              }}
+              transition={{ duration: 5, repeat: Infinity }}
+              className="absolute top-1/4 left-1/4 w-2 h-2 bg-fairy-gold rounded-full blur-sm"
+            />
+            <motion.div 
+              animate={{ 
+                opacity: [0.3, 0.6, 0.3],
+                y: [0, -30, 0]
+              }}
+              transition={{ duration: 7, repeat: Infinity, delay: 1 }}
+              className="absolute bottom-1/4 right-1/3 w-3 h-3 bg-rose-pink rounded-full blur-sm"
+            />
+          </div>
+
+          <div className="container mx-auto px-12 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            {/* Left Content */}
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="lg:col-span-7 space-y-8"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-fairy-gold/10 text-fairy-gold text-sm font-bold uppercase tracking-widest border border-fairy-gold/20">
+                <Star className="w-4 h-4 fill-current" /> Premium Fantasy Adventure
+              </div>
+
+              <div className="space-y-2">
+                <h1 className="font-headline text-5xl md:text-7xl leading-tight">
+                  THE CRYSTAL ROSE:
+                </h1>
+                <h2 className="font-headline text-4xl md:text-5xl text-rose-pink italic">
+                  BENEATH THE WHISPERING WAVES
+                </h2>
+              </div>
+
+              <p className="text-xl font-headline italic text-muted-foreground border-l-4 border-rose-pink pl-6">
+                A magical tale of sisterhood, destiny, forgiveness, and the power of the heart.
+              </p>
+
+              <div className="space-y-6 text-lg text-muted-foreground leading-relaxed max-w-2xl">
+                <p>
+                  Long ago, beneath ancient oceans and silver moonlight, a powerful secret changed the fate of an entire kingdom. When forgotten memories, hidden magic, and an ancient curse begin to awaken, a young ocean-born girl named Alora must uncover the truth behind the legendary Crystal Rose before darkness consumes everything she loves.
+                </p>
+                <p>
+                  Filled with enchanted forests, magical creatures, moonlit mysteries, and unforgettable characters, this heartwarming fantasy adventure reminds readers that true magic comes not from power—but from the choices we make.
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-4 pt-4">
+                <Button size="lg" className="bg-rose-pink text-white hover:bg-rose-pink/90 rounded-2xl px-8 h-14 text-lg shadow-xl shadow-rose-pink/20">
+                  <ShoppingBag className="mr-2 w-5 h-5" /> Buy Now
+                </Button>
+                <Button variant="outline" size="lg" className="border-rose-pink text-rose-pink hover:bg-rose-pink/5 rounded-2xl px-8 h-14 text-lg">
+                  <FileText className="mr-2 w-5 h-5" /> Read Sample
+                </Button>
+                <Button variant="ghost" size="lg" className="text-fairy-gold hover:text-fairy-gold/80 h-14 text-lg">
+                  <Play className="mr-2 w-5 h-5 fill-current" /> Watch Trailer
+                </Button>
+              </div>
+
+              <div className="flex flex-wrap gap-6 pt-6 border-t border-rose-pink/10">
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-tighter text-muted-foreground">
+                  <Users className="w-4 h-4 text-rose-pink" /> Ages 8+
+                </div>
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-tighter text-muted-foreground">
+                  <Heart className="w-4 h-4 text-rose-pink" /> Family-Friendly
+                </div>
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-tighter text-muted-foreground">
+                  <Sparkles className="w-4 h-4 text-rose-pink" /> Illustrated
+                </div>
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-tighter text-muted-foreground">
+                  <BookOpen className="w-4 h-4 text-rose-pink" /> Digital & Print
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right Side Mockup */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
+              animate={{ opacity: 1, scale: 1, rotate: -2 }}
+              transition={{ duration: 1.2, delay: 0.2 }}
+              className="lg:col-span-5 relative aspect-[3/4] group"
+            >
+              <div className="absolute inset-0 bg-rose-pink/20 rounded-[3rem] blur-3xl group-hover:bg-rose-pink/30 transition-colors" />
+              <div className="relative h-full w-full rounded-[2.5rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(247,183,195,0.4)] border border-white/40 bg-white/40 backdrop-blur-md p-4">
+                <div className="relative h-full w-full rounded-2xl overflow-hidden">
+                  <Image 
+                    src={featuredBookCover?.imageUrl || ""}
+                    alt="The Crystal Rose: Beneath the Whispering Waves"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    data-ai-hint="fantasy book cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                  
+                  {/* Floating Petals within the frame */}
+                  <motion.div 
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    className="absolute top-10 right-10 w-20 h-20 opacity-40 pointer-events-none"
+                  >
+                    <Wind className="text-white w-full h-full" />
+                  </motion.div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Feature Grid */}
+        <section className="py-24 bg-white/50 backdrop-blur-sm border-y border-rose-pink/10">
+          <div className="container mx-auto px-12">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+              {featureCards.map((feature, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="flex flex-col items-center text-center space-y-4 p-6 rounded-3xl bg-white/40 border border-white/20 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <span className="text-4xl">{feature.icon}</span>
+                  <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground leading-tight">
+                    {feature.text}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Quote Section */}
+        <section className="py-32 relative text-center">
+          <div className="container mx-auto px-12 max-w-4xl">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <Sparkles className="w-12 h-12 text-fairy-gold mx-auto opacity-50" />
+              <blockquote className="font-headline text-3xl md:text-5xl leading-tight text-foreground/80 italic">
+                &quot;Emotions are powerful... but the choices we make while feeling them shape our destiny.&quot;
+              </blockquote>
+              <div className="flex justify-center">
+                <div className="w-24 h-px bg-rose-pink/30" />
+              </div>
+              <p className="font-headline text-2xl text-rose-pink uppercase tracking-widest">A Petals Original Tale</p>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* More Stories Grid */}
+        <section className="pb-32">
+          <div className="container mx-auto px-12">
+            <div className="flex items-center justify-between mb-16">
+              <div className="space-y-2">
+                <h2 className="font-headline text-4xl">More Magical Stories</h2>
+                <p className="text-muted-foreground italic font-headline text-lg">
+                  Explore other realms from the PETALS collection.
+                </p>
+              </div>
+              <div className="h-px flex-1 bg-rose-pink/10 mx-12 hidden md:block" />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
               {books.map((book, index) => {
                 const bookImg = PlaceHolderImages.find(img => img.id === book.id);
                 return (
@@ -158,11 +328,10 @@ export default function BooksPage() {
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: (index % 3) * 0.1 }}
-                    className="group bg-white/40 backdrop-blur-sm rounded-[2.5rem] p-6 border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500"
+                    transition={{ duration: 0.6, delay: (index % 4) * 0.1 }}
+                    className="group bg-white/40 backdrop-blur-sm rounded-[2rem] p-5 border border-white/20 shadow-lg hover:shadow-2xl transition-all duration-500 flex flex-col"
                   >
-                    {/* Book Cover */}
-                    <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-lg mb-6 group-hover:scale-[1.02] transition-transform duration-500">
+                    <div className="relative aspect-[3/4] rounded-xl overflow-hidden shadow-md mb-6 group-hover:scale-[1.02] transition-transform duration-500">
                       <Image
                         src={bookImg?.imageUrl || ""}
                         alt={book.title}
@@ -173,8 +342,7 @@ export default function BooksPage() {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                     </div>
 
-                    {/* Book Info */}
-                    <div className="space-y-4">
+                    <div className="space-y-4 flex-1 flex flex-col">
                       <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-widest text-rose-gold">
                         <span>{book.genre}</span>
                         <div className="flex items-center gap-1 text-fairy-gold">
@@ -192,11 +360,11 @@ export default function BooksPage() {
                         </p>
                       </div>
 
-                      <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
+                      <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed flex-1">
                         {book.description}
                       </p>
 
-                      <div className="grid grid-cols-2 gap-3 pt-2">
+                      <div className="grid grid-cols-2 gap-3 pt-4">
                         <Button 
                           asChild
                           variant="default"
@@ -204,7 +372,7 @@ export default function BooksPage() {
                           className="bg-rose-pink text-white hover:bg-rose-pink/90 rounded-xl shadow-md h-10 text-xs"
                         >
                           <a href={book.amazonUrl} target="_blank" rel="noopener noreferrer">
-                            <ShoppingBag className="mr-2 w-3.5 h-3.5" /> Amazon
+                            <ShoppingBag className="mr-2 w-3.5 h-3.5" /> Buy
                           </a>
                         </Button>
                         <Button 
