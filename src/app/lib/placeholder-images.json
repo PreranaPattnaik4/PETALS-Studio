@@ -120,6 +120,12 @@
       "description": "The Enchanted Valley of the Crystal Rose",
       "imageUrl": "https://www.dropbox.com/scl/fi/sjbxfk1cib17cd2yc7xkq/818023bf-2691-4647-9130-599361e0a967.png?rlkey=w4dulwc3bpiaxv7553ni01s60&st=etbyuidr&raw=1",
       "imageHint": "enchanted valley"
+    },
+    {
+      "id": "gallery-guardians",
+      "description": "Guardians of the Dream Petals Artwork",
+      "imageUrl": "https://www.dropbox.com/scl/fi/6qabvmist8f4md2icavo7/image-Copy.png?rlkey=kvvvs9k9i63bdyvpw3n2y83ca&st=0iq2wwnx&raw=1",
+      "imageHint": "dream guardians illustration"
     }
   ]
 }

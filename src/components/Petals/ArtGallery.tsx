@@ -66,6 +66,13 @@ Their fear slowly isolated her emotionally.`
     title: "The Enchanted Valley",
     description: "A breathtaking view of the Enchanted Valley within the Crystal Rose kingdom, where the light of the ancient sun illuminates the path to forgotten wonders."
   },
+  {
+    id: "dream-guardians",
+    category: "Characters",
+    url: PlaceHolderImages.find(img => img.id === 'gallery-guardians')?.imageUrl || "",
+    title: "Guardians of the Dream Petals",
+    description: "The spectral protectors who watch over the sleeping world, weaving petals of light to ward off the encroaching shadows of night."
+  },
   { id: 1, category: "Portraits", url: "https://picsum.photos/seed/p1/600/800", title: "The Weaver" },
   { id: 2, category: "Landscapes", url: "https://picsum.photos/seed/l1/800/600", title: "Crystal Valley" },
   { id: 3, category: "Watercolor", url: "https://picsum.photos/seed/w1/600/600", title: "Morning Mist" },
