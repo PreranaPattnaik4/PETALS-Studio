@@ -84,6 +84,42 @@
       "description": "Guardians of the Dream Petals book cover",
       "imageUrl": "https://picsum.photos/seed/book3/600/900",
       "imageHint": "magic garden"
+    },
+    {
+      "id": "book-starlight",
+      "description": "The Starlight Lantern book cover",
+      "imageUrl": "https://picsum.photos/seed/book4/600/900",
+      "imageHint": "star lantern"
+    },
+    {
+      "id": "book-wind",
+      "description": "Chronicles of the Wind-Whisperer book cover",
+      "imageUrl": "https://picsum.photos/seed/book5/600/900",
+      "imageHint": "wind magic"
+    },
+    {
+      "id": "book-map",
+      "description": "The Forgotten Map of Floria book cover",
+      "imageUrl": "https://picsum.photos/seed/book6/600/900",
+      "imageHint": "magic map"
+    },
+    {
+      "id": "book-amber",
+      "description": "Tales from the Amber Woods book cover",
+      "imageUrl": "https://picsum.photos/seed/book7/600/900",
+      "imageHint": "amber woods"
+    },
+    {
+      "id": "book-tea",
+      "description": "The Midnight Tea Party book cover",
+      "imageUrl": "https://picsum.photos/seed/book8/600/900",
+      "imageHint": "tea party"
+    },
+    {
+      "id": "book-echoes",
+      "description": "Echoes of the Silver Valley book cover",
+      "imageUrl": "https://picsum.photos/seed/book9/600/900",
+      "imageHint": "silver valley"
     }
   ]
 }
