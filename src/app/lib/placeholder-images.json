@@ -144,6 +144,12 @@
       "description": "Echoes of the Crystal Palace",
       "imageUrl": "https://www.dropbox.com/scl/fi/oh8oi7pcsdb71kev59n7x/11d98071-034a-4a3f-bddd-933653df5453.png?rlkey=iq7pxmswwofqq4vleat4v9qs6&st=2fcflykp&raw=1",
       "imageHint": "mystical garden"
+    },
+    {
+      "id": "gallery-mystic-shores",
+      "description": "Mystic Shores of the Crystal Rose",
+      "imageUrl": "https://www.dropbox.com/scl/fi/e20ykiyqrbvhm0rjbwi4b/OIG3.jpeg?rlkey=xd3iqsflamviagikn63epstz3&st=df474sp4&raw=1",
+      "imageHint": "fantasy coastline"
     }
   ]
 }

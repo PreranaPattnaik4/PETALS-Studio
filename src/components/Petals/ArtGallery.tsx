@@ -81,6 +81,13 @@ Their fear slowly isolated her emotionally.`
     description: "A mesmerizing view of the Crystal Palace gardens at twilight, where the echoes of ancient songs resonate through the air, and the glass flowers bloom with a soft, ethereal light."
   },
   {
+    id: "mystic-shores",
+    category: "Landscapes",
+    url: PlaceHolderImages.find(img => img.id === 'gallery-mystic-shores')?.imageUrl || "",
+    title: "Mystic Shores of the Crystal Rose",
+    description: "Where the shimmering waves meet the crystalline sands, the Mystic Shores are a gateway to the unknown depths of the ocean. A place where moonlight reflects the secrets of the deep."
+  },
+  {
     id: "dream-guardians",
     category: "Characters",
     url: PlaceHolderImages.find(img => img.id === 'gallery-guardians')?.imageUrl || "",
@@ -178,7 +185,7 @@ export function ArtGallery() {
                             <h3 className="font-headline text-4xl text-foreground leading-tight">{art.title}</h3>
                           </div>
                           
-                          {art.description ? (
+                          {'description' in art && art.description ? (
                             <div className="space-y-4">
                               <div className="h-px w-24 bg-rose-pink/30" />
                               <div className="whitespace-pre-wrap text-muted-foreground leading-relaxed italic font-headline text-lg">
