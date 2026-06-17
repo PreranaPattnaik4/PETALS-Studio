@@ -1,0 +1,59 @@
+
+{
+  "placeholderImages": [
+    {
+      "id": "hero-rose",
+      "description": "Large watercolor rose illustration with floating petals",
+      "imageUrl": "https://picsum.photos/seed/petals-rose/800/1000",
+      "imageHint": "watercolor rose"
+    },
+    {
+      "id": "hero-castle",
+      "description": "Fantasy castle illustration emerging from a magical storybook",
+      "imageUrl": "https://picsum.photos/seed/petals-castle/800/1000",
+      "imageHint": "fantasy castle"
+    },
+    {
+      "id": "crystal-rose-universe",
+      "description": "The Crystal Rose fantasy kingdom artwork",
+      "imageUrl": "https://picsum.photos/seed/crystal-rose/1200/600",
+      "imageHint": "fantasy kingdom"
+    },
+    {
+      "id": "char-alora",
+      "description": "Alora The Serene Mermaid",
+      "imageUrl": "https://picsum.photos/seed/alora/600/800",
+      "imageHint": "mermaid illustration"
+    },
+    {
+      "id": "char-rosebella",
+      "description": "RoseBella Queen of the Crystal Rose",
+      "imageUrl": "https://picsum.photos/seed/rosebella/600/800",
+      "imageHint": "fantasy queen"
+    },
+    {
+      "id": "char-nerina",
+      "description": "Nerina Guardian of Ocean Dreams",
+      "imageUrl": "https://picsum.photos/seed/nerina/600/800",
+      "imageHint": "ocean fairy"
+    },
+    {
+      "id": "story-bedtime",
+      "description": "Gentle fantasy bedtime stories illustration",
+      "imageUrl": "https://picsum.photos/seed/bedtime/600/400",
+      "imageHint": "night sky"
+    },
+    {
+      "id": "story-adventure",
+      "description": "Exciting magical adventure journeys illustration",
+      "imageUrl": "https://picsum.photos/seed/adventure/600/400",
+      "imageHint": "magic forest"
+    },
+    {
+      "id": "story-lore",
+      "description": "Fantasy lore and legends illustration",
+      "imageUrl": "https://picsum.photos/seed/lore/600/400",
+      "imageHint": "ancient book"
+    }
+  ]
+}

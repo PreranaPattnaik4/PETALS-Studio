@@ -1,3 +1,4 @@
+
 import type {Config} from 'tailwindcss';
 
 export default {
@@ -10,8 +11,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['Inter', 'sans-serif'],
-        headline: ['Inter', 'sans-serif'],
+        body: ['PT Sans', 'sans-serif'],
+        headline: ['Playfair Display', 'serif'],
         code: ['monospace'],
       },
       colors: {
@@ -65,6 +66,13 @@ export default {
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))',
         },
+        'rose-pink': '#F7B7C3',
+        'blush-peach': '#FFDCCB',
+        'soft-lavender': '#DCCFFF',
+        'pearl-white': '#FFF9F5',
+        'moonlight-blue': '#D9ECFF',
+        'rose-gold': '#E5B4A3',
+        'fairy-gold': '#F5D76E',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -88,10 +96,20 @@ export default {
             height: '0',
           },
         },
+        'petal-float': {
+          '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+          '50%': { transform: 'translateY(-20px) rotate(10deg)' },
+        },
+        'soft-glow': {
+          '0%, 100%': { opacity: '0.6', filter: 'blur(8px)' },
+          '50%': { opacity: '1', filter: 'blur(12px)' },
+        }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'petal-float': 'petal-float 6s ease-in-out infinite',
+        'soft-glow': 'soft-glow 4s ease-in-out infinite',
       },
     },
   },
