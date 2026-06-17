@@ -24,6 +24,12 @@ const characters = [
     role: "Guardian of Ocean Dreams",
     desc: "She weaves nightmares into sea pearls, ensuring every child sleeps peacefully beneath the waves.",
     img: "char-nerina"
+  },
+  {
+    name: "Vespera",
+    role: "The Midnight Weaver",
+    desc: "Mistress of shadows and moonbeams, she protects the secrets hidden within the night's velvet embrace.",
+    img: "char-vespera"
   }
 ];
 
@@ -38,7 +44,7 @@ export function CharacterShowcase() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {characters.map((char, index) => {
             const charImg = PlaceHolderImages.find(img => img.id === char.img);
             return (
@@ -50,7 +56,7 @@ export function CharacterShowcase() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="group glass-morphism rounded-3xl p-6 transition-all duration-500 hover:-translate-y-2"
               >
-                <div className="relative h-96 w-full rounded-2xl overflow-hidden mb-6 shadow-md group-hover:shadow-rose-pink/20 group-hover:shadow-2xl transition-all duration-500">
+                <div className="relative h-80 w-full rounded-2xl overflow-hidden mb-6 shadow-md group-hover:shadow-rose-pink/20 group-hover:shadow-2xl transition-all duration-500">
                   <Image
                     src={charImg?.imageUrl || ""}
                     alt={char.name}

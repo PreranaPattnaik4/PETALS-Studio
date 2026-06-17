@@ -50,6 +50,12 @@
       "imageHint": "ocean fairy"
     },
     {
+      "id": "char-vespera",
+      "description": "Vespera The Midnight Weaver",
+      "imageUrl": "https://www.dropbox.com/scl/fi/ca57m3b0tljydy7khyje6/7f12c96d-f512-486d-9670-8f052f2ddbc3-Copy.png?rlkey=de7hpje3erq9zgcgelozp80ij&st=p0f1krww&raw=1",
+      "imageHint": "shadow weaver portrait"
+    },
+    {
       "id": "story-bedtime",
       "description": "Gentle fantasy bedtime stories illustration",
       "imageUrl": "https://picsum.photos/seed/bedtime/600/400",
