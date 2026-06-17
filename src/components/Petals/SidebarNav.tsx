@@ -12,12 +12,11 @@ export function SidebarNav() {
   const logoImg = PlaceHolderImages.find(img => img.id === 'petals-logo');
 
   const navLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'Our StoryBooks', href: '/books' },
-    { name: 'Family photos', href: '/gallery' },
-    { name: 'Stories and updates', href: '#' },
-    { name: 'Parenting tips', href: '#' },
+    { name: 'Gallery', href: '/gallery' },
+    { name: 'Books', href: '/books' },
+    { name: 'Characters', href: '/characters' },
     { name: 'About', href: '/#about' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   return (
