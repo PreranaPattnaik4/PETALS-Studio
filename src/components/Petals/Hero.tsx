@@ -2,92 +2,97 @@
 "use client";
 
 import Image from 'next/image';
-import { Button } from "@/components/ui/button";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { motion } from "framer-motion";
-import Link from 'next/link';
 
 export function Hero() {
-  const mainImg = PlaceHolderImages.find(img => img.id === 'hero-main');
-  const castleImg = PlaceHolderImages.find(img => img.id === 'hero-castle');
+  const roseImg = PlaceHolderImages.find(img => img.id === 'hero-rose');
+  const girlImg = PlaceHolderImages.find(img => img.id === 'hero-main');
 
   return (
-    <section className="relative min-h-screen pt-32 pb-20 overflow-hidden flex items-center">
-      <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
+    <section className="relative min-h-screen flex items-center justify-center py-20 bg-white">
+      <div className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         
-        {/* Left Column: Hero Main Illustration */}
+        {/* Left: Rose Flower */}
         <motion.div 
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="relative h-[400px] md:h-[600px] flex items-center justify-center"
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          className="lg:col-span-4 relative h-[400px] lg:h-[700px] flex items-center justify-center"
         >
-          <div className="relative w-full h-full watercolor-canvas overflow-hidden rounded-[2rem]">
+          <div className="relative w-full h-full">
             <Image 
-              src={mainImg?.imageUrl || ""}
-              alt={mainImg?.description || "Hero Illustration"}
+              src={roseImg?.imageUrl || ""}
+              alt="Artistic Rose"
               fill
               className="object-contain"
-              data-ai-hint={mainImg?.imageHint}
+              data-ai-hint="pink rose"
               priority
             />
           </div>
-          <div className="absolute -z-10 w-64 h-64 bg-rose-pink/20 rounded-full blur-[80px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-soft-glow" />
         </motion.div>
 
-        {/* Center Column: Text Content */}
+        {/* Center: Welcome Text */}
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="text-center space-y-8 z-10"
+          transition={{ duration: 1, delay: 0.3 }}
+          className="lg:col-span-4 text-center space-y-6"
         >
+          <h2 className="font-headline text-5xl md:text-7xl italic text-foreground leading-none">
+            Welcome
+          </h2>
+          <div className="h-px w-24 bg-rose-pink mx-auto opacity-30" />
           <div className="space-y-4">
-            <h1 className="font-headline text-5xl md:text-7xl lg:text-8xl leading-tight">
-              Welcome to <span className="text-rose-pink">PETALS</span>
-            </h1>
-            <p className="font-headline text-xl md:text-2xl italic text-muted-foreground italic">
+            <h1 className="font-headline text-2xl md:text-3xl font-bold tracking-tight uppercase">
               Stories That Bloom With Emotion
-            </p>
-          </div>
-          
-          <p className="text-lg leading-relaxed text-muted-foreground max-w-md mx-auto">
-            PETALS is a premium fantasy storytelling and illustration studio creating magical worlds, enchanting characters, cinematic artwork, and timeless emotional adventures.
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button asChild size="lg" className="bg-rose-pink text-white hover:bg-rose-pink/90 rounded-full px-8 h-12 shadow-lg shadow-rose-pink/20">
-              <Link href="/books">Explore Our Worlds</Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="border-rose-pink text-rose-pink hover:bg-rose-pink/10 rounded-full px-8 h-12">
-              <Link href="/gallery">View Gallery</Link>
-            </Button>
+            </h1>
+            <div className="space-y-4 text-xs md:text-sm text-muted-foreground leading-relaxed max-w-sm mx-auto uppercase tracking-wider font-medium">
+              <p>
+                Building The Future of Fantasy Storytelling
+                We envision a future where storytelling becomes more
+                immersive, emotional, cinematic, and artistically alive.
+              </p>
+              <p>
+                By combining advanced creative technologies with handcrafted
+                artistic direction, PETALS creates next-generation fantasy
+                experiences designed to inspire wonder across animation,
+                illustration, interactive media, and story-driven worlds.
+              </p>
+            </div>
           </div>
         </motion.div>
 
-        {/* Right Column: Fantasy Castle */}
+        {/* Right: Girl Reading Illustration */}
         <motion.div 
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.4 }}
-          className="hidden md:block relative h-[600px]"
+          transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }}
+          className="lg:col-span-4 relative h-[400px] lg:h-[600px] flex items-center justify-center"
         >
-          <div className="absolute inset-0 watercolor-canvas opacity-80">
+          <div className="relative w-full h-full">
             <Image 
-              src={castleImg?.imageUrl || ""}
-              alt={castleImg?.description || ""}
+              src={girlImg?.imageUrl || ""}
+              alt="Girl reading storybook"
               fill
               className="object-contain"
-              data-ai-hint={castleImg?.imageHint}
+              data-ai-hint="storybook girl"
             />
           </div>
-          <div className="absolute -z-10 w-64 h-64 bg-soft-lavender/20 rounded-full blur-[80px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-soft-glow" />
         </motion.div>
 
       </div>
       
-      {/* Background Decor */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
+      {/* Scroll Hint */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.5 }}
+        transition={{ delay: 1.5, duration: 1 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+      >
+        <div className="text-[10px] uppercase tracking-[0.3em] font-headline">The petals flow to the next scene</div>
+        <div className="w-px h-12 bg-rose-pink/30" />
+      </motion.div>
     </section>
   );
 }

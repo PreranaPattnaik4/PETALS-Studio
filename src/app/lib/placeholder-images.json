@@ -14,6 +14,12 @@
       "imageHint": "storybook girl"
     },
     {
+      "id": "hero-rose",
+      "description": "Large pink rose flower for homepage",
+      "imageUrl": "https://www.dropbox.com/scl/fi/841e9uqxkl4ul0q98qqon/rose-flower.png?rlkey=14j68kki56unrao99198d22ot&st=5zp083jo&raw=1",
+      "imageHint": "pink rose"
+    },
+    {
       "id": "hero-castle",
       "description": "Fantasy castle illustration emerging from a magical storybook",
       "imageUrl": "https://picsum.photos/seed/petals-castle/800/1000",
