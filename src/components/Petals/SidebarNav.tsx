@@ -14,6 +14,7 @@ export function SidebarNav() {
   const navLinks = [
     { name: 'Gallery', href: '/gallery' },
     { name: 'Books', href: '/books' },
+    { name: 'Videos', href: '/videos' },
     { name: 'Characters', href: '/characters' },
     { name: 'About', href: '/#about' },
     { name: 'Contact', href: '/contact' },
