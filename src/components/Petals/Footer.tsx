@@ -2,18 +2,30 @@
 "use client";
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Flower2, Instagram, Twitter, Youtube, Mail } from "lucide-react";
+import { Instagram, Twitter, Youtube, Mail } from "lucide-react";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 export function Footer() {
+  const logoImg = PlaceHolderImages.find(img => img.id === 'petals-logo');
+
   return (
     <footer className="bg-pearl-white pt-24 pb-12 border-t border-rose-pink/10">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 mb-16">
           <div className="space-y-6">
-            <Link href="/" className="flex items-center gap-2">
-              <Flower2 className="w-8 h-8 text-rose-pink" />
+            <Link href="/" className="flex items-center gap-3">
+              <div className="relative w-10 h-10 overflow-hidden rounded-full border border-rose-pink/20 shadow-sm">
+                <Image 
+                  src={logoImg?.imageUrl || ""} 
+                  alt="Petals Logo" 
+                  fill 
+                  className="object-cover"
+                  data-ai-hint="logo"
+                />
+              </div>
               <div className="flex flex-col">
                 <span className="font-headline text-2xl tracking-widest uppercase">Petals</span>
                 <span className="text-[10px] uppercase tracking-tighter text-muted-foreground -mt-1">Studio</span>
