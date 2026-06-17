@@ -132,6 +132,12 @@
       "description": "Songs of the Shimmering Sea Artwork",
       "imageUrl": "https://www.dropbox.com/scl/fi/u3itgd5edbq8iwvw1n1bq/d8969c13-3598-4bf8-a96b-8a6505c55791.jfif?rlkey=lkkcglctrgry3qlp6ujvgud0y&st=a3704kd5&raw=1",
       "imageHint": "mermaid art"
+    },
+    {
+      "id": "gallery-whispering-library",
+      "description": "The Whispering Library of the Crystal Rose",
+      "imageUrl": "https://www.dropbox.com/scl/fi/z22wh20mynu2xmoimxf4t/2285b66c-863d-486f-95b2-b33010b5d27e.png?rlkey=cqfpvfpry20c493lk5nnvo5as&st=0w0xgvg1&raw=1",
+      "imageHint": "magical library"
     }
   ]
 }

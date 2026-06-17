@@ -67,6 +67,13 @@ Their fear slowly isolated her emotionally.`
     description: "A breathtaking view of the Enchanted Valley within the Crystal Rose kingdom, where the light of the ancient sun illuminates the path to forgotten wonders."
   },
   {
+    id: "whispering-library",
+    category: "Landscapes",
+    url: PlaceHolderImages.find(img => img.id === 'gallery-whispering-library')?.imageUrl || "",
+    title: "The Whispering Library",
+    description: "Deep within the heart of the Crystal Palace lies the Whispering Library. Here, every petal tells a story, and the walls hum with the collective wisdom of a thousand blooming generations. It is a place of absolute peace and infinite discovery."
+  },
+  {
     id: "dream-guardians",
     category: "Characters",
     url: PlaceHolderImages.find(img => img.id === 'gallery-guardians')?.imageUrl || "",
