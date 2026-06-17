@@ -110,6 +110,12 @@
       "imageHint": "wind magic"
     },
     {
+      "id": "book-tea",
+      "description": "The Midnight Tea Party book cover",
+      "imageUrl": "https://www.dropbox.com/scl/fi/2va48pgmy564s42f90v4g/Pink-and-Brown-Cute-Watercolor-Pastel-Illustrative-Book-Cover.png?rlkey=1vck4bd9ckin4qhodd6hn4nke&st=bfq5k18v&raw=1",
+      "imageHint": "tea party book cover"
+    },
+    {
       "id": "gallery-sisters",
       "description": "RoseBella and Lunaria featured story illustration",
       "imageUrl": "https://www.dropbox.com/scl/fi/7l8fcqx6g6ycr3pmdh4uf/7f12c96d-f512-486d-9670-8f052f2ddbc3.png?rlkey=t0er6s7hcvpkslpheorzn00qg&st=js9p7imp&raw=1",
