@@ -1,6 +1,6 @@
+
 "use client";
 
-import { SidebarNav } from "@/components/Petals/SidebarNav";
 import { Navbar } from "@/components/Petals/Navbar";
 import { Footer } from "@/components/Petals/Footer";
 import { FloatingPetals } from "@/components/Petals/FloatingPetals";
@@ -147,12 +147,11 @@ export default function BooksPage() {
   const featuredBookCover = PlaceHolderImages.find(img => img.id === 'book-whispers');
 
   return (
-    <div className="flex min-h-screen bg-pearl-white">
-      <SidebarNav />
-      <main className="flex-1 ml-64 relative">
-        <FloatingPetals />
-        <Navbar />
+    <div className="min-h-screen bg-pearl-white">
+      <FloatingPetals />
+      <Navbar />
 
+      <main className="relative">
         {/* Featured Hero Section */}
         <section className="relative min-h-screen flex items-center pt-24 overflow-hidden">
           {/* Background Elements */}
@@ -165,24 +164,6 @@ export default function BooksPage() {
               data-ai-hint="moonlit ocean"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-pearl-white/80 via-transparent to-pearl-white" />
-            
-            {/* Animated Particles/Sparkles */}
-            <motion.div 
-              animate={{ 
-                opacity: [0.2, 0.5, 0.2],
-                y: [0, -20, 0]
-              }}
-              transition={{ duration: 5, repeat: Infinity }}
-              className="absolute top-1/4 left-1/4 w-2 h-2 bg-fairy-gold rounded-full blur-sm"
-            />
-            <motion.div 
-              animate={{ 
-                opacity: [0.3, 0.6, 0.3],
-                y: [0, -30, 0]
-              }}
-              transition={{ duration: 7, repeat: Infinity, delay: 1 }}
-              className="absolute bottom-1/4 right-1/3 w-3 h-3 bg-rose-pink rounded-full blur-sm"
-            />
           </div>
 
           <div className="container mx-auto px-12 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
@@ -265,15 +246,6 @@ export default function BooksPage() {
                     data-ai-hint="fantasy book cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                  
-                  {/* Floating Petals within the frame */}
-                  <motion.div 
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="absolute top-10 right-10 w-20 h-20 opacity-40 pointer-events-none"
-                  >
-                    <Wind className="text-white w-full h-full" />
-                  </motion.div>
                 </div>
               </div>
             </motion.div>

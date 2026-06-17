@@ -4,9 +4,8 @@
 import { Navbar } from "@/components/Petals/Navbar";
 import { Footer } from "@/components/Petals/Footer";
 import { FloatingPetals } from "@/components/Petals/FloatingPetals";
-import { SidebarNav } from "@/components/Petals/SidebarNav";
 import { Button } from "@/components/ui/button";
-import { Play, Sparkles, Film, Clock, Heart } from "lucide-react";
+import { Play, Sparkles, Film, Clock } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
@@ -68,12 +67,11 @@ export default function VideosPage() {
   const heroImage = PlaceHolderImages.find(img => img.id === 'crystal-rose-universe');
 
   return (
-    <div className="flex min-h-screen bg-pearl-white">
-      <SidebarNav />
-      <main className="flex-1 ml-64 relative">
-        <FloatingPetals />
-        <Navbar />
+    <div className="min-h-screen bg-pearl-white">
+      <FloatingPetals />
+      <Navbar />
 
+      <main className="relative">
         {/* Hero Section */}
         <section className="pt-32 pb-16 px-12">
           <motion.div 

@@ -1,11 +1,11 @@
 
 "use client";
 
-import { SidebarNav } from "@/components/Petals/SidebarNav";
 import { Hero } from "@/components/Petals/Hero";
 import { ArtGallery } from "@/components/Petals/ArtGallery";
 import { CharacterShowcase } from "@/components/Petals/CharacterShowcase";
 import { DreamweaverPortal } from "@/components/Petals/DreamweaverPortal";
+import { Navbar } from "@/components/Petals/Navbar";
 import { Footer } from "@/components/Petals/Footer";
 import { FloatingPetals } from "@/components/Petals/FloatingPetals";
 import { Button } from "@/components/ui/button";
@@ -17,11 +17,11 @@ export default function Home() {
   const crystalRoseImg = PlaceHolderImages.find(img => img.id === 'crystal-rose-universe');
 
   return (
-    <div className="flex min-h-screen bg-white">
-      <SidebarNav />
-      <main className="flex-1 ml-64 relative">
-        <FloatingPetals />
-        
+    <div className="min-h-screen bg-white">
+      <FloatingPetals />
+      <Navbar />
+      
+      <main className="relative">
         <Hero />
 
         {/* About Section */}
