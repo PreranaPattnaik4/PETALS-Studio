@@ -69,9 +69,9 @@
     },
     {
       "id": "book-whispers",
-      "description": "The Whispers of the Crystal Rose book cover",
-      "imageUrl": "https://picsum.photos/seed/book1/600/900",
-      "imageHint": "fantasy book"
+      "description": "The Crystal Rose: Beneath the Whispering Waves book cover",
+      "imageUrl": "https://www.dropbox.com/scl/fi/oywsonfqxxqfhemxfcqwr/c3799200-6091-4359-85f7-d0bda61fa419.png?rlkey=ce7te400m149in1iiw0vbum37&st=tvhwnkdj&raw=1",
+      "imageHint": "crystal rose book cover"
     },
     {
       "id": "book-mermaids",
