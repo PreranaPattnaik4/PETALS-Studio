@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const characters = [
   {
@@ -19,19 +20,22 @@ const characters = [
     name: "RoseBella",
     role: "Queen of the Crystal Rose",
     desc: "The sovereign of the blooming glass, wielding light to protect her fragile kingdom.",
-    img: "char-rosebella"
+    img: "char-rosebella",
+    longDesc: "Kind-hearted and gentle, RoseBella is adored by everyone in the Crystal Palace. She wields the ancient light of the blooming glass to ensure the safety of her kingdom, standing as a beacon of hope for all her subjects."
   },
   {
     name: "Nerina",
     role: "Guardian of Ocean Dreams",
     desc: "She weaves nightmares into sea pearls, ensuring every child sleeps peacefully beneath the waves.",
-    img: "char-nerina"
+    img: "char-nerina",
+    longDesc: "In the realm where dreams are woven from sea spray and starlight, Nerina keeps watch. She has the unique power to transform fear into beauty, turning restless nights into shimmering pearls of peaceful slumber."
   },
   {
     name: "Vespera",
     role: "The Midnight Weaver",
     desc: "Mistress of shadows and moonbeams, she protects the secrets hidden within the night's velvet embrace.",
-    img: "char-vespera"
+    img: "char-vespera",
+    longDesc: "Connected to the deeper, mysterious parts of the forest, Vespera understands the things others fear. She is a guardian of forgotten magic and ancient lore, weaving the very fabric of the night to protect the kingdom's deepest secrets."
   }
 ];
 
@@ -57,7 +61,7 @@ export function CharacterShowcase() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="mb-20 glass-morphism rounded-[3rem] overflow-hidden shadow-2xl border-white/40"
+            className="mb-32 glass-morphism rounded-[3rem] overflow-hidden shadow-2xl border-white/40"
           >
             <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch min-h-[500px]">
               <div className="lg:col-span-7 relative h-[400px] lg:h-auto group">
@@ -101,57 +105,82 @@ export function CharacterShowcase() {
           </motion.div>
         )}
 
-        {/* Others Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Legendary Souls: Others Featured List */}
+        <div className="space-y-24">
+          <div className="text-center mb-12">
+            <h3 className="font-headline text-3xl md:text-4xl text-foreground">Legendary Souls</h3>
+            <div className="h-px w-24 bg-rose-pink/30 mx-auto mt-4" />
+          </div>
+          
           {others.map((char, index) => {
             const charImg = PlaceHolderImages.find(img => img.id === char.img);
+            const isEven = index % 2 === 0;
             return (
               <motion.div
                 key={char.name}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="group glass-morphism rounded-[2.5rem] p-6 transition-all duration-500 hover:-translate-y-3"
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                className="glass-morphism rounded-[3rem] overflow-hidden shadow-2xl border-white/40"
               >
-                <div className="relative h-96 w-full rounded-[2rem] overflow-hidden mb-6 shadow-md group-hover:shadow-rose-pink/30 group-hover:shadow-2xl transition-all duration-500">
-                  <Image
-                    src={charImg?.imageUrl || ""}
-                    alt={char.name}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
-                    data-ai-hint={charImg?.imageHint}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch min-h-[450px]">
+                  {/* Image Container - Swaps Order based on index */}
+                  <div className={cn(
+                    "lg:col-span-6 relative h-[400px] lg:h-auto group",
+                    !isEven ? "lg:order-2" : "lg:order-1"
+                  )}>
+                    <Image
+                      src={charImg?.imageUrl || ""}
+                      alt={char.name}
+                      fill
+                      className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                      data-ai-hint={charImg?.imageHint}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent" />
+                    <div className="absolute top-6 left-6">
+                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-pink/20 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-widest border border-white/20">
+                        Legacy
+                      </div>
+                    </div>
+                  </div>
                   
-                  <div className="absolute bottom-6 left-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
-                    <Button variant="outline" className="w-full bg-white/20 backdrop-blur-md border-white/40 text-white rounded-xl hover:bg-white hover:text-rose-pink">
-                      Read Legend
-                    </Button>
+                  {/* Content Container */}
+                  <div className={cn(
+                    "lg:col-span-6 p-8 md:p-12 lg:p-14 flex flex-col justify-center space-y-6 bg-white/40 backdrop-blur-xl",
+                    !isEven ? "lg:order-1" : "lg:order-2"
+                  )}>
+                    <div className="space-y-2">
+                      <h3 className="font-headline text-4xl md:text-5xl text-rose-pink">{char.name}</h3>
+                      <p className="text-rose-gold text-lg md:text-xl font-headline italic">{char.role}</p>
+                    </div>
+                    
+                    <div className="space-y-4">
+                      <p className="text-muted-foreground leading-relaxed italic border-l-4 border-rose-pink/20 pl-4">
+                        {char.desc}
+                      </p>
+                      <p className="text-sm text-muted-foreground/80 leading-relaxed">
+                        {char.longDesc}
+                      </p>
+                    </div>
+
+                    <div className="pt-4">
+                      <Button variant="outline" size="lg" className="border-rose-pink text-rose-pink hover:bg-rose-pink hover:text-white rounded-xl px-8 transition-all hover:shadow-lg">
+                        Read Legend
+                      </Button>
+                    </div>
                   </div>
-                </div>
-                
-                <div className="space-y-3 px-2">
-                  <div className="flex items-center justify-between">
-                    <h3 className="font-headline text-3xl group-hover:text-rose-pink transition-colors">{char.name}</h3>
-                    <span className="text-[10px] uppercase tracking-widest text-rose-pink font-bold px-2 py-0.5 rounded-full bg-rose-pink/10">Legacy</span>
-                  </div>
-                  <p className="text-rose-gold font-medium text-sm italic">{char.role}</p>
-                  <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
-                    {char.desc}
-                  </p>
                 </div>
               </motion.div>
             );
           })}
         </div>
 
-        <div className="mt-20 text-center">
-          <div className="inline-block h-px w-24 bg-rose-pink/20 mb-8" />
+        <div className="mt-32 text-center">
+          <div className="inline-block h-px w-32 bg-rose-pink/20 mb-8" />
           <p className="font-headline text-2xl italic text-muted-foreground">More souls coming to the Crystal Rose universe soon...</p>
         </div>
       </div>
     </section>
   );
 }
-
