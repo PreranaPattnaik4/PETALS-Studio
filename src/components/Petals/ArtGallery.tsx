@@ -57,9 +57,14 @@ peaceful spells
 Lunaria secretly practiced harmless magic beneath moonlight while Nyx slept beside her.
 But society feared magic.
 After a misunderstanding involving Lunaria healing a wounded deer with magic, villagers began whispering that she was dangerous.
-Their fear slowly isolated her emotionally.
-
-At the same time, a dark entity named:`
+Their fear slowly isolated her emotionally.`
+  },
+  { 
+    id: "enchanted-valley", 
+    category: "Landscapes", 
+    url: PlaceHolderImages.find(img => img.id === 'gallery-enchanted-valley')?.imageUrl || "", 
+    title: "The Enchanted Valley",
+    description: "A breathtaking view of the Enchanted Valley within the Crystal Rose kingdom, where the light of the ancient sun illuminates the path to forgotten wonders."
   },
   { id: 1, category: "Portraits", url: "https://picsum.photos/seed/p1/600/800", title: "The Weaver" },
   { id: 2, category: "Landscapes", url: "https://picsum.photos/seed/l1/800/600", title: "Crystal Valley" },

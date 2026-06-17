@@ -114,6 +114,12 @@
       "description": "RoseBella and Lunaria featured story illustration",
       "imageUrl": "https://www.dropbox.com/scl/fi/7l8fcqx6g6ycr3pmdh4uf/7f12c96d-f512-486d-9670-8f052f2ddbc3.png?rlkey=t0er6s7hcvpkslpheorzn00qg&st=js9p7imp&raw=1",
       "imageHint": "fantasy sisters portrait"
+    },
+    {
+      "id": "gallery-enchanted-valley",
+      "description": "The Enchanted Valley of the Crystal Rose",
+      "imageUrl": "https://www.dropbox.com/scl/fi/sjbxfk1cib17cd2yc7xkq/818023bf-2691-4647-9130-599361e0a967.png?rlkey=w4dulwc3bpiaxv7553ni01s60&st=etbyuidr&raw=1",
+      "imageHint": "enchanted valley"
     }
   ]
 }
