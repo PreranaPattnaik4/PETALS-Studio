@@ -1,4 +1,3 @@
-
 "use client";
 
 import { SidebarNav } from "@/components/Petals/SidebarNav";
@@ -8,7 +7,7 @@ import { FloatingPetals } from "@/components/Petals/FloatingPetals";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { 
   ShoppingBag, 
   Users, 
