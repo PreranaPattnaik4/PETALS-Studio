@@ -10,8 +10,6 @@ import Link from 'next/link';
 
 export function Hero() {
   const roseImg = PlaceHolderImages.find(img => img.id === 'hero-rose');
-  const girlImg = PlaceHolderImages.find(img => img.id === 'hero-main');
-  const castleImg = PlaceHolderImages.find(img => img.id === 'hero-castle');
 
   return (
     <section className="relative h-screen flex items-center overflow-hidden bg-white">
@@ -64,42 +62,27 @@ export function Hero() {
             </div>
           </motion.div>
 
-          {/* Right Side: Floating Magical Composition */}
-          <div className="lg:col-span-6 relative h-[600px] lg:h-[800px]">
+          {/* Right Side: Featured Magical Rose */}
+          <div className="lg:col-span-6 relative h-[600px] lg:h-[800px] flex items-center justify-center">
             
-            {/* Background Rose (Large & Soft) */}
+            {/* The Main Hero Image: The Edited Rose */}
             <motion.div 
-              initial={{ opacity: 0, scale: 0.8, rotate: -20 }}
-              animate={{ opacity: 1, scale: 1.2, rotate: 0 }}
-              transition={{ duration: 2, ease: "easeOut" }}
-              className="absolute top-10 right-0 w-full h-full -z-10"
+              initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
+              animate={{ opacity: 1, scale: 1.1, rotate: 0 }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
+              className="relative w-full h-full drop-shadow-[0_20px_50px_rgba(247,183,195,0.4)]"
             >
               <Image 
                 src={roseImg?.imageUrl || ""}
-                alt="Rose Background"
+                alt="The Signature Petals Rose"
                 fill
                 className="object-contain"
                 data-ai-hint="pink rose"
-              />
-            </motion.div>
-
-            {/* Foreground: Girl Reading (The Main Hero) */}
-            <motion.div 
-              initial={{ opacity: 0, y: 50, scale: 0.9 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
-              className="relative z-20 w-full h-full drop-shadow-2xl"
-            >
-              <Image 
-                src={girlImg?.imageUrl || ""}
-                alt="Main Hero Girl"
-                fill
-                className="object-contain"
-                data-ai-hint="storybook girl"
+                priority
               />
               
               {/* Magical Sparkle Trail (Decorative SVGs) */}
-              <div className="absolute top-1/4 right-1/4 w-full h-full pointer-events-none opacity-60">
+              <div className="absolute inset-0 pointer-events-none opacity-60">
                 <svg className="w-full h-full animate-soft-glow" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="50" cy="50" r="2" fill="#F5D76E" />
                   <circle cx="150" cy="80" r="3" fill="#F7B7C3" />
@@ -112,27 +95,6 @@ export function Hero() {
                     </linearGradient>
                   </defs>
                 </svg>
-              </div>
-            </motion.div>
-
-            {/* Floating World Card (The Ship/Castle equivalent) */}
-            <motion.div 
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1.5, delay: 0.8 }}
-              className="absolute top-20 right-0 w-48 h-64 bg-white/40 backdrop-blur-xl p-2 rounded-3xl border border-white/40 shadow-2xl rotate-12 z-10 hidden lg:block"
-            >
-              <div className="relative w-full h-full rounded-2xl overflow-hidden">
-                <Image 
-                  src={castleImg?.imageUrl || "https://picsum.photos/seed/magic-castle/400/600"}
-                  alt="Floating World"
-                  fill
-                  className="object-cover"
-                  data-ai-hint="magic castle"
-                />
-                <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/60 text-white">
-                  <p className="text-[10px] uppercase font-bold tracking-tighter">Explore The Kingdom</p>
-                </div>
               </div>
             </motion.div>
 
