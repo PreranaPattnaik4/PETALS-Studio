@@ -108,6 +108,13 @@ Their fear slowly isolated her emotionally.`
     title: "Songs of the Shimmering Sea",
     description: "The ancient melodies of the ocean, captured in a single frame. This watercolor-style illustration depicts the serene power of Alora as she communicates with the deep sea creatures beneath the moonlit waves."
   },
+  {
+    id: "forgotten-map",
+    category: "Landscapes",
+    url: PlaceHolderImages.find(img => img.id === 'gallery-map')?.imageUrl || "",
+    title: "The Forgotten Map of Floria",
+    description: "An ancient, hand-drawn map revealing the hidden paths and secret groves of the Floria kingdom. Every petal-marked trail leads to a new discovery in the heart of the forest, weaving a tale of growth, nature, and ancient whispers."
+  },
   { id: 1, category: "Portraits", url: "https://picsum.photos/seed/p1/600/800", title: "The Weaver" },
   { id: 2, category: "Landscapes", url: "https://picsum.photos/seed/l1/800/600", title: "Crystal Valley" },
   { id: 3, category: "Watercolor", url: "https://picsum.photos/seed/w1/600/600", title: "Morning Mist" },

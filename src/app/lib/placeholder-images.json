@@ -116,6 +116,12 @@
       "imageHint": "tea party book cover"
     },
     {
+      "id": "book-map",
+      "description": "The Forgotten Map of Floria book cover",
+      "imageUrl": "https://www.dropbox.com/scl/fi/ih63b9hoii32c0ypnb12g/unnamed.png?rlkey=nu4pb0xu08hwzphplxqlypz1l&st=9xer3z7r&raw=1",
+      "imageHint": "fantasy map"
+    },
+    {
       "id": "gallery-sisters",
       "description": "RoseBella and Lunaria featured story illustration",
       "imageUrl": "https://www.dropbox.com/scl/fi/7l8fcqx6g6ycr3pmdh4uf/7f12c96d-f512-486d-9670-8f052f2ddbc3.png?rlkey=t0er6s7hcvpkslpheorzn00qg&st=js9p7imp&raw=1",
@@ -162,6 +168,12 @@
       "description": "The Shimmering Grotto of the Crystal Rose",
       "imageUrl": "https://www.dropbox.com/scl/fi/yuztvntmayuf3jpvqkp2a/OIG3-1.jpeg?rlkey=7ttgoz2h15d1nlkjhl9fvb0vq&st=fdhc0e0l&raw=1",
       "imageHint": "crystal cavern"
+    },
+    {
+      "id": "gallery-map",
+      "description": "The Forgotten Map of Floria Artwork",
+      "imageUrl": "https://www.dropbox.com/scl/fi/ih63b9hoii32c0ypnb12g/unnamed.png?rlkey=nu4pb0xu08hwzphplxqlypz1l&st=9xer3z7r&raw=1",
+      "imageHint": "ancient map"
     }
   ]
 }
