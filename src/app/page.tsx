@@ -55,7 +55,7 @@ export default function Home() {
                 className="object-cover transition-transform duration-1000 group-hover:scale-110"
                 data-ai-hint={crystalRoseImg?.imageHint}
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-white/10 to-transparent" />
               
               <div className="relative z-10 max-w-xl space-y-8">
                 <div className="inline-block bg-fairy-gold/20 backdrop-blur-md px-4 py-1 rounded-full text-fairy-gold text-xs font-bold uppercase tracking-widest">

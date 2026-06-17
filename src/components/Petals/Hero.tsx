@@ -70,7 +70,7 @@ export function Hero() {
             {/* Background Rose (Large & Soft) */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.8, rotate: -20 }}
-              animate={{ opacity: 0.4, scale: 1.2, rotate: 0 }}
+              animate={{ opacity: 1, scale: 1.2, rotate: 0 }}
               transition={{ duration: 2, ease: "easeOut" }}
               className="absolute top-10 right-0 w-full h-full -z-10"
             >
