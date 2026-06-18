@@ -58,71 +58,49 @@ const creations = [
 ];
 
 export default function AboutPage() {
-  const heroImg = PlaceHolderImages.find(img => img.id === 'hero-main');
-  const studioLogo = PlaceHolderImages.find(img => img.id === 'petals-logo');
+  const logoImg = PlaceHolderImages.find(img => img.id === 'petals-logo');
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-pearl-white selection:bg-rose-pink selection:text-white">
       <FloatingPetals />
       <Navbar />
 
       <main>
-        {/* Cinematic Curved Hero Section */}
-        <section className="relative pt-40 pb-64 overflow-hidden bg-pearl-white min-h-[90vh] flex items-center">
-          <div className="absolute inset-0 z-0">
-            <Image 
-              src={heroImg?.imageUrl || ""}
-              alt="Background"
-              fill
-              className="object-cover"
-              priority
-            />
+        {/* Editorial Hero Section */}
+        <section className="relative pt-64 pb-32 overflow-hidden flex flex-col items-center justify-center text-center">
+          <div className="container mx-auto px-6 relative z-10 space-y-12">
+            {/* Discover Our Heart Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-rose-pink/10 text-rose-pink text-[10px] font-bold uppercase tracking-[0.4em] border border-rose-pink/20 backdrop-blur-sm"
+            >
+              <Sparkles className="w-3.5 h-3.5" /> Discover Our Heart
+            </motion.div>
+            
+            {/* Main Heading */}
+            <motion.h1 
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              className="font-headline text-5xl md:text-7xl lg:text-8xl text-foreground"
+            >
+              About <span className="italic text-rose-pink">PETALS Studio</span>
+            </motion.h1>
+            
+            {/* Refined Tagline */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="text-muted-foreground text-xl md:text-2xl font-headline italic leading-relaxed max-w-2xl mx-auto"
+            >
+              &quot;Crafting illustrated stories that unfold like petals, blooming layer by layer.&quot;
+            </motion.p>
           </div>
           
-          <div className="container mx-auto px-12 relative z-10 flex justify-start">
-            <div className="max-w-2xl text-left space-y-6">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/10 text-white text-[10px] font-bold uppercase tracking-[0.3em] border border-white/20 backdrop-blur-md"
-              >
-                <Sparkles className="w-3.5 h-3.5" /> Discover Our Heart
-              </motion.div>
-              
-              <motion.h1 
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="font-headline text-5xl md:text-6xl text-white mb-4 drop-shadow-2xl"
-              >
-                About PETALS Studio
-              </motion.h1>
-              
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="text-white/95 text-xl md:text-2xl font-headline italic leading-relaxed drop-shadow-xl"
-              >
-                &quot;Crafting illustrated stories that unfold like petals, blooming layer by layer.&quot;
-              </motion.p>
-            </div>
-          </div>
-
-          {/* Smooth Curve Bottom */}
-          <div className="absolute bottom-0 left-0 w-full leading-[0] z-20">
-            <svg 
-              viewBox="0 0 1440 320" 
-              fill="none" 
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-full h-auto"
-            >
-              <path 
-                fill="#ffffff" 
-                d="M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,192C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-              ></path>
-            </svg>
-          </div>
+          {/* Subtle Background Accent */}
+          <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,_var(--rose-pink)_0%,_transparent_70%)] opacity-[0.03]" />
         </section>
 
         {/* Our Mission Section */}
@@ -134,8 +112,8 @@ export default function AboutPage() {
               viewport={{ once: true }}
               className="space-y-4"
             >
-              <h2 className="font-headline text-5xl md:text-7xl text-foreground">Our Mission</h2>
-              <div className="w-24 h-1 bg-rose-pink mx-auto rounded-full" />
+              <h2 className="font-headline text-5xl md:text-6xl text-foreground">Our Mission</h2>
+              <div className="w-24 h-1 bg-rose-pink mx-auto rounded-full opacity-30" />
             </motion.div>
 
             <motion.div
@@ -149,14 +127,14 @@ export default function AboutPage() {
                 &quot;At PETALS, we believe the best parts of childhood don&apos;t need reinventing—just reimagining.&quot;
               </p>
               
-              <div className="text-xl text-muted-foreground leading-relaxed space-y-6">
+              <div className="text-xl text-muted-foreground leading-relaxed space-y-8 font-headline italic">
                 <p>
                   PETALS Studio is a premium illustration-first fantasy media, art, and storytelling studio dedicated to creating enchanting worlds, memorable characters, and emotionally meaningful experiences through art and imagination.
                 </p>
                 <p>
                   Founded on the belief that stories have the power to inspire, comfort, and connect, PETALS brings together fantasy storytelling, illustration, publishing, animation, fine art, and AI-assisted creative production under one cohesive creative vision.
                 </p>
-                <p className="text-rose-pink font-bold text-2xl">
+                <p className="text-rose-pink font-bold text-3xl not-italic tracking-tight">
                   We create more than stories—we build worlds.
                 </p>
                 <p>
@@ -183,12 +161,12 @@ export default function AboutPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="bg-white p-10 rounded-[2.5rem] shadow-sm hover:shadow-xl transition-all duration-500 border border-rose-pink/10"
+                  className="bg-white p-10 rounded-[2.5rem] shadow-sm hover:shadow-xl transition-all duration-500 border border-rose-pink/10 group"
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-rose-pink/10 text-rose-pink flex items-center justify-center mb-6">
+                  <div className="w-14 h-14 rounded-2xl bg-rose-pink/10 text-rose-pink flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                     <item.icon className="w-7 h-7" />
                   </div>
-                  <h3 className="font-headline text-2xl mb-4">{item.title}</h3>
+                  <h3 className="font-headline text-2xl mb-4 group-hover:text-rose-pink transition-colors">{item.title}</h3>
                   <p className="text-muted-foreground leading-relaxed text-sm italic">{item.desc}</p>
                 </motion.div>
               ))}
@@ -198,7 +176,7 @@ export default function AboutPage() {
 
         {/* Philosophy & Vision */}
         <section className="py-48 relative overflow-hidden bg-white">
-          <div className="container mx-auto px-6 max-w-5xl">
+          <div className="container mx-auto px-6 max-w-6xl">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
               <div className="space-y-12">
                 <div className="space-y-6">
@@ -218,47 +196,52 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              <div className="relative aspect-square">
-                <div className="absolute inset-0 bg-rose-pink/20 blur-[100px] rounded-full scale-125" />
-                <div className="relative h-full w-full rounded-full overflow-hidden border-2 border-rose-pink/20 p-8">
+              <div className="relative aspect-square flex items-center justify-center">
+                <div className="absolute inset-0 bg-rose-pink/10 blur-[120px] rounded-full scale-125 animate-pulse" />
+                <div className="relative h-64 w-64 md:h-80 md:w-80 rounded-full overflow-hidden border border-rose-pink/20 p-4 bg-white/40 backdrop-blur-md shadow-2xl">
                   <Image 
-                    src={studioLogo?.imageUrl || ""}
+                    src={logoImg?.imageUrl || ""}
                     alt="Logo"
                     fill
-                    className="object-cover rounded-full"
+                    className="object-cover p-8"
                   />
                 </div>
               </div>
             </div>
 
-            <div className="mt-48 text-center space-y-12 bg-rose-pink/5 p-16 rounded-[4rem]">
+            <div className="mt-48 text-center space-y-12 bg-rose-pink/5 p-16 rounded-[4rem] border border-rose-pink/10">
               <div className="space-y-6">
                 <h2 className="font-headline text-5xl">Our Vision</h2>
-                <div className="h-1 w-12 bg-rose-pink mx-auto rounded-full" />
+                <div className="h-1 w-12 bg-rose-pink mx-auto rounded-full opacity-30" />
               </div>
-              <p className="text-2xl md:text-3xl text-muted-foreground font-headline italic leading-relaxed max-w-3xl mx-auto">
-                To build a timeless fantasy universe where storytelling, illustration, art, and imagination come together to inspire generations around the world.
+              <p className="text-2xl md:text-4xl text-foreground font-headline italic leading-relaxed max-w-3xl mx-auto">
+                To build a <span className="text-rose-pink not-italic font-bold">timeless fantasy universe</span> where storytelling, illustration, art, and imagination come together to inspire generations around the world.
               </p>
             </div>
           </div>
         </section>
 
-        {/* Closing */}
-        <section className="py-32 text-center bg-rose-pink">
-          <div className="container mx-auto px-6 max-w-4xl">
+        {/* Closing Section */}
+        <section className="py-40 text-center bg-rose-pink relative overflow-hidden">
+          {/* Subtle floral pattern overlay could go here */}
+          <div className="container mx-auto px-6 max-w-4xl relative z-10">
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.98 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="space-y-8"
+              className="space-y-10"
             >
-              <Quote className="w-16 h-16 text-white/20 mx-auto" />
-              <h2 className="font-headline text-5xl md:text-7xl text-white">Welcome to PETALS</h2>
+              <Quote className="w-16 h-16 text-white/30 mx-auto" />
+              <h2 className="font-headline text-6xl md:text-8xl text-white">Welcome to PETALS</h2>
               <p className="text-2xl md:text-3xl text-white/90 font-headline italic max-w-2xl mx-auto leading-relaxed">
                 A place where imagination blossoms, stories come alive, and every creation begins with a single petal of inspiration.
               </p>
             </motion.div>
           </div>
+          
+          {/* Background Decoration */}
+          <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 blur-[100px] rounded-full -translate-x-1/2 -translate-y-1/2" />
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-black/10 blur-[120px] rounded-full translate-x-1/3 translate-y-1/3" />
         </section>
 
         <Footer />
