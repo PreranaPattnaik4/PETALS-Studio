@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Navbar } from "@/components/Petals/Navbar";
@@ -14,14 +15,12 @@ import {
   Video, 
   PenTool, 
   Heart, 
-  ArrowRight,
-  Play,
-  Clock,
-  Calendar,
-  Mail,
-  ChevronRight
+  Play, 
+  ChevronRight,
+  Mail
 } from "lucide-react";
 import { CharacterShowcase } from "@/components/Petals/CharacterShowcase";
+import { DreamweaverPortal } from "@/components/Petals/DreamweaverPortal";
 
 const services = [
   {
@@ -151,6 +150,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* AI Story weaver Portal */}
+        <DreamweaverPortal />
 
         <CharacterShowcase />
 
