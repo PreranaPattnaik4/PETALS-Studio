@@ -226,15 +226,15 @@ export default function AboutPage() {
             </div>
 
             {/* Featured Creations Rows */}
-            <div className="space-y-8 mb-20">
+            <div className="space-y-12 mb-24">
               {featuredCreations.map((featured, index) => (
-                <div key={index} className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div key={index} className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
                   {/* Big Featured Card */}
                   <motion.div 
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="lg:col-span-8 bg-rose-pink/5 p-10 md:p-16 rounded-[3.5rem] border border-rose-pink/10 shadow-lg flex flex-col md:flex-row gap-12 items-center group hover:shadow-2xl transition-all duration-500"
+                    className="lg:col-span-8 bg-rose-pink/5 p-12 md:p-24 rounded-[3.5rem] border border-rose-pink/10 shadow-lg flex flex-col md:flex-row gap-12 items-center group hover:shadow-2xl transition-all duration-500 min-h-[450px]"
                   >
                     <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-white text-rose-pink flex items-center justify-center shrink-0 shadow-xl group-hover:scale-110 transition-transform">
                       <featured.icon className="w-12 h-12 md:w-16 md:h-16" />
@@ -253,12 +253,12 @@ export default function AboutPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 }}
-                    className="lg:col-span-4 bg-white p-10 md:p-12 rounded-[3.5rem] border border-rose-pink/10 shadow-sm flex flex-col justify-center space-y-8 group hover:shadow-xl transition-all duration-500"
+                    className="lg:col-span-4 bg-white p-10 md:p-12 rounded-[3.5rem] border border-rose-pink/10 shadow-sm flex flex-col justify-center space-y-10 group hover:shadow-xl transition-all duration-500 min-h-[450px]"
                   >
                     <div className="flex items-center gap-3 text-rose-pink font-bold uppercase tracking-widest text-xs">
                       <Sparkles className="w-4 h-4" /> Technical Standards
                     </div>
-                    <ul className="space-y-4">
+                    <ul className="space-y-6">
                       {featured.details.map((detail, idx) => (
                         <li key={idx} className="flex items-center gap-3 text-muted-foreground italic font-headline text-lg">
                           <CheckCircle2 className="w-5 h-5 text-rose-pink shrink-0" />
