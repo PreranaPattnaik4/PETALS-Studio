@@ -48,7 +48,7 @@ interface CanvasState {
 }
 
 type CreatorMode = 'manual' | 'lore-weaver' | 'wall-art' | 'birthday-card';
-type ManualSidebarTab = 'stickers' | 'background' | 'personalized' | 'text' | 'guide';
+type ManualSidebarTab = 'stickers' | 'background' | 'personalized' | 'text';
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
 const ACCEPTED_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
@@ -222,6 +222,24 @@ export function PosterCreator() {
     }
   };
 
+  const StudioGuide = () => (
+    <div className="p-8 rounded-[2.5rem] bg-rose-pink/5 space-y-6 text-sm italic text-muted-foreground font-headline border border-rose-pink/10 mt-8">
+      <div className="flex items-center gap-2 mb-2">
+        <Info className="w-4 h-4 text-rose-pink" />
+        <p className="font-bold not-italic text-rose-pink uppercase tracking-[0.2em] text-[10px]">Studio Standards</p>
+      </div>
+      <div className="grid grid-cols-2 gap-4">
+        <div className="flex items-center gap-2 text-[11px]"><CheckCircle2 className="w-3.5 h-3.5 text-rose-pink" /> Max Size: 5 MB</div>
+        <div className="flex items-center gap-2 text-[11px]"><CheckCircle2 className="w-3.5 h-3.5 text-rose-pink" /> Res: 4000px Max</div>
+        <div className="flex items-center gap-2 text-[11px]"><CheckCircle2 className="w-3.5 h-3.5 text-rose-pink" /> JPG, PNG, WebP</div>
+        <div className="flex items-center gap-2 text-[11px]"><CheckCircle2 className="w-3.5 h-3.5 text-rose-pink" /> Auto-Optimize</div>
+      </div>
+      <p className="pt-4 border-t border-rose-pink/10 text-[10px] leading-relaxed tracking-wide opacity-70">
+        We recommend images between 2000px and 3000px for the most enchanting results.
+      </p>
+    </div>
+  );
+
   return (
     <div className="flex flex-col gap-12">
       {/* Mode Switcher */}
@@ -257,19 +275,19 @@ export function PosterCreator() {
       </div>
 
       <div className="flex flex-col lg:flex-row gap-12 items-start justify-center">
-        {/* Sidebar Controls - Expanded for a more professional workspace */}
-        <div className="w-full lg:w-[600px] flex flex-col gap-6 order-2 lg:order-1 shrink-0">
-          <div className="glass-morphism rounded-[3rem] p-10 space-y-10 min-h-[850px] flex flex-col shadow-2xl border-rose-pink/10">
+        {/* Sidebar Controls - Expanded width & scrollbars hidden */}
+        <div className="w-full lg:w-[650px] flex flex-col gap-6 order-2 lg:order-1 shrink-0">
+          <div className="glass-morphism rounded-[3rem] p-10 space-y-10 min-h-[900px] flex flex-col shadow-2xl border-rose-pink/10">
             
             <AnimatePresence mode="wait">
               {mode === 'manual' ? (
                 <motion.div key="manual" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex flex-col h-full space-y-10">
-                  <div className="flex gap-2 p-1.5 bg-rose-pink/10 rounded-2xl overflow-x-auto custom-scrollbar no-scrollbar border border-rose-pink/5">
-                    {(['stickers', 'background', 'personalized', 'text', 'guide'] as const).map((tab) => (
+                  <div className="flex gap-2 p-1.5 bg-rose-pink/10 rounded-2xl overflow-x-auto no-scrollbar border border-rose-pink/5">
+                    {(['stickers', 'background', 'personalized', 'text'] as const).map((tab) => (
                       <button
                         key={tab}
                         onClick={() => setActiveTab(tab)}
-                        className={`flex-1 min-w-[100px] py-5 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all flex flex-col items-center gap-2.5 ${
+                        className={`flex-1 min-w-[120px] py-5 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all flex flex-col items-center gap-2.5 ${
                           activeTab === tab ? "bg-white text-rose-pink shadow-lg" : "text-muted-foreground hover:text-rose-pink"
                         }`}
                       >
@@ -277,15 +295,14 @@ export function PosterCreator() {
                         {tab === 'background' && <ImageIcon className="w-4 h-4" />}
                         {tab === 'personalized' && <Camera className="w-4 h-4" />}
                         {tab === 'text' && <Type className="w-4 h-4" />}
-                        {tab === 'guide' && <Info className="w-4 h-4" />}
                         <span className="truncate w-full text-center px-1">
-                          {tab === 'personalized' ? 'Personal' : tab === 'guide' ? 'Guide' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                          {tab === 'personalized' ? 'Personal' : tab.charAt(0).toUpperCase() + tab.slice(1)}
                         </span>
                       </button>
                     ))}
                   </div>
 
-                  <div className="flex-1 overflow-y-auto pr-3 custom-scrollbar max-h-[700px]">
+                  <div className="flex-1 overflow-y-auto no-scrollbar pr-3 max-h-[750px]">
                     {activeTab === 'stickers' && (
                       <div className="grid grid-cols-2 gap-8">
                         {characterStickers.map((char) => (
@@ -324,9 +341,6 @@ export function PosterCreator() {
                             <Camera className="mr-3 w-6 h-6" /> Upload & PETAL-ize
                           </Button>
                         </div>
-                        <div className="p-10 rounded-[3rem] bg-rose-pink/5 text-base italic text-muted-foreground leading-relaxed border border-rose-pink/10 font-headline mx-8">
-                          Our AI models are being nurtured to help your personal photos bloom with magic.
-                        </div>
                       </div>
                     )}
                     {activeTab === 'text' && (
@@ -341,20 +355,7 @@ export function PosterCreator() {
                         </div>
                       </div>
                     )}
-                    {activeTab === 'guide' && (
-                      <div className="p-10 rounded-[3rem] bg-rose-pink/5 space-y-8 text-base italic text-muted-foreground font-headline border border-rose-pink/10">
-                        <p className="font-bold not-italic text-rose-pink uppercase tracking-[0.3em] text-[12px] mb-8">Studio Standards</p>
-                        <div className="space-y-6">
-                          <div className="flex items-center gap-4"><CheckCircle2 className="w-5 h-5 text-rose-pink" /> Max Upload Size: 5 MB</div>
-                          <div className="flex items-center gap-4"><CheckCircle2 className="w-5 h-5 text-rose-pink" /> Accepted Formats: JPG, PNG, WebP</div>
-                          <div className="flex items-center gap-4"><CheckCircle2 className="w-5 h-5 text-rose-pink" /> Resolution: Up to 4000px</div>
-                          <div className="flex items-center gap-4"><CheckCircle2 className="w-5 h-5 text-rose-pink" /> Quality: Auto-optimized</div>
-                        </div>
-                        <p className="pt-8 border-t border-rose-pink/10 text-[12px] leading-relaxed tracking-wide">
-                          For the best experience, we recommend images between 2000px and 3000px width.
-                        </p>
-                      </div>
-                    )}
+                    <StudioGuide />
                   </div>
 
                   <div className="pt-10 border-t border-rose-pink/10 space-y-6">
@@ -378,7 +379,7 @@ export function PosterCreator() {
                 </motion.div>
               ) : mode === 'lore-weaver' ? (
                 <motion.div key="lore" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-10 flex flex-col h-full py-8">
-                  <div className="space-y-8 flex-1 text-center">
+                  <div className="space-y-8 flex-1 text-center overflow-y-auto no-scrollbar">
                     <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-rose-pink/10 text-rose-pink text-[11px] font-bold uppercase tracking-widest border border-rose-pink/20 mb-8">
                       <Clock className="w-4 h-4" /> Coming Soon
                     </div>
@@ -396,14 +397,12 @@ export function PosterCreator() {
                     >
                       <Wand2 className="w-5 h-5 mr-4" /> Weave Lore (Soon)
                     </Button>
-                  </div>
-                  <div className="p-12 rounded-[4rem] bg-rose-pink/5 text-lg italic text-muted-foreground text-center border border-rose-pink/10 leading-relaxed font-headline mx-4">
-                    Our master storytellers are currently training the AI models to weave emotionally resonant PETALS lore.
+                    <StudioGuide />
                   </div>
                 </motion.div>
               ) : mode === 'wall-art' ? (
                 <motion.div key="wall-art" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-10 flex flex-col h-full py-8">
-                  <div className="space-y-8 flex-1">
+                  <div className="space-y-8 flex-1 overflow-y-auto no-scrollbar">
                     <div className="text-center">
                       <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-rose-pink/10 text-rose-pink text-[11px] font-bold uppercase tracking-widest border border-rose-pink/20 mb-10">
                         <Clock className="w-4 h-4" /> Coming Soon
@@ -425,14 +424,12 @@ export function PosterCreator() {
                     >
                       <Sparkles className="w-5 h-5 mr-4" /> Generate Wall Art (Soon)
                     </Button>
-                  </div>
-                  <div className="p-12 rounded-[4rem] bg-rose-pink/5 text-lg italic text-muted-foreground text-center border border-rose-pink/10 leading-relaxed font-headline mx-4">
-                    Premium gallery-quality compositions with enchanted particles are currently blooming in our studio.
+                    <StudioGuide />
                   </div>
                 </motion.div>
               ) : (
                 <motion.div key="birthday" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-10 flex flex-col h-full py-8">
-                  <div className="space-y-8 flex-1">
+                  <div className="space-y-8 flex-1 overflow-y-auto no-scrollbar">
                     <div className="text-center">
                       <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-rose-pink/10 text-rose-pink text-[11px] font-bold uppercase tracking-widest border border-rose-pink/20 mb-10">
                         <Clock className="w-4 h-4" /> Coming Soon
@@ -468,9 +465,7 @@ export function PosterCreator() {
                     >
                       <Heart className="w-5 h-5 mr-4" /> Generate Card (Soon)
                     </Button>
-                  </div>
-                  <div className="p-12 rounded-[4rem] bg-rose-pink/5 text-lg italic text-muted-foreground text-center border border-rose-pink/10 leading-relaxed font-headline mx-4">
-                    Enchanting birthday keepsakes are currently being woven by our studio artists.
+                    <StudioGuide />
                   </div>
                 </motion.div>
               )}
