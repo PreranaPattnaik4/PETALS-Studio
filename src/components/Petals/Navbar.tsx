@@ -22,11 +22,11 @@ export function Navbar() {
 
   const navLinks = [
     { name: 'Home', href: '/' },
+    { name: 'About', href: '/about' },
     { name: 'Gallery', href: '/gallery' },
     { name: 'Books', href: '/books' },
     { name: 'Videos', href: '/videos' },
     { name: 'Characters', href: '/characters' },
-    { name: 'About', href: '/#about' },
   ];
 
   return (
@@ -59,7 +59,7 @@ export function Navbar() {
               {link.name}
             </Link>
           ))}
-          <Button asChild className="bg-rose-pink text-white hover:bg-rose-pink/90 rounded-full px-8 h-12 text-xs font-bold uppercase tracking-widest shadow-lg shadow-rose-pink/20">
+          <Button asChild size="sm" className="bg-rose-pink text-white hover:bg-rose-pink/90 rounded-full px-8 h-10 text-xs font-bold uppercase tracking-widest shadow-lg shadow-rose-pink/20">
             <Link href="/contact">Get in Touch</Link>
           </Button>
         </div>
@@ -90,7 +90,7 @@ export function Navbar() {
                   {link.name}
                 </Link>
               ))}
-              <Button asChild className="bg-rose-pink text-white rounded-full">
+              <Button asChild size="sm" className="bg-rose-pink text-white rounded-full">
                 <Link href="/contact" onClick={() => setIsOpen(false)}>Contact Us</Link>
               </Button>
             </div>
