@@ -92,7 +92,7 @@ export default function AboutPage() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="font-headline text-6xl md:text-9xl text-white mb-4 drop-shadow-xl"
+              className="font-headline text-5xl md:text-7xl text-white mb-4 drop-shadow-xl"
             >
               About PETALS Studio
             </motion.h1>
