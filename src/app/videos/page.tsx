@@ -141,15 +141,15 @@ export default function VideosPage() {
                 {/* Cinematic Overlays */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
                 
-                {/* Play Button Overlay */}
+                {/* Play Button Overlay - Updated to White/Pink Theme */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <motion.div 
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                     className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-white/10 backdrop-blur-xl border border-white/30 flex items-center justify-center text-white shadow-2xl group/btn cursor-pointer"
                   >
-                    <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-rose-pink flex items-center justify-center shadow-lg transition-transform group-hover/btn:scale-105">
-                      <Play className="w-8 h-8 md:w-10 md:h-10 fill-current translate-x-1" />
+                    <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white flex items-center justify-center shadow-lg transition-transform group-hover/btn:scale-105">
+                      <Play className="w-8 h-8 md:w-10 md:h-10 fill-rose-pink text-rose-pink translate-x-1" />
                     </div>
                   </motion.div>
                 </div>
