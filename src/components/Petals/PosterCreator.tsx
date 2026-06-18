@@ -256,21 +256,21 @@ export function PosterCreator() {
         </Button>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-8 items-start">
-        {/* Sidebar Controls - Wider for premium experience */}
-        <div className="w-full lg:w-[450px] flex flex-col gap-6 order-2 lg:order-1 shrink-0">
-          <div className="glass-morphism rounded-[2.5rem] p-8 space-y-8 min-h-[600px] flex flex-col">
+      <div className="flex flex-col lg:flex-row gap-12 items-start justify-center">
+        {/* Sidebar Controls - Expanded for a more professional workspace */}
+        <div className="w-full lg:w-[520px] flex flex-col gap-6 order-2 lg:order-1 shrink-0">
+          <div className="glass-morphism rounded-[3rem] p-10 space-y-10 min-h-[850px] flex flex-col shadow-2xl border-rose-pink/10">
             
             <AnimatePresence mode="wait">
               {mode === 'manual' ? (
-                <motion.div key="manual" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex flex-col h-full space-y-8">
-                  <div className="flex gap-1 p-1 bg-rose-pink/10 rounded-2xl overflow-x-auto custom-scrollbar no-scrollbar">
+                <motion.div key="manual" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex flex-col h-full space-y-10">
+                  <div className="flex gap-2 p-1.5 bg-rose-pink/10 rounded-2xl overflow-x-auto custom-scrollbar no-scrollbar border border-rose-pink/5">
                     {(['stickers', 'background', 'personalized', 'text', 'guide'] as const).map((tab) => (
                       <button
                         key={tab}
                         onClick={() => setActiveTab(tab)}
-                        className={`flex-1 min-w-[60px] py-4 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all flex flex-col items-center gap-2 ${
-                          activeTab === tab ? "bg-white text-rose-pink shadow-md" : "text-muted-foreground hover:text-rose-pink"
+                        className={`flex-1 min-w-[80px] py-5 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all flex flex-col items-center gap-2.5 ${
+                          activeTab === tab ? "bg-white text-rose-pink shadow-lg" : "text-muted-foreground hover:text-rose-pink"
                         }`}
                       >
                         {tab === 'stickers' && <Sticker className="w-4 h-4" />}
@@ -285,25 +285,25 @@ export function PosterCreator() {
                     ))}
                   </div>
 
-                  <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar max-h-[500px]">
+                  <div className="flex-1 overflow-y-auto pr-3 custom-scrollbar max-h-[700px]">
                     {activeTab === 'stickers' && (
-                      <div className="grid grid-cols-2 gap-6">
+                      <div className="grid grid-cols-2 gap-8">
                         {characterStickers.map((char) => (
-                          <button key={char.id} onClick={() => addSticker(char.imageUrl)} className="relative aspect-square rounded-2xl overflow-hidden border-2 border-rose-pink/10 hover:border-rose-pink group transition-all bg-rose-pink/5">
-                            <Image src={char.imageUrl} alt={char.id} fill className="object-cover group-hover:scale-110 transition-transform duration-500" />
+                          <button key={char.id} onClick={() => addSticker(char.imageUrl)} className="relative aspect-square rounded-3xl overflow-hidden border-4 border-rose-pink/10 hover:border-rose-pink group transition-all bg-rose-pink/5 shadow-md">
+                            <Image src={char.imageUrl} alt={char.id} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
                           </button>
                         ))}
                       </div>
                     )}
                     {activeTab === 'background' && (
-                      <div className="space-y-6">
-                        <Button onClick={() => fileInputRef.current?.click()} variant="outline" className="w-full h-14 rounded-2xl border-dashed border-rose-pink/30 hover:border-rose-pink text-rose-pink font-bold uppercase tracking-widest text-[10px]">
-                          <Upload className="mr-2 w-4 h-4" /> Custom Studio Upload
+                      <div className="space-y-8">
+                        <Button onClick={() => fileInputRef.current?.click()} variant="outline" className="w-full h-16 rounded-3xl border-dashed border-rose-pink/40 hover:border-rose-pink text-rose-pink font-bold uppercase tracking-widest text-[11px] bg-rose-pink/5">
+                          <Upload className="mr-3 w-5 h-5" /> Custom Studio Upload
                         </Button>
                         <input type="file" ref={fileInputRef} onChange={handleFileUpload} className="hidden" accept=".jpg,.jpeg,.png,.webp" />
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-2 gap-6">
                           {backgroundPresets.map((bg) => (
-                            <button key={bg.id} onClick={() => handleStateChange({ bgImage: bg.imageUrl })} className={`relative aspect-[3/4] rounded-2xl overflow-hidden border-4 transition-all duration-300 ${bgImage === bg.imageUrl ? "border-rose-pink shadow-xl" : "border-transparent opacity-70 hover:opacity-100"}`}>
+                            <button key={bg.id} onClick={() => handleStateChange({ bgImage: bg.imageUrl })} className={`relative aspect-[3/4] rounded-3xl overflow-hidden border-4 transition-all duration-500 ${bgImage === bg.imageUrl ? "border-rose-pink shadow-2xl scale-[1.02]" : "border-transparent opacity-70 hover:opacity-100"}`}>
                               <Image src={bg.imageUrl} alt={bg.id} fill className="object-cover" />
                             </button>
                           ))}
@@ -311,165 +311,165 @@ export function PosterCreator() {
                       </div>
                     )}
                     {activeTab === 'personalized' && (
-                      <div className="space-y-6 text-center">
-                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-pink/10 text-rose-pink text-[10px] font-bold uppercase tracking-widest border border-rose-pink/20">
-                          <Clock className="w-3.5 h-3.5" /> Coming Soon
+                      <div className="space-y-8 text-center py-12">
+                        <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-rose-pink/10 text-rose-pink text-[11px] font-bold uppercase tracking-widest border border-rose-pink/20">
+                          <Clock className="w-4 h-4" /> Coming Soon
                         </div>
-                        <div className="space-y-4">
-                          <p className="text-[11px] font-bold uppercase tracking-widest text-rose-pink">AI Personalized Design</p>
-                          <p className="text-sm italic text-muted-foreground leading-relaxed px-4">
+                        <div className="space-y-6">
+                          <p className="text-[12px] font-bold uppercase tracking-[0.2em] text-rose-pink">AI Personalized Design</p>
+                          <p className="text-base italic text-muted-foreground leading-relaxed px-8 font-headline">
                             Upload a photo and let our AI weavers transform it into a signature PETALS masterpiece.
                           </p>
-                          <Button disabled variant="outline" className="w-full h-14 rounded-2xl border-dashed opacity-50 border-rose-pink/20">
-                            <Camera className="mr-2 w-5 h-5" /> Upload & PETAL-ize
+                          <Button disabled variant="outline" className="w-full h-16 rounded-3xl border-dashed opacity-50 border-rose-pink/20 text-[11px] font-bold uppercase tracking-widest">
+                            <Camera className="mr-3 w-6 h-6" /> Upload & PETAL-ize
                           </Button>
                         </div>
-                        <div className="p-6 rounded-[2rem] bg-rose-pink/5 text-xs italic text-muted-foreground leading-relaxed border border-rose-pink/10">
+                        <div className="p-8 rounded-[3rem] bg-rose-pink/5 text-sm italic text-muted-foreground leading-relaxed border border-rose-pink/10 font-headline mx-4">
                           Our AI models are being nurtured to help your personal photos bloom with magic.
                         </div>
                       </div>
                     )}
                     {activeTab === 'text' && (
-                      <div className="space-y-6">
-                        <div className="space-y-2">
-                          <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground px-2">Poster Title</label>
-                          <Input placeholder="E.g. The Whispering Sea" value={title} onChange={(e) => setTitle(e.target.value)} onBlur={() => handleStateChange({ title })} className="bg-white/50 h-14 rounded-2xl border-rose-pink/20" />
+                      <div className="space-y-8 py-4">
+                        <div className="space-y-3">
+                          <label className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground px-3">Poster Title</label>
+                          <Input placeholder="E.g. The Whispering Sea" value={title} onChange={(e) => setTitle(e.target.value)} onBlur={() => handleStateChange({ title })} className="bg-white/50 h-16 rounded-[2rem] border-rose-pink/20 px-6 font-headline text-xl" />
                         </div>
-                        <div className="space-y-2">
-                          <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground px-2">Lore Snippet</label>
-                          <Textarea placeholder="E.g. Beneath the silver moon, the waves carry secrets..." value={description} onChange={(e) => setDescription(e.target.value)} onBlur={() => handleStateChange({ description })} className="bg-white/50 rounded-2xl border-rose-pink/20 min-h-[150px]" />
+                        <div className="space-y-3">
+                          <label className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground px-3">Lore Snippet</label>
+                          <Textarea placeholder="E.g. Beneath the silver moon, the waves carry secrets..." value={description} onChange={(e) => setDescription(e.target.value)} onBlur={() => handleStateChange({ description })} className="bg-white/50 rounded-[2rem] border-rose-pink/20 min-h-[220px] px-6 py-4 font-headline text-lg italic" />
                         </div>
                       </div>
                     )}
                     {activeTab === 'guide' && (
-                      <div className="p-8 rounded-[2.5rem] bg-rose-pink/5 space-y-6 text-sm italic text-muted-foreground font-headline border border-rose-pink/10">
-                        <p className="font-bold not-italic text-rose-pink uppercase tracking-widest text-[11px] mb-6">Studio Standards</p>
-                        <div className="space-y-4">
-                          <div className="flex items-center gap-3"><CheckCircle2 className="w-4 h-4 text-rose-pink" /> Max Upload Size: 5 MB</div>
-                          <div className="flex items-center gap-3"><CheckCircle2 className="w-4 h-4 text-rose-pink" /> Accepted Formats: JPG, PNG, WebP</div>
-                          <div className="flex items-center gap-3"><CheckCircle2 className="w-4 h-4 text-rose-pink" /> Resolution: Up to 4000px</div>
-                          <div className="flex items-center gap-3"><CheckCircle2 className="w-4 h-4 text-rose-pink" /> Quality: Auto-optimized</div>
+                      <div className="p-10 rounded-[3rem] bg-rose-pink/5 space-y-8 text-base italic text-muted-foreground font-headline border border-rose-pink/10">
+                        <p className="font-bold not-italic text-rose-pink uppercase tracking-[0.3em] text-[12px] mb-8">Studio Standards</p>
+                        <div className="space-y-6">
+                          <div className="flex items-center gap-4"><CheckCircle2 className="w-5 h-5 text-rose-pink" /> Max Upload Size: 5 MB</div>
+                          <div className="flex items-center gap-4"><CheckCircle2 className="w-5 h-5 text-rose-pink" /> Accepted Formats: JPG, PNG, WebP</div>
+                          <div className="flex items-center gap-4"><CheckCircle2 className="w-5 h-5 text-rose-pink" /> Resolution: Up to 4000px</div>
+                          <div className="flex items-center gap-4"><CheckCircle2 className="w-5 h-5 text-rose-pink" /> Quality: Auto-optimized</div>
                         </div>
-                        <p className="pt-6 border-t border-rose-pink/10 text-[11px] leading-relaxed">
+                        <p className="pt-8 border-t border-rose-pink/10 text-[12px] leading-relaxed tracking-wide">
                           For the best experience, we recommend images between 2000px and 3000px width.
                         </p>
                       </div>
                     )}
                   </div>
 
-                  <div className="pt-8 border-t border-rose-pink/10 space-y-4">
-                    <div className="flex gap-4">
-                      <Button variant="outline" size="icon" onClick={undo} disabled={historyIndex <= 0} className="flex-1 h-14 rounded-2xl border-rose-pink/20 hover:border-rose-pink transition-all">
-                        <Undo2 className="w-5 h-5" />
+                  <div className="pt-10 border-t border-rose-pink/10 space-y-6">
+                    <div className="flex gap-6">
+                      <Button variant="outline" size="icon" onClick={undo} disabled={historyIndex <= 0} className="flex-1 h-16 rounded-3xl border-rose-pink/20 hover:border-rose-pink transition-all bg-white/50">
+                        <Undo2 className="w-6 h-6" />
                       </Button>
-                      <Button variant="outline" size="icon" onClick={redo} disabled={historyIndex >= history.length - 1} className="flex-1 h-14 rounded-2xl border-rose-pink/20 hover:border-rose-pink transition-all">
-                        <Redo2 className="w-5 h-5" />
+                      <Button variant="outline" size="icon" onClick={redo} disabled={historyIndex >= history.length - 1} className="flex-1 h-16 rounded-3xl border-rose-pink/20 hover:border-rose-pink transition-all bg-white/50">
+                        <Redo2 className="w-6 h-6" />
                       </Button>
                     </div>
                     <Button 
                       onClick={() => downloadAsset(canvasRef, 'manual-art')}
                       disabled={isExporting}
-                      className="w-full bg-rose-pink text-white h-16 rounded-2xl font-bold uppercase tracking-widest text-[11px] shadow-xl shadow-rose-pink/20 hover:shadow-2xl transition-all"
+                      className="w-full bg-rose-pink text-white h-20 rounded-3xl font-bold uppercase tracking-[0.2em] text-[12px] shadow-2xl shadow-rose-pink/20 hover:shadow-3xl transition-all"
                     >
-                      {isExporting ? <RefreshCw className="w-5 h-5 mr-3 animate-spin" /> : <Download className="w-5 h-5 mr-3" />}
+                      {isExporting ? <RefreshCw className="w-6 h-6 mr-4 animate-spin" /> : <Download className="w-6 h-6 mr-4" />}
                       Save Masterpiece
                     </Button>
                   </div>
                 </motion.div>
               ) : mode === 'lore-weaver' ? (
-                <motion.div key="lore" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-8 flex flex-col h-full">
-                  <div className="space-y-6 flex-1 text-center">
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-pink/10 text-rose-pink text-[10px] font-bold uppercase tracking-widest border border-rose-pink/20 mb-4">
-                      <Clock className="w-3.5 h-3.5" /> Coming Soon
+                <motion.div key="lore" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-10 flex flex-col h-full py-8">
+                  <div className="space-y-8 flex-1 text-center">
+                    <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-rose-pink/10 text-rose-pink text-[11px] font-bold uppercase tracking-widest border border-rose-pink/20 mb-8">
+                      <Clock className="w-4 h-4" /> Coming Soon
                     </div>
-                    <div className="flex items-center justify-center gap-2 text-rose-pink text-[11px] font-bold uppercase tracking-widest">
-                      <Sparkles className="w-4 h-4" /> Lore Concept
+                    <div className="flex items-center justify-center gap-3 text-rose-pink text-[12px] font-bold uppercase tracking-[0.2em]">
+                      <Sparkles className="w-5 h-5" /> Lore Concept
                     </div>
                     <Textarea 
                       placeholder="E.g. A library hidden in a crystal rose where every petal tells a forgotten memory..." 
                       disabled
-                      className="bg-white/50 rounded-[2rem] border-rose-pink/20 min-h-[180px] opacity-50 p-6 italic"
+                      className="bg-white/50 rounded-[3rem] border-rose-pink/20 min-h-[250px] opacity-50 p-10 italic font-headline text-xl"
                     />
                     <Button 
                       disabled
-                      className="w-full bg-rose-pink/20 text-muted-foreground h-14 rounded-2xl font-bold uppercase tracking-widest text-[11px] cursor-not-allowed"
+                      className="w-full bg-rose-pink/20 text-muted-foreground h-16 rounded-[2rem] font-bold uppercase tracking-widest text-[12px] cursor-not-allowed"
                     >
-                      <Wand2 className="w-4 h-4 mr-3" /> Weave Lore (Soon)
+                      <Wand2 className="w-5 h-5 mr-4" /> Weave Lore (Soon)
                     </Button>
                   </div>
-                  <div className="p-8 rounded-[2.5rem] bg-rose-pink/5 text-sm italic text-muted-foreground text-center border border-rose-pink/10 leading-relaxed">
+                  <div className="p-10 rounded-[3.5rem] bg-rose-pink/5 text-base italic text-muted-foreground text-center border border-rose-pink/10 leading-relaxed font-headline">
                     Our master storytellers are currently training the AI models to weave emotionally resonant PETALS lore.
                   </div>
                 </motion.div>
               ) : mode === 'wall-art' ? (
-                <motion.div key="wall-art" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-8 flex flex-col h-full">
-                  <div className="space-y-6 flex-1">
+                <motion.div key="wall-art" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-10 flex flex-col h-full py-8">
+                  <div className="space-y-8 flex-1">
                     <div className="text-center">
-                      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-pink/10 text-rose-pink text-[10px] font-bold uppercase tracking-widest border border-rose-pink/20 mb-8">
-                        <Clock className="w-3.5 h-3.5" /> Coming Soon
+                      <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-rose-pink/10 text-rose-pink text-[11px] font-bold uppercase tracking-widest border border-rose-pink/20 mb-10">
+                        <Clock className="w-4 h-4" /> Coming Soon
                       </div>
                     </div>
-                    <div className="space-y-6">
-                      <div className="space-y-2">
-                        <label className="text-[10px] font-bold uppercase tracking-widest text-rose-pink px-2">Signature Wall Art</label>
-                        <Input placeholder="Poster Title (e.g. Where Stories Bloom)" disabled className="bg-white/50 h-14 rounded-2xl opacity-50 border-rose-pink/20" />
+                    <div className="space-y-8">
+                      <div className="space-y-3">
+                        <label className="text-[11px] font-bold uppercase tracking-widest text-rose-pink px-3">Signature Wall Art</label>
+                        <Input placeholder="Poster Title (e.g. Where Stories Bloom)" disabled className="bg-white/50 h-16 rounded-[2rem] opacity-50 border-rose-pink/20 px-6 font-headline text-lg" />
                       </div>
-                      <div className="space-y-2">
-                        <label className="text-[10px] font-bold uppercase tracking-widest text-rose-pink px-2">Poetic Subtitle</label>
-                        <Textarea placeholder="Subtitle (e.g. Every petal carries a dream)" disabled className="bg-white/50 rounded-2xl opacity-50 border-rose-pink/20 min-h-[100px]" />
+                      <div className="space-y-3">
+                        <label className="text-[11px] font-bold uppercase tracking-widest text-rose-pink px-3">Poetic Subtitle</label>
+                        <Textarea placeholder="Subtitle (e.g. Every petal carries a dream)" disabled className="bg-white/50 rounded-[2rem] opacity-50 border-rose-pink/20 min-h-[120px] px-6 py-4 font-headline text-lg" />
                       </div>
                     </div>
                     <Button 
                       disabled
-                      className="w-full bg-rose-pink/20 text-muted-foreground h-14 rounded-2xl font-bold uppercase tracking-widest text-[11px] cursor-not-allowed"
+                      className="w-full bg-rose-pink/20 text-muted-foreground h-16 rounded-[2rem] font-bold uppercase tracking-widest text-[12px] cursor-not-allowed"
                     >
-                      <Sparkles className="w-4 h-4 mr-3" /> Generate Wall Art (Soon)
+                      <Sparkles className="w-5 h-5 mr-4" /> Generate Wall Art (Soon)
                     </Button>
                   </div>
-                  <div className="p-8 rounded-[2.5rem] bg-rose-pink/5 text-sm italic text-muted-foreground text-center border border-rose-pink/10 leading-relaxed">
+                  <div className="p-10 rounded-[3.5rem] bg-rose-pink/5 text-base italic text-muted-foreground text-center border border-rose-pink/10 leading-relaxed font-headline">
                     Premium gallery-quality compositions with enchanted particles are currently blooming in our studio.
                   </div>
                 </motion.div>
               ) : (
-                <motion.div key="birthday" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-8 flex flex-col h-full">
-                  <div className="space-y-6 flex-1">
+                <motion.div key="birthday" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-10 flex flex-col h-full py-8">
+                  <div className="space-y-8 flex-1">
                     <div className="text-center">
-                      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-pink/10 text-rose-pink text-[10px] font-bold uppercase tracking-widest border border-rose-pink/20 mb-8">
-                        <Clock className="w-3.5 h-3.5" /> Coming Soon
+                      <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-rose-pink/10 text-rose-pink text-[11px] font-bold uppercase tracking-widest border border-rose-pink/20 mb-10">
+                        <Clock className="w-4 h-4" /> Coming Soon
                       </div>
                     </div>
                     
-                    <div className="flex gap-2 p-1.5 bg-rose-pink/10 rounded-[2rem] border border-rose-pink/10">
-                      <button onClick={() => setBirthdayTab('fixed')} className={`flex-1 py-4 rounded-2xl text-[10px] font-bold uppercase tracking-widest transition-all ${birthdayTab === 'fixed' ? 'bg-white text-rose-pink shadow-md' : 'text-muted-foreground'}`}>
+                    <div className="flex gap-3 p-2 bg-rose-pink/10 rounded-[2.5rem] border border-rose-pink/10">
+                      <button onClick={() => setBirthdayTab('fixed')} className={`flex-1 py-5 rounded-[2rem] text-[11px] font-bold uppercase tracking-widest transition-all ${birthdayTab === 'fixed' ? 'bg-white text-rose-pink shadow-lg' : 'text-muted-foreground'}`}>
                         🌸 Signature
                       </button>
-                      <button onClick={() => setBirthdayTab('personalized')} className={`flex-1 py-4 rounded-2xl text-[10px] font-bold uppercase tracking-widest transition-all ${birthdayTab === 'personalized' ? 'bg-white text-rose-pink shadow-md' : 'text-muted-foreground'}`}>
+                      <button onClick={() => setBirthdayTab('personalized')} className={`flex-1 py-5 rounded-[2rem] text-[11px] font-bold uppercase tracking-widest transition-all ${birthdayTab === 'personalized' ? 'bg-white text-rose-pink shadow-lg' : 'text-muted-foreground'}`}>
                         📸 Personalized
                       </button>
                     </div>
 
-                    <div className="space-y-6 py-4">
+                    <div className="space-y-8 py-6">
                       {birthdayTab === 'personalized' && (
-                        <div className="space-y-4">
-                          <Button disabled variant="outline" className="w-full h-14 rounded-2xl border-dashed opacity-50 border-rose-pink/20">
-                            <Camera className="mr-3 w-5 h-5" /> Upload Photo
+                        <div className="space-y-6">
+                          <Button disabled variant="outline" className="w-full h-16 rounded-[2rem] border-dashed opacity-50 border-rose-pink/20">
+                            <Camera className="mr-4 w-6 h-6" /> Upload Photo
                           </Button>
-                          <Input placeholder="Recipient's Name" disabled className="bg-white/50 h-14 rounded-2xl opacity-50 border-rose-pink/20" />
+                          <Input placeholder="Recipient's Name" disabled className="bg-white/50 h-16 rounded-[2rem] opacity-50 border-rose-pink/20 px-6 font-headline text-lg" />
                         </div>
                       )}
-                      <p className="text-sm italic text-muted-foreground text-center px-6 leading-relaxed">
+                      <p className="text-lg italic text-muted-foreground text-center px-8 leading-relaxed font-headline">
                         {birthdayTab === 'fixed' ? "A signature studio-designed card with crystal rose theme and golden accents." : "A personalized keepsake placing your photo inside a magical PETALS frame."}
                       </p>
                     </div>
 
                     <Button 
                       disabled
-                      className="w-full bg-rose-pink/20 text-muted-foreground h-14 rounded-2xl font-bold uppercase tracking-widest text-[11px] cursor-not-allowed"
+                      className="w-full bg-rose-pink/20 text-muted-foreground h-16 rounded-[2rem] font-bold uppercase tracking-widest text-[12px] cursor-not-allowed"
                     >
-                      <Heart className="w-4 h-4 mr-3" /> Generate Card (Soon)
+                      <Heart className="w-5 h-5 mr-4" /> Generate Card (Soon)
                     </Button>
                   </div>
-                  <div className="p-8 rounded-[2.5rem] bg-rose-pink/5 text-sm italic text-muted-foreground text-center border border-rose-pink/10 leading-relaxed">
+                  <div className="p-10 rounded-[3.5rem] bg-rose-pink/5 text-base italic text-muted-foreground text-center border border-rose-pink/10 leading-relaxed font-headline">
                     Enchanting birthday keepsakes are currently being woven by our studio artists.
                   </div>
                 </motion.div>
@@ -479,24 +479,24 @@ export function PosterCreator() {
         </div>
 
         {/* Canvas Display - Proportional to sidebar */}
-        <div className="flex-1 w-full order-1 lg:order-2 flex items-center justify-center p-4">
+        <div className="flex-1 w-full order-1 lg:order-2 flex items-center justify-center p-6">
           <AnimatePresence mode="wait">
             {mode === 'manual' ? (
               <motion.div 
                 key="manual-canvas"
                 ref={canvasRef}
-                className="relative aspect-[3/4] w-full max-w-[560px] overflow-hidden rounded-[3.5rem] shadow-[0_50px_100px_-20px_rgba(247,183,195,0.4)] bg-white border border-rose-pink/10"
+                className="relative aspect-[3/4] w-full max-w-[640px] overflow-hidden rounded-[4rem] shadow-[0_60px_120px_-30px_rgba(247,183,195,0.4)] bg-white border border-rose-pink/10"
               >
                 <Image src={bgImage} alt="Canvas BG" fill className="object-cover pointer-events-none" />
-                <div className="absolute inset-x-8 bottom-8 p-10 glass-morphism rounded-[3rem] text-center space-y-4 pointer-events-none border border-white/40">
-                  <h2 className="font-headline text-4xl text-foreground leading-tight">{title}</h2>
-                  <p className="text-sm italic font-headline text-muted-foreground leading-relaxed line-clamp-3">
+                <div className="absolute inset-x-10 bottom-10 p-12 glass-morphism rounded-[3.5rem] text-center space-y-5 pointer-events-none border border-white/40">
+                  <h2 className="font-headline text-5xl text-foreground leading-tight">{title}</h2>
+                  <p className="text-base italic font-headline text-muted-foreground leading-relaxed line-clamp-3">
                     {description}
                   </p>
-                  <div className="pt-4 flex items-center justify-center gap-4 opacity-30">
-                    <div className="h-px w-12 bg-rose-pink" />
-                    <span className="text-[9px] font-bold uppercase tracking-[0.5em] text-rose-pink">PETALS STUDIO</span>
-                    <div className="h-px w-12 bg-rose-pink" />
+                  <div className="pt-6 flex items-center justify-center gap-5 opacity-30">
+                    <div className="h-px w-16 bg-rose-pink" />
+                    <span className="text-[10px] font-bold uppercase tracking-[0.6em] text-rose-pink">PETALS STUDIO</span>
+                    <div className="h-px w-16 bg-rose-pink" />
                   </div>
                 </div>
 
@@ -507,13 +507,13 @@ export function PosterCreator() {
                     dragMomentum={false}
                     initial={{ x: s.x, y: s.y, scale: 0.5 }}
                     animate={{ scale: s.scale }}
-                    className="absolute w-36 h-36 cursor-move z-20 group/sticker"
+                    className="absolute w-44 h-44 cursor-move z-20 group/sticker"
                     style={{ top: s.y, left: s.x }}
                   >
                     <div className="relative w-full h-full">
                       <Image src={s.url} alt="sticker" fill className="object-contain drop-shadow-2xl" />
-                      <button onClick={() => removeSticker(s.id)} className="absolute -top-4 -right-4 bg-rose-pink text-white p-2 rounded-full opacity-0 group-hover/sticker:opacity-100 transition-opacity shadow-lg">
-                        <Trash2 className="w-4 h-4" />
+                      <button onClick={() => removeSticker(s.id)} className="absolute -top-6 -right-6 bg-rose-pink text-white p-3 rounded-full opacity-0 group-hover/sticker:opacity-100 transition-opacity shadow-2xl">
+                        <Trash2 className="w-5 h-5" />
                       </button>
                     </div>
                   </motion.div>
@@ -524,23 +524,23 @@ export function PosterCreator() {
                 key="soon-display"
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="w-full max-w-[720px] flex flex-col items-center"
+                className="w-full max-w-[800px] flex flex-col items-center"
               >
-                <div className="text-center space-y-10 py-32 px-16 glass-morphism rounded-[4rem] border border-rose-pink/10 shadow-[0_40px_80px_-15px_rgba(247,183,195,0.2)] w-full">
-                  <div className="relative w-40 h-40 mx-auto">
+                <div className="text-center space-y-12 py-40 px-20 glass-morphism rounded-[5rem] border border-rose-pink/10 shadow-[0_50px_100px_-20px_rgba(247,183,195,0.25)] w-full">
+                  <div className="relative w-48 h-48 mx-auto">
                     <div className="absolute inset-0 bg-rose-pink/20 blur-3xl animate-pulse rounded-full" />
                     {mode === 'lore-weaver' ? <BookOpen className="w-full h-full text-rose-pink relative" /> :
                      mode === 'wall-art' ? <Sparkles className="w-full h-full text-rose-pink relative" /> :
                      <Heart className="w-full h-full text-rose-pink relative" />}
                   </div>
-                  <div className="space-y-6">
-                    <h2 className="font-headline text-5xl text-foreground leading-tight">
+                  <div className="space-y-8">
+                    <h2 className="font-headline text-6xl text-foreground leading-tight">
                       {mode === 'lore-weaver' ? "Lore Weaver" : mode === 'wall-art' ? "Wall Art Creator" : "Birthday Card Studio"}
                     </h2>
-                    <p className="font-headline italic text-3xl text-muted-foreground leading-relaxed">Your imagination is the seed.<br /><span className="text-rose-pink">Wait for it to bloom.</span></p>
+                    <p className="font-headline italic text-4xl text-muted-foreground leading-relaxed">Your imagination is the seed.<br /><span className="text-rose-pink">Wait for it to bloom.</span></p>
                   </div>
-                  <div className="h-px w-32 bg-rose-pink/20 mx-auto" />
-                  <p className="text-sm font-headline italic text-muted-foreground/60 max-w-md mx-auto leading-relaxed">
+                  <div className="h-px w-40 bg-rose-pink/20 mx-auto" />
+                  <p className="text-base font-headline italic text-muted-foreground/60 max-w-lg mx-auto leading-relaxed">
                     Our AI models are currently in the studio's sacred greenhouse, being nurtured to provide the most enchanting and emotionally resonant results.
                   </p>
                 </div>
