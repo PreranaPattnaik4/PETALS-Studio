@@ -9,25 +9,22 @@ import { Textarea } from '@/components/ui/textarea';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { 
   Download, 
-  Share2, 
-  Image as ImageIcon, 
+  ImageIcon, 
   Type, 
   Sticker, 
   Trash2, 
-  Maximize2, 
-  Minimize2,
   Sparkles,
   Upload,
   RefreshCw,
   Wand2,
   Palette,
-  User,
   Info,
   CheckCircle2,
-  Clock,
   Undo2,
   Redo2,
-  BookOpen
+  BookOpen,
+  Clock,
+  Loader2
 } from 'lucide-react';
 import { toPng } from 'html-to-image';
 import { useToast } from '@/hooks/use-toast';
@@ -49,7 +46,7 @@ interface CanvasState {
   stickers: StickerItem[];
 }
 
-type CreatorMode = 'manual' | 'wall-art' | 'birthday-card' | 'lore-weaver';
+type CreatorMode = 'manual' | 'lore-weaver';
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
 const ACCEPTED_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
@@ -100,7 +97,6 @@ export function PosterCreator() {
   const saveToHistory = (newState: CanvasState) => {
     const newHistory = history.slice(0, historyIndex + 1);
     newHistory.push(newState);
-    // Limit history to 20 steps
     if (newHistory.length > 20) newHistory.shift();
     setHistory(newHistory);
     setHistoryIndex(newHistory.length - 1);
@@ -134,7 +130,6 @@ export function PosterCreator() {
     const current: CanvasState = { bgImage, title, description, stickers };
     const next = { ...current, ...updates };
     
-    // Apply state locally
     if (updates.bgImage !== undefined) setBgImage(updates.bgImage);
     if (updates.title !== undefined) setTitle(updates.title);
     if (updates.description !== undefined) setDescription(updates.description);
@@ -213,25 +208,6 @@ export function PosterCreator() {
     handleStateChange({ stickers: stickers.filter(s => s.id !== id) });
   };
 
-  const updateSticker = (id: string, scale: number) => {
-    const newStickers = stickers.map(s => s.id === id ? { ...s, scale } : s);
-    setStickers(newStickers); // Don't save history for scaling until let go if dragging, but simple here
-  };
-
-  const handleWeaveLore = async () => {
-    if (!loreConcept.trim()) return;
-    setIsGenerating(true);
-    try {
-      const result = await generateLore({ concept: loreConcept });
-      setGeneratedLore(result);
-      toast({ title: "Lore Woven", description: "Your magical story is ready." });
-    } catch (err) {
-      toast({ variant: "destructive", title: "Weaving Failed", description: "The magic is faint. Try again soon." });
-    } finally {
-      setIsGenerating(false);
-    }
-  };
-
   const downloadAsset = async (ref: React.RefObject<HTMLDivElement>, fileName: string) => {
     setIsExporting(true);
     try {
@@ -247,11 +223,6 @@ export function PosterCreator() {
     } finally {
       setIsExporting(false);
     }
-  };
-
-  const shareOnWhatsApp = () => {
-    const text = encodeURIComponent("Check out my PETALS Studio creation! ✨");
-    window.open(`https://wa.me/?text=${text}`, '_blank');
   };
 
   return (
@@ -270,7 +241,7 @@ export function PosterCreator() {
           onClick={() => setMode('lore-weaver')}
           className={`rounded-2xl px-6 h-12 text-[10px] font-bold uppercase tracking-widest ${mode === 'lore-weaver' ? 'bg-rose-pink text-white' : 'text-muted-foreground'}`}
         >
-          <BookOpen className="mr-2 w-3.5 h-3.5" /> Lore Weaver
+          <BookOpen className="mr-2 w-3.5 h-3.5" /> Lore Weaver <span className="ml-2 text-[8px] bg-rose-pink/10 px-2 py-0.5 rounded-full">Soon</span>
         </Button>
         <Button 
           disabled
@@ -380,42 +351,28 @@ export function PosterCreator() {
             ) : (
               <div className="space-y-8">
                 <div className="space-y-4">
+                  <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-rose-pink/10 text-rose-pink text-[10px] font-bold uppercase tracking-widest border border-rose-pink/20 mb-4">
+                    <Clock className="w-3.5 h-3.5" /> Coming Soon
+                  </div>
                   <div className="flex items-center gap-2 text-rose-pink text-[10px] font-bold uppercase tracking-widest">
                     <Sparkles className="w-3.5 h-3.5" /> Lore Concept
                   </div>
                   <Textarea 
-                    placeholder="E.g. A library hidden in a crystal rose, protected by an owl guardian..." 
-                    value={loreConcept}
-                    onChange={(e) => setLoreConcept(e.target.value)}
-                    className="bg-white/50 rounded-2xl border-rose-pink/20 min-h-[120px]"
+                    placeholder="E.g. A library hidden in a crystal rose..." 
+                    disabled
+                    className="bg-white/50 rounded-2xl border-rose-pink/20 min-h-[120px] opacity-50"
                   />
                   <Button 
-                    onClick={handleWeaveLore}
-                    disabled={isGenerating || !loreConcept.trim()}
-                    className="w-full bg-rose-pink text-white h-12 rounded-xl font-bold uppercase tracking-widest text-[10px]"
+                    disabled
+                    className="w-full bg-rose-pink/20 text-muted-foreground h-12 rounded-xl font-bold uppercase tracking-widest text-[10px] cursor-not-allowed"
                   >
-                    {isGenerating ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <Wand2 className="w-4 h-4 mr-2" />}
-                    Weave Lore
+                    <Wand2 className="w-4 h-4 mr-2" /> Weave Lore (Soon)
                   </Button>
                 </div>
 
-                {generatedLore && (
-                  <div className="pt-8 border-t border-rose-pink/10 space-y-4">
-                    <Button 
-                      onClick={() => downloadAsset(loreCardRef, 'petals-lore')}
-                      className="w-full bg-white text-rose-pink border border-rose-pink h-12 rounded-xl font-bold uppercase tracking-widest text-[10px]"
-                    >
-                      <Download className="w-4 h-4 mr-2" /> Download Story Card
-                    </Button>
-                    <Button 
-                      variant="ghost"
-                      onClick={() => { setLoreConcept(""); setGeneratedLore(null); }}
-                      className="w-full h-12 text-muted-foreground hover:text-rose-pink text-[10px] font-bold uppercase"
-                    >
-                      Clear & Redo
-                    </Button>
-                  </div>
-                )}
+                <div className="p-6 rounded-2xl bg-rose-pink/5 text-xs italic text-muted-foreground text-center">
+                  Our weavers are currently crafting the AI models for the Lore Weaver. This portal will be blooming soon.
+                </div>
               </div>
             )}
           </div>
@@ -467,32 +424,11 @@ export function PosterCreator() {
                 key="lore-display"
                 className="w-full max-w-[600px] flex flex-col items-center"
               >
-                {generatedLore ? (
-                  <div 
-                    ref={loreCardRef}
-                    className="w-full aspect-square bg-white rounded-[4rem] p-16 shadow-2xl border border-rose-pink/10 flex flex-col items-center justify-center text-center space-y-10 relative overflow-hidden"
-                  >
-                    <div className="absolute inset-0 bg-rose-pink/5 opacity-50" style={{ backgroundImage: 'radial-gradient(circle at 50% 50%, #F7B7C3 0%, transparent 70%)' }} />
-                    <div className="relative z-10 w-20 h-20 rounded-full border border-rose-pink/20 p-4 mb-4">
-                      <Image src={PlaceHolderImages.find(i => i.id === 'petals-logo')?.imageUrl || ""} alt="Logo" fill className="object-cover p-4 opacity-30" />
-                    </div>
-                    <div className="relative z-10 space-y-6">
-                      <h3 className="font-headline text-5xl text-foreground leading-tight">{generatedLore.title}</h3>
-                      <div className="w-16 h-1 bg-rose-pink/20 mx-auto rounded-full" />
-                      <p className="text-xl text-muted-foreground italic font-headline leading-relaxed max-w-md mx-auto">
-                        {generatedLore.content}
-                      </p>
-                    </div>
-                    <div className="relative z-10 pt-10">
-                      <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-rose-pink">Lore Weaver • PETALS Studio</span>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="text-center space-y-6 opacity-30 py-24">
-                    <BookOpen className="w-20 h-20 mx-auto text-rose-pink animate-pulse" />
-                    <p className="font-headline italic text-2xl">Weave your story to see it bloom here.</p>
-                  </div>
-                )}
+                <div className="text-center space-y-6 opacity-30 py-24">
+                  <BookOpen className="w-20 h-20 mx-auto text-rose-pink animate-pulse" />
+                  <p className="font-headline italic text-2xl">Weave your story to see it bloom here.</p>
+                  <p className="text-sm font-headline italic">Lore Weaver coming soon to PETALS Studio.</p>
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
