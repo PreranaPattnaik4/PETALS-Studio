@@ -6,14 +6,68 @@ import { Footer } from "@/components/Petals/Footer";
 import { FloatingPetals } from "@/components/Petals/FloatingPetals";
 import { FinalCTA } from "@/components/Petals/FinalCTA";
 import { Button } from "@/components/ui/button";
-import { Play, Sparkles, Film, Clock, ChevronRight, X, Youtube, ShoppingBag, Instagram } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { 
+  Play, 
+  Sparkles, 
+  Film, 
+  Clock, 
+  ChevronRight, 
+  X, 
+  Youtube, 
+  ShoppingBag, 
+  Instagram,
+  Facebook,
+  Linkedin,
+  BookOpen,
+  Users,
+  Palette,
+  Wand2
+} from "lucide-react";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog";
+import Link from "next/link";
+
+const PinterestIcon = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+    <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.965 1.406-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.261 7.929-7.261 4.162 0 7.396 2.966 7.396 6.929 0 4.135-2.607 7.462-6.225 7.462-1.214 0-2.354-.631-2.746-1.379l-.748 2.848c-.27 1.031-1.002 2.324-1.492 3.12 1.12.346 2.304.534 3.535.534 6.621 0 11.988-5.365 11.988-11.988C24.005 5.367 18.638 0 12.017 0z" />
+  </svg>
+);
 
 const categories = ["All", "Short Films", "Character Promos", "Story Teasers"];
+
+const featureCards = [
+  {
+    icon: BookOpen,
+    title: "Original Stories",
+    desc: "Beautiful fantasy adventures crafted for dreamers."
+  },
+  {
+    icon: Users,
+    title: "Beloved Characters",
+    desc: "Meet unforgettable heroes, queens, fairies, and magical creatures."
+  },
+  {
+    icon: Palette,
+    title: "Magical Artwork",
+    desc: "Explore stunning illustrations inspired by fairy tales and fantasy worlds."
+  },
+  {
+    icon: Film,
+    title: "Storytelling Experiences",
+    desc: "Discover books, galleries, videos, and creative tools."
+  }
+];
+
+const socialLinks = [
+  { name: "Instagram", icon: Instagram, href: "#" },
+  { name: "Pinterest", icon: PinterestIcon, href: "#" },
+  { name: "YouTube", icon: Youtube, href: "#" },
+  { name: "Facebook", icon: Facebook, href: "#" },
+  { name: "LinkedIn", icon: Linkedin, href: "#" }
+];
 
 const videos = [
   {
@@ -74,7 +128,6 @@ const videos = [
 
 export default function VideosPage() {
   const [activeCategory, setActiveCategory] = useState("All");
-  const heroImage = PlaceHolderImages.find(img => img.id === 'crystal-rose-universe');
 
   const filteredVideos = activeCategory === "All" 
     ? videos 
@@ -86,75 +139,112 @@ export default function VideosPage() {
       <Navbar />
 
       <main className="relative">
-        {/* Cinematic Background Hero Section - No Mask, Clear Image */}
-        <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 overflow-hidden bg-black">
-          {/* Background Full Cover */}
+        {/* Cinematic Background Hero Section - Full Cover Loop Video */}
+        <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
           <div className="absolute inset-0 z-0">
-            <Image 
-              src={heroImage?.imageUrl || "https://picsum.photos/seed/vhero/1200/600"}
-              alt="Featured Cinematic Journey"
-              fill
-              className="object-cover opacity-100 transition-transform duration-[10s] scale-105"
-              data-ai-hint="cinematic fantasy animation"
-              priority
+            <video 
+              autoPlay 
+              loop 
+              muted 
+              playsInline 
+              className="w-full h-full object-cover"
+              src="https://dl.dropboxusercontent.com/scl/fi/e5q2ljsvktv7ezdwu4x6g/_scene_2_816_sec__starlet_appears_visual_starlet_f_fc0bf0b59e.mp4?rlkey=d4af1u96ftmum7xl6sdqc0510&raw=1"
             />
-            {/* Minimal shadow only at the very bottom for transition to the next section */}
-            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/40 to-transparent" />
+            {/* Very minimal overlay for legibility without masking the video */}
+            <div className="absolute inset-0 bg-black/30" />
           </div>
 
-          <div className="container mx-auto px-6 relative z-10 flex flex-col items-center text-center">
+          <div className="container mx-auto px-6 relative z-10 flex flex-col items-center text-center space-y-12">
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-black/40 backdrop-blur-md text-rose-pink text-[10px] font-bold uppercase tracking-[0.4em] border border-white/20 mb-8"
+              className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-rose-pink/20 text-rose-pink text-[10px] font-bold uppercase tracking-[0.4em] border border-white/20 backdrop-blur-md"
             >
-              <Sparkles className="w-3.5 h-3.5" /> Cinematic Storytelling
+              <Sparkles className="w-3.5 h-3.5" /> PETALS Studio
             </motion.div>
 
-            <motion.h1 
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-              className="font-headline text-5xl md:text-7xl lg:text-8xl text-white leading-[1.1] mb-8 drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]"
-            >
-              Enchanting Tales <br />
-              <span className="italic text-rose-pink">Brought To Life</span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-xl md:text-2xl text-white font-headline italic leading-relaxed max-w-3xl mb-16 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
-            >
-              Discover magical worlds, beloved characters, and emotional adventures through cinematic storytelling and animated experiences crafted to inspire wonder.
-            </motion.p>
+            <div className="space-y-6 max-w-4xl">
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="font-headline text-5xl md:text-7xl lg:text-8xl text-white leading-tight drop-shadow-2xl"
+              >
+                Enter a Whimsical World of <br />
+                <span className="italic text-rose-pink">Storybooks and Dreams</span>
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="text-xl md:text-2xl text-white/90 font-headline italic leading-relaxed max-w-2xl mx-auto drop-shadow-lg"
+              >
+                Discover magical books, enchanting characters, breathtaking artwork, and unforgettable adventures created by PETALS Studio.
+              </motion.p>
+            </div>
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.5, duration: 1 }}
-              className="mb-12"
+              transition={{ delay: 0.3 }}
+              className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full sm:w-auto"
             >
-              <motion.div 
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white shadow-2xl cursor-pointer group"
-              >
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-pearl-white flex items-center justify-center shadow-lg transition-transform group-hover:scale-105">
-                  <Play className="w-8 h-8 md:w-10 md:h-10 fill-rose-pink text-rose-pink translate-x-1" />
-                </div>
-              </motion.div>
+              <Button asChild size="lg" className="w-full sm:w-auto bg-rose-pink text-white hover:bg-rose-pink/90 rounded-full px-12 h-14 text-sm font-bold uppercase tracking-widest shadow-xl shadow-rose-pink/30 group">
+                <Link href="/books">
+                  <BookOpen className="mr-3 w-5 h-5" /> Explore Books
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto border-white/40 bg-white/5 backdrop-blur-md text-white hover:bg-white hover:text-black transition-all rounded-full px-12 h-14 text-sm font-bold uppercase tracking-widest group">
+                <Link href="/characters">
+                  <Sparkles className="mr-3 w-5 h-5" /> Meet the Characters
+                </Link>
+              </Button>
             </motion.div>
 
-            <div className="flex flex-wrap items-center justify-center gap-6">
-              <Button size="lg" className="bg-rose-pink text-white hover:bg-rose-pink/90 rounded-full px-12 h-16 text-sm font-bold uppercase tracking-widest shadow-2xl shadow-rose-pink/40 transition-all">
-                <Play className="mr-3 w-5 h-5 fill-current" /> Watch Featured Trailer
-              </Button>
-              <Button variant="outline" size="lg" className="border-white/40 bg-black/40 backdrop-blur-md text-white hover:bg-white hover:text-black rounded-full px-12 h-16 text-sm font-bold uppercase tracking-widest transition-all">
-                <Sparkles className="mr-3 w-5 h-5" /> Explore Collection
-              </Button>
+            {/* Feature Cards Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full pt-8">
+              {featureCards.map((card, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 + i * 0.1 }}
+                  className="bg-white/10 backdrop-blur-md border border-white/10 p-8 rounded-[2rem] text-left group hover:bg-white/15 transition-all"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-rose-pink/20 text-rose-pink flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <card.icon className="w-5 h-5" />
+                  </div>
+                  <h4 className="font-headline text-xl text-white mb-2">{card.title}</h4>
+                  <p className="text-sm text-white/60 leading-relaxed font-headline italic">{card.desc}</p>
+                </motion.div>
+              ))}
             </div>
+
+            {/* Social Icons Row */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
+              className="pt-8 space-y-6 w-full"
+            >
+              <div className="flex items-center gap-4 opacity-30">
+                <div className="h-px flex-1 bg-white" />
+                <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-white">Join the Studio Community</span>
+                <div className="h-px flex-1 bg-white" />
+              </div>
+              <div className="flex justify-center gap-6">
+                {socialLinks.map((social) => (
+                  <Link
+                    key={social.name}
+                    href={social.href}
+                    className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:text-rose-pink hover:bg-white/10 transition-all duration-300"
+                  >
+                    <social.icon className="w-5 h-5" />
+                    <span className="sr-only">{social.name}</span>
+                  </Link>
+                ))}
+              </div>
+            </motion.div>
           </div>
         </section>
 
@@ -169,7 +259,6 @@ export default function VideosPage() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center max-w-7xl mx-auto">
-              {/* Card 1: The Teaser Video Card */}
               <motion.div 
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -196,7 +285,6 @@ export default function VideosPage() {
                 </div>
               </motion.div>
 
-              {/* Card 2: Details & Social Links */}
               <motion.div 
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
