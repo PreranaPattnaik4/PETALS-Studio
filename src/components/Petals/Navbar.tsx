@@ -23,9 +23,9 @@ export function Navbar() {
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'Books', href: '/books' },
+    { name: 'Videos', href: '/videos' },
     { name: 'Characters', href: '/characters' },
     { name: 'Gallery', href: '/gallery' },
-    { name: 'Videos', href: '/videos' },
     { name: 'Creator', href: '/creator', icon: Wand2 },
     { name: 'About', href: '/about' },
   ];

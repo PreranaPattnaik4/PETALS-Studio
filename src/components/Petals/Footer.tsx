@@ -60,10 +60,10 @@ export function Footer() {
           <div className="lg:col-span-2">
             <h4 className="font-headline text-xl mb-10 text-rose-pink">Explore</h4>
             <ul className="space-y-6 text-xs font-bold uppercase tracking-widest text-white/60">
-              <li><Link href="/gallery" className="hover:text-white transition-colors">Art Gallery</Link></li>
               <li><Link href="/books" className="hover:text-white transition-colors">Book Library</Link></li>
               <li><Link href="/videos" className="hover:text-white transition-colors">Animations</Link></li>
               <li><Link href="/characters" className="hover:text-white transition-colors">Characters</Link></li>
+              <li><Link href="/gallery" className="hover:text-white transition-colors">Art Gallery</Link></li>
               <li><Link href="/creator" className="hover:text-white transition-colors">Creator Studio</Link></li>
             </ul>
           </div>
