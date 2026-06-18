@@ -19,8 +19,8 @@ export function Hero() {
           src={roseImg?.imageUrl || ""}
           alt="Cinematic Background"
           fill
-          className="object-cover opacity-90 brightness-110 transition-all duration-1000"
-          style={{ objectPosition: '50% 30%' }}
+          className="object-cover opacity-90 brightness-110 transition-opacity duration-1000"
+          style={{ objectPosition: '50% 40%' }}
           data-ai-hint="signature rose background"
           priority
         />
