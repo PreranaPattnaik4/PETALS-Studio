@@ -256,6 +256,9 @@ export default function BooksPage() {
           </div>
         </section>
 
+        {/* Repositioned Final CTA */}
+        <FinalCTA />
+
         {/* Big Featured Card: RoseBella & Lunaria */}
         <section className="py-24 relative overflow-hidden bg-white/30">
           <div className="container mx-auto px-12">
@@ -397,7 +400,6 @@ export default function BooksPage() {
           </div>
         </section>
 
-        <FinalCTA />
         <Footer />
       </main>
     </div>
