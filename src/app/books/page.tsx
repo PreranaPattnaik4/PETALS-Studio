@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Navbar } from "@/components/Petals/Navbar";
@@ -15,129 +16,39 @@ import {
   Star, 
   BookOpen, 
   FileText,
-  ArrowRight
+  ArrowRight,
+  Waves,
+  Moon,
+  Flower,
+  Sparkles,
+  Gem
 } from "lucide-react";
 
-const books = [
-  {
-    id: "book-little-girl",
-    title: "Be a Little Girl",
-    subtitle: "A Journey of Self-Discovery",
-    description: "An emotionally resonant story about finding one's place in a magical world while staying true to the heart's smallest whispers.",
-    amazonUrl: "https://amazon.com",
-    whatsappUrl: "https://whatsapp.com",
-    rating: 5.0,
-    pages: 160,
-    genre: "Inspirational Fantasy"
-  },
-  {
-    id: "book-kids-collection",
-    title: "The Enchanted Storybook",
-    subtitle: "A PETALS Collection for Kids",
-    description: "A treasure trove of gentle fantasy stories designed to inspire kindness, wonder, and imagination in young readers.",
-    amazonUrl: "https://amazon.com",
-    whatsappUrl: "https://whatsapp.com",
-    rating: 5.0,
-    pages: 180,
-    genre: "Kids Fantasy"
-  },
-  {
-    id: "book-mermaids",
-    title: "Songs of the Shimmering Sea",
-    subtitle: "The Chronicles of Alora",
-    description: "Dive into an underwater odyssey where melodies hold the power to mend hearts and save a forgotten civilization.",
-    amazonUrl: "https://amazon.com",
-    whatsappUrl: "https://whatsapp.com",
-    rating: 4.8,
-    pages: 280,
-    genre: "Mythology"
-  },
-  {
-    id: "book-guardians",
-    title: "Guardians of the Dream Petals",
-    subtitle: "The Sleepweaver's Legacy",
-    description: "In the realm where dreams are woven, Nerina protects the innocent from encroaching shadows of the night.",
-    amazonUrl: "https://amazon.com",
-    whatsappUrl: "https://whatsapp.com",
-    rating: 5.0,
-    pages: 240,
-    genre: "Gentle Fantasy"
-  },
-  {
-    id: "book-starlight",
-    title: "The Starlight Lantern",
-    subtitle: "Quest for the Eternal Flame",
-    description: "A young stargazer must find the lost lantern of the stars to bring light back to a world in permanent twilight.",
-    amazonUrl: "https://amazon.com",
-    whatsappUrl: "https://whatsapp.com",
-    rating: 4.7,
-    pages: 310,
-    genre: "Adventure"
-  },
-  {
-    id: "book-wind",
-    title: "Chronicles of the Wind-Whisperer",
-    subtitle: "The Skies of Aethelgard",
-    description: "Fly among floating islands where the wind carries secrets of a long-lost empire waiting to be rediscovered.",
-    amazonUrl: "https://amazon.com",
-    whatsappUrl: "https://whatsapp.com",
-    rating: 4.9,
-    pages: 340,
-    genre: "High Fantasy"
-  },
-  {
-    id: "book-map",
-    title: "The Forgotten Map of Floria",
-    subtitle: "Secrets of the Bloom",
-    description: "Follow the petals to find the heart of the forest. An interactive story about nature, growth, and ancient maps.",
-    amazonUrl: "https://amazon.com",
-    whatsappUrl: "https://whatsapp.com",
-    rating: 4.8,
-    pages: 290,
-    genre: "Nature Fantasy"
-  },
-  {
-    id: "book-amber",
-    title: "Tales from the Amber Woods",
-    subtitle: "The Golden Guardians",
-    description: "The woods are alive with amber light. Discover the creatures that guard the forest's most precious treasures.",
-    amazonUrl: "https://amazon.com",
-    whatsappUrl: "https://whatsapp.com",
-    rating: 4.9,
-    pages: 275,
-    genre: "Fable"
-  },
-  {
-    id: "book-tea",
-    title: "The Midnight Tea Party",
-    subtitle: "Magic in the Moonlight",
-    description: "A whimsical tale of a tea party held in the moonlit garden, where animals talk and teapots sing.",
-    amazonUrl: "https://amazon.com",
-    whatsappUrl: "https://whatsapp.com",
-    rating: 5.0,
-    pages: 220,
-    genre: "Children's Fantasy"
-  },
-  {
-    id: "book-echoes",
-    title: "Echoes of the Silver Valley",
-    subtitle: "Song of the Mountain King",
-    description: "The echoes of the silver mountains hold the key to a peace that has been lost for generations.",
-    amazonUrl: "https://amazon.com",
-    whatsappUrl: "https://whatsapp.com",
-    rating: 4.8,
-    pages: 350,
-    genre: "Epic Fantasy"
-  }
-];
+// Custom Butterfly SVG as Lucide doesn't have one
+const ButterflyIcon = ({ className }: { className?: string }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M12 12c-3-6-8-4-8 1s4 4 8-1zm0 0c3-6 8-4 8 1s-4 4-8-1z" />
+    <path d="M12 12c-3 6-8 4-8-1s4-4 8 1zm0 0c3 6 8 4 8-1s-4-4-8 1z" />
+    <path d="M12 8v8" />
+  </svg>
+);
 
 const featureCards = [
-  { icon: "🧜‍♀️", text: "Ocean Fantasy Adventure" },
-  { icon: "🌙", text: "Powerful Female Characters" },
-  { icon: "🌹", text: "Sisterhood & Family Bonds" },
-  { icon: "✨", text: "Magic, Mystery & Destiny" },
-  { icon: "🦋", text: "Beautiful Fantasy World" },
-  { icon: "💎", text: "Themes of Healing & Forgiveness" },
+  { icon: Waves, text: "Ocean Fantasy Adventure" },
+  { icon: Moon, text: "Powerful Female Characters" },
+  { icon: Flower, text: "Sisterhood & Family Bonds" },
+  { icon: Sparkles, text: "Magic, Mystery & Destiny" },
+  { icon: ButterflyIcon, text: "Beautiful Fantasy World" },
+  { icon: Gem, text: "Themes of Healing & Forgiveness" },
 ];
 
 const featuredTaleSisters = {
@@ -240,7 +151,7 @@ export default function BooksPage() {
                   transition={{ delay: i * 0.1 }}
                   className="flex flex-col items-center text-center space-y-4 p-6 rounded-3xl bg-white/40 border border-white/20 shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <span className="text-4xl">{feature.icon}</span>
+                  <feature.icon className="w-10 h-10 text-rose-pink stroke-[1.5]" />
                   <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground leading-tight">
                     {feature.text}
                   </span>
