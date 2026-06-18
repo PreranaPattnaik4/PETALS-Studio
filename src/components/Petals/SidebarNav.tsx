@@ -12,6 +12,7 @@ export function SidebarNav() {
   const logoImg = PlaceHolderImages.find(img => img.id === 'petals-logo');
 
   const navLinks = [
+    { name: 'Home', href: '/' },
     { name: 'Gallery', href: '/gallery' },
     { name: 'Books', href: '/books' },
     { name: 'Videos', href: '/videos' },

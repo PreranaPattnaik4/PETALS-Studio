@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from 'next/link';
@@ -20,6 +21,7 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
+    { name: 'Home', href: '/' },
     { name: 'Gallery', href: '/gallery' },
     { name: 'Books', href: '/books' },
     { name: 'Videos', href: '/videos' },
