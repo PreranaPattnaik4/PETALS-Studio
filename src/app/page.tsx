@@ -273,7 +273,7 @@ export default function Home() {
         {/* AI Story weaver Portal */}
         <DreamweaverPortal />
 
-        <CharacterShowcase />
+        <CharacterShowcase excludeIds={["char-nerina"]} />
 
         {/* Trailer / Cinematic Countdown */}
         <section className="py-32 bg-[#050505] relative overflow-hidden text-white">

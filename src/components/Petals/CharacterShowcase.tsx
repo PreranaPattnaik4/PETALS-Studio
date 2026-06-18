@@ -50,7 +50,13 @@ const mainCharacters = [
   }
 ];
 
-export function CharacterShowcase() {
+interface CharacterShowcaseProps {
+  excludeIds?: string[];
+}
+
+export function CharacterShowcase({ excludeIds = [] }: CharacterShowcaseProps) {
+  const displayCharacters = mainCharacters.filter(char => !excludeIds.includes(char.id));
+
   return (
     <section className="py-32 overflow-hidden bg-white">
       <div className="container mx-auto px-6">
@@ -84,7 +90,7 @@ export function CharacterShowcase() {
         </div>
 
         <div className="space-y-32">
-          {mainCharacters.map((char, i) => {
+          {displayCharacters.map((char, i) => {
             const img = PlaceHolderImages.find(p => p.id === char.id);
             const isEven = i % 2 === 0;
 
