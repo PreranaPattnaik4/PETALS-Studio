@@ -186,17 +186,17 @@ export default function VideosPage() {
               <h2 className="font-headline text-4xl md:text-5xl text-foreground text-center">Moments in Motion</h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
-              {/* Card 1: The Vertical Video Teaser */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+              {/* Card 1: The Teaser Video Card (Standard YouTube Shape) */}
               <motion.div 
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="relative aspect-[9/16] group"
+                className="relative aspect-video group"
               >
-                <div className="absolute inset-0 bg-rose-pink/20 blur-[40px] rounded-[3.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                <div className="relative h-full w-full rounded-[3.5rem] overflow-hidden glass-morphism border-[8px] border-white/60 shadow-2xl bg-black">
+                <div className="absolute inset-0 bg-rose-pink/20 blur-[40px] rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <div className="relative h-full w-full rounded-[2.5rem] overflow-hidden glass-morphism border-[8px] border-white/60 shadow-2xl bg-black">
                   <video 
                     autoPlay 
                     loop 
@@ -205,7 +205,7 @@ export default function VideosPage() {
                     className="w-full h-full object-cover opacity-90"
                     src="https://dl.dropboxusercontent.com/scl/fi/e5q2ljsvktv7ezdwu4x6g/_scene_2_816_sec__starlet_appears_visual_starlet_f_fc0bf0b59e.mp4?rlkey=d4af1u96ftmum7xl6sdqc0510&raw=1"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-10">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-8">
                     <div className="text-white space-y-2">
                       <p className="text-[10px] font-bold uppercase tracking-widest text-rose-pink">Character Short</p>
                       <p className="font-headline italic text-lg">Starlet's Midnight Bloom</p>
