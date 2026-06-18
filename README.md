@@ -12,7 +12,7 @@ PETALS is a premium, illustration-first fantasy media studio dedicated to creati
 - **Character Showcase**: Immersive sections for Alora, RoseBella, Nerina, and Vespera.
 - **Enchanted Illustrations Gallery**: A sophisticated display of the studio's visual lore with cinematic spotlight cards.
 - **Story Collections**: A modern grid showcasing original storybooks.
-- **AI-Powered Storyweaver**: Genkit integration for generating story concepts.
+- **AI-Powered Storyweaver**: Genkit integration for generating story concepts (Coming Soon).
 
 ## 🛠️ Tech Stack
 
