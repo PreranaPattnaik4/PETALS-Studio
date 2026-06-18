@@ -13,11 +13,12 @@ export function SidebarNav() {
 
   const navLinks = [
     { name: 'Home', href: '/' },
-    { name: 'Gallery', href: '/gallery' },
     { name: 'Books', href: '/books' },
-    { name: 'Videos', href: '/videos' },
     { name: 'Characters', href: '/characters' },
-    { name: 'About', href: '/#about' },
+    { name: 'Gallery', href: '/gallery' },
+    { name: 'Videos', href: '/videos' },
+    { name: 'Creator', href: '/creator' },
+    { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' },
   ];
 

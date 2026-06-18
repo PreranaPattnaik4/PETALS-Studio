@@ -22,12 +22,12 @@ export function Navbar() {
 
   const navLinks = [
     { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Gallery', href: '/gallery' },
     { name: 'Books', href: '/books' },
-    { name: 'Videos', href: '/videos' },
     { name: 'Characters', href: '/characters' },
+    { name: 'Gallery', href: '/gallery' },
+    { name: 'Videos', href: '/videos' },
     { name: 'Creator', href: '/creator', icon: Wand2 },
+    { name: 'About', href: '/about' },
   ];
 
   return (
@@ -94,7 +94,7 @@ export function Navbar() {
                 </Link>
               ))}
               <Button asChild size="sm" className="bg-rose-pink text-white rounded-full">
-                <Link href="/contact" onClick={() => setIsOpen(false)}>Contact Us</Link>
+                <Link href="/contact" onClick={() => setIsOpen(false)}>Get in Touch</Link>
               </Button>
             </div>
           </motion.div>
