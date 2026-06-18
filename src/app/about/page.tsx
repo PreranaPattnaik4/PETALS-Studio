@@ -68,7 +68,7 @@ export default function AboutPage() {
 
       <main>
         {/* Cinematic Curved Hero Section */}
-        <section className="relative pt-48 pb-64 overflow-hidden bg-pearl-white">
+        <section className="relative pt-64 pb-96 overflow-hidden bg-pearl-white min-h-[85vh] flex items-center">
           <div className="absolute inset-0 z-0">
             <Image 
               src={heroImg?.imageUrl || ""}
@@ -77,36 +77,38 @@ export default function AboutPage() {
               className="object-cover"
               priority
             />
-            {/* Very subtle gradient to ensure text readability without masking the image */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent opacity-60" />
+            {/* Minimal gradient for readability on the right side */}
+            <div className="absolute inset-0 bg-gradient-to-l from-black/30 via-transparent to-transparent opacity-40" />
           </div>
           
-          <div className="container mx-auto px-6 relative z-10 text-center space-y-4">
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-[0.3em] border border-white/10 backdrop-blur-md"
-            >
-              <Sparkles className="w-3.5 h-3.5" /> Discover Our Heart
-            </motion.div>
-            
-            <motion.h1 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="font-headline text-5xl md:text-6xl text-white mb-4 drop-shadow-xl"
-            >
-              About PETALS Studio
-            </motion.h1>
-            
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-white/90 text-xl md:text-3xl font-headline italic max-w-4xl mx-auto leading-relaxed drop-shadow-lg"
-            >
-              &quot;Crafting illustrated stories that unfold like petals, blooming layer by layer.&quot;
-            </motion.p>
+          <div className="container mx-auto px-6 relative z-10 flex justify-end">
+            <div className="max-w-2xl text-right space-y-6">
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-[0.3em] border border-white/10 backdrop-blur-md"
+              >
+                <Sparkles className="w-3.5 h-3.5" /> Discover Our Heart
+              </motion.div>
+              
+              <motion.h1 
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="font-headline text-5xl md:text-6xl text-white mb-4 drop-shadow-2xl"
+              >
+                About PETALS Studio
+              </motion.h1>
+              
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="text-white/95 text-xl md:text-2xl font-headline italic leading-relaxed drop-shadow-xl"
+              >
+                &quot;Crafting illustrated stories that unfold like petals, blooming layer by layer.&quot;
+              </motion.p>
+            </div>
           </div>
 
           {/* Smooth Curve Bottom */}
