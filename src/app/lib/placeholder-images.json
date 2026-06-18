@@ -186,6 +186,12 @@
       "description": "Magical shimmering grotto for book community section",
       "imageUrl": "https://www.dropbox.com/scl/fi/yuztvntmayuf3jpvqkp2a/OIG3-1.jpeg?rlkey=7ttgoz2h15d1nlkjhl9fvb0vq&st=ek9l3xfw&raw=1",
       "imageHint": "shimmering grotto"
+    },
+    {
+      "id": "gallery-mystic-garden",
+      "description": "The Secret Mystic Garden of the Crystal Rose",
+      "imageUrl": "https://www.dropbox.com/scl/fi/io17h74ac8zf1eyq9v3uh/OIG2.jpeg?rlkey=4s8cctvc1n4n78xkypq1v2eua&st=diwtcl3v&raw=1",
+      "imageHint": "mystic garden"
     }
   ]
 }
