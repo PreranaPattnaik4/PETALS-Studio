@@ -59,6 +59,7 @@ const creations = [
 
 export default function AboutPage() {
   const logoImg = PlaceHolderImages.find(img => img.id === 'petals-logo');
+  const heroRose = PlaceHolderImages.find(img => img.id === 'hero-rose');
 
   return (
     <div className="min-h-screen bg-pearl-white selection:bg-rose-pink selection:text-white">
@@ -68,6 +69,18 @@ export default function AboutPage() {
       <main>
         {/* Editorial Hero Section */}
         <section className="relative pt-64 pb-32 overflow-hidden flex flex-col items-center justify-center text-center">
+          {/* Background Image */}
+          <div className="absolute inset-0 z-0">
+            <Image 
+              src={heroRose?.imageUrl || ""}
+              alt="Rose"
+              fill
+              className="object-cover opacity-20"
+              priority
+              data-ai-hint="pink rose"
+            />
+          </div>
+          
           <div className="container mx-auto px-6 relative z-10 space-y-12">
             {/* Discover Our Heart Badge */}
             <motion.div
@@ -83,7 +96,7 @@ export default function AboutPage() {
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
-              className="font-headline text-5xl md:text-7xl lg:text-8xl text-foreground"
+              className="font-headline text-5xl md:text-6xl lg:text-7xl text-foreground"
             >
               About <span className="italic text-rose-pink">PETALS Studio</span>
             </motion.h1>
@@ -98,19 +111,16 @@ export default function AboutPage() {
               &quot;Crafting illustrated stories that unfold like petals, blooming layer by layer.&quot;
             </motion.p>
           </div>
-          
-          {/* Subtle Background Accent */}
-          <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,_var(--rose-pink)_0%,_transparent_70%)] opacity-[0.03]" />
         </section>
 
         {/* Philosophy & Vision - Moved directly below Hero */}
         <section className="py-24 relative overflow-hidden bg-white">
           <div className="container mx-auto px-6 max-w-6xl">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-              <div className="space-y-12">
+              <div className="space-y-12 text-center lg:text-left">
                 <div className="space-y-6">
                   <h2 className="font-headline text-5xl">Our Philosophy</h2>
-                  <div className="h-1 w-12 bg-rose-pink rounded-full" />
+                  <div className="h-1 w-12 bg-rose-pink rounded-full mx-auto lg:mx-0" />
                 </div>
                 <div className="space-y-6 text-xl text-muted-foreground font-headline italic leading-relaxed">
                   <p>
