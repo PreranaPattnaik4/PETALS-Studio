@@ -103,8 +103,55 @@ export default function AboutPage() {
           <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,_var(--rose-pink)_0%,_transparent_70%)] opacity-[0.03]" />
         </section>
 
+        {/* Philosophy & Vision - Moved directly below Hero */}
+        <section className="py-24 relative overflow-hidden bg-white">
+          <div className="container mx-auto px-6 max-w-6xl">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+              <div className="space-y-12">
+                <div className="space-y-6">
+                  <h2 className="font-headline text-5xl">Our Philosophy</h2>
+                  <div className="h-1 w-12 bg-rose-pink rounded-full" />
+                </div>
+                <div className="space-y-6 text-xl text-muted-foreground font-headline italic leading-relaxed">
+                  <p>
+                    At PETALS, every story, illustration, character, and world is connected by a shared emotional language.
+                  </p>
+                  <p>
+                    We believe the most meaningful stories are not simply told—they are experienced.
+                  </p>
+                  <p>
+                    Like petals blooming one layer at a time, our stories reveal beauty, wonder, emotion, and imagination through every page, every artwork, and every adventure.
+                  </p>
+                </div>
+              </div>
+
+              <div className="relative aspect-square flex items-center justify-center">
+                <div className="absolute inset-0 bg-rose-pink/10 blur-[120px] rounded-full scale-125 animate-pulse" />
+                <div className="relative h-64 w-64 md:h-80 md:w-80 rounded-full overflow-hidden border border-rose-pink/20 p-4 bg-white/40 backdrop-blur-md shadow-2xl">
+                  <Image 
+                    src={logoImg?.imageUrl || ""}
+                    alt="Logo"
+                    fill
+                    className="object-cover p-8"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-24 text-center space-y-12 bg-rose-pink/5 p-16 rounded-[4rem] border border-rose-pink/10">
+              <div className="space-y-6">
+                <h2 className="font-headline text-5xl">Our Vision</h2>
+                <div className="h-1 w-12 bg-rose-pink mx-auto rounded-full opacity-30" />
+              </div>
+              <p className="text-2xl md:text-4xl text-foreground font-headline italic leading-relaxed max-w-3xl mx-auto">
+                To build a <span className="text-rose-pink not-italic font-bold">timeless fantasy universe</span> where storytelling, illustration, art, and imagination come together to inspire generations around the world.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Our Mission Section */}
-        <section className="py-24 bg-white relative">
+        <section className="py-24 bg-rose-pink/5 relative">
           <div className="container mx-auto px-6 max-w-4xl text-center space-y-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -146,7 +193,7 @@ export default function AboutPage() {
         </section>
 
         {/* What We Create Grid */}
-        <section className="py-32 bg-rose-pink/5">
+        <section className="py-32 bg-white">
           <div className="container mx-auto px-6">
             <div className="text-center mb-20 space-y-4">
               <h2 className="font-headline text-5xl md:text-6xl">What We Create</h2>
@@ -174,56 +221,8 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Philosophy & Vision */}
-        <section className="py-48 relative overflow-hidden bg-white">
-          <div className="container mx-auto px-6 max-w-6xl">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-              <div className="space-y-12">
-                <div className="space-y-6">
-                  <h2 className="font-headline text-5xl">Our Philosophy</h2>
-                  <div className="h-1 w-12 bg-rose-pink rounded-full" />
-                </div>
-                <div className="space-y-6 text-xl text-muted-foreground font-headline italic leading-relaxed">
-                  <p>
-                    At PETALS, every story, illustration, character, and world is connected by a shared emotional language.
-                  </p>
-                  <p>
-                    We believe the most meaningful stories are not simply told—they are experienced.
-                  </p>
-                  <p>
-                    Like petals blooming one layer at a time, our stories reveal beauty, wonder, emotion, and imagination through every page, every artwork, and every adventure.
-                  </p>
-                </div>
-              </div>
-
-              <div className="relative aspect-square flex items-center justify-center">
-                <div className="absolute inset-0 bg-rose-pink/10 blur-[120px] rounded-full scale-125 animate-pulse" />
-                <div className="relative h-64 w-64 md:h-80 md:w-80 rounded-full overflow-hidden border border-rose-pink/20 p-4 bg-white/40 backdrop-blur-md shadow-2xl">
-                  <Image 
-                    src={logoImg?.imageUrl || ""}
-                    alt="Logo"
-                    fill
-                    className="object-cover p-8"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-48 text-center space-y-12 bg-rose-pink/5 p-16 rounded-[4rem] border border-rose-pink/10">
-              <div className="space-y-6">
-                <h2 className="font-headline text-5xl">Our Vision</h2>
-                <div className="h-1 w-12 bg-rose-pink mx-auto rounded-full opacity-30" />
-              </div>
-              <p className="text-2xl md:text-4xl text-foreground font-headline italic leading-relaxed max-w-3xl mx-auto">
-                To build a <span className="text-rose-pink not-italic font-bold">timeless fantasy universe</span> where storytelling, illustration, art, and imagination come together to inspire generations around the world.
-              </p>
-            </div>
-          </div>
-        </section>
-
         {/* Closing Section */}
         <section className="py-40 text-center bg-rose-pink relative overflow-hidden">
-          {/* Subtle floral pattern overlay could go here */}
           <div className="container mx-auto px-6 max-w-4xl relative z-10">
             <motion.div
               initial={{ opacity: 0, scale: 0.98 }}
