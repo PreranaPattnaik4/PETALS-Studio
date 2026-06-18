@@ -134,10 +134,15 @@ export function ArtGallery() {
     <section className="py-24 bg-white/30">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 space-y-4">
-          <h2 className="font-headline text-4xl md:text-5xl">Art Gallery</h2>
-          <p className="text-muted-foreground italic font-headline text-lg mb-8">
-            Explore the visual lore of our blooming universes.
-          </p>
+          <h2 className="font-headline text-4xl md:text-5xl">Enchanted Illustrations</h2>
+          <div className="space-y-2">
+            <p className="text-muted-foreground italic font-headline text-2xl">
+              Illustrations That Tell Their Own Stories
+            </p>
+            <p className="text-muted-foreground italic font-headline text-lg mb-8">
+              Where every brushstroke holds a world waiting to bloom.
+            </p>
+          </div>
           <div className="flex flex-wrap justify-center gap-4">
             {categories.map((cat) => (
               <Button
