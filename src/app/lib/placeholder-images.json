@@ -204,6 +204,12 @@
       "description": "Celestial dreamscape landscape for the gallery",
       "imageUrl": "https://www.dropbox.com/scl/fi/lfqmo19y22yg4qi5s5xd7/16b293fe-8c21-434f-991c-cb78293b46b1.png?rlkey=os0vys0crin2kz1xe3yy6zspq&st=onpdmwug&raw=1",
       "imageHint": "celestial landscape"
+    },
+    {
+      "id": "gallery-moonlit-whispers",
+      "description": "Whispers of the Moonlit Kingdom",
+      "imageUrl": "https://www.dropbox.com/scl/fi/88rtm5xfh6bemell6bru5/8d977113-88f3-4cbb-b46a-cb8c04f8883b-1.png?rlkey=mtm64710ni5gbe046mdvk2jkv&st=w2quaoih&raw=1",
+      "imageHint": "moonlit fantasy portrait"
     }
   ]
 }

@@ -60,6 +60,13 @@ After a misunderstanding involving Lunaria healing a wounded deer with magic, vi
 Their fear slowly isolated her emotionally.`
   },
   {
+    id: "moonlit-whispers",
+    category: "Characters",
+    url: PlaceHolderImages.find(img => img.id === 'gallery-moonlit-whispers')?.imageUrl || "",
+    title: "Whispers of the Moonlit Kingdom",
+    description: "In the heart of the silent night, where the moonbeams weave patterns through the ancient trees, the Moonlit Guardian watches over the forgotten paths of the kingdom. A piece that captures the ethereal beauty and quiet strength of the PETALS character universe."
+  },
+  {
     id: "portrait-alora",
     category: "Portraits",
     url: PlaceHolderImages.find(img => img.id === 'char-alora')?.imageUrl || "",
