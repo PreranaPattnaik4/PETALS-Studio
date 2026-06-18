@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogTrigger, DialogClose } from '@/components/ui/dialog';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { Sparkles, ArrowRight, BookOpen } from 'lucide-react';
+import { Sparkles, ArrowRight, BookOpen, MapPin } from 'lucide-react';
 
 const categories = ["All", "Characters", "Portraits", "Watercolor", "Landscapes"];
 
@@ -76,13 +76,6 @@ const artworks = [
     description: "A mesmerizing view of the Crystal Palace gardens at twilight, where the echoes of ancient songs resonate through the air, and the glass flowers bloom with a soft, ethereal light."
   },
   {
-    id: "mystic-shores",
-    category: "Landscapes",
-    url: PlaceHolderImages.find(img => img.id === 'gallery-mystic-shores')?.imageUrl || "",
-    title: "Mystic Shores of the Crystal Rose",
-    description: "Where the shimmering waves meet the crystalline sands, the Mystic Shores are a gateway to the unknown depths of the ocean. A place where moonlight reflects the secrets of the deep."
-  },
-  {
     id: "shimmering-grotto",
     category: "Watercolor",
     url: PlaceHolderImages.find(img => img.id === 'gallery-shimmering-grotto')?.imageUrl || "",
@@ -126,14 +119,20 @@ const artworks = [
   }
 ];
 
-const featuredStory = {
+const featuredStoryOne = {
   id: "featured-sisters", 
   category: "Featured Story", 
   url: PlaceHolderImages.find(img => img.id === 'gallery-sisters')?.imageUrl || "", 
   title: "The Bond of Two Hearts: RoseBella & Lunaria",
-  description: `RoseBella and Lunaria were sisters who shared more than just blood; they shared a destiny that would change their kingdom forever. 
+  description: `RoseBella and Lunaria were sisters who shared more than just blood; they shared a destiny that would change their kingdom forever. Together, they navigated a world that feared what it could not understand.`
+};
 
-While RoseBella was adored for her gentleness and grace, Lunaria was misunderstood for her connection to the ancient, whispered magic of the dark forests. Together, they navigated a world that feared what it could not understand, proving that the strongest magic of all is the bond of sisterhood.`
+const featuredStoryTwo = {
+  id: "mystic-shores-featured",
+  category: "Featured Landscape",
+  url: PlaceHolderImages.find(img => img.id === 'gallery-mystic-shores')?.imageUrl || "",
+  title: "Mystic Shores of the Crystal Rose",
+  description: "Where shimmering waves meet crystalline sands, the Mystic Shores are a gateway to the unknown depths. A place where moonlight reflects the secrets of the deep."
 };
 
 export function ArtGallery() {
@@ -166,19 +165,19 @@ export function ArtGallery() {
           </div>
         </div>
 
-        {/* Big Featured Card */}
+        {/* Big Featured Card One - Image Left */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-24 group relative"
+          className="mb-12 group relative"
         >
           <div className="absolute inset-0 bg-rose-pink/10 blur-[100px] rounded-full scale-110 opacity-30 group-hover:opacity-50 transition-opacity" />
           <div className="relative glass-morphism rounded-[4rem] overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-0 border border-white/40 shadow-2xl">
             <div className="lg:col-span-7 relative h-[400px] lg:h-[600px] overflow-hidden">
               <Image
-                src={featuredStory.url}
-                alt={featuredStory.title}
+                src={featuredStoryOne.url}
+                alt={featuredStoryOne.title}
                 fill
                 className="object-cover transition-transform duration-1000 group-hover:scale-105"
                 priority
@@ -190,10 +189,10 @@ export function ArtGallery() {
                   <BookOpen className="w-4 h-4" /> Featured Tale
                 </div>
                 <h3 className="font-headline text-4xl md:text-5xl leading-tight">
-                  {featuredStory.title}
+                  {featuredStoryOne.title}
                 </h3>
                 <p className="text-xl text-muted-foreground italic font-headline leading-relaxed">
-                  {featuredStory.description}
+                  {featuredStoryOne.description}
                 </p>
               </div>
               
@@ -205,13 +204,70 @@ export function ArtGallery() {
                 </DialogTrigger>
                 <DialogContent className="max-w-4xl p-0 overflow-hidden bg-white/95 backdrop-blur-xl border-none shadow-2xl rounded-[3rem]">
                   <div className="p-12 md:p-16 overflow-y-auto max-h-[80vh] custom-scrollbar">
-                    <h3 className="font-headline text-5xl mb-8">{featuredStory.title}</h3>
+                    <h3 className="font-headline text-5xl mb-8">{featuredStoryOne.title}</h3>
                     <div className="whitespace-pre-wrap text-muted-foreground leading-relaxed italic font-headline text-xl">
                       {`🌹 RoseBella\nkind-hearted, gentle, loving, and deeply adored by everyone.\nBut RoseBella’s younger sister,\n🌙 Lunaria\nwas different.\nLunaria was curious, emotional, independent, and deeply connected to strange things others feared:\ndark forests\nwounded creatures\nforgotten magic\nlonely places\n\nAs a child, Lunaria rescued a tiny black kitten named:\n🖤 Nyx\nThough harmless and affectionate, villagers feared the kitten because of old superstitions.\nLunaria could never understand:\n“Why do people fear things that never hurt anyone?”\nThis slowly became the beginning of her loneliness.\n\nRoseBella always comforted and protected her younger sister.\nThe sisters loved each other deeply.\nThey played beneath silver trees with:\na small deer\ntwo little birds\nmoonflowers\nsongs\nmagical stories\n\nBut while RoseBella was naturally loved by everyone,\nLunaria slowly began feeling emotionally different and misunderstood.\n\nOne day Lunaria discovered an ancient magical book:\n📖 Moonlight Veils\nAt first, the book showed only gentle magic:\nhealing light\nmoonfire\nemotional magic\npeaceful spells\n\nLunaria secretly practiced harmless magic beneath moonlight while Nyx slept beside her.\nBut society feared magic.\nAfter a misunderstanding involving Lunaria healing a wounded deer with magic, villagers began whispering that she was dangerous.\nTheir fear slowly isolated her emotionally.`}
                     </div>
                   </div>
                 </DialogContent>
               </Dialog>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Big Featured Card Two - Image Right */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-24 group relative"
+        >
+          <div className="absolute inset-0 bg-moonlight-blue/10 blur-[100px] rounded-full scale-110 opacity-30 group-hover:opacity-50 transition-opacity" />
+          <div className="relative glass-morphism rounded-[4rem] overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-0 border border-white/40 shadow-2xl">
+            <div className="lg:col-span-5 p-8 md:p-16 flex flex-col justify-center space-y-8 bg-white/40 backdrop-blur-md lg:order-1 order-2">
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 text-rose-pink font-bold uppercase tracking-[0.2em] text-xs">
+                  <MapPin className="w-4 h-4" /> Signature Landscape
+                </div>
+                <h3 className="font-headline text-4xl md:text-5xl leading-tight">
+                  {featuredStoryTwo.title}
+                </h3>
+                <p className="text-xl text-muted-foreground italic font-headline leading-relaxed">
+                  {featuredStoryTwo.description}
+                </p>
+              </div>
+              
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button className="w-fit border-rose-pink text-rose-pink hover:bg-rose-pink hover:text-white h-12 rounded-2xl px-8 font-bold uppercase tracking-widest text-xs transition-all shadow-md group/btn">
+                    Explore Shores <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-4xl p-0 overflow-hidden bg-white/95 backdrop-blur-xl border-none shadow-2xl rounded-[3rem]">
+                  <div className="p-12 md:p-16 overflow-y-auto max-h-[80vh] custom-scrollbar text-center">
+                    <h3 className="font-headline text-5xl mb-8">{featuredStoryTwo.title}</h3>
+                    <div className="relative aspect-video rounded-3xl overflow-hidden mb-10 shadow-xl border border-white/20">
+                      <Image src={featuredStoryTwo.url} alt={featuredStoryTwo.title} fill className="object-cover" />
+                    </div>
+                    <div className="max-w-2xl mx-auto space-y-6 text-muted-foreground leading-relaxed italic font-headline text-xl">
+                      <p>
+                        The Mystic Shores are where the physical realm of the Crystal Rose ends and the infinite mysteries of the deep begin. It is said that at low tide, one can see the glowing remains of an ancient city, perfectly preserved beneath the glass-like water.
+                      </p>
+                      <p>
+                        Travelers come from across the continent to witness the "Crystalline Aurora" that occurs here every solstice, where the sky and sea become indistinguishable from one another.
+                      </p>
+                    </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </div>
+            <div className="lg:col-span-7 relative h-[400px] lg:h-[600px] overflow-hidden lg:order-2 order-1">
+              <Image
+                src={featuredStoryTwo.url}
+                alt={featuredStoryTwo.title}
+                fill
+                className="object-cover transition-transform duration-1000 group-hover:scale-105"
+              />
             </div>
           </div>
         </motion.div>
