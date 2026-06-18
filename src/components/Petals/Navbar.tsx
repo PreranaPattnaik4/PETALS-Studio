@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from "@/components/ui/button";
-import { Menu, X, Wand2 } from "lucide-react";
+import { Menu, X, Wand2, Film } from "lucide-react";
 import { useState, useEffect } from 'react';
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { motion, AnimatePresence } from "framer-motion";
@@ -25,6 +25,7 @@ export function Navbar() {
     { name: 'About', href: '/about' },
     { name: 'Gallery', href: '/gallery' },
     { name: 'Books', href: '/books' },
+    { name: 'Videos', href: '/videos' },
     { name: 'Characters', href: '/characters' },
     { name: 'Creator', href: '/creator', icon: Wand2 },
   ];

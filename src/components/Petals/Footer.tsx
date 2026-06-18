@@ -64,6 +64,7 @@ export function Footer() {
               <li><Link href="/books" className="hover:text-white transition-colors">Book Library</Link></li>
               <li><Link href="/videos" className="hover:text-white transition-colors">Animations</Link></li>
               <li><Link href="/characters" className="hover:text-white transition-colors">Characters</Link></li>
+              <li><Link href="/creator" className="hover:text-white transition-colors">Creator Studio</Link></li>
             </ul>
           </div>
 
