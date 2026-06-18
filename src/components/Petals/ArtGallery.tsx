@@ -59,6 +59,13 @@ But society feared magic.
 After a misunderstanding involving Lunaria healing a wounded deer with magic, villagers began whispering that she was dangerous.
 Their fear slowly isolated her emotionally.`
   },
+  {
+    id: "songs-mermaids-featured",
+    category: "Watercolor",
+    url: PlaceHolderImages.find(img => img.id === 'gallery-mermaids')?.imageUrl || "",
+    title: "Songs of the Shimmering Sea",
+    description: "The ancient melodies of the ocean, captured in a single frame. This watercolor-style illustration depicts the serene power of Alora as she communicates with the deep sea creatures beneath the moonlit waves."
+  },
   { 
     id: "enchanted-valley", 
     category: "Landscapes", 
@@ -100,13 +107,6 @@ Their fear slowly isolated her emotionally.`
     url: PlaceHolderImages.find(img => img.id === 'gallery-guardians')?.imageUrl || "",
     title: "Guardians of the Dream Petals",
     description: "The spectral protectors who watch over the sleeping world, weaving petals of light to ward off the encroaching shadows of night."
-  },
-  {
-    id: "songs-mermaids",
-    category: "Watercolor",
-    url: PlaceHolderImages.find(img => img.id === 'gallery-mermaids')?.imageUrl || "",
-    title: "Songs of the Shimmering Sea",
-    description: "The ancient melodies of the ocean, captured in a single frame. This watercolor-style illustration depicts the serene power of Alora as she communicates with the deep sea creatures beneath the moonlit waves."
   },
   {
     id: "forgotten-map",
