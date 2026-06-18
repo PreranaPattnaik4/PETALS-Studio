@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useRef } from 'react';
@@ -20,10 +19,20 @@ import {
   Sparkles,
   Upload,
   RefreshCw,
-  Check
+  Check,
+  Wand2,
+  Cake,
+  Palette,
+  User,
+  Loader2
 } from 'lucide-react';
 import { toPng } from 'html-to-image';
 import { useToast } from '@/hooks/use-toast';
+import { 
+  generateWallArt, 
+  generateBirthdayCard, 
+  generatePersonalizedBirthdayCard 
+} from '@/ai/flows/generate-creator-art-flow';
 
 interface StickerItem {
   id: string;
@@ -34,17 +43,31 @@ interface StickerItem {
   type: string;
 }
 
+type CreatorMode = 'manual' | 'wall-art' | 'birthday-card';
+
 export function PosterCreator() {
   const { toast } = useToast();
   const canvasRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const personalizedInputRef = useRef<HTMLInputElement>(null);
 
+  // Manual Mode State
   const [bgImage, setBgImage] = useState(PlaceHolderImages.find(img => img.id === 'crystal-rose-universe')?.imageUrl || "");
   const [title, setTitle] = useState("A Tale of Magic");
   const [description, setDescription] = useState("Where petals bloom and wonders never cease.");
   const [stickers, setStickers] = useState<StickerItem[]>([]);
   const [activeTab, setActiveTab] = useState<'background' | 'stickers' | 'text'>('stickers');
+  
+  // New UI State
+  const [mode, setMode] = useState<CreatorMode>('manual');
   const [isExporting, setIsExporting] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [aiResultImage, setAiResultImage] = useState<string | null>(null);
+  
+  // Birthday Card sub-mode state
+  const [birthdaySubMode, setBirthdaySubMode] = useState<'fixed' | 'personalized'>('fixed');
+  const [birthdayName, setBirthdayName] = useState("");
+  const [personalizedPhoto, setPersonalizedPhoto] = useState<string | null>(null);
 
   const characterStickers = PlaceHolderImages.filter(img => 
     img.id.startsWith('char-') || img.id === 'petals-logo'
@@ -87,256 +110,406 @@ export function PosterCreator() {
     }
   };
 
-  const downloadPoster = async () => {
-    if (!canvasRef.current) return;
-    setIsExporting(true);
+  const handlePersonalizedPhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        if (event.target?.result) {
+          setPersonalizedPhoto(event.target.result as string);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleAiGeneration = async () => {
+    setIsGenerating(true);
+    setAiResultImage(null);
     try {
-      const dataUrl = await toPng(canvasRef.current, { cacheBust: true, quality: 1 });
-      const link = document.createElement('a');
-      link.download = `petals-creation-${Date.now()}.png`;
-      link.href = dataUrl;
-      link.click();
-      toast({ title: "Success!", description: "Your magical poster has been downloaded." });
+      let result = "";
+      if (mode === 'wall-art') {
+        result = await generateWallArt();
+      } else if (mode === 'birthday-card') {
+        if (birthdaySubMode === 'fixed') {
+          result = await generateBirthdayCard();
+        } else {
+          if (!personalizedPhoto || !birthdayName) {
+            toast({ variant: "destructive", title: "Missing Info", description: "Please upload a photo and enter a name." });
+            setIsGenerating(false);
+            return;
+          }
+          result = await generatePersonalizedBirthdayCard({
+            photoDataUri: personalizedPhoto,
+            name: birthdayName
+          });
+        }
+      }
+      setAiResultImage(result);
+      toast({ title: "Magic Complete!", description: "Your AI creation is ready." });
     } catch (err) {
       console.error(err);
-      toast({ variant: "destructive", title: "Error", description: "Failed to download poster. Please try again." });
+      toast({ variant: "destructive", title: "Enchantment Failed", description: "The magic faded too soon. Please try again." });
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
+  const downloadPoster = async () => {
+    if (!canvasRef.current && !aiResultImage) return;
+    setIsExporting(true);
+    try {
+      let url = "";
+      if (aiResultImage) {
+        url = aiResultImage;
+      } else if (canvasRef.current) {
+        url = await toPng(canvasRef.current, { cacheBust: true, quality: 1 });
+      }
+
+      if (url.startsWith('data:')) {
+        const link = document.createElement('a');
+        link.download = `petals-creation-${Date.now()}.png`;
+        link.href = url;
+        link.click();
+      } else {
+        // External URL from AI might need proxy or direct download
+        window.open(url, '_blank');
+      }
+      toast({ title: "Success!", description: "Your magical creation has been saved." });
+    } catch (err) {
+      console.error(err);
+      toast({ variant: "destructive", title: "Error", description: "Failed to download. Please try again." });
     } finally {
       setIsExporting(false);
     }
   };
 
-  const shareOnWhatsApp = async () => {
-    const text = encodeURIComponent("Look at this magical poster I created with PETALS Studio! ✨");
-    const url = `https://wa.me/?text=${text}`;
-    window.open(url, '_blank');
+  const shareOnWhatsApp = () => {
+    const text = encodeURIComponent("Look at this magical PETALS creation I made! ✨");
+    window.open(`https://wa.me/?text=${text}`, '_blank');
   };
 
   return (
-    <div className="flex flex-col lg:flex-row gap-8 items-start">
-      {/* Sidebar Controls */}
-      <div className="w-full lg:w-80 flex flex-col gap-6 order-2 lg:order-1">
-        <div className="glass-morphism rounded-[2.5rem] p-6 space-y-6">
-          <div className="flex gap-2 p-1 bg-rose-pink/10 rounded-2xl">
-            {(['stickers', 'background', 'text'] as const).map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`flex-1 py-2 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all ${
-                  activeTab === tab 
-                    ? "bg-white text-rose-pink shadow-sm" 
-                    : "text-muted-foreground hover:text-rose-pink"
-                }`}
-              >
-                {tab === 'stickers' && <Sticker className="w-3.5 h-3.5 mx-auto mb-1" />}
-                {tab === 'background' && <ImageIcon className="w-3.5 h-3.5 mx-auto mb-1" />}
-                {tab === 'text' && <Type className="w-3.5 h-3.5 mx-auto mb-1" />}
-                {tab}
-              </button>
-            ))}
-          </div>
+    <div className="flex flex-col gap-12">
+      {/* Top Mode Switcher */}
+      <div className="flex justify-center gap-4 p-1.5 bg-rose-pink/5 rounded-3xl border border-rose-pink/10 w-fit mx-auto">
+        <Button 
+          variant={mode === 'manual' ? 'default' : 'ghost'} 
+          onClick={() => setMode('manual')}
+          className={`rounded-2xl px-8 h-12 text-xs font-bold uppercase tracking-widest ${mode === 'manual' ? 'bg-rose-pink text-white' : 'text-muted-foreground'}`}
+        >
+          <Palette className="mr-2 w-4 h-4" /> Manual Designer
+        </Button>
+        <Button 
+          variant={mode === 'wall-art' ? 'default' : 'ghost'} 
+          onClick={() => setMode('wall-art')}
+          className={`rounded-2xl px-8 h-12 text-xs font-bold uppercase tracking-widest ${mode === 'wall-art' ? 'bg-rose-pink text-white' : 'text-muted-foreground'}`}
+        >
+          🌹 Wall Art Creator
+        </Button>
+        <Button 
+          variant={mode === 'birthday-card' ? 'default' : 'ghost'} 
+          onClick={() => setMode('birthday-card')}
+          className={`rounded-2xl px-8 h-12 text-xs font-bold uppercase tracking-widest ${mode === 'birthday-card' ? 'bg-rose-pink text-white' : 'text-muted-foreground'}`}
+        >
+          🎂 Birthday Card Creator
+        </Button>
+      </div>
 
-          <ScrollArea className="h-[400px] pr-4">
-            <AnimatePresence mode="wait">
-              {activeTab === 'stickers' && (
-                <motion.div 
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 10 }}
-                  className="grid grid-cols-2 gap-4"
-                >
-                  {characterStickers.map((char) => (
+      <div className="flex flex-col lg:flex-row gap-8 items-start">
+        {/* Sidebar Controls */}
+        <div className="w-full lg:w-96 flex flex-col gap-6 order-2 lg:order-1">
+          <div className="glass-morphism rounded-[2.5rem] p-8 space-y-8">
+            
+            {/* MANUAL MODE CONTROLS */}
+            {mode === 'manual' && (
+              <>
+                <div className="flex gap-2 p-1 bg-rose-pink/10 rounded-2xl">
+                  {(['stickers', 'background', 'text'] as const).map((tab) => (
                     <button
-                      key={char.id}
-                      onClick={() => addSticker(char.imageUrl)}
-                      className="relative aspect-square rounded-2xl overflow-hidden border border-rose-pink/10 hover:border-rose-pink group transition-all"
+                      key={tab}
+                      onClick={() => setActiveTab(tab)}
+                      className={`flex-1 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all ${
+                        activeTab === tab 
+                          ? "bg-white text-rose-pink shadow-sm" 
+                          : "text-muted-foreground hover:text-rose-pink"
+                      }`}
                     >
-                      <Image src={char.imageUrl} alt={char.id} fill className="object-cover group-hover:scale-110 transition-transform" />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
-                        <Sparkles className="text-white w-6 h-6" />
-                      </div>
+                      {tab === 'stickers' && <Sticker className="w-3.5 h-3.5 mx-auto mb-1" />}
+                      {tab === 'background' && <ImageIcon className="w-3.5 h-3.5 mx-auto mb-1" />}
+                      {tab === 'text' && <Type className="w-3.5 h-3.5 mx-auto mb-1" />}
+                      {tab}
                     </button>
                   ))}
-                </motion.div>
-              )}
+                </div>
 
-              {activeTab === 'background' && (
-                <motion.div 
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 10 }}
-                  className="space-y-6"
+                <div className="h-[400px] overflow-y-auto pr-4 custom-scrollbar">
+                  <AnimatePresence mode="wait">
+                    {activeTab === 'stickers' && (
+                      <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} className="grid grid-cols-2 gap-4">
+                        {characterStickers.map((char) => (
+                          <button key={char.id} onClick={() => addSticker(char.imageUrl)} className="relative aspect-square rounded-2xl overflow-hidden border border-rose-pink/10 hover:border-rose-pink group transition-all">
+                            <Image src={char.imageUrl} alt={char.id} fill className="object-cover group-hover:scale-110 transition-transform" />
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
+                              <Sparkles className="text-white w-6 h-6" />
+                            </div>
+                          </button>
+                        ))}
+                      </motion.div>
+                    )}
+
+                    {activeTab === 'background' && (
+                      <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} className="space-y-6">
+                        <Button onClick={() => fileInputRef.current?.click()} className="w-full h-14 rounded-2xl border-dashed border-2 border-rose-pink/30 bg-transparent text-rose-pink hover:bg-rose-pink/5">
+                          <Upload className="mr-2 w-4 h-4" /> Upload Custom
+                        </Button>
+                        <input type="file" ref={fileInputRef} onChange={handleFileUpload} className="hidden" accept="image/*" />
+                        <div className="grid grid-cols-2 gap-4">
+                          {backgroundPresets.map((bg) => (
+                            <button key={bg.id} onClick={() => setBgImage(bg.imageUrl)} className={`relative aspect-[3/4] rounded-xl overflow-hidden border-2 transition-all ${bgImage === bg.imageUrl ? "border-rose-pink" : "border-transparent"}`}>
+                              <Image src={bg.imageUrl} alt={bg.id} fill className="object-cover" />
+                              {bgImage === bg.imageUrl && <div className="absolute top-2 right-2 bg-rose-pink text-white rounded-full p-1 shadow-md"><Check className="w-3 h-3" /></div>}
+                            </button>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+
+                    {activeTab === 'text' && (
+                      <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} className="space-y-6">
+                        <div className="space-y-2">
+                          <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Main Title</label>
+                          <Input value={title} onChange={(e) => setTitle(e.target.value)} className="bg-white/50 h-14 rounded-2xl border-rose-pink/20" />
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Lore Snippet</label>
+                          <Textarea value={description} onChange={(e) => setDescription(e.target.value)} className="bg-white/50 rounded-2xl border-rose-pink/20 min-h-[120px]" />
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </>
+            )}
+
+            {/* AI WALL ART CONTROLS */}
+            {mode === 'wall-art' && (
+              <div className="space-y-6 text-center">
+                <div className="w-16 h-16 rounded-3xl bg-rose-pink/10 text-rose-pink flex items-center justify-center mx-auto mb-4">
+                  <Palette className="w-8 h-8" />
+                </div>
+                <h3 className="font-headline text-2xl">Signature Wall Art</h3>
+                <p className="text-sm text-muted-foreground italic leading-relaxed">
+                  Generate a premium fantasy wall art piece featuring the signature PETALS crystal rose and luxury typography.
+                </p>
+                <Button 
+                  onClick={handleAiGeneration} 
+                  disabled={isGenerating}
+                  className="w-full h-14 bg-rose-pink text-white rounded-2xl font-bold uppercase tracking-widest text-xs shadow-xl shadow-rose-pink/20"
                 >
-                  <Button 
-                    onClick={() => fileInputRef.current?.click()}
-                    className="w-full h-12 rounded-xl border-dashed border-2 border-rose-pink/30 bg-transparent text-rose-pink hover:bg-rose-pink/5"
+                  {isGenerating ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Wand2 className="w-4 h-4 mr-2" />}
+                  {isGenerating ? "Weaving Art..." : "Generate Wall Art"}
+                </Button>
+              </div>
+            )}
+
+            {/* AI BIRTHDAY CARD CONTROLS */}
+            {mode === 'birthday-card' && (
+              <div className="space-y-8">
+                <div className="flex gap-2 p-1 bg-rose-pink/10 rounded-2xl">
+                  <button
+                    onClick={() => setBirthdaySubMode('fixed')}
+                    className={`flex-1 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all flex flex-col items-center gap-1 ${
+                      birthdaySubMode === 'fixed' ? "bg-white text-rose-pink shadow-sm" : "text-muted-foreground hover:text-rose-pink"
+                    }`}
                   >
-                    <Upload className="mr-2 w-4 h-4" /> Upload Custom
-                  </Button>
-                  <input 
-                    type="file" 
-                    ref={fileInputRef} 
-                    onChange={handleFileUpload} 
-                    className="hidden" 
-                    accept="image/*" 
-                  />
-                  <div className="grid grid-cols-2 gap-4">
-                    {backgroundPresets.map((bg) => (
-                      <button
-                        key={bg.id}
-                        onClick={() => setBgImage(bg.imageUrl)}
-                        className={`relative aspect-[3/4] rounded-xl overflow-hidden border-2 transition-all ${
-                          bgImage === bg.imageUrl ? "border-rose-pink" : "border-transparent"
-                        }`}
-                      >
-                        <Image src={bg.imageUrl} alt={bg.id} fill className="object-cover" />
-                        {bgImage === bg.imageUrl && (
-                          <div className="absolute top-2 right-2 bg-rose-pink text-white rounded-full p-1 shadow-md">
-                            <Check className="w-3 h-3" />
+                    <Sparkles className="w-3.5 h-3.5" />
+                    🌸 PETALS Birthday Card
+                  </button>
+                  <button
+                    onClick={() => setBirthdaySubMode('personalized')}
+                    className={`flex-1 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all flex flex-col items-center gap-1 ${
+                      birthdaySubMode === 'personalized' ? "bg-white text-rose-pink shadow-sm" : "text-muted-foreground hover:text-rose-pink"
+                    }`}
+                  >
+                    <User className="w-3.5 h-3.5" />
+                    📸 Personalized Photo
+                  </button>
+                </div>
+
+                {birthdaySubMode === 'personalized' && (
+                  <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
+                    <Input 
+                      placeholder="Birthday Person's Name" 
+                      value={birthdayName}
+                      onChange={(e) => setBirthdayName(e.target.value)}
+                      className="bg-white/50 h-14 rounded-2xl border-rose-pink/20"
+                    />
+                    <Button 
+                      variant="outline"
+                      onClick={() => personalizedInputRef.current?.click()}
+                      className="w-full h-14 rounded-2xl border-dashed border-2 border-rose-pink/30 flex flex-col items-center justify-center p-0 overflow-hidden"
+                    >
+                      {personalizedPhoto ? (
+                        <div className="relative w-full h-full">
+                          <Image src={personalizedPhoto} alt="Personalized preview" fill className="object-cover opacity-50" />
+                          <div className="absolute inset-0 flex items-center justify-center text-rose-pink font-bold text-[10px] uppercase tracking-widest">
+                            <RefreshCw className="w-4 h-4 mr-2" /> Change Photo
                           </div>
-                        )}
-                      </button>
-                    ))}
+                        </div>
+                      ) : (
+                        <div className="flex items-center gap-2 text-rose-pink text-[10px] font-bold uppercase tracking-widest">
+                          <Upload className="w-4 h-4" /> Upload Person's Photo
+                        </div>
+                      )}
+                    </Button>
+                    <input type="file" ref={personalizedInputRef} onChange={handlePersonalizedPhotoUpload} className="hidden" accept="image/*" />
+                  </motion.div>
+                )}
+
+                <div className="text-center space-y-4">
+                  <p className="text-[10px] text-muted-foreground italic">
+                    {birthdaySubMode === 'fixed' 
+                      ? "Create an enchanting crystal rose birthday card." 
+                      : "Create a magical portrait of your loved one."}
+                  </p>
+                  <Button 
+                    onClick={handleAiGeneration} 
+                    disabled={isGenerating || (birthdaySubMode === 'personalized' && (!personalizedPhoto || !birthdayName))}
+                    className="w-full h-14 bg-rose-pink text-white rounded-2xl font-bold uppercase tracking-widest text-xs shadow-xl shadow-rose-pink/20"
+                  >
+                    {isGenerating ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Cake className="w-4 h-4 mr-2" />}
+                    {isGenerating ? "Preparing Surprise..." : "Generate Birthday Card"}
+                  </Button>
+                </div>
+              </div>
+            )}
+
+            <div className="pt-8 border-t border-rose-pink/10 space-y-4">
+              <Button 
+                onClick={downloadPoster}
+                disabled={isExporting || (mode !== 'manual' && !aiResultImage)}
+                className="w-full bg-rose-pink text-white h-14 rounded-[1.5rem] font-bold uppercase tracking-widest text-xs shadow-xl shadow-rose-pink/20"
+              >
+                {isExporting ? <RefreshCw className="w-4 h-4 mr-2 animate-spin" /> : <Download className="w-4 h-4 mr-2" />}
+                Download Creation
+              </Button>
+              <Button 
+                variant="outline"
+                onClick={shareOnWhatsApp}
+                className="w-full border-rose-pink text-rose-pink h-14 rounded-[1.5rem] font-bold uppercase tracking-widest text-xs"
+              >
+                <Share2 className="w-4 h-4 mr-2" /> Share on WhatsApp
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Main Canvas Area */}
+        <div className="flex-1 w-full order-1 lg:order-2">
+          <div className="relative p-12 bg-rose-pink/5 rounded-[5rem] border border-rose-pink/10 shadow-inner min-h-[700px] flex items-center justify-center">
+            
+            <AnimatePresence mode="wait">
+              {aiResultImage ? (
+                <motion.div 
+                  key="ai-result"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="relative aspect-[3/4] w-full max-w-[500px] rounded-[2.5rem] overflow-hidden shadow-2xl bg-white"
+                >
+                  <Image src={aiResultImage} alt="AI Created Art" fill className="object-cover" priority unoptimized />
+                  <div className="absolute top-4 right-4 bg-rose-pink/20 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20 text-[10px] font-bold text-white uppercase tracking-widest flex items-center gap-2">
+                    <Sparkles className="w-3 h-3" /> AI Enchanted
                   </div>
                 </motion.div>
-              )}
-
-              {activeTab === 'text' && (
+              ) : isGenerating ? (
                 <motion.div 
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 10 }}
-                  className="space-y-4"
+                  key="generating"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="flex flex-col items-center gap-6"
                 >
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Main Title</label>
-                    <Input 
-                      value={title} 
-                      onChange={(e) => setTitle(e.target.value)}
-                      className="bg-white/50 h-12 rounded-xl border-rose-pink/20"
-                      placeholder="Enter a caption..."
-                    />
+                  <div className="relative">
+                    <div className="w-24 h-24 rounded-full border-4 border-rose-pink/20 border-t-rose-pink animate-spin" />
+                    <Sparkles className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-rose-pink w-8 h-8 animate-pulse" />
+                  </div>
+                  <div className="text-center space-y-2">
+                    <p className="font-headline text-2xl">Weaving Magic...</p>
+                    <p className="text-sm text-muted-foreground italic">Bringing your vision to life in the PETALS universe.</p>
+                  </div>
+                </motion.div>
+              ) : mode === 'manual' ? (
+                <motion.div 
+                  key="manual-canvas"
+                  ref={canvasRef}
+                  className="relative aspect-[3/4] w-full max-w-[500px] overflow-hidden rounded-[2.5rem] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] bg-white group cursor-crosshair"
+                >
+                  <Image src={bgImage} alt="Poster Background" fill className="object-cover pointer-events-none" priority />
+
+                  <div className="absolute inset-x-8 bottom-8 p-10 glass-morphism rounded-[3rem] text-center space-y-4 pointer-events-none">
+                    <h2 className="font-headline text-3xl md:text-4xl text-foreground">{title}</h2>
+                    <p className="text-sm italic font-headline text-muted-foreground leading-relaxed">
+                      {description}
+                    </p>
+                    <div className="pt-4 flex items-center justify-center gap-3 opacity-30">
+                      <div className="h-px w-12 bg-rose-pink" />
+                      <span className="text-[10px] font-bold uppercase tracking-[0.4em]">PETALS STUDIO</span>
+                      <div className="h-px w-12 bg-rose-pink" />
+                    </div>
+                  </div>
+
+                  {stickers.map((sticker) => (
+                    <motion.div
+                      key={sticker.id}
+                      drag
+                      dragMomentum={false}
+                      initial={{ x: sticker.x, y: sticker.y, scale: 0.5 }}
+                      animate={{ scale: sticker.scale }}
+                      className="absolute w-36 h-36 cursor-move z-20 group/sticker"
+                      style={{ top: sticker.y, left: sticker.x }}
+                    >
+                      <div className="relative w-full h-full">
+                        <Image src={sticker.url} alt="sticker" fill className="object-contain drop-shadow-2xl" />
+                        <div className="absolute -top-6 -right-6 flex gap-2 opacity-0 group-hover/sticker:opacity-100 transition-opacity">
+                          <button onClick={(e) => { e.stopPropagation(); updateSticker(sticker.id, { scale: sticker.scale + 0.1 }); }} className="bg-white text-rose-pink p-2 rounded-full shadow-lg border border-rose-pink/20"><Maximize2 className="w-4 h-4" /></button>
+                          <button onClick={(e) => { e.stopPropagation(); updateSticker(sticker.id, { scale: Math.max(0.2, sticker.scale - 0.1) }); }} className="bg-white text-rose-pink p-2 rounded-full shadow-lg border border-rose-pink/20"><Minimize2 className="w-4 h-4" /></button>
+                          <button onClick={(e) => { e.stopPropagation(); removeSticker(sticker.id); }} className="bg-rose-pink text-white p-2 rounded-full shadow-lg"><Trash2 className="w-4 h-4" /></button>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                  <div className="absolute inset-0 pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-overlay" />
+                </motion.div>
+              ) : (
+                <motion.div 
+                  key="empty-state"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-center space-y-6 max-w-sm"
+                >
+                  <div className="w-20 h-20 rounded-full bg-rose-pink/10 flex items-center justify-center mx-auto text-rose-pink">
+                    <Wand2 className="w-10 h-10" />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Lore Snippet</label>
-                    <Textarea 
-                      value={description} 
-                      onChange={(e) => setDescription(e.target.value)}
-                      className="bg-white/50 rounded-xl border-rose-pink/20 min-h-[100px]"
-                      placeholder="Write a magical story..."
-                    />
+                    <p className="font-headline text-xl">Ready for Enchantment?</p>
+                    <p className="text-sm text-muted-foreground italic">Use the sidebar to generate a custom AI creation.</p>
                   </div>
                 </motion.div>
               )}
             </AnimatePresence>
-          </ScrollArea>
-
-          <div className="pt-6 border-t border-rose-pink/10 space-y-3">
-            <Button 
-              onClick={downloadPoster}
-              disabled={isExporting}
-              className="w-full bg-rose-pink text-white h-12 rounded-2xl font-bold uppercase tracking-widest text-xs shadow-lg shadow-rose-pink/20"
-            >
-              {isExporting ? <RefreshCw className="w-4 h-4 mr-2 animate-spin" /> : <Download className="w-4 h-4 mr-2" />}
-              Download PNG
-            </Button>
-            <Button 
-              variant="outline"
-              onClick={shareOnWhatsApp}
-              className="w-full border-rose-pink text-rose-pink h-12 rounded-2xl font-bold uppercase tracking-widest text-xs"
-            >
-              <Share2 className="w-4 h-4 mr-2" /> Share on WhatsApp
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Canvas Area */}
-      <div className="flex-1 w-full order-1 lg:order-2">
-        <div className="relative p-8 bg-rose-pink/5 rounded-[4rem] border border-rose-pink/10 shadow-inner">
-          <div 
-            ref={canvasRef}
-            className="relative aspect-[3/4] w-full max-w-[500px] mx-auto overflow-hidden rounded-[2rem] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] bg-white group cursor-crosshair"
-          >
-            {/* Background Layer */}
-            <Image 
-              src={bgImage} 
-              alt="Poster Background" 
-              fill 
-              className="object-cover pointer-events-none"
-              priority
-            />
-
-            {/* Content Layer (Glassmorphism Overlay) */}
-            <div className="absolute inset-x-8 bottom-8 p-8 glass-morphism rounded-[2.5rem] text-center space-y-3 pointer-events-none">
-              <h2 className="font-headline text-3xl md:text-4xl text-foreground drop-shadow-sm">{title}</h2>
-              <p className="text-sm italic font-headline text-muted-foreground leading-relaxed drop-shadow-sm">
-                {description}
-              </p>
-              <div className="pt-4 flex items-center justify-center gap-2 opacity-50">
-                <div className="h-px w-8 bg-rose-pink" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.4em]">PETALS STUDIO</span>
-                <div className="h-px w-8 bg-rose-pink" />
-              </div>
-            </div>
-
-            {/* Sticker Layer */}
-            {stickers.map((sticker) => (
-              <motion.div
-                key={sticker.id}
-                drag
-                dragMomentum={false}
-                initial={{ x: sticker.x, y: sticker.y, scale: 0.5 }}
-                animate={{ scale: sticker.scale }}
-                className="absolute w-32 h-32 cursor-move z-20 group/sticker"
-                style={{ top: sticker.y, left: sticker.x }}
-              >
-                <div className="relative w-full h-full">
-                  <Image src={sticker.url} alt="sticker" fill className="object-contain drop-shadow-xl" />
-                  
-                  {/* Sticker Controls */}
-                  <div className="absolute -top-4 -right-4 flex gap-1 opacity-0 group-hover/sticker:opacity-100 transition-opacity">
-                    <button 
-                      onClick={(e) => { e.stopPropagation(); updateSticker(sticker.id, { scale: sticker.scale + 0.1 }); }}
-                      className="bg-white text-rose-pink p-1.5 rounded-full shadow-lg border border-rose-pink/20"
-                    >
-                      <Maximize2 className="w-3 h-3" />
-                    </button>
-                    <button 
-                      onClick={(e) => { e.stopPropagation(); updateSticker(sticker.id, { scale: Math.max(0.2, sticker.scale - 0.1) }); }}
-                      className="bg-white text-rose-pink p-1.5 rounded-full shadow-lg border border-rose-pink/20"
-                    >
-                      <Minimize2 className="w-3 h-3" />
-                    </button>
-                    <button 
-                      onClick={(e) => { e.stopPropagation(); removeSticker(sticker.id); }}
-                      className="bg-rose-pink text-white p-1.5 rounded-full shadow-lg"
-                    >
-                      <Trash2 className="w-3 h-3" />
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
 
             {/* Aesthetic Grain/Texture Overlay */}
-            <div className="absolute inset-0 pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-overlay" />
+            <div className="absolute inset-0 pointer-events-none rounded-[5rem] border-[24px] border-white/40 mix-blend-overlay opacity-20" />
           </div>
 
           {/* Tips */}
-          <div className="mt-8 flex items-center justify-center gap-6 text-muted-foreground text-xs italic font-headline">
-            <span className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-rose-pink" /> Click stickers to resize or delete</span>
-            <span className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-rose-pink" /> Drag characters to position them</span>
+          <div className="mt-8 flex items-center justify-center gap-8 text-muted-foreground text-xs italic font-headline">
+            <span className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-rose-pink" /> 100% Original Studio IP</span>
+            <span className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-rose-pink" /> Frame-ready quality</span>
+            <span className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-rose-pink" /> Secure & Magical</span>
           </div>
         </div>
       </div>
-    </div>
-  );
-}
-
-function ScrollArea({ children, className }: { children: React.ReactNode; className?: string }) {
-  return (
-    <div className={`overflow-y-auto custom-scrollbar ${className}`}>
-      {children}
     </div>
   );
 }
