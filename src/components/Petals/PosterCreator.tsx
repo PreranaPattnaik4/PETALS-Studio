@@ -24,8 +24,7 @@ import {
   Redo2,
   BookOpen,
   Clock,
-  Heart,
-  Camera
+  Heart
 } from 'lucide-react';
 import { toPng } from 'html-to-image';
 import { useToast } from '@/hooks/use-toast';
@@ -47,7 +46,7 @@ interface CanvasState {
 }
 
 type CreatorMode = 'manual' | 'lore-weaver' | 'wall-art' | 'birthday-card';
-type ManualSidebarTab = 'stickers' | 'background' | 'personalized' | 'text';
+type ManualSidebarTab = 'stickers' | 'background' | 'text';
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
 const ACCEPTED_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
@@ -281,7 +280,7 @@ export function PosterCreator() {
               {mode === 'manual' ? (
                 <motion.div key="manual" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex flex-col h-full overflow-hidden">
                   <div className="flex gap-2 p-1.5 bg-rose-pink/10 rounded-2xl overflow-x-auto no-scrollbar border border-rose-pink/5 mb-8">
-                    {(['stickers', 'background', 'personalized', 'text'] as const).map((tab) => (
+                    {(['stickers', 'background', 'text'] as const).map((tab) => (
                       <button
                         key={tab}
                         onClick={() => setActiveTab(tab)}
@@ -291,10 +290,9 @@ export function PosterCreator() {
                       >
                         {tab === 'stickers' && <Sticker className="w-4 h-4" />}
                         {tab === 'background' && <ImageIcon className="w-4 h-4" />}
-                        {tab === 'personalized' && <Camera className="w-4 h-4" />}
                         {tab === 'text' && <Type className="w-4 h-4" />}
                         <span className="truncate w-full text-center px-1">
-                          {tab === 'personalized' ? 'Personal' : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                          {tab.charAt(0).toUpperCase() + tab.slice(1)}
                         </span>
                       </button>
                     ))}
@@ -322,22 +320,6 @@ export function PosterCreator() {
                               <Image src={bg.imageUrl} alt={bg.id} fill className="object-cover" />
                             </button>
                           ))}
-                        </div>
-                      </div>
-                    )}
-                    {activeTab === 'personalized' && (
-                      <div className="space-y-8 text-center py-12 mb-10">
-                        <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-rose-pink/10 text-rose-pink text-[11px] font-bold uppercase tracking-widest border border-rose-pink/20">
-                          <Clock className="w-4 h-4" /> Coming Soon
-                        </div>
-                        <div className="space-y-6">
-                          <p className="text-[12px] font-bold uppercase tracking-[0.2em] text-rose-pink">AI Personalized Design</p>
-                          <p className="text-lg italic text-muted-foreground leading-relaxed px-12 font-headline">
-                            Upload a photo and let our AI weavers transform it into a signature PETALS masterpiece.
-                          </p>
-                          <Button disabled variant="outline" className="w-full max-w-sm mx-auto h-16 rounded-3xl border-dashed opacity-50 border-rose-pink/20 text-[11px] font-bold uppercase tracking-widest">
-                            <Camera className="mr-3 w-6 h-6" /> Upload & PETAL-ize
-                          </Button>
                         </div>
                       </div>
                     )}
@@ -435,7 +417,7 @@ export function PosterCreator() {
                             {birthdayTab === 'personalized' && (
                               <div className="space-y-8">
                                 <Button disabled variant="outline" className="w-full h-16 rounded-[2rem] border-dashed opacity-50 border-rose-pink/20">
-                                  <Camera className="mr-4 w-6 h-6" /> Upload Photo
+                                  <ImageIcon className="mr-4 w-6 h-6" /> Upload Photo
                                 </Button>
                                 <Input placeholder="Recipient's Name" disabled className="bg-white/50 h-16 rounded-[2rem] opacity-50 border-rose-pink/20 px-6 font-headline text-lg" />
                               </div>
