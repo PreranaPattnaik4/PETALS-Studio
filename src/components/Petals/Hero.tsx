@@ -68,13 +68,13 @@ export function Hero() {
             </div>
 
             <div className="flex flex-wrap items-center gap-6 pt-6">
-              <Button asChild size="lg" className="h-16 px-12 rounded-full bg-rose-pink text-white hover:bg-rose-pink/90 text-lg font-bold uppercase tracking-widest shadow-2xl shadow-rose-pink/30 group">
+              <Button asChild className="h-12 px-8 rounded-full bg-rose-pink text-white hover:bg-rose-pink/90 text-sm font-bold uppercase tracking-widest shadow-2xl shadow-rose-pink/30 group">
                 <Link href="/books">
-                  Explore Stories <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  Explore Stories <ArrowRight className="ml-3 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
-              <Button variant="outline" size="lg" className="h-16 px-12 rounded-full border-white/40 bg-white/5 backdrop-blur-md text-white hover:bg-white hover:text-black transition-all text-lg font-bold uppercase tracking-widest group">
-                <Play className="mr-3 w-5 h-5 fill-current" /> Watch Trailer
+              <Button variant="outline" className="h-12 px-8 rounded-full border-white/40 bg-white/5 backdrop-blur-md text-white hover:bg-white hover:text-black transition-all text-sm font-bold uppercase tracking-widest group">
+                <Play className="mr-3 w-4 h-4 fill-current" /> Watch Trailer
               </Button>
             </div>
           </motion.div>
