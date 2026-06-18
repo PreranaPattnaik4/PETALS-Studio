@@ -83,7 +83,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="glass-morphism rounded-[3rem] p-12 flex flex-col items-center justify-center text-center space-y-6 group hover:shadow-2xl transition-all duration-500"
+                className="glass-morphism rounded-[3rem] p-12 flex flex-col items-center justify-center text-center group hover:shadow-2xl transition-all duration-500"
               >
                 <div className="relative w-48 h-48 md:w-64 md:h-64 overflow-hidden rounded-full border-2 border-rose-pink/20 shadow-xl group-hover:scale-105 transition-transform duration-500">
                   <Image 
@@ -93,10 +93,6 @@ export default function Home() {
                     className="object-cover"
                     data-ai-hint="company logo"
                   />
-                </div>
-                <div>
-                  <h3 className="font-headline text-3xl md:text-4xl tracking-widest uppercase font-bold text-rose-pink">PETALS</h3>
-                  <p className="text-xs uppercase tracking-[0.5em] text-muted-foreground font-bold mt-1">Studio</p>
                 </div>
               </motion.div>
 
@@ -108,17 +104,27 @@ export default function Home() {
                 transition={{ duration: 0.8 }}
                 className="glass-morphism rounded-[3rem] p-12 flex flex-col justify-center space-y-8 hover:shadow-2xl transition-all duration-500"
               >
-                <div className="inline-flex items-center gap-2 text-rose-pink">
-                  <Sparkles className="w-5 h-5" />
-                  <span className="text-sm font-bold uppercase tracking-widest">Our Identity</span>
+                <div className="space-y-6">
+                  <div className="inline-flex items-center gap-2 text-rose-pink">
+                    <Sparkles className="w-5 h-5" />
+                    <span className="text-sm font-bold uppercase tracking-widest">Our Identity</span>
+                  </div>
+
+                  <div className="space-y-0.5">
+                    <h3 className="font-headline text-2xl md:text-3xl tracking-widest uppercase font-bold text-rose-pink">PETALS</h3>
+                    <p className="text-[10px] uppercase tracking-[0.5em] text-muted-foreground font-bold">Studio</p>
+                  </div>
                 </div>
+
                 <h2 className="font-headline text-3xl md:text-4xl leading-tight">
                   Where Imagination <br />
                   <span className="italic text-rose-pink">Meets Elegance</span>
                 </h2>
+                
                 <p className="text-lg md:text-xl text-muted-foreground font-headline italic leading-relaxed">
                   PETALS is a premium illustration-first fantasy storytelling and animation company focused on emotionally comforting, cinematic, and artistically elegant experiences for children, families, and fantasy audiences.
                 </p>
+                
                 <div className="h-1 w-24 bg-rose-pink/20 rounded-full" />
               </motion.div>
             </div>
