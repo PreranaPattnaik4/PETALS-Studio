@@ -138,13 +138,17 @@ export function ArtGallery() {
           <p className="text-muted-foreground italic font-headline text-lg mb-8">
             Explore the visual lore of our blooming universes.
           </p>
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="flex flex-wrap justify-center gap-4">
             {categories.map((cat) => (
               <Button
                 key={cat}
                 variant={activeCategory === cat ? "default" : "ghost"}
                 onClick={() => setActiveCategory(cat)}
-                className={activeCategory === cat ? "bg-rose-pink hover:bg-rose-pink text-white" : "hover:text-rose-pink hover:bg-rose-pink/5"}
+                className={`rounded-full px-10 h-12 text-sm font-bold uppercase tracking-widest transition-all ${
+                  activeCategory === cat 
+                    ? "bg-rose-pink hover:bg-rose-pink text-white shadow-lg shadow-rose-pink/20" 
+                    : "text-muted-foreground hover:text-rose-pink hover:bg-rose-pink/5"
+                }`}
               >
                 {cat}
               </Button>

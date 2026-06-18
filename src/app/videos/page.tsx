@@ -9,6 +9,7 @@ import { Play, Sparkles, Film, Clock } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
+import { useState } from 'react';
 
 const categories = ["All", "Short Films", "Character Promos", "Story Teasers"];
 
@@ -64,7 +65,12 @@ const videos = [
 ];
 
 export default function VideosPage() {
+  const [activeCategory, setActiveCategory] = useState("All");
   const heroImage = PlaceHolderImages.find(img => img.id === 'crystal-rose-universe');
+
+  const filteredVideos = activeCategory === "All" 
+    ? videos 
+    : videos.filter(v => v.category === activeCategory);
 
   return (
     <div className="min-h-screen bg-pearl-white">
@@ -98,7 +104,7 @@ export default function VideosPage() {
               <p className="text-xl text-white/80 leading-relaxed font-headline italic">
                 Experience the PETALS Universe through cinematic animations and storytelling in motion.
               </p>
-              <Button size="lg" className="bg-rose-pink text-white hover:bg-rose-pink/90 rounded-full px-8 h-14 text-lg shadow-xl shadow-rose-pink/20">
+              <Button size="lg" className="bg-rose-pink text-white hover:bg-rose-pink/90 rounded-full px-10 h-14 text-lg shadow-xl shadow-rose-pink/20">
                 <Play className="mr-2 w-5 h-5 fill-current" /> Watch Featured Film
               </Button>
             </div>
@@ -111,8 +117,13 @@ export default function VideosPage() {
             {categories.map((cat, i) => (
               <Button 
                 key={i}
-                variant="ghost" 
-                className="rounded-full px-6 text-sm font-bold uppercase tracking-widest text-muted-foreground hover:text-rose-pink hover:bg-rose-pink/5"
+                variant={activeCategory === cat ? "default" : "ghost"}
+                onClick={() => setActiveCategory(cat)}
+                className={`rounded-full px-10 h-12 text-sm font-bold uppercase tracking-widest transition-all ${
+                  activeCategory === cat 
+                    ? "bg-rose-pink hover:bg-rose-pink text-white shadow-lg shadow-rose-pink/20" 
+                    : "text-muted-foreground hover:text-rose-pink hover:bg-rose-pink/5"
+                }`}
               >
                 {cat}
               </Button>
@@ -123,7 +134,7 @@ export default function VideosPage() {
         {/* Video Grid */}
         <section className="pb-32 px-12">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {videos.map((video, index) => (
+            {filteredVideos.map((video, index) => (
               <motion.div
                 key={video.id}
                 initial={{ opacity: 0, y: 20 }}
