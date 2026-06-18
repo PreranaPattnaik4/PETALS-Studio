@@ -59,6 +59,79 @@ const featuredTaleSisters = {
   description: `RoseBella and Lunaria were sisters who shared more than just blood; they shared a destiny that would change their kingdom forever. Together, they navigated a world that feared what it could not understand.`
 };
 
+const books = [
+  { 
+    id: "book-whispers", 
+    title: "Beneath the Whispering Waves", 
+    subtitle: "A Tale of Sisterhood & Destiny", 
+    genre: "Ocean Fantasy", 
+    rating: "4.9", 
+    description: "Alora must uncover the truth behind the legendary Crystal Rose before darkness consumes everything she loves.", 
+    amazonUrl: "#", 
+    whatsappUrl: "#" 
+  },
+  { 
+    id: "book-mermaids", 
+    title: "Songs of the Shimmering Sea", 
+    subtitle: "The Melodies of Alora", 
+    genre: "Mythology", 
+    rating: "4.8", 
+    description: "Deep sea secrets revealed through the ancient songs of the mermaid guardians.", 
+    amazonUrl: "#", 
+    whatsappUrl: "#" 
+  },
+  { 
+    id: "book-guardians", 
+    title: "Guardians of Dream Petals", 
+    subtitle: "Protectors of the Realm", 
+    genre: "Epic Fantasy", 
+    rating: "5.0", 
+    description: "The spectral protectors who watch over the sleeping world, weaving petals of light.", 
+    amazonUrl: "#", 
+    whatsappUrl: "#" 
+  },
+  { 
+    id: "book-starlight", 
+    title: "The Starlight Lantern", 
+    subtitle: "A Journey of Hope", 
+    genre: "Adventure", 
+    rating: "4.7", 
+    description: "A young stargazer's journey to bring light back to the world using a magical lantern.", 
+    amazonUrl: "#", 
+    whatsappUrl: "#" 
+  },
+  { 
+    id: "book-kids-collection", 
+    title: "The Enchanted Storybook", 
+    subtitle: "A PETALS Collection for Kids", 
+    genre: "Children's Fantasy", 
+    rating: "4.9", 
+    description: "A specially curated collection of gentle fantasy tales designed for the youngest dreamers.", 
+    amazonUrl: "#", 
+    whatsappUrl: "#" 
+  },
+  { 
+    id: "book-little-girl", 
+    title: "Be a Little Girl", 
+    subtitle: "Growing Up with Magic", 
+    genre: "Inspirational", 
+    rating: "4.8", 
+    description: "A heartwarming story about the magic of childhood and the wonder of growing up.", 
+    amazonUrl: "#", 
+    whatsappUrl: "#" 
+  },
+  { 
+    id: "book-wind", 
+    title: "Chronicles of the Wind-Whisperer", 
+    subtitle: "Secrets of the Sky", 
+    genre: "Steampunk Fantasy", 
+    rating: "4.6", 
+    description: "Join the wind-whisperers on their journey through the floating isles of Aethelgard.", 
+    amazonUrl: "#", 
+    whatsappUrl: "#" 
+  }
+];
+
 export default function BooksPage() {
   const featuredBookCover = PlaceHolderImages.find(img => img.id === 'book-whispers');
 
