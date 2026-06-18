@@ -182,29 +182,33 @@ export default function BooksPage() {
               transition={{ duration: 0.8 }}
               className="lg:col-span-7 space-y-8"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-fairy-gold/10 text-fairy-gold text-sm font-bold uppercase tracking-widest border border-fairy-gold/20">
-                <Star className="w-4 h-4 fill-current" /> Premium Fantasy Adventure
-              </div>
-
-              <div className="space-y-2">
+              <div className="space-y-6">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-pink/10 text-rose-pink text-[10px] font-bold uppercase tracking-[0.4em] border border-rose-pink/20 backdrop-blur-md">
+                  <Sparkles className="w-3.5 h-3.5" /> PETALS Studio
+                </div>
+                
                 <h1 className="font-headline text-5xl md:text-7xl leading-tight text-foreground">
-                  THE CRYSTAL ROSE:
+                  Enter a Whimsical World of <br />
+                  <span className="italic text-rose-pink">Storybooks and Dreams</span>
                 </h1>
-                <h2 className="font-headline text-4xl md:text-5xl text-rose-pink italic">
-                  BENEATH THE WHISPERING WAVES
-                </h2>
+
+                <div className="space-y-2 pt-4">
+                  <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+                    <Star className="w-4 h-4 text-fairy-gold fill-fairy-gold" /> Featured Spotlight
+                  </div>
+                  <h2 className="font-headline text-3xl md:text-4xl text-foreground/80 italic">
+                    The Crystal Rose: Beneath the Whispering Waves
+                  </h2>
+                </div>
               </div>
 
-              <p className="text-xl font-headline italic text-muted-foreground border-l-4 border-rose-pink pl-6">
+              <p className="text-xl font-headline italic text-muted-foreground border-l-4 border-rose-pink pl-6 max-w-2xl">
                 A magical tale of sisterhood, destiny, forgiveness, and the power of the heart.
               </p>
 
               <div className="space-y-6 text-lg text-muted-foreground leading-relaxed max-w-2xl">
                 <p>
                   Long ago, beneath ancient oceans and silver moonlight, a powerful secret changed the fate of an entire kingdom. When forgotten memories, hidden magic, and an ancient curse begin to awaken, a young ocean-born girl named Alora must uncover the truth behind the legendary Crystal Rose before darkness consumes everything she loves.
-                </p>
-                <p>
-                  Filled with enchanted forests, magical creatures, moonlit mysteries, and unforgettable characters, this heartwarming fantasy adventure reminds readers that true magic comes not from power—but from the choices we make.
                 </p>
               </div>
 
