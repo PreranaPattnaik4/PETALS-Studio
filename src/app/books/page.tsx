@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Navbar } from "@/components/Petals/Navbar";
@@ -10,6 +9,7 @@ import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { motion } from "framer-motion";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import Link from "next/link";
 import { 
   ShoppingBag, 
   Users, 
@@ -154,7 +154,6 @@ const featuredTaleSisters = {
 export default function BooksPage() {
   const crystalRoseBg = PlaceHolderImages.find(img => img.id === 'crystal-rose-universe');
   const featuredBookCover = PlaceHolderImages.find(img => img.id === 'book-whispers');
-  const communityBg = PlaceHolderImages.find(img => img.id === 'book-community-bg');
 
   return (
     <div className="min-h-screen bg-pearl-white">
@@ -183,23 +182,12 @@ export default function BooksPage() {
               className="lg:col-span-7 space-y-8"
             >
               <div className="space-y-6">
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-pink/10 text-rose-pink text-[10px] font-bold uppercase tracking-[0.4em] border border-rose-pink/20 backdrop-blur-md">
-                  <Sparkles className="w-3.5 h-3.5" /> PETALS Studio
+                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+                  <Star className="w-4 h-4 text-fairy-gold fill-fairy-gold" /> Featured Spotlight
                 </div>
-                
-                <h1 className="font-headline text-5xl md:text-7xl leading-tight text-foreground">
-                  Enter a Whimsical World of <br />
-                  <span className="italic text-rose-pink">Storybooks and Dreams</span>
-                </h1>
-
-                <div className="space-y-2 pt-4">
-                  <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
-                    <Star className="w-4 h-4 text-fairy-gold fill-fairy-gold" /> Featured Spotlight
-                  </div>
-                  <h2 className="font-headline text-3xl md:text-4xl text-foreground/80 italic">
-                    The Crystal Rose: Beneath the Whispering Waves
-                  </h2>
-                </div>
+                <h2 className="font-headline text-4xl md:text-5xl text-foreground leading-tight italic">
+                  The Crystal Rose: Beneath the Whispering Waves
+                </h2>
               </div>
 
               <p className="text-xl font-headline italic text-muted-foreground border-l-4 border-rose-pink pl-6 max-w-2xl">
@@ -268,8 +256,35 @@ export default function BooksPage() {
           </div>
         </section>
 
+        {/* Repositioned Branding Section */}
+        <section className="py-20 relative overflow-hidden bg-rose-pink/5">
+          <div className="container mx-auto px-12 text-center max-w-4xl space-y-8">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-pink/10 text-rose-pink text-[10px] font-bold uppercase tracking-[0.4em] border border-rose-pink/20 backdrop-blur-md">
+              <Sparkles className="w-3.5 h-3.5" /> PETALS Studio
+            </div>
+            
+            <h2 className="font-headline text-5xl md:text-6xl leading-tight text-foreground">
+              Enter a Whimsical World of <br />
+              <span className="italic text-rose-pink">Storybooks and Dreams</span>
+            </h2>
+
+            <p className="text-xl text-muted-foreground italic font-headline leading-relaxed max-w-2xl mx-auto">
+              Discover magical books, enchanting characters, breathtaking artwork, and unforgettable adventures created by PETALS Studio.
+            </p>
+
+            <div className="flex flex-wrap justify-center gap-4 pt-4">
+              <Button asChild className="bg-rose-pink text-white hover:bg-rose-pink/90 rounded-2xl px-8 h-12 text-xs font-bold uppercase tracking-widest shadow-lg shadow-rose-pink/20">
+                <Link href="/books">Explore Books</Link>
+              </Button>
+              <Button asChild variant="outline" className="border-rose-pink text-rose-pink hover:bg-rose-pink/5 rounded-2xl px-8 h-12 text-xs font-bold uppercase tracking-widest">
+                <Link href="/characters">Meet the Characters</Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+
         {/* Big Featured Card: RoseBella & Lunaria */}
-        <section className="py-32 relative overflow-hidden bg-white/30">
+        <section className="py-24 relative overflow-hidden bg-white/30">
           <div className="container mx-auto px-12">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
