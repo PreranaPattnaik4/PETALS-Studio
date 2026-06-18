@@ -192,6 +192,12 @@
       "description": "The Secret Mystic Garden of the Crystal Rose",
       "imageUrl": "https://www.dropbox.com/scl/fi/io17h74ac8zf1eyq9v3uh/OIG2.jpeg?rlkey=4s8cctvc1n4n78xkypq1v2eua&st=diwtcl3v&raw=1",
       "imageHint": "mystic garden"
+    },
+    {
+      "id": "gallery-crystal-cascades",
+      "description": "The Crystal Cascades of the Crystal Rose",
+      "imageUrl": "https://www.dropbox.com/scl/fi/4lshumscopvhnxxkpooiw/dfe47f05-fb5a-452b-8d24-992c49bd7140.png?rlkey=j4bulmwt91a2zwg2uz5ozv2gg&st=aifpidk2&raw=1",
+      "imageHint": "magical waterfall"
     }
   ]
 }

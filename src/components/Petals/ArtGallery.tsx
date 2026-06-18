@@ -122,6 +122,13 @@ Their fear slowly isolated her emotionally.`
     title: "The Secret Mystic Garden",
     description: "A hidden sanctuary where magic flows as freely as the waterfalls. The Secret Mystic Garden is home to the rarest flora in the PETALS universe, blooming only under the light of the double moon."
   },
+  {
+    id: "crystal-cascades",
+    category: "Landscapes",
+    url: PlaceHolderImages.find(img => img.id === 'gallery-crystal-cascades')?.imageUrl || "",
+    title: "The Crystal Cascades",
+    description: "A magical waterfall where the water flows like liquid starlight, illuminating the surrounding flora with an ethereal glow. It is said that the cascades sing to those who listen with their hearts."
+  },
   { id: 1, category: "Portraits", url: "https://picsum.photos/seed/p1/600/800", title: "The Weaver" },
   { id: 2, category: "Landscapes", url: "https://picsum.photos/seed/l1/800/600", title: "Crystal Valley" },
   { id: 3, category: "Watercolor", url: "https://picsum.photos/seed/w1/600/600", title: "Morning Mist" },
