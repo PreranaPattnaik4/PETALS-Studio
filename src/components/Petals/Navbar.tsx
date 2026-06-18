@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Wand2 } from "lucide-react";
 import { useState, useEffect } from 'react';
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { motion, AnimatePresence } from "framer-motion";
@@ -25,8 +25,8 @@ export function Navbar() {
     { name: 'About', href: '/about' },
     { name: 'Gallery', href: '/gallery' },
     { name: 'Books', href: '/books' },
-    { name: 'Videos', href: '/videos' },
     { name: 'Characters', href: '/characters' },
+    { name: 'Creator', href: '/creator', icon: Wand2 },
   ];
 
   return (
@@ -54,8 +54,9 @@ export function Navbar() {
             <Link 
               key={link.name} 
               href={link.href} 
-              className="text-xs font-bold uppercase tracking-widest hover:text-rose-pink transition-colors"
+              className={`text-xs font-bold uppercase tracking-widest hover:text-rose-pink transition-colors flex items-center gap-2 ${link.name === 'Creator' ? 'text-rose-pink' : ''}`}
             >
+              {link.icon && <link.icon className="w-3.5 h-3.5" />}
               {link.name}
             </Link>
           ))}
@@ -85,8 +86,9 @@ export function Navbar() {
                   key={link.name} 
                   href={link.href} 
                   onClick={() => setIsOpen(false)}
-                  className="text-lg font-headline font-bold hover:text-rose-pink"
+                  className="text-lg font-headline font-bold hover:text-rose-pink flex items-center justify-center gap-2"
                 >
+                  {link.icon && <link.icon className="w-5 h-5" />}
                   {link.name}
                 </Link>
               ))}
