@@ -22,41 +22,46 @@ import {
   CheckCircle2
 } from "lucide-react";
 
-const featuredCreations = [
-  {
-    icon: Heart,
-    title: "Publishing & Storybooks",
-    desc: "At the heart of PETALS is our commitment to physical and digital publishing. We create exquisitely illustrated books, fantasy collections, lore guides, and immersive bedtime stories designed to be keepsakes for dreamers of all ages.",
-    details: [
-      "Premium Hardbound Collections",
-      "Digital Immersive Storybooks",
-      "Curated Lore & Art Guides",
-      "Global Amazon Distribution"
-    ]
-  },
+const publishingFeature = {
+  icon: Heart,
+  title: "Publishing & Storybooks",
+  desc: "At the heart of PETALS is our commitment to physical and digital publishing. We create exquisitely illustrated books, fantasy collections, lore guides, and immersive bedtime stories designed to be keepsakes for dreamers of all ages.",
+  details: [
+    "Premium Hardbound Collections",
+    "Digital Immersive Storybooks",
+    "Curated Lore & Art Guides",
+    "Global Amazon Distribution"
+  ]
+};
+
+const secondaryFeatures = [
   {
     icon: Video,
     title: "Animation & Cinematic Experiences",
-    desc: "We bring stories to life through animated shorts, visual storytelling, cinematic sequences, narrated fantasy experiences, and atmospheric creative productions that bloom with emotion.",
+    desc: "We bring stories to life through animated shorts, visual storytelling, cinematic sequences, narrated fantasy experiences, and atmospheric creative productions.",
     details: [
       "Cinematic 4K Short Films",
       "Character Animation Reels",
-      "Atmospheric Story Trailers",
-      "Immersive Visual Lore"
+      "Atmospheric Story Trailers"
     ]
-  }
-];
-
-const creations = [
-  {
-    icon: BookOpen,
-    title: "Original Fantasy Storytelling",
-    desc: "We develop creator-owned fantasy worlds filled with unforgettable characters, magical adventures, emotional journeys, and timeless themes of hope, courage, friendship, and transformation."
   },
   {
     icon: PenTool,
     title: "Fantasy Illustration & Art",
-    desc: "Our illustrations celebrate beauty, imagination, and storytelling through enchanting characters, whimsical landscapes, floral fantasy aesthetics, and emotionally expressive artwork."
+    desc: "Our illustrations celebrate beauty, imagination, and storytelling through enchanting characters, whimsical landscapes, floral fantasy aesthetics, and emotionally expressive artwork.",
+    details: [
+      "Bespoke Character Concepts",
+      "Whimsical Fantasy Landscapes",
+      "Floral & Enchanted Aesthetics"
+    ]
+  }
+];
+
+const regularCreations = [
+  {
+    icon: BookOpen,
+    title: "Original Fantasy Storytelling",
+    desc: "We develop creator-owned fantasy worlds filled with unforgettable characters, magical adventures, emotional journeys, and timeless themes of hope and friendship."
   },
   {
     icon: Palette,
@@ -219,60 +224,90 @@ export default function AboutPage() {
 
         {/* What We Create Grid */}
         <section className="py-32 bg-white">
-          <div className="container mx-auto px-6">
+          <div className="container mx-auto px-6 max-w-7xl">
             <div className="text-center mb-20 space-y-4">
               <h2 className="font-headline text-5xl md:text-6xl">What We Create</h2>
               <p className="text-xl text-muted-foreground italic font-headline">Crafting wonders across every magical medium.</p>
             </div>
 
-            {/* Featured Creations Rows */}
-            <div className="space-y-12 mb-24">
-              {featuredCreations.map((featured, index) => (
-                <div key={index} className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-                  {/* Big Featured Card */}
-                  <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="lg:col-span-8 bg-rose-pink/5 p-12 md:p-24 rounded-[3.5rem] border border-rose-pink/10 shadow-lg flex flex-col md:flex-row gap-12 items-center group hover:shadow-2xl transition-all duration-500 min-h-[450px]"
-                  >
-                    <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-white text-rose-pink flex items-center justify-center shrink-0 shadow-xl group-hover:scale-110 transition-transform">
-                      <featured.icon className="w-12 h-12 md:w-16 md:h-16" />
+            {/* Row 1: Publishing Featured Card (Big) */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-12">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="lg:col-span-8 bg-rose-pink/5 p-12 md:p-24 rounded-[3.5rem] border border-rose-pink/10 shadow-lg flex flex-col md:flex-row gap-12 items-center group hover:shadow-2xl transition-all duration-500 min-h-[450px]"
+              >
+                <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-white text-rose-pink flex items-center justify-center shrink-0 shadow-xl group-hover:scale-110 transition-transform">
+                  <publishingFeature.icon className="w-12 h-12 md:w-16 md:h-16" />
+                </div>
+                <div className="space-y-6 text-center md:text-left">
+                  <h3 className="font-headline text-3xl md:text-4xl text-rose-pink">{publishingFeature.title}</h3>
+                  <p className="text-lg md:text-xl text-muted-foreground italic font-headline leading-relaxed">
+                    {publishingFeature.desc}
+                  </p>
+                </div>
+              </motion.div>
+
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="lg:col-span-4 bg-white p-10 md:p-12 rounded-[3.5rem] border border-rose-pink/10 shadow-sm flex flex-col justify-center space-y-10 group hover:shadow-xl transition-all duration-500 min-h-[450px]"
+              >
+                <div className="flex items-center gap-3 text-rose-pink font-bold uppercase tracking-widest text-xs">
+                  <Sparkles className="w-4 h-4" /> Technical Standards
+                </div>
+                <ul className="space-y-6">
+                  {publishingFeature.details.map((detail, idx) => (
+                    <li key={idx} className="flex items-center gap-3 text-muted-foreground italic font-headline text-lg">
+                      <CheckCircle2 className="w-5 h-5 text-rose-pink shrink-0" />
+                      {detail}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            </div>
+
+            {/* Row 2: Animation & Illustration Side-by-Side */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch mb-24">
+              {secondaryFeatures.map((featured, index) => (
+                <motion.div 
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-rose-pink/5 p-12 md:p-16 rounded-[3.5rem] border border-rose-pink/10 shadow-lg flex flex-col gap-10 group hover:shadow-2xl transition-all duration-500 min-h-[450px]"
+                >
+                  <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                    <div className="w-20 h-20 rounded-full bg-white text-rose-pink flex items-center justify-center shrink-0 shadow-xl group-hover:scale-110 transition-transform">
+                      <featured.icon className="w-10 h-10" />
                     </div>
-                    <div className="space-y-6 text-center md:text-left">
-                      <h3 className="font-headline text-3xl md:text-4xl text-rose-pink">{featured.title}</h3>
-                      <p className="text-lg md:text-xl text-muted-foreground italic font-headline leading-relaxed">
+                    <div className="space-y-4 text-center md:text-left">
+                      <h3 className="font-headline text-3xl text-rose-pink leading-tight">{featured.title}</h3>
+                      <p className="text-muted-foreground italic font-headline leading-relaxed text-lg">
                         {featured.desc}
                       </p>
                     </div>
-                  </motion.div>
-
-                  {/* Details Card */}
-                  <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.1 }}
-                    className="lg:col-span-4 bg-white p-10 md:p-12 rounded-[3.5rem] border border-rose-pink/10 shadow-sm flex flex-col justify-center space-y-10 group hover:shadow-xl transition-all duration-500 min-h-[450px]"
-                  >
-                    <div className="flex items-center gap-3 text-rose-pink font-bold uppercase tracking-widest text-xs">
-                      <Sparkles className="w-4 h-4" /> Technical Standards
-                    </div>
-                    <ul className="space-y-6">
+                  </div>
+                  <div className="pt-6 border-t border-rose-pink/10">
+                    <ul className="grid grid-cols-1 gap-4">
                       {featured.details.map((detail, idx) => (
-                        <li key={idx} className="flex items-center gap-3 text-muted-foreground italic font-headline text-lg">
-                          <CheckCircle2 className="w-5 h-5 text-rose-pink shrink-0" />
+                        <li key={idx} className="flex items-center gap-3 text-muted-foreground italic font-headline text-sm">
+                          <CheckCircle2 className="w-4 h-4 text-rose-pink shrink-0" />
                           {detail}
                         </li>
                       ))}
                     </ul>
-                  </motion.div>
-                </div>
+                  </div>
+                </motion.div>
               ))}
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {creations.map((item, i) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {regularCreations.map((item, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, y: 20 }}
@@ -298,3 +333,4 @@ export default function AboutPage() {
     </div>
   );
 }
+
