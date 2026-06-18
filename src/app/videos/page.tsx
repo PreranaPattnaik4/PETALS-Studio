@@ -179,23 +179,85 @@ export default function VideosPage() {
           </div>
         </section>
 
+        {/* New Section: Featured Short Highlight */}
+        <section className="py-24 bg-white/50 backdrop-blur-sm relative overflow-hidden">
+          <div className="container mx-auto px-6 flex flex-col items-center">
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-16 space-y-4"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-pink/10 text-rose-pink text-[10px] font-bold uppercase tracking-[0.3em] border border-rose-pink/20">
+                <Sparkles className="w-3.5 h-3.5" /> Latest Enchanted Short
+              </div>
+              <h2 className="font-headline text-4xl md:text-5xl text-foreground">A Glimpse of Magic</h2>
+            </motion.div>
+
+            {/* Vertical Video Container */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative w-full max-w-[400px] aspect-[9/16] group"
+            >
+              {/* Outer Glow */}
+              <div className="absolute inset-0 bg-rose-pink/20 blur-[60px] rounded-[3.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              
+              <div className="relative h-full w-full rounded-[3.5rem] overflow-hidden glass-morphism border-[12px] border-white/40 shadow-[0_50px_100px_-20px_rgba(247,183,195,0.4)] bg-black">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/7U0izt4zZTo?autoplay=0&controls=1&rel=0"
+                  title="PETALS Studio Featured Short"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="w-full h-full"
+                ></iframe>
+              </div>
+
+              {/* Decorative Frame Elements */}
+              <div className="absolute -top-6 -left-6 w-24 h-24 bg-fairy-gold/20 blur-2xl rounded-full" />
+              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-rose-pink/20 blur-2xl rounded-full" />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
+              className="mt-12 text-center max-w-lg"
+            >
+              <p className="text-xl text-muted-foreground italic font-headline leading-relaxed">
+                "In every fleeting moment, a story begins to bloom. Witness the delicate dance of magic in our latest character short."
+              </p>
+              <div className="mt-8 flex justify-center gap-4">
+                 <div className="h-1 w-12 bg-rose-pink/20 rounded-full" />
+                 <div className="h-1 w-24 bg-rose-pink rounded-full" />
+                 <div className="h-1 w-12 bg-rose-pink/20 rounded-full" />
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
         {/* Filter Section */}
         <section className="py-12 bg-white/40 backdrop-blur-md border-y border-rose-pink/10 sticky top-[72px] z-20">
           <div className="container mx-auto px-6">
             <div className="flex flex-wrap items-center justify-center gap-4">
               {categories.map((cat, i) => (
-                <Button 
+                <button 
                   key={i}
-                  variant={activeCategory === cat ? "default" : "ghost"}
                   onClick={() => setActiveCategory(cat)}
                   className={`rounded-full px-10 h-12 text-[10px] font-bold uppercase tracking-widest transition-all ${
                     activeCategory === cat 
-                      ? "bg-rose-pink hover:bg-rose-pink text-white shadow-lg shadow-rose-pink/20" 
+                      ? "bg-rose-pink text-white shadow-lg shadow-rose-pink/20" 
                       : "text-muted-foreground hover:text-rose-pink hover:bg-rose-pink/5"
                   }`}
                 >
                   {cat}
-                </Button>
+                </button>
               ))}
             </div>
           </div>
