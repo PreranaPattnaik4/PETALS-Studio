@@ -63,6 +63,7 @@ const collectionBooks = [
 export default function Home() {
   const crystalRoseBg = PlaceHolderImages.find(img => img.id === 'crystal-rose-universe');
   const featuredBookCover = PlaceHolderImages.find(img => img.id === 'book-whispers');
+  const studioLogo = PlaceHolderImages.find(img => img.id === 'petals-logo');
 
   return (
     <div className="min-h-screen bg-pearl-white">
@@ -72,7 +73,59 @@ export default function Home() {
       <main>
         <Hero />
 
-        {/* About Section - Moved Above Spotlight */}
+        {/* Branding Intro Section */}
+        <section className="py-24 relative overflow-hidden">
+          <div className="container mx-auto px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Logo Card */}
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="glass-morphism rounded-[3rem] p-12 flex flex-col items-center justify-center text-center space-y-6 group hover:shadow-2xl transition-all duration-500"
+              >
+                <div className="relative w-32 h-32 md:w-48 md:h-48 overflow-hidden rounded-full border-2 border-rose-pink/20 shadow-xl group-hover:scale-105 transition-transform duration-500">
+                  <Image 
+                    src={studioLogo?.imageUrl || ""}
+                    alt="Petals Studio Logo"
+                    fill
+                    className="object-cover"
+                    data-ai-hint="company logo"
+                  />
+                </div>
+                <div>
+                  <h3 className="font-headline text-3xl md:text-4xl tracking-widest uppercase font-bold text-rose-pink">PETALS</h3>
+                  <p className="text-xs uppercase tracking-[0.5em] text-muted-foreground font-bold mt-1">Studio</p>
+                </div>
+              </motion.div>
+
+              {/* Description Card */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="glass-morphism rounded-[3rem] p-12 flex flex-col justify-center space-y-8 hover:shadow-2xl transition-all duration-500"
+              >
+                <div className="inline-flex items-center gap-2 text-rose-pink">
+                  <Sparkles className="w-5 h-5" />
+                  <span className="text-sm font-bold uppercase tracking-widest">Our Identity</span>
+                </div>
+                <h2 className="font-headline text-3xl md:text-4xl leading-tight">
+                  Where Imagination <br />
+                  <span className="italic text-rose-pink">Meets Elegance</span>
+                </h2>
+                <p className="text-lg md:text-xl text-muted-foreground font-headline italic leading-relaxed">
+                  PETALS is a premium illustration-first fantasy storytelling and animation company focused on emotionally comforting, cinematic, and artistically elegant experiences for children, families, and fantasy audiences.
+                </p>
+                <div className="h-1 w-24 bg-rose-pink/20 rounded-full" />
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* About Section */}
         <section id="about" className="py-32 bg-rose-pink/5">
           <div className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
             <div className="space-y-8">
@@ -88,7 +141,7 @@ export default function Home() {
                   Our stories celebrate kindness, imagination, wonder, courage, and emotional growth. We believe fantasy should feel like a sanctuary.
                 </p>
               </div>
-              <Button size="lg" className="bg-rose-pink text-white rounded-full px-10 h-12 uppercase tracking-widest text-xs font-bold">
+              <Button size="sm" className="bg-rose-pink text-white rounded-full px-10 h-11 uppercase tracking-widest text-xs font-bold shadow-lg shadow-rose-pink/20">
                 Learn Our Story
               </Button>
             </div>
@@ -137,10 +190,10 @@ export default function Home() {
                   A young ocean-born girl named Alora must uncover the truth behind the legendary Crystal Rose before darkness consumes everything she loves.
                 </p>
                 <div className="flex flex-wrap gap-4 pt-4">
-                  <Button size="lg" className="bg-rose-pink text-white hover:bg-rose-pink/90 rounded-full px-10 h-12 text-lg shadow-xl shadow-rose-pink/20">
+                  <Button size="sm" className="bg-rose-pink text-white hover:bg-rose-pink/90 rounded-full px-10 h-11 text-sm shadow-xl shadow-rose-pink/20 font-bold uppercase tracking-widest">
                     Read Book
                   </Button>
-                  <Button variant="outline" size="lg" className="border-rose-pink text-rose-pink hover:bg-rose-pink/5 rounded-full px-10 h-12 text-lg">
+                  <Button variant="outline" size="sm" className="border-rose-pink text-rose-pink hover:bg-rose-pink/5 rounded-full px-10 h-11 text-sm font-bold uppercase tracking-widest">
                     Watch Trailer
                   </Button>
                 </div>
@@ -227,8 +280,8 @@ export default function Home() {
               ))}
             </div>
 
-            <Button size="lg" className="bg-white text-black hover:bg-white/90 rounded-full px-12 h-16 text-xl font-headline group">
-              <Play className="mr-3 w-6 h-6 fill-current" /> Watch Trailer
+            <Button size="sm" className="bg-white text-black hover:bg-white/90 rounded-full px-12 h-14 text-lg font-headline group uppercase tracking-widest font-bold">
+              <Play className="mr-3 w-5 h-5 fill-current" /> Watch Trailer
             </Button>
           </div>
         </section>
@@ -241,7 +294,7 @@ export default function Home() {
                 <h2 className="font-headline text-5xl md:text-6xl">Blooming Collection</h2>
                 <p className="text-xl text-muted-foreground italic font-headline">Explore our world of gentle fantasy.</p>
               </div>
-              <Button variant="outline" className="border-rose-pink text-rose-pink rounded-full px-8 h-12 uppercase tracking-widest text-xs font-bold">
+              <Button variant="outline" size="sm" className="border-rose-pink text-rose-pink rounded-full px-8 h-11 uppercase tracking-widest text-xs font-bold">
                 View All Books
               </Button>
             </div>
@@ -267,7 +320,7 @@ export default function Home() {
                         data-ai-hint="book cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
-                        <Button className="w-full bg-white text-black rounded-full h-12 font-bold uppercase tracking-widest text-xs">
+                        <Button size="sm" className="w-full bg-white text-black rounded-full h-11 font-bold uppercase tracking-widest text-xs">
                           Read Story
                         </Button>
                       </div>
@@ -300,7 +353,7 @@ export default function Home() {
                   placeholder="Enter your magical email..."
                   className="flex-1 h-16 rounded-full bg-white/50 border-rose-pink/20 px-8 text-lg focus:outline-none focus:ring-2 focus:ring-rose-pink/50 transition-all"
                 />
-                <Button size="lg" className="bg-rose-pink text-white rounded-full px-12 h-16 text-lg shadow-xl shadow-rose-pink/20">
+                <Button size="sm" className="bg-rose-pink text-white rounded-full px-12 h-16 text-sm shadow-xl shadow-rose-pink/20 uppercase tracking-widest font-bold">
                   Subscribe
                 </Button>
               </div>
