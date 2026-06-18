@@ -65,7 +65,7 @@ const videos = [
     title: "Guardians of Dreams",
     category: "Character Promos",
     duration: "0:08",
-    image: "https://picsum.photos/seed/v6/800/450",
+    image: "https://www.dropbox.com/scl/fi/5t6g0rkict2zjzs3e07vc/e9cc5c48-23a7-4fb8-9740-5597038da592.jpg?rlkey=qtx1hllj83bfc82a3sa40er57&raw=1",
     description: "Meet the protectors of the realm of sleep.",
     videoUrl: "https://dl.dropboxusercontent.com/scl/fi/e5q2ljsvktv7ezdwu4x6g/_scene_2_816_sec__starlet_appears_visual_starlet_f_fc0bf0b59e.mp4?rlkey=d4af1u96ftmum7xl6sdqc0510&raw=1"
   }
@@ -146,7 +146,7 @@ export default function VideosPage() {
                 />
                 
                 {/* Cinematic Overlays */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                 
                 {/* Play Button Overlay - Pearl White BG with Rose Pink Icon */}
                 <div className="absolute inset-0 flex items-center justify-center">
