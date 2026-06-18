@@ -17,7 +17,8 @@ import {
   Cpu, 
   Home, 
   Heart,
-  Quote
+  Eye,
+  Rocket
 } from "lucide-react";
 
 const creations = [
@@ -70,7 +71,6 @@ export default function AboutPage() {
       <main>
         {/* Editorial Hero Section */}
         <section className="relative pt-64 pb-32 overflow-hidden flex flex-col items-center justify-center text-center">
-          {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <Image 
               src={heroRose?.imageUrl || ""}
@@ -83,7 +83,6 @@ export default function AboutPage() {
           </div>
           
           <div className="container mx-auto px-6 relative z-10 space-y-12">
-            {/* Discover Our Heart Badge */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -92,7 +91,6 @@ export default function AboutPage() {
               <Sparkles className="w-3.5 h-3.5" /> Discover Our Heart
             </motion.div>
             
-            {/* Main Heading */}
             <motion.h1 
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -102,19 +100,18 @@ export default function AboutPage() {
               About <span className="italic text-rose-pink">PETALS Studio</span>
             </motion.h1>
             
-            {/* Refined Tagline */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-muted-foreground text-xl md:text-2xl font-headline italic leading-relaxed max-w-2xl mx-auto"
+              className="text-xl md:text-2xl text-muted-foreground font-headline italic leading-relaxed max-w-2xl mx-auto"
             >
               &quot;Crafting illustrated stories that unfold like petals, blooming layer by layer.&quot;
             </motion.p>
           </div>
         </section>
 
-        {/* Philosophy & Vision - Moved directly below Hero */}
+        {/* Our Philosophy Section */}
         <section className="py-24 relative overflow-hidden bg-white">
           <div className="container mx-auto px-6 max-w-6xl">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
@@ -148,58 +145,59 @@ export default function AboutPage() {
                 </div>
               </div>
             </div>
-
-            <div className="mt-24 text-center space-y-12 bg-rose-pink/5 p-16 rounded-[4rem] border border-rose-pink/10">
-              <div className="space-y-6">
-                <h2 className="font-headline text-5xl">Our Vision</h2>
-                <div className="h-1 w-12 bg-rose-pink mx-auto rounded-full opacity-30" />
-              </div>
-              <p className="text-2xl md:text-4xl text-foreground font-headline italic leading-relaxed max-w-3xl mx-auto">
-                To build a <span className="text-rose-pink not-italic font-bold">timeless fantasy universe</span> where storytelling, illustration, art, and imagination come together to inspire generations around the world.
-              </p>
-            </div>
           </div>
         </section>
 
-        {/* Our Mission Section */}
-        <section className="py-24 bg-rose-pink/5 relative">
-          <div className="container mx-auto px-6 max-w-4xl text-center space-y-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="space-y-4"
-            >
-              <h2 className="font-headline text-5xl md:text-6xl text-foreground">Our Mission</h2>
-              <div className="w-24 h-1 bg-rose-pink mx-auto rounded-full opacity-30" />
-            </motion.div>
+        {/* Vision & Mission Side-by-Side Section */}
+        <section className="py-24 bg-rose-pink/5 relative overflow-hidden">
+          <div className="container mx-auto px-6 max-w-7xl">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+              {/* Vision Card */}
+              <motion.div 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="bg-white p-12 md:p-16 rounded-[4rem] border border-rose-pink/10 shadow-xl flex flex-col items-center text-center space-y-10 group hover:shadow-2xl transition-all duration-500"
+              >
+                <div className="w-16 h-16 rounded-3xl bg-rose-pink/10 text-rose-pink flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Eye className="w-8 h-8" />
+                </div>
+                <div className="space-y-6">
+                  <h2 className="font-headline text-5xl">Our Vision</h2>
+                  <div className="h-1 w-12 bg-rose-pink mx-auto rounded-full opacity-30" />
+                </div>
+                <p className="text-2xl md:text-3xl text-foreground font-headline italic leading-relaxed">
+                  To build a <span className="text-rose-pink not-italic font-bold">timeless fantasy universe</span> where storytelling, illustration, and imagination come together to inspire generations.
+                </p>
+              </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="space-y-8"
-            >
-              <p className="text-2xl md:text-3xl font-headline italic text-foreground leading-relaxed">
-                &quot;At PETALS, we believe the best parts of childhood don&apos;t need reinventing—just reimagining.&quot;
-              </p>
-              
-              <div className="text-xl text-muted-foreground leading-relaxed space-y-8 font-headline italic">
-                <p>
-                  PETALS Studio is a premium illustration-first fantasy media, art, and storytelling studio dedicated to creating enchanting worlds, memorable characters, and emotionally meaningful experiences through art and imagination.
-                </p>
-                <p>
-                  Founded on the belief that stories have the power to inspire, comfort, and connect, PETALS brings together fantasy storytelling, illustration, publishing, animation, fine art, and AI-assisted creative production under one cohesive creative vision.
-                </p>
-                <p className="text-rose-pink font-bold text-3xl not-italic tracking-tight">
-                  We create more than stories—we build worlds.
-                </p>
-                <p>
-                  From beautifully illustrated storybooks and cinematic fantasy narratives to collectible artworks, character-driven universes, and immersive visual experiences, every creation is designed to spark wonder and leave a lasting emotional impression.
-                </p>
-              </div>
-            </motion.div>
+              {/* Mission Card */}
+              <motion.div 
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="bg-white p-12 md:p-16 rounded-[4rem] border border-rose-pink/10 shadow-xl flex flex-col items-center text-center space-y-10 group hover:shadow-2xl transition-all duration-500"
+              >
+                <div className="w-16 h-16 rounded-3xl bg-rose-pink/10 text-rose-pink flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Rocket className="w-8 h-8" />
+                </div>
+                <div className="space-y-6">
+                  <h2 className="font-headline text-5xl">Our Mission</h2>
+                  <div className="h-1 w-12 bg-rose-pink mx-auto rounded-full opacity-30" />
+                </div>
+                <div className="text-lg md:text-xl text-muted-foreground font-headline italic leading-relaxed space-y-6">
+                  <p>
+                    PETALS Studio is dedicated to creating enchanting worlds and emotionally meaningful experiences through art and imagination.
+                  </p>
+                  <p>
+                    We bring together fantasy storytelling, illustration, animation, and fine art under one cohesive creative vision to spark wonder and leave a lasting emotional impression.
+                  </p>
+                  <p className="text-rose-pink font-bold text-2xl not-italic">
+                    We create more than stories—we build worlds.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </section>
 
