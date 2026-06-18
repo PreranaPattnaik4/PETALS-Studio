@@ -455,15 +455,17 @@ export function PosterCreator() {
                 className="relative aspect-[3/4] w-full max-w-[640px] overflow-hidden rounded-[4rem] shadow-[0_60px_120px_-30px_rgba(247,183,195,0.4)] bg-white border border-rose-pink/10"
               >
                 <Image src={bgImage} alt="Canvas BG" fill className="object-cover pointer-events-none" />
-                <div className="absolute inset-x-10 bottom-10 p-12 glass-morphism rounded-[3.5rem] text-center space-y-5 pointer-events-none border border-white/40">
-                  <h2 className="font-headline text-5xl text-foreground leading-tight">{title}</h2>
-                  <p className="text-base italic font-headline text-muted-foreground leading-relaxed line-clamp-3">
+                
+                {/* Refined Text Overlay - More compact to show background */}
+                <div className="absolute inset-x-10 bottom-10 py-6 px-10 glass-morphism rounded-[2.5rem] text-center space-y-3 pointer-events-none border border-white/40">
+                  <h2 className="font-headline text-3xl text-foreground leading-[1.1]">{title}</h2>
+                  <p className="text-sm italic font-headline text-muted-foreground leading-relaxed line-clamp-2">
                     {description}
                   </p>
-                  <div className="pt-6 flex items-center justify-center gap-5 opacity-30">
-                    <div className="h-px w-16 bg-rose-pink" />
-                    <span className="text-[10px] font-bold uppercase tracking-[0.6em] text-rose-pink">PETALS STUDIO</span>
-                    <div className="h-px w-16 bg-rose-pink" />
+                  <div className="pt-4 flex items-center justify-center gap-5 opacity-30">
+                    <div className="h-px w-12 bg-rose-pink" />
+                    <span className="text-[9px] font-bold uppercase tracking-[0.5em] text-rose-pink">PETALS STUDIO</span>
+                    <div className="h-px w-12 bg-rose-pink" />
                   </div>
                 </div>
 
