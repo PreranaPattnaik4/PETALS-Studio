@@ -186,14 +186,14 @@ export default function VideosPage() {
               <h2 className="font-headline text-4xl md:text-5xl text-foreground text-center">Moments in Motion</h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-              {/* Card 1: The Teaser Video Card (Standard YouTube Shape) */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center max-w-7xl mx-auto">
+              {/* Card 1: The Teaser Video Card (Now "Little Big" at 7/12 cols) */}
               <motion.div 
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="relative aspect-video group"
+                className="lg:col-span-7 relative aspect-video group"
               >
                 <div className="absolute inset-0 bg-rose-pink/20 blur-[40px] rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 <div className="relative h-full w-full rounded-[2.5rem] overflow-hidden glass-morphism border-[8px] border-white/60 shadow-2xl bg-black">
@@ -214,13 +214,13 @@ export default function VideosPage() {
                 </div>
               </motion.div>
 
-              {/* Card 2: Details & Social Links */}
+              {/* Card 2: Details & Social Links (Now 5/12 cols) */}
               <motion.div 
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="space-y-10"
+                className="lg:col-span-5 space-y-10"
               >
                 <div className="glass-morphism rounded-[3rem] p-10 md:p-12 space-y-8 border-rose-pink/10 shadow-xl">
                   <div className="space-y-4">
