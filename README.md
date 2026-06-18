@@ -1,3 +1,4 @@
+
 # PETALS Studio
 
 **Stories That Bloom With Emotion**
@@ -9,7 +10,7 @@ PETALS is a premium, illustration-first fantasy media studio dedicated to creati
 - **Premium SaaS-inspired Design**: Clean, professional, and magical aesthetics using a Dark + Rose Gold palette.
 - **Cinematic Hero Section**: Featuring signature artwork with glassmorphism and smooth animations.
 - **Character Showcase**: Immersive sections for Alora, RoseBella, Nerina, and Vespera.
-- **Art Gallery**: A sophisticated display of the studio's visual lore.
+- **Enchanted Illustrations Gallery**: A sophisticated display of the studio's visual lore with cinematic spotlight cards.
 - **Story Collections**: A modern grid showcasing original storybooks.
 - **AI-Powered Storyweaver**: Genkit integration for generating story concepts.
 
@@ -22,7 +23,7 @@ PETALS is a premium, illustration-first fantasy media studio dedicated to creati
 - **Icons**: Lucide React
 - **AI Features**: Firebase Genkit
 
-## 🚀 How to Push to GitHub (1st Time)
+## 🚀 How to Push to GitHub
 
 Follow these steps in your terminal to upload this project to your GitHub repository:
 
@@ -38,7 +39,7 @@ Follow these steps in your terminal to upload this project to your GitHub reposi
 
 3. **Commit Changes**:
    ```bash
-   git commit -m "Initial commit: PETALS Studio Premium Setup"
+   git commit -m "Final version: PETALS Studio Premium Setup"
    ```
 
 4. **Add Remote Origin**:

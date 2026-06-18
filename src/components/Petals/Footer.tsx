@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Instagram, Twitter, Youtube, Linkedin, ArrowRight } from "lucide-react";
+import { Instagram, Twitter, Youtube, Linkedin } from "lucide-react";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const AmazonIcon = (props: React.SVGProps<SVGSVGElement>) => (

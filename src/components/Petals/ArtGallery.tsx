@@ -146,7 +146,7 @@ export function ArtGallery() {
           >
             <Sparkles className="w-3.5 h-3.5" /> Studio Portfolio
           </motion.div>
-          <h2 className="font-headline text-5xl md:text-6xl">Enchanted Illustrations</h2>
+          <h2 className="font-headline text-5xl md:text-6xl text-foreground">Enchanted Illustrations</h2>
           <div className="space-y-2">
             <p className="text-muted-foreground italic font-headline text-2xl">
               Illustrations That Tell Their Own Stories
@@ -157,7 +157,7 @@ export function ArtGallery() {
           </div>
         </div>
 
-        {/* Big Featured Card Two - Image Right (Now Featured at Top) */}
+        {/* Big Featured Card Two - Image Right (Featured at Top) */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -280,7 +280,7 @@ export function ArtGallery() {
                             <h3 className="font-headline text-4xl text-foreground leading-tight">{art.title}</h3>
                           </div>
                           
-                          {'description' in art && art.description ? (
+                          {art.description ? (
                             <div className="space-y-4">
                               <div className="h-px w-24 bg-rose-pink/30" />
                               <div className="whitespace-pre-wrap text-muted-foreground leading-relaxed italic font-headline text-lg">

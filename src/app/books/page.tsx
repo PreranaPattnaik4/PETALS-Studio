@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { motion } from "framer-motion";
-import { Dialog, DialogContent, DialogTrigger, DialogClose } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { 
   ShoppingBag, 
   Users, 
@@ -163,7 +163,6 @@ export default function BooksPage() {
       <main className="relative">
         {/* Featured Hero Section */}
         <section className="relative min-h-screen flex items-center pt-24 overflow-hidden">
-          {/* Background Elements */}
           <div className="absolute inset-0 z-0">
             <Image 
               src={crystalRoseBg?.imageUrl || ""}
@@ -176,7 +175,6 @@ export default function BooksPage() {
           </div>
 
           <div className="container mx-auto px-12 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            {/* Left Content */}
             <motion.div 
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -188,7 +186,7 @@ export default function BooksPage() {
               </div>
 
               <div className="space-y-2">
-                <h1 className="font-headline text-5xl md:text-7xl leading-tight">
+                <h1 className="font-headline text-5xl md:text-7xl leading-tight text-foreground">
                   THE CRYSTAL ROSE:
                 </h1>
                 <h2 className="font-headline text-4xl md:text-5xl text-rose-pink italic">
@@ -217,24 +215,8 @@ export default function BooksPage() {
                   <FileText className="mr-2 w-5 h-5" /> Read Sample
                 </Button>
               </div>
-
-              <div className="flex flex-wrap gap-6 pt-6 border-t border-rose-pink/10">
-                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-tighter text-muted-foreground">
-                  <Users className="w-4 h-4 text-rose-pink" /> Ages 8+
-                </div>
-                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-tighter text-muted-foreground">
-                  <Heart className="w-4 h-4 text-rose-pink" /> Family-Friendly
-                </div>
-                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-tighter text-muted-foreground">
-                  <Sparkles className="w-4 h-4 text-rose-pink" /> Illustrated
-                </div>
-                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-tighter text-muted-foreground">
-                  <BookOpen className="w-4 h-4 text-rose-pink" /> Digital & Print
-                </div>
-              </div>
             </motion.div>
 
-            {/* Right Side Mockup */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
               animate={{ opacity: 1, scale: 1, rotate: -2 }}
@@ -281,7 +263,7 @@ export default function BooksPage() {
           </div>
         </section>
 
-        {/* Big Featured Card: RoseBella & Lunaria (Moved from Gallery) */}
+        {/* Big Featured Card: RoseBella & Lunaria */}
         <section className="py-32 relative overflow-hidden bg-white/30">
           <div className="container mx-auto px-12">
             <motion.div
@@ -305,7 +287,7 @@ export default function BooksPage() {
                     <div className="flex items-center gap-2 text-rose-pink font-bold uppercase tracking-[0.2em] text-xs">
                       <BookOpen className="w-4 h-4" /> Featured Tale
                     </div>
-                    <h3 className="font-headline text-4xl md:text-5xl leading-tight">
+                    <h3 className="font-headline text-4xl md:text-5xl leading-tight text-foreground">
                       {featuredTaleSisters.title}
                     </h3>
                     <p className="text-xl text-muted-foreground italic font-headline leading-relaxed">
@@ -321,7 +303,7 @@ export default function BooksPage() {
                     </DialogTrigger>
                     <DialogContent className="max-w-4xl p-0 overflow-hidden bg-white/95 backdrop-blur-xl border-none shadow-2xl rounded-[3rem]">
                       <div className="p-12 md:p-16 overflow-y-auto max-h-[80vh] custom-scrollbar">
-                        <h3 className="font-headline text-5xl mb-8">{featuredTaleSisters.title}</h3>
+                        <h3 className="font-headline text-5xl mb-8 text-foreground">{featuredTaleSisters.title}</h3>
                         <div className="whitespace-pre-wrap text-muted-foreground leading-relaxed italic font-headline text-xl">
                           {`🌹 RoseBella\nkind-hearted, gentle, loving, and deeply adored by everyone.\nBut RoseBella’s younger sister,\n🌙 Lunaria\nwas different.\nLunaria was curious, emotional, independent, and deeply connected to strange things others feared:\ndark forests\nwounded creatures\nforgotten magic\nlonely places\n\nAs a child, Lunaria rescued a tiny black kitten named:\n🖤 Nyx\nThough harmless and affectionate, villagers feared the kitten because of old superstitions.\nLunaria could never understand:\n“Why do people fear things that never hurt anyone?”\nThis slowly became the beginning of her loneliness.\n\nRoseBella always comforted and protected her younger sister.\nThe sisters loved each other deeply.\nThey played beneath silver trees with:\na small deer\ntwo little birds\nmoonflowers\nsongs\nmagical stories\n\nBut while RoseBella was naturally loved by everyone,\nLunaria slowly began feeling emotionally different and misunderstood.\n\nOne day Lunaria discovered an ancient magical book:\n📖 Moonlight Veils\nAt first, the book showed only gentle magic:\nhealing light\nmoonfire\nemotional magic\npeaceful spells\n\nLunaria secretly practiced harmless magic beneath moonlight while Nyx slept beside her.\nBut society feared magic.\nAfter a misunderstanding involving Lunaria healing a wounded deer with magic, villagers began whispering that she was dangerous.\nTheir fear slowly isolated her emotionally.`}
                         </div>
@@ -334,68 +316,12 @@ export default function BooksPage() {
           </div>
         </section>
 
-        {/* Quote Section */}
-        <section className="py-32 relative text-center">
-          <div className="container mx-auto px-12 max-w-4xl">
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="space-y-8"
-            >
-              <Sparkles className="w-12 h-12 text-fairy-gold mx-auto opacity-50" />
-              <blockquote className="font-headline text-3xl md:text-5xl leading-tight text-foreground/80 italic">
-                &quot;Emotions are powerful... but the choices we make while feeling them shape our destiny.&quot;
-              </blockquote>
-              <div className="flex justify-center">
-                <div className="w-24 h-px bg-rose-pink/30" />
-              </div>
-              <p className="font-headline text-2xl text-rose-pink uppercase tracking-widest">A Petals Original Tale</p>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Community Call to Action (Inspired by Vooks) */}
-        <section className="relative py-48 md:py-64 overflow-hidden">
-          <div className="absolute inset-0 z-0">
-            <Image 
-              src={communityBg?.imageUrl || ""}
-              alt="Community Background"
-              fill
-              className="object-cover brightness-[0.6]"
-              data-ai-hint="magical grotto"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-pearl-white via-transparent to-pearl-white" />
-          </div>
-
-          <div className="container mx-auto px-12 relative z-10 text-center space-y-8">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="max-w-3xl mx-auto space-y-6"
-            >
-              <h2 className="font-headline text-5xl md:text-7xl text-white drop-shadow-lg">
-                Unfold Their <span className="italic text-rose-pink">Imagination</span>
-              </h2>
-              <p className="text-xl text-white font-headline italic leading-relaxed drop-shadow-md">
-                Join our community of dreamers to access exclusive lore, interactive activities, and the full collection of PETALS storybooks.
-              </p>
-              <div className="pt-4">
-                <Button size="sm" className="bg-rose-pink text-white hover:bg-rose-pink/90 rounded-full px-10 h-10 font-bold uppercase tracking-widest shadow-xl shadow-rose-pink/20">
-                  Start Your Magical Journey
-                </Button>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* More Stories Grid */}
+        {/* Collection Grid */}
         <section className="pb-32 pt-24">
           <div className="container mx-auto px-12">
             <div className="flex items-center justify-between mb-16">
               <div className="space-y-2">
-                <h2 className="font-headline text-4xl">More Magical Stories</h2>
+                <h2 className="font-headline text-4xl text-foreground">More Magical Stories</h2>
                 <p className="text-muted-foreground italic font-headline text-lg">
                   Explore other realms from the PETALS collection.
                 </p>
@@ -427,7 +353,7 @@ export default function BooksPage() {
                     </div>
 
                     <div className="space-y-4 flex-1 flex flex-col">
-                      <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-widest text-rose-gold">
+                      <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-widest text-rose-pink">
                         <span>{book.genre}</span>
                         <div className="flex items-center gap-1 text-fairy-gold">
                           <Star className="w-3 h-3 fill-current" />
@@ -436,7 +362,7 @@ export default function BooksPage() {
                       </div>
 
                       <div className="space-y-1">
-                        <h3 className="font-headline text-xl leading-tight group-hover:text-rose-pink transition-colors">
+                        <h3 className="font-headline text-xl leading-tight group-hover:text-rose-pink transition-colors text-foreground">
                           {book.title}
                         </h3>
                         <p className="text-xs font-headline italic text-rose-pink/80">
