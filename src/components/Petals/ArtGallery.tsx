@@ -60,6 +60,34 @@ After a misunderstanding involving Lunaria healing a wounded deer with magic, vi
 Their fear slowly isolated her emotionally.`
   },
   {
+    id: "portrait-alora",
+    category: "Portraits",
+    url: PlaceHolderImages.find(img => img.id === 'char-alora')?.imageUrl || "",
+    title: "Alora: The Serene Mermaid",
+    description: "A portrait of Alora, the bridge between the waves and the deep. Her eyes reflect the shimmering mysteries of her underwater kingdom, where every song is a legacy of peace and wonder."
+  },
+  {
+    id: "portrait-rosebella",
+    category: "Portraits",
+    url: PlaceHolderImages.find(img => img.id === 'char-rosebella')?.imageUrl || "",
+    title: "RoseBella: Queen of the Crystal Rose",
+    description: "The sovereign of the blooming glass. This portrait captures RoseBella's grace and the quiet strength she uses to protect her fragile, beautiful realm from the shadows."
+  },
+  {
+    id: "portrait-nerina",
+    category: "Portraits",
+    url: PlaceHolderImages.find(img => img.id === 'char-nerina')?.imageUrl || "",
+    title: "Nerina: Guardian of Ocean Dreams",
+    description: "Nerina, who weaves the ocean's whispers into pearls of peace. Her presence is a calming light in the deepest trenches of the sea, guarding the dreams of all who sleep beneath the waves."
+  },
+  {
+    id: "portrait-vespera",
+    category: "Portraits",
+    url: PlaceHolderImages.find(img => img.id === 'char-vespera')?.imageUrl || "",
+    title: "Vespera: The Midnight Weaver",
+    description: "Mistress of shadows and moonlight. Vespera finds the hidden beauty in the night, protecting the secrets that only bloom when the stars are high and the world is quiet."
+  },
+  {
     id: "songs-mermaids-featured",
     category: "Watercolor",
     url: PlaceHolderImages.find(img => img.id === 'gallery-mermaids')?.imageUrl || "",
@@ -78,7 +106,7 @@ Their fear slowly isolated her emotionally.`
     category: "Landscapes",
     url: PlaceHolderImages.find(img => img.id === 'gallery-whispering-library')?.imageUrl || "",
     title: "The Whispering Library",
-    description: "Deep within the heart of the Crystal Palace lies the Whispering Library. Here, every petal tells a story, and the walls hum with the collective wisdom of a thousand blooming generations. It is a place of absolute peace and infinite discovery."
+    description: "Deep within the heart of the Crystal Palace lies the Whispering Library. Here, every petal tells a story, and the walls hum with the collective wisdom of a thousand blooming generations."
   },
   {
     id: "crystal-echoes",
@@ -99,7 +127,7 @@ Their fear slowly isolated her emotionally.`
     category: "Watercolor",
     url: PlaceHolderImages.find(img => img.id === 'gallery-shimmering-grotto')?.imageUrl || "",
     title: "The Shimmering Grotto",
-    description: "Deep beneath the crystal waves lies a grotto of infinite light. Here, the very stones are alive with the echoes of the ocean's heartbeat, illuminating the path for those who seek the deepest truths of the PETALS universe."
+    description: "Deep beneath the crystal waves lies a grotto of infinite light. Here, the very stones are alive with the echoes of the ocean's heartbeat, illuminating the path for seekers."
   },
   {
     id: "dream-guardians",
@@ -113,28 +141,22 @@ Their fear slowly isolated her emotionally.`
     category: "Landscapes",
     url: PlaceHolderImages.find(img => img.id === 'gallery-map')?.imageUrl || "",
     title: "The Forgotten Map of Floria",
-    description: "An ancient, hand-drawn map revealing the hidden paths and secret groves of the Floria kingdom. Every petal-marked trail leads to a new discovery in the heart of the forest, weaving a tale of growth, nature, and ancient whispers."
+    description: "An ancient, hand-drawn map revealing the hidden paths and secret groves of the Floria kingdom. Every petal-marked trail leads to a new discovery."
   },
   {
     id: "mystic-garden-featured",
     category: "Landscapes",
     url: PlaceHolderImages.find(img => img.id === 'gallery-mystic-garden')?.imageUrl || "",
     title: "The Secret Mystic Garden",
-    description: "A hidden sanctuary where magic flows as freely as the waterfalls. The Secret Mystic Garden is home to the rarest flora in the PETALS universe, blooming only under the light of the double moon."
+    description: "A hidden sanctuary where magic flows as freely as the waterfalls. The Secret Mystic Garden is home to the rarest flora in the PETALS universe."
   },
   {
     id: "crystal-cascades",
     category: "Landscapes",
     url: PlaceHolderImages.find(img => img.id === 'gallery-crystal-cascades')?.imageUrl || "",
     title: "The Crystal Cascades",
-    description: "A magical waterfall where the water flows like liquid starlight, illuminating the surrounding flora with an ethereal glow. It is said that the cascades sing to those who listen with their hearts."
-  },
-  { id: 1, category: "Portraits", url: "https://picsum.photos/seed/p1/600/800", title: "The Weaver" },
-  { id: 2, category: "Landscapes", url: "https://picsum.photos/seed/l1/800/600", title: "Crystal Valley" },
-  { id: 3, category: "Watercolor", url: "https://picsum.photos/seed/w1/600/600", title: "Morning Mist" },
-  { id: 4, category: "Characters", url: "https://picsum.photos/seed/c1/600/900", title: "Alora Sketch" },
-  { id: 5, category: "Watercolor", url: "https://picsum.photos/seed/w2/800/1000", title: "Petal Dance" },
-  { id: 6, category: "Landscapes", url: "https://picsum.photos/seed/l2/900/600", title: "Secret Falls" },
+    description: "A magical waterfall where the water flows like liquid starlight, illuminating the surrounding flora with an ethereal glow."
+  }
 ];
 
 export function ArtGallery() {
@@ -189,7 +211,7 @@ export function ArtGallery() {
               >
                 <Dialog>
                   <DialogTrigger asChild>
-                    <div className="group relative overflow-hidden rounded-[2rem] cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500 border border-white/40">
+                    <div className="group relative overflow-hidden rounded-[2rem] cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500 border border-white/40 bg-white">
                       <Image
                         src={art.url}
                         alt={art.title}
