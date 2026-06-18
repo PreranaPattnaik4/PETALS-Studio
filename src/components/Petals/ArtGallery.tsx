@@ -156,6 +156,13 @@ Their fear slowly isolated her emotionally.`
     url: PlaceHolderImages.find(img => img.id === 'gallery-crystal-cascades')?.imageUrl || "",
     title: "The Crystal Cascades",
     description: "A magical waterfall where the water flows like liquid starlight, illuminating the surrounding flora with an ethereal glow."
+  },
+  {
+    id: "celestial-dreamscape",
+    category: "Landscapes",
+    url: PlaceHolderImages.find(img => img.id === 'gallery-celestial-dreamscape')?.imageUrl || "",
+    title: "The Celestial Dreamscape",
+    description: "A mystical journey across the starlit horizon of the PETALS universe. This celestial landscape represents the bridge between our world and the infinite realms of imagination."
   }
 ];
 

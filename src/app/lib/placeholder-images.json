@@ -198,6 +198,12 @@
       "description": "The Crystal Cascades of the Crystal Rose",
       "imageUrl": "https://www.dropbox.com/scl/fi/4lshumscopvhnxxkpooiw/dfe47f05-fb5a-452b-8d24-992c49bd7140.png?rlkey=j4bulmwt91a2zwg2uz5ozv2gg&st=aifpidk2&raw=1",
       "imageHint": "magical waterfall"
+    },
+    {
+      "id": "gallery-celestial-dreamscape",
+      "description": "Celestial dreamscape landscape for the gallery",
+      "imageUrl": "https://www.dropbox.com/scl/fi/lfqmo19y22yg4qi5s5xd7/16b293fe-8c21-434f-991c-cb78293b46b1.png?rlkey=os0vys0crin2kz1xe3yy6zspq&st=onpdmwug&raw=1",
+      "imageHint": "celestial landscape"
     }
   ]
 }
