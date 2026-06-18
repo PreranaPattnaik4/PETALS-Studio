@@ -58,7 +58,7 @@ export function PosterCreator() {
   const [stickers, setStickers] = useState<StickerItem[]>([]);
   const [activeTab, setActiveTab] = useState<'background' | 'stickers' | 'text'>('stickers');
   
-  // New UI State
+  // Mode State
   const [mode, setMode] = useState<CreatorMode>('manual');
   const [isExporting, setIsExporting] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -113,6 +113,10 @@ export function PosterCreator() {
   const handlePersonalizedPhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      if (file.size > 4 * 1024 * 1024) {
+        toast({ variant: "destructive", title: "File too large", description: "Please upload a photo smaller than 4MB." });
+        return;
+      }
       const reader = new FileReader();
       reader.onload = (event) => {
         if (event.target?.result) {
@@ -135,7 +139,7 @@ export function PosterCreator() {
           result = await generateBirthdayCard();
         } else {
           if (!personalizedPhoto || !birthdayName) {
-            toast({ variant: "destructive", title: "Missing Info", description: "Please upload a photo and enter a name." });
+            toast({ variant: "destructive", title: "Missing Information", description: "Please upload a photo and enter a name." });
             setIsGenerating(false);
             return;
           }
@@ -147,9 +151,10 @@ export function PosterCreator() {
       }
       setAiResultImage(result);
       toast({ title: "Magic Complete!", description: "Your AI creation is ready." });
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
-      toast({ variant: "destructive", title: "Enchantment Failed", description: "The magic faded too soon. Please try again." });
+      const msg = err?.message?.includes("Body exceeded") ? "The photo is too large for our magical portal. Please use a smaller file." : "The magic faded too soon. Please try again.";
+      toast({ variant: "destructive", title: "Enchantment Failed", description: msg });
     } finally {
       setIsGenerating(false);
     }
@@ -161,6 +166,7 @@ export function PosterCreator() {
     try {
       let url = "";
       if (aiResultImage) {
+        // Download the AI generated image. It's a base64 data URI from Genkit.
         url = aiResultImage;
       } else if (canvasRef.current) {
         url = await toPng(canvasRef.current, { cacheBust: true, quality: 1 });
@@ -172,7 +178,6 @@ export function PosterCreator() {
         link.href = url;
         link.click();
       } else {
-        // External URL from AI might need proxy or direct download
         window.open(url, '_blank');
       }
       toast({ title: "Success!", description: "Your magical creation has been saved." });
@@ -195,21 +200,21 @@ export function PosterCreator() {
       <div className="flex justify-center gap-4 p-1.5 bg-rose-pink/5 rounded-3xl border border-rose-pink/10 w-fit mx-auto">
         <Button 
           variant={mode === 'manual' ? 'default' : 'ghost'} 
-          onClick={() => setMode('manual')}
+          onClick={() => { setMode('manual'); setAiResultImage(null); }}
           className={`rounded-2xl px-8 h-12 text-xs font-bold uppercase tracking-widest ${mode === 'manual' ? 'bg-rose-pink text-white' : 'text-muted-foreground'}`}
         >
           <Palette className="mr-2 w-4 h-4" /> Manual Designer
         </Button>
         <Button 
           variant={mode === 'wall-art' ? 'default' : 'ghost'} 
-          onClick={() => setMode('wall-art')}
+          onClick={() => { setMode('wall-art'); setAiResultImage(null); }}
           className={`rounded-2xl px-8 h-12 text-xs font-bold uppercase tracking-widest ${mode === 'wall-art' ? 'bg-rose-pink text-white' : 'text-muted-foreground'}`}
         >
           🌹 Wall Art Creator
         </Button>
         <Button 
           variant={mode === 'birthday-card' ? 'default' : 'ghost'} 
-          onClick={() => setMode('birthday-card')}
+          onClick={() => { setMode('birthday-card'); setAiResultImage(null); }}
           className={`rounded-2xl px-8 h-12 text-xs font-bold uppercase tracking-widest ${mode === 'birthday-card' ? 'bg-rose-pink text-white' : 'text-muted-foreground'}`}
         >
           🎂 Birthday Card Creator
@@ -221,7 +226,7 @@ export function PosterCreator() {
         <div className="w-full lg:w-96 flex flex-col gap-6 order-2 lg:order-1">
           <div className="glass-morphism rounded-[2.5rem] p-8 space-y-8">
             
-            {/* MANUAL MODE CONTROLS */}
+            {/* MANUAL MODE */}
             {mode === 'manual' && (
               <>
                 <div className="flex gap-2 p-1 bg-rose-pink/10 rounded-2xl">
@@ -250,9 +255,6 @@ export function PosterCreator() {
                         {characterStickers.map((char) => (
                           <button key={char.id} onClick={() => addSticker(char.imageUrl)} className="relative aspect-square rounded-2xl overflow-hidden border border-rose-pink/10 hover:border-rose-pink group transition-all">
                             <Image src={char.imageUrl} alt={char.id} fill className="object-cover group-hover:scale-110 transition-transform" />
-                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
-                              <Sparkles className="text-white w-6 h-6" />
-                            </div>
                           </button>
                         ))}
                       </motion.div>
@@ -268,7 +270,6 @@ export function PosterCreator() {
                           {backgroundPresets.map((bg) => (
                             <button key={bg.id} onClick={() => setBgImage(bg.imageUrl)} className={`relative aspect-[3/4] rounded-xl overflow-hidden border-2 transition-all ${bgImage === bg.imageUrl ? "border-rose-pink" : "border-transparent"}`}>
                               <Image src={bg.imageUrl} alt={bg.id} fill className="object-cover" />
-                              {bgImage === bg.imageUrl && <div className="absolute top-2 right-2 bg-rose-pink text-white rounded-full p-1 shadow-md"><Check className="w-3 h-3" /></div>}
                             </button>
                           ))}
                         </div>
@@ -277,14 +278,8 @@ export function PosterCreator() {
 
                     {activeTab === 'text' && (
                       <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} className="space-y-6">
-                        <div className="space-y-2">
-                          <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Main Title</label>
-                          <Input value={title} onChange={(e) => setTitle(e.target.value)} className="bg-white/50 h-14 rounded-2xl border-rose-pink/20" />
-                        </div>
-                        <div className="space-y-2">
-                          <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Lore Snippet</label>
-                          <Textarea value={description} onChange={(e) => setDescription(e.target.value)} className="bg-white/50 rounded-2xl border-rose-pink/20 min-h-[120px]" />
-                        </div>
+                        <Input placeholder="Main Title" value={title} onChange={(e) => setTitle(e.target.value)} className="bg-white/50 h-14 rounded-2xl border-rose-pink/20" />
+                        <Textarea placeholder="Lore Snippet" value={description} onChange={(e) => setDescription(e.target.value)} className="bg-white/50 rounded-2xl border-rose-pink/20 min-h-[120px]" />
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -292,7 +287,7 @@ export function PosterCreator() {
               </>
             )}
 
-            {/* AI WALL ART CONTROLS */}
+            {/* AI WALL ART MODE */}
             {mode === 'wall-art' && (
               <div className="space-y-6 text-center">
                 <div className="w-16 h-16 rounded-3xl bg-rose-pink/10 text-rose-pink flex items-center justify-center mx-auto mb-4">
@@ -313,7 +308,7 @@ export function PosterCreator() {
               </div>
             )}
 
-            {/* AI BIRTHDAY CARD CONTROLS */}
+            {/* AI BIRTHDAY CARD MODE */}
             {mode === 'birthday-card' && (
               <div className="space-y-8">
                 <div className="flex gap-2 p-1 bg-rose-pink/10 rounded-2xl">
@@ -478,7 +473,6 @@ export function PosterCreator() {
                       </div>
                     </motion.div>
                   ))}
-                  <div className="absolute inset-0 pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-overlay" />
                 </motion.div>
               ) : (
                 <motion.div 
@@ -497,16 +491,6 @@ export function PosterCreator() {
                 </motion.div>
               )}
             </AnimatePresence>
-
-            {/* Aesthetic Grain/Texture Overlay */}
-            <div className="absolute inset-0 pointer-events-none rounded-[5rem] border-[24px] border-white/40 mix-blend-overlay opacity-20" />
-          </div>
-
-          {/* Tips */}
-          <div className="mt-8 flex items-center justify-center gap-8 text-muted-foreground text-xs italic font-headline">
-            <span className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-rose-pink" /> 100% Original Studio IP</span>
-            <span className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-rose-pink" /> Frame-ready quality</span>
-            <span className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-rose-pink" /> Secure & Magical</span>
           </div>
         </div>
       </div>

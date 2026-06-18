@@ -8,9 +8,6 @@ import { z } from 'genkit';
 import { googleAI } from '@genkit-ai/google-genai';
 
 // --- Wall Art Flow ---
-const GenerateWallArtInputSchema = z.object({});
-export type GenerateWallArtInput = z.infer<typeof GenerateWallArtInputSchema>;
-
 export async function generateWallArt(): Promise<string> {
   const { media } = await ai.generate({
     model: 'googleai/imagen-4.0-fast-generate-001',
@@ -28,7 +25,7 @@ export async function generateWallArt(): Promise<string> {
   return media.url;
 }
 
-// --- Birthday Card Flow ---
+// --- Birthday Card Flow (Fixed Design) ---
 export async function generateBirthdayCard(): Promise<string> {
   const { media } = await ai.generate({
     model: 'googleai/imagen-4.0-fast-generate-001',
@@ -49,7 +46,7 @@ export async function generateBirthdayCard(): Promise<string> {
   return media.url;
 }
 
-// --- Personalized Birthday Card Flow ---
+// --- Personalized Birthday Card Flow (Image-to-Image) ---
 const GeneratePersonalizedCardInputSchema = z.object({
   photoDataUri: z.string().describe("Base64 data URI of the user's photo."),
   name: z.string().describe("The name of the birthday person."),
@@ -61,7 +58,7 @@ export async function generatePersonalizedBirthdayCard(input: GeneratePersonaliz
     model: 'googleai/gemini-2.5-flash-image',
     prompt: [
       { media: { url: input.photoDataUri } },
-      { text: `Create a personalized fantasy birthday card using the provided photo.
+      { text: `Create a personalized fantasy birthday card using the provided photo of the birthday person.
       
       Requirements:
       1. Display the person from the photo inside an elegant magical frame.
