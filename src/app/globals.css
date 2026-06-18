@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -24,7 +23,7 @@
     --border: 348 30% 90%;
     --input: 348 30% 90%;
     --ring: 348 78% 84%;
-    --radius: 1rem;
+    --radius: 1.5rem;
   }
 }
 
@@ -35,19 +34,23 @@
   body {
     @apply bg-background text-foreground selection:bg-rose-pink selection:text-white;
     background-image: 
-      radial-gradient(at 0% 0%, hsla(348, 78%, 84%, 0.15) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, hsla(256, 100%, 91%, 0.15) 0px, transparent 50%);
+      radial-gradient(at 0% 0%, hsla(348, 78%, 84%, 0.1) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, hsla(256, 100%, 91%, 0.1) 0px, transparent 50%);
   }
 }
 
-.watercolor-canvas {
-  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.01' numOctaves='5'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='50'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+.glass-morphism {
+  @apply bg-white/20 backdrop-blur-xl border border-white/30 shadow-[0_8px_32px_0_rgba(247,183,195,0.15)];
+}
+
+.glass-morphism-dark {
+  @apply bg-black/40 backdrop-blur-xl border border-white/10 shadow-2xl;
 }
 
 .text-gradient-gold {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-rose-gold via-fairy-gold to-rose-gold;
 }
 
-.glass-morphism {
-  @apply bg-white/40 backdrop-blur-md border border-white/20 shadow-xl;
+.premium-shadow {
+  @apply shadow-[0_20px_50px_rgba(247,183,195,0.2)];
 }

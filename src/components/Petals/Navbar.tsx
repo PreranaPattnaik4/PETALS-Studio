@@ -1,17 +1,23 @@
-
 "use client";
 
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
-import { useState } from 'react';
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Menu, X } from "lucide-react";
+import { useState, useEffect } from 'react';
 import { PlaceHolderImages } from "@/lib/placeholder-images";
+import { motion, AnimatePresence } from "framer-motion";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const logoImg = PlaceHolderImages.find(img => img.id === 'petals-logo');
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinks = [
     { name: 'Gallery', href: '/gallery' },
@@ -19,12 +25,11 @@ export function Navbar() {
     { name: 'Videos', href: '/videos' },
     { name: 'Characters', href: '/characters' },
     { name: 'About', href: '/#about' },
-    { name: 'Contact', href: '/contact' },
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 glass-morphism border-b-0 h-20 flex items-center">
-      <div className="container mx-auto px-6 flex justify-between items-center">
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'py-4 glass-morphism mx-6 mt-4 rounded-full' : 'py-6 bg-transparent'}`}>
+      <div className="container mx-auto px-8 flex justify-between items-center">
         <Link href="/" className="flex items-center gap-3 group">
           <div className="relative w-10 h-10 overflow-hidden rounded-full border border-rose-pink/20 transition-transform duration-500 group-hover:scale-110 shadow-sm">
             <Image 
@@ -36,55 +41,60 @@ export function Navbar() {
             />
           </div>
           <div className="flex flex-col">
-            <span className="font-headline text-2xl tracking-widest uppercase">Petals</span>
-            <span className="text-[10px] uppercase tracking-tighter text-muted-foreground -mt-1">Studio</span>
+            <span className="font-headline text-2xl tracking-widest uppercase font-bold">Petals</span>
+            <span className="text-[10px] uppercase tracking-widest text-muted-foreground -mt-1 font-bold">Studio</span>
           </div>
         </Link>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-10">
           {navLinks.map((link) => (
             <Link 
               key={link.name} 
               href={link.href} 
-              className="text-sm font-medium hover:text-rose-pink transition-colors tracking-wide"
+              className="text-xs font-bold uppercase tracking-widest hover:text-rose-pink transition-colors"
             >
               {link.name}
             </Link>
           ))}
-          <Button asChild variant="outline" className="border-rose-pink text-rose-pink hover:bg-rose-pink hover:text-white rounded-full px-6">
-            <Link href="/books">Enter Universe</Link>
+          <Button asChild className="bg-rose-pink text-white hover:bg-rose-pink/90 rounded-full px-8 h-12 text-xs font-bold uppercase tracking-widest shadow-lg shadow-rose-pink/20">
+            <Link href="/contact">Get in Touch</Link>
           </Button>
         </div>
 
-        {/* Mobile Menu */}
-        <div className="md:hidden">
-          <Sheet open={isOpen} onOpenChange={setIsOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <Menu className="w-6 h-6" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="bg-pearl-white border-l-rose-pink/20">
-              <div className="flex flex-col gap-6 mt-12">
-                {navLinks.map((link) => (
-                  <Link 
-                    key={link.name} 
-                    href={link.href} 
-                    onClick={() => setIsOpen(false)}
-                    className="text-xl font-headline hover:text-rose-pink transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                ))}
-                <Button asChild className="bg-rose-pink text-white rounded-full mt-4">
-                  <Link href="/books" onClick={() => setIsOpen(false)}>Enter Universe</Link>
-                </Button>
-              </div>
-            </SheetContent>
-          </Sheet>
-        </div>
+        {/* Mobile Toggle */}
+        <button className="md:hidden text-foreground" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? <X /> : <Menu />}
+        </button>
       </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="absolute top-full left-6 right-6 mt-4 glass-morphism rounded-[2rem] p-8 md:hidden"
+          >
+            <div className="flex flex-col gap-6 text-center">
+              {navLinks.map((link) => (
+                <Link 
+                  key={link.name} 
+                  href={link.href} 
+                  onClick={() => setIsOpen(false)}
+                  className="text-lg font-headline font-bold hover:text-rose-pink"
+                >
+                  {link.name}
+                </Link>
+              ))}
+              <Button asChild className="bg-rose-pink text-white rounded-full">
+                <Link href="/contact" onClick={() => setIsOpen(false)}>Contact Us</Link>
+              </Button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

@@ -1,109 +1,99 @@
-
 "use client";
 
 import Image from 'next/image';
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Sparkles, ArrowRight } from "lucide-react";
+import { Sparkles, Play, ArrowRight } from "lucide-react";
 import Link from 'next/link';
 
 export function Hero() {
+  const crystalRoseBg = PlaceHolderImages.find(img => img.id === 'crystal-rose-universe');
   const roseImg = PlaceHolderImages.find(img => img.id === 'hero-rose');
 
   return (
-    <section className="relative h-screen flex items-center overflow-hidden bg-white">
-      {/* Magical Background Layers */}
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0a0a]">
+      {/* Background with Magic Blur */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-rose-pink/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/4 animate-pulse" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-soft-lavender/20 rounded-full blur-[100px] translate-y-1/4 -translate-x-1/4" />
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/clean-gray-paper.png')] opacity-20 pointer-events-none" />
+        <Image 
+          src={crystalRoseBg?.imageUrl || ""}
+          alt="Cinematic Background"
+          fill
+          className="object-cover opacity-30 scale-105"
+          data-ai-hint="fantasy kingdom background"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-pearl-white to-transparent" />
       </div>
 
-      <div className="container mx-auto px-12 relative z-10">
+      <div className="container mx-auto px-12 relative z-10 pt-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          {/* Left Side: Content Branding */}
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="lg:col-span-6 space-y-8"
+            className="lg:col-span-7 space-y-10"
           >
-            <div className="space-y-4">
+            <div className="space-y-6">
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
-                className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-rose-pink/10 text-rose-pink text-sm font-bold uppercase tracking-widest border border-rose-pink/20"
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-pink/20 text-rose-pink text-xs font-bold uppercase tracking-[0.3em] border border-white/10 backdrop-blur-md"
               >
-                <Sparkles className="w-4 h-4" /> Stories That Bloom
+                <Sparkles className="w-4 h-4" /> The Next Generation of Fantasy
               </motion.div>
               
-              <h1 className="font-headline text-6xl md:text-8xl lg:text-9xl text-foreground leading-[0.9] drop-shadow-sm">
-                Petals <br />
-                <span className="italic text-rose-pink">Universe</span>
+              <h1 className="font-headline text-7xl md:text-9xl text-white leading-[0.9] tracking-tight">
+                Stories That <br />
+                <span className="italic text-rose-pink">Bloom</span> Into Worlds
               </h1>
               
-              <p className="max-w-md text-lg text-muted-foreground leading-relaxed font-headline italic">
-                Step into a sanctuary where imagination meets emotion. Handcrafted fantasy worlds designed to inspire wonder and courage in every heart.
+              <p className="max-w-2xl text-xl text-white/70 leading-relaxed font-headline italic">
+                Creating magical storybooks, enchanting characters, and cinematic animated adventures that capture the heart of imagination.
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center gap-6 pt-4">
-              <Button asChild size="lg" className="h-16 px-10 rounded-full bg-rose-pink text-white hover:bg-rose-pink/90 text-xl font-headline shadow-xl shadow-rose-pink/30 group">
+            <div className="flex flex-wrap items-center gap-6 pt-6">
+              <Button asChild size="lg" className="h-16 px-12 rounded-full bg-rose-pink text-white hover:bg-rose-pink/90 text-lg font-bold uppercase tracking-widest shadow-2xl shadow-rose-pink/30 group">
                 <Link href="/books">
-                  Explore Now <ArrowRight className="ml-2 w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                  Explore Stories <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
-              <div className="text-sm font-bold uppercase tracking-[0.2em] text-rose-gold border-b-2 border-rose-gold/20 pb-1 cursor-pointer hover:text-rose-pink transition-colors">
-                Watch The Magic
-              </div>
+              <Button variant="outline" size="lg" className="h-16 px-12 rounded-full border-white/20 bg-white/5 backdrop-blur-md text-white hover:bg-white hover:text-black transition-all text-lg font-bold uppercase tracking-widest group">
+                <Play className="mr-3 w-5 h-5 fill-current" /> Watch Trailer
+              </Button>
             </div>
           </motion.div>
 
-          {/* Right Side: Featured Magical Rose */}
-          <div className="lg:col-span-6 relative h-[600px] lg:h-[800px] flex items-center justify-center">
-            
-            {/* The Main Hero Image: The Edited Rose */}
+          {/* Signature Rose Element */}
+          <div className="lg:col-span-5 relative h-[600px] hidden lg:flex items-center justify-center">
             <motion.div 
-              initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-              animate={{ opacity: 1, scale: 1.1, rotate: 0 }}
-              transition={{ duration: 1.5, ease: "easeOut" }}
-              className="relative w-full h-full drop-shadow-[0_20px_50px_rgba(247,183,195,0.4)]"
+              initial={{ opacity: 0, scale: 0.8, rotate: -20 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ duration: 1.5, delay: 0.2 }}
+              className="relative w-full h-full drop-shadow-[0_0_100px_rgba(247,183,195,0.4)]"
             >
               <Image 
                 src={roseImg?.imageUrl || ""}
-                alt="The Signature Petals Rose"
+                alt="Petals Signature Rose"
                 fill
                 className="object-contain"
-                data-ai-hint="pink rose"
-                priority
+                data-ai-hint="pink rose flower"
               />
               
-              {/* Magical Sparkle Trail (Decorative SVGs) */}
-              <div className="absolute inset-0 pointer-events-none opacity-60">
-                <svg className="w-full h-full animate-soft-glow" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="50" cy="50" r="2" fill="#F5D76E" />
-                  <circle cx="150" cy="80" r="3" fill="#F7B7C3" />
-                  <circle cx="100" cy="150" r="2" fill="#DCCFFF" />
-                  <path d="M20 180 Q100 100 180 20" stroke="url(#gradient)" strokeWidth="1" strokeDasharray="5 5" />
-                  <defs>
-                    <linearGradient id="gradient" x1="0" y1="0" x2="1" y2="1">
-                      <stop offset="0%" stopColor="#F7B7C3" />
-                      <stop offset="100%" stopColor="#F5D76E" />
-                    </linearGradient>
-                  </defs>
-                </svg>
+              {/* Floating Dust Particles */}
+              <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-fairy-gold rounded-full blur-[2px] animate-pulse" />
+                <div className="absolute bottom-1/3 right-1/4 w-1 h-1 bg-white rounded-full blur-[1px] animate-pulse delay-700" />
+                <div className="absolute top-1/2 right-1/2 w-3 h-3 bg-rose-pink rounded-full blur-[4px] animate-pulse delay-1000" />
               </div>
             </motion.div>
-
           </div>
         </div>
       </div>
-
-      {/* Bottom Transition */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent z-30" />
     </section>
   );
 }
