@@ -79,22 +79,31 @@ export default function AboutPage() {
             />
           </div>
           
-          <div className="container mx-auto px-6 relative z-10 text-center">
+          <div className="container mx-auto px-6 relative z-10 text-center space-y-4">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-[0.3em] border border-white/10 backdrop-blur-md"
+            >
+              <Sparkles className="w-3.5 h-3.5" /> Discover Our Heart
+            </motion.div>
+            
             <motion.h1 
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="font-headline text-7xl md:text-9xl text-white mb-6 drop-shadow-xl"
+              className="font-headline text-6xl md:text-9xl text-white mb-4 drop-shadow-xl"
             >
-              About Us
+              About PETALS Studio
             </motion.h1>
+            
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-white/90 text-2xl md:text-3xl font-headline italic"
+              className="text-white/90 text-xl md:text-3xl font-headline italic max-w-4xl mx-auto leading-relaxed"
             >
-              Stories That Bloom With Emotion
+              &quot;Crafting illustrated stories that unfold like petals, blooming layer by layer.&quot;
             </motion.p>
           </div>
 
@@ -135,7 +144,7 @@ export default function AboutPage() {
               className="space-y-8"
             >
               <p className="text-2xl md:text-3xl font-headline italic text-foreground leading-relaxed">
-                "At PETALS, we believe the best parts of childhood don't need reinventing—just reimagining."
+                &quot;At PETALS, we believe the best parts of childhood don&apos;t need reinventing—just reimagining.&quot;
               </p>
               
               <div className="text-xl text-muted-foreground leading-relaxed space-y-6">
