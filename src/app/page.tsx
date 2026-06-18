@@ -85,7 +85,7 @@ export default function Home() {
                 transition={{ duration: 0.8 }}
                 className="glass-morphism rounded-[3rem] p-12 flex flex-col items-center justify-center text-center space-y-6 group hover:shadow-2xl transition-all duration-500"
               >
-                <div className="relative w-32 h-32 md:w-48 md:h-48 overflow-hidden rounded-full border-2 border-rose-pink/20 shadow-xl group-hover:scale-105 transition-transform duration-500">
+                <div className="relative w-48 h-48 md:w-64 md:h-64 overflow-hidden rounded-full border-2 border-rose-pink/20 shadow-xl group-hover:scale-105 transition-transform duration-500">
                   <Image 
                     src={studioLogo?.imageUrl || ""}
                     alt="Petals Studio Logo"
@@ -125,7 +125,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* About Section */}
+        {/* About Section (Mission) */}
         <section id="about" className="py-32 bg-rose-pink/5">
           <div className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
             <div className="space-y-8">
