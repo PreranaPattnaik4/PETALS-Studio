@@ -48,6 +48,7 @@ interface CanvasState {
 }
 
 type CreatorMode = 'manual' | 'lore-weaver' | 'wall-art' | 'birthday-card';
+type ManualSidebarTab = 'stickers' | 'background' | 'personalized' | 'text' | 'guide';
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
 const ACCEPTED_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
@@ -59,7 +60,7 @@ export function PosterCreator() {
 
   // Mode & UI State
   const [mode, setMode] = useState<CreatorMode>('manual');
-  const [activeTab, setActiveTab] = useState<'background' | 'stickers' | 'text' | 'guide'>('stickers');
+  const [activeTab, setActiveTab] = useState<ManualSidebarTab>('stickers');
   const [birthdayTab, setBirthdayTab] = useState<'fixed' | 'personalized'>('fixed');
   const [isExporting, setIsExporting] = useState(false);
 
@@ -263,20 +264,23 @@ export function PosterCreator() {
             <AnimatePresence mode="wait">
               {mode === 'manual' ? (
                 <motion.div key="manual" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex flex-col h-full space-y-8">
-                  <div className="flex gap-1 p-1 bg-rose-pink/10 rounded-2xl">
-                    {(['stickers', 'background', 'text', 'guide'] as const).map((tab) => (
+                  <div className="flex gap-1 p-1 bg-rose-pink/10 rounded-2xl overflow-x-auto custom-scrollbar no-scrollbar">
+                    {(['stickers', 'background', 'personalized', 'text', 'guide'] as const).map((tab) => (
                       <button
                         key={tab}
                         onClick={() => setActiveTab(tab)}
-                        className={`flex-1 py-3 rounded-xl text-[9px] font-bold uppercase tracking-widest transition-all flex flex-col items-center gap-1.5 ${
+                        className={`flex-1 min-w-[60px] py-3 rounded-xl text-[9px] font-bold uppercase tracking-widest transition-all flex flex-col items-center gap-1.5 ${
                           activeTab === tab ? "bg-white text-rose-pink shadow-sm" : "text-muted-foreground hover:text-rose-pink"
                         }`}
                       >
                         {tab === 'stickers' && <Sticker className="w-3.5 h-3.5" />}
                         {tab === 'background' && <ImageIcon className="w-3.5 h-3.5" />}
+                        {tab === 'personalized' && <Camera className="w-3.5 h-3.5" />}
                         {tab === 'text' && <Type className="w-3.5 h-3.5" />}
                         {tab === 'guide' && <Info className="w-3.5 h-3.5" />}
-                        {tab === 'guide' ? 'Guide' : tab}
+                        <span className="truncate w-full text-center">
+                          {tab === 'personalized' ? 'Perso' : tab === 'guide' ? 'Guide' : tab}
+                        </span>
                       </button>
                     ))}
                   </div>
@@ -303,6 +307,25 @@ export function PosterCreator() {
                               <Image src={bg.imageUrl} alt={bg.id} fill className="object-cover" />
                             </button>
                           ))}
+                        </div>
+                      </div>
+                    )}
+                    {activeTab === 'personalized' && (
+                      <div className="space-y-6">
+                        <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-rose-pink/10 text-rose-pink text-[10px] font-bold uppercase tracking-widest border border-rose-pink/20">
+                          <Clock className="w-3.5 h-3.5" /> Coming Soon
+                        </div>
+                        <div className="space-y-4">
+                          <p className="text-[10px] font-bold uppercase tracking-widest text-rose-pink">AI Personalized Design</p>
+                          <p className="text-xs italic text-muted-foreground leading-relaxed">
+                            Upload a photo and let our AI weavers transform it into a signature PETALS masterpiece.
+                          </p>
+                          <Button disabled variant="outline" className="w-full h-12 rounded-xl border-dashed opacity-50">
+                            <Camera className="mr-2 w-4 h-4" /> Upload & PETAL-ize
+                          </Button>
+                        </div>
+                        <div className="p-4 rounded-2xl bg-rose-pink/5 text-[10px] italic text-muted-foreground text-center">
+                          Our AI models are being nurtured to help your personal photos bloom with magic.
                         </div>
                       </div>
                     )}
