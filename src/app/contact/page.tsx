@@ -101,6 +101,34 @@ export default function ContactPage() {
             </motion.div>
           </div>
         </div>
+
+        {/* Newsletter Section */}
+        <section className="py-32 relative overflow-hidden">
+          <div className="container mx-auto px-6 max-w-5xl">
+            <div className="glass-morphism rounded-[4rem] p-12 md:p-24 text-center space-y-12 relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
+                <Mail className="w-64 h-64" />
+              </div>
+              
+              <div className="space-y-6 relative z-10">
+                <h2 className="font-headline text-5xl md:text-7xl">Join the PETALS Garden</h2>
+                <p className="text-xl text-muted-foreground font-headline italic">Subscribe for magical updates, new story releases, and behind-the-scenes magic.</p>
+              </div>
+
+              <div className="flex flex-col md:flex-row gap-4 max-w-2xl mx-auto relative z-10">
+                <input 
+                  type="email" 
+                  placeholder="Enter your magical email..."
+                  className="flex-1 h-16 rounded-full bg-white/50 border-rose-pink/20 px-8 text-lg focus:outline-none focus:ring-2 focus:ring-rose-pink/50 transition-all"
+                />
+                <Button size="sm" className="bg-rose-pink text-white rounded-full px-12 h-16 text-xs shadow-xl shadow-rose-pink/20 uppercase tracking-widest font-bold">
+                  Subscribe
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <Footer />
       </main>
     </div>
