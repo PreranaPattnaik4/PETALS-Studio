@@ -19,7 +19,8 @@ export function Hero() {
           src={roseImg?.imageUrl || ""}
           alt="Cinematic Background"
           fill
-          className="object-cover opacity-90 brightness-110 scale-105 transition-all duration-1000"
+          className="object-cover opacity-90 brightness-110 transition-all duration-1000"
+          style={{ objectPosition: '50% 30%' }}
           data-ai-hint="signature rose background"
           priority
         />
@@ -51,7 +52,9 @@ export function Hero() {
                 transition={{ delay: 0.5 }}
                 className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-pink/20 text-rose-pink text-xs font-bold uppercase tracking-[0.3em] border border-white/10 backdrop-blur-md"
               >
-                <Sparkles className="w-4 h-4" /> The Next Generation of Fantasy
+                <span className="flex items-center gap-2">
+                  <Sparkles className="w-4 h-4" /> The Next Generation of Fantasy
+                </span>
               </motion.div>
               
               <h1 className="font-headline text-6xl md:text-8xl text-white leading-[0.9] tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
