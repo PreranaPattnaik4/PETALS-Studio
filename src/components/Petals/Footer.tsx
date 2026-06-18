@@ -25,17 +25,7 @@ export function Footer() {
   const logoImg = PlaceHolderImages.find(img => img.id === 'petals-logo');
 
   return (
-    <footer className="bg-[#0a0a0a] pt-32 pb-16 text-white overflow-hidden relative">
-      <div className="absolute bottom-0 right-0 p-24 opacity-[0.02] pointer-events-none">
-        <Image 
-          src={PlaceHolderImages.find(img => img.id === 'hero-rose')?.imageUrl || ""}
-          alt="Rose"
-          width={800}
-          height={800}
-          className="object-contain rotate-12"
-        />
-      </div>
-
+    <footer className="bg-[#0a0a0a] pt-32 pb-16 text-white relative">
       <div className="container mx-auto px-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 mb-24">
           
