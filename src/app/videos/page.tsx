@@ -5,7 +5,7 @@ import { Navbar } from "@/components/Petals/Navbar";
 import { Footer } from "@/components/Petals/Footer";
 import { FloatingPetals } from "@/components/Petals/FloatingPetals";
 import { Button } from "@/components/ui/button";
-import { Play, Sparkles, Film, Clock, ChevronRight, X } from "lucide-react";
+import { Play, Sparkles, Film, Clock, ChevronRight, X, Youtube, ShoppingBag, Instagram } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
@@ -85,9 +85,8 @@ export default function VideosPage() {
       <Navbar />
 
       <main className="relative">
-        {/* Breathtaking Cinematic Hero Section */}
+        {/* Cinematic Hero Section */}
         <section className="relative min-h-[90vh] flex flex-col items-center justify-center pt-32 pb-24 overflow-hidden">
-          {/* Dreamy Background Elements */}
           <div className="absolute inset-0 z-0">
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-rose-pink/10 via-soft-lavender/5 to-pearl-white" />
             <div className="absolute top-1/4 -left-10 w-96 h-96 bg-rose-pink/20 blur-[120px] rounded-full animate-pulse" />
@@ -95,7 +94,6 @@ export default function VideosPage() {
           </div>
 
           <div className="container mx-auto px-6 relative z-10 flex flex-col items-center text-center">
-            {/* Cinematic Badge */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -104,7 +102,6 @@ export default function VideosPage() {
               <Sparkles className="w-3.5 h-3.5" /> Cinematic Storytelling
             </motion.div>
 
-            {/* Main Heading */}
             <motion.h1 
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -115,7 +112,6 @@ export default function VideosPage() {
               <span className="italic text-rose-pink">Brought To Life</span>
             </motion.h1>
 
-            {/* Subheading */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -125,14 +121,12 @@ export default function VideosPage() {
               Discover magical worlds, beloved characters, and emotional adventures through cinematic storytelling, animated experiences, and visual journeys crafted to inspire wonder.
             </motion.p>
 
-            {/* Featured Video Showcase */}
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 1 }}
               className="relative w-[90%] md:w-[85%] aspect-video group"
             >
-              {/* Soft Glow Behind Container */}
               <div className="absolute inset-0 bg-rose-pink/30 blur-[60px] rounded-[4rem] opacity-0 group-hover:opacity-40 transition-opacity duration-700" />
               
               <div className="relative h-full w-full rounded-[2.5rem] md:rounded-[4rem] overflow-hidden glass-morphism border-white/40 shadow-[0_50px_100px_-20px_rgba(247,183,195,0.3)] bg-black">
@@ -145,10 +139,8 @@ export default function VideosPage() {
                   priority
                 />
                 
-                {/* Cinematic Overlays */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                 
-                {/* Play Button Overlay - Pearl White BG with Rose Pink Icon */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <motion.div 
                     whileHover={{ scale: 1.1 }}
@@ -161,7 +153,6 @@ export default function VideosPage() {
                   </motion.div>
                 </div>
 
-                {/* Video Info Overlay */}
                 <div className="absolute bottom-8 left-8 right-8 flex justify-between items-end">
                   <div className="text-left space-y-2">
                     <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-rose-pink">Now Playing Teaser</p>
@@ -174,7 +165,6 @@ export default function VideosPage() {
               </div>
             </motion.div>
 
-            {/* Hero Actions */}
             <div className="flex flex-wrap items-center justify-center gap-6 mt-16">
               <Button size="lg" className="bg-rose-pink text-white hover:bg-rose-pink/90 rounded-full px-10 h-14 text-sm font-bold uppercase tracking-widest shadow-xl shadow-rose-pink/20 transition-all">
                 <Play className="mr-3 w-5 h-5 fill-current" /> Watch Featured Trailer
@@ -186,66 +176,88 @@ export default function VideosPage() {
           </div>
         </section>
 
-        {/* New Section: Featured Short Highlight */}
+        {/* Dual Card Section: Featured Short Teaser & Lore Details */}
         <section className="py-24 bg-white/50 backdrop-blur-sm relative overflow-hidden">
-          <div className="container mx-auto px-6 flex flex-col items-center">
-            <motion.div 
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-16 space-y-4"
-            >
+          <div className="container mx-auto px-6">
+            <div className="flex flex-col items-center mb-16 space-y-4">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-pink/10 text-rose-pink text-[10px] font-bold uppercase tracking-[0.3em] border border-rose-pink/20">
                 <Sparkles className="w-3.5 h-3.5" /> Latest Enchanted Short
               </div>
-              <h2 className="font-headline text-4xl md:text-5xl text-foreground">A Glimpse of Magic</h2>
-            </motion.div>
+              <h2 className="font-headline text-4xl md:text-5xl text-foreground text-center">Moments in Motion</h2>
+            </div>
 
-            {/* Vertical Video Container */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="relative w-full max-w-[400px] aspect-[9/16] group"
-            >
-              {/* Outer Glow */}
-              <div className="absolute inset-0 bg-rose-pink/20 blur-[60px] rounded-[3.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              
-              <div className="relative h-full w-full rounded-[3.5rem] overflow-hidden glass-morphism border-[12px] border-white/40 shadow-[0_50px_100px_-20px_rgba(247,183,195,0.4)] bg-black">
-                <iframe
-                  width="100%"
-                  height="100%"
-                  src="https://www.youtube.com/embed/7U0izt4zZTo?autoplay=0&controls=1&rel=0"
-                  title="PETALS Studio Featured Short"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  className="w-full h-full"
-                ></iframe>
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
+              {/* Card 1: The Vertical Video Teaser */}
+              <motion.div 
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="relative aspect-[9/16] group"
+              >
+                <div className="absolute inset-0 bg-rose-pink/20 blur-[40px] rounded-[3.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <div className="relative h-full w-full rounded-[3.5rem] overflow-hidden glass-morphism border-[8px] border-white/60 shadow-2xl bg-black">
+                  <video 
+                    autoPlay 
+                    loop 
+                    muted 
+                    playsInline 
+                    className="w-full h-full object-cover opacity-90"
+                    src="https://dl.dropboxusercontent.com/scl/fi/e5q2ljsvktv7ezdwu4x6g/_scene_2_816_sec__starlet_appears_visual_starlet_f_fc0bf0b59e.mp4?rlkey=d4af1u96ftmum7xl6sdqc0510&raw=1"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-10">
+                    <div className="text-white space-y-2">
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-rose-pink">Character Short</p>
+                      <p className="font-headline italic text-lg">Starlet's Midnight Bloom</p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
 
-              {/* Decorative Frame Elements */}
-              <div className="absolute -top-6 -left-6 w-24 h-24 bg-fairy-gold/20 blur-2xl rounded-full" />
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-rose-pink/20 blur-2xl rounded-full" />
-            </motion.div>
+              {/* Card 2: Details & Social Links */}
+              <motion.div 
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="space-y-10"
+              >
+                <div className="glass-morphism rounded-[3rem] p-10 md:p-12 space-y-8 border-rose-pink/10 shadow-xl">
+                  <div className="space-y-4">
+                    <h3 className="font-headline text-3xl md:text-4xl text-foreground">Starlet's Midnight Bloom</h3>
+                    <p className="text-lg text-muted-foreground italic font-headline leading-relaxed">
+                      "In every fleeting moment, a story begins to bloom. Witness the delicate dance of magic in our latest character short, exploring the boundaries of starlight and shadow."
+                    </p>
+                  </div>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5 }}
-              className="mt-12 text-center max-w-lg"
-            >
-              <p className="text-xl text-muted-foreground italic font-headline leading-relaxed">
-                "In every fleeting moment, a story begins to bloom. Witness the delicate dance of magic in our latest character short."
-              </p>
-              <div className="mt-8 flex justify-center gap-4">
-                 <div className="h-1 w-12 bg-rose-pink/20 rounded-full" />
-                 <div className="h-1 w-24 bg-rose-pink rounded-full" />
-                 <div className="h-1 w-12 bg-rose-pink/20 rounded-full" />
-              </div>
-            </motion.div>
+                  <div className="space-y-4 pt-4">
+                    <Button asChild className="w-full bg-rose-pink text-white h-14 rounded-2xl font-bold uppercase tracking-widest text-xs shadow-lg shadow-rose-pink/20 group">
+                      <a href="https://www.youtube.com/shorts/7U0izt4zZTo" target="_blank" rel="noopener noreferrer">
+                        <Youtube className="mr-3 w-5 h-5" /> Watch Full Short
+                      </a>
+                    </Button>
+                    <div className="grid grid-cols-2 gap-4">
+                      <Button asChild variant="outline" className="h-14 rounded-2xl border-rose-pink text-rose-pink hover:bg-rose-pink/5 font-bold uppercase tracking-widest text-[10px]">
+                        <a href="/books">
+                          <ShoppingBag className="mr-2 w-4 h-4" /> Shop Collection
+                        </a>
+                      </Button>
+                      <Button asChild variant="outline" className="h-14 rounded-2xl border-rose-pink text-rose-pink hover:bg-rose-pink/5 font-bold uppercase tracking-widest text-[10px]">
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                          <Instagram className="mr-2 w-4 h-4" /> See Posts
+                        </a>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4 px-6 opacity-60">
+                  <div className="h-px flex-1 bg-rose-pink/30" />
+                  <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-rose-pink">Petals Originals</span>
+                  <div className="h-px flex-1 bg-rose-pink/30" />
+                </div>
+              </motion.div>
+            </div>
           </div>
         </section>
 
@@ -292,13 +304,11 @@ export default function VideosPage() {
                           className="object-cover transition-transform duration-700 group-hover:scale-110"
                           data-ai-hint="video thumbnail"
                         />
-                        {/* Play Button Overlay */}
                         <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-center justify-center">
                           <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white scale-90 group-hover:scale-105 transition-all duration-500 border border-white/40 shadow-xl">
                             <Play className="w-6 h-6 fill-current translate-x-0.5" />
                           </div>
                         </div>
-                        {/* Duration Badge */}
                         <div className="absolute bottom-6 right-6 px-3 py-1 rounded-lg bg-black/60 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-widest border border-white/10">
                           {video.duration}
                         </div>
