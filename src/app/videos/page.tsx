@@ -187,7 +187,7 @@ export default function VideosPage() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center max-w-7xl mx-auto">
-              {/* Card 1: The Teaser Video Card (Now "Little Big" at 7/12 cols) */}
+              {/* Card 1: The Teaser Video Card */}
               <motion.div 
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -214,7 +214,7 @@ export default function VideosPage() {
                 </div>
               </motion.div>
 
-              {/* Card 2: Details & Social Links (Now 5/12 cols) */}
+              {/* Card 2: Details & Social Links */}
               <motion.div 
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -258,6 +258,29 @@ export default function VideosPage() {
                 </div>
               </motion.div>
             </div>
+          </div>
+        </section>
+
+        {/* Brand Tagline Section */}
+        <section className="pt-32 pb-12">
+          <div className="container mx-auto px-6 text-center space-y-6">
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="font-headline text-4xl md:text-5xl text-foreground"
+            >
+              Illustrations That Tell Their Own Stories
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-xl md:text-2xl text-muted-foreground italic font-headline max-w-3xl mx-auto"
+            >
+              Where every brushstroke holds a world waiting to bloom.
+            </motion.p>
           </div>
         </section>
 
