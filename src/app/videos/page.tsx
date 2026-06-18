@@ -86,7 +86,7 @@ export default function VideosPage() {
       <Navbar />
 
       <main className="relative">
-        {/* Cinematic Background Hero Section */}
+        {/* Cinematic Background Hero Section - No Mask, Clear Image */}
         <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 overflow-hidden bg-black">
           {/* Background Full Cover */}
           <div className="absolute inset-0 z-0">
@@ -94,18 +94,19 @@ export default function VideosPage() {
               src={heroImage?.imageUrl || "https://picsum.photos/seed/vhero/1200/600"}
               alt="Featured Cinematic Journey"
               fill
-              className="object-cover opacity-60 transition-transform duration-[10s] scale-105 group-hover:scale-110"
+              className="object-cover opacity-100 transition-transform duration-[10s] scale-105"
               data-ai-hint="cinematic fantasy animation"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-[#0a0a0a]" />
+            {/* Minimal shadow only at the very bottom for transition to the next section */}
+            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/40 to-transparent" />
           </div>
 
           <div className="container mx-auto px-6 relative z-10 flex flex-col items-center text-center">
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-rose-pink/20 backdrop-blur-md text-rose-pink text-[10px] font-bold uppercase tracking-[0.4em] border border-rose-pink/20 mb-8"
+              className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-black/40 backdrop-blur-md text-rose-pink text-[10px] font-bold uppercase tracking-[0.4em] border border-white/20 mb-8"
             >
               <Sparkles className="w-3.5 h-3.5" /> Cinematic Storytelling
             </motion.div>
@@ -114,7 +115,7 @@ export default function VideosPage() {
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
-              className="font-headline text-5xl md:text-7xl lg:text-8xl text-white leading-[1.1] mb-8"
+              className="font-headline text-5xl md:text-7xl lg:text-8xl text-white leading-[1.1] mb-8 drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]"
             >
               Enchanting Tales <br />
               <span className="italic text-rose-pink">Brought To Life</span>
@@ -124,7 +125,7 @@ export default function VideosPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-xl md:text-2xl text-white/80 font-headline italic leading-relaxed max-w-3xl mb-16"
+              className="text-xl md:text-2xl text-white font-headline italic leading-relaxed max-w-3xl mb-16 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
             >
               Discover magical worlds, beloved characters, and emotional adventures through cinematic storytelling and animated experiences crafted to inspire wonder.
             </motion.p>
@@ -138,7 +139,7 @@ export default function VideosPage() {
               <motion.div 
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-white/10 backdrop-blur-xl border border-white/30 flex items-center justify-center text-white shadow-2xl cursor-pointer group"
+                className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-white shadow-2xl cursor-pointer group"
               >
                 <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-pearl-white flex items-center justify-center shadow-lg transition-transform group-hover:scale-105">
                   <Play className="w-8 h-8 md:w-10 md:h-10 fill-rose-pink text-rose-pink translate-x-1" />
@@ -150,7 +151,7 @@ export default function VideosPage() {
               <Button size="lg" className="bg-rose-pink text-white hover:bg-rose-pink/90 rounded-full px-12 h-16 text-sm font-bold uppercase tracking-widest shadow-2xl shadow-rose-pink/40 transition-all">
                 <Play className="mr-3 w-5 h-5 fill-current" /> Watch Featured Trailer
               </Button>
-              <Button variant="outline" size="lg" className="border-white/40 bg-white/5 backdrop-blur-md text-white hover:bg-white hover:text-black rounded-full px-12 h-16 text-sm font-bold uppercase tracking-widest transition-all">
+              <Button variant="outline" size="lg" className="border-white/40 bg-black/40 backdrop-blur-md text-white hover:bg-white hover:text-black rounded-full px-12 h-16 text-sm font-bold uppercase tracking-widest transition-all">
                 <Sparkles className="mr-3 w-5 h-5" /> Explore Collection
               </Button>
             </div>
