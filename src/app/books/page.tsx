@@ -152,7 +152,6 @@ const featuredTaleSisters = {
 };
 
 export default function BooksPage() {
-  const crystalRoseBg = PlaceHolderImages.find(img => img.id === 'crystal-rose-universe');
   const featuredBookCover = PlaceHolderImages.find(img => img.id === 'book-whispers');
 
   return (
@@ -162,16 +161,9 @@ export default function BooksPage() {
 
       <main className="relative">
         {/* Featured Hero Section */}
-        <section className="relative min-h-screen flex items-center pt-24 overflow-hidden">
+        <section className="relative min-h-[75vh] flex items-center pt-24 overflow-hidden">
           <div className="absolute inset-0 z-0">
-            <Image 
-              src={crystalRoseBg?.imageUrl || ""}
-              alt="Moonlit Ocean"
-              fill
-              className="object-cover opacity-30 scale-110 blur-sm"
-              data-ai-hint="moonlit ocean"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-pearl-white/80 via-transparent to-pearl-white" />
+            <div className="absolute inset-0 bg-gradient-to-b from-rose-pink/10 via-transparent to-pearl-white" />
           </div>
 
           <div className="container mx-auto px-12 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
@@ -349,7 +341,7 @@ export default function BooksPage() {
                     </div>
 
                     <div className="space-y-4 flex-1 flex flex-col">
-                      <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-widest text-rose-pink">
+                      <div className="flex items-center gap-10 justify-between text-[10px] font-bold uppercase tracking-widest text-rose-pink">
                         <span>{book.genre}</span>
                         <div className="flex items-center gap-1 text-fairy-gold">
                           <Star className="w-3 h-3 fill-current" />
