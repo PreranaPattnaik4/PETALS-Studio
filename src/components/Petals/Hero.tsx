@@ -19,7 +19,7 @@ export function Hero() {
           src={roseImg?.imageUrl || ""}
           alt="Cinematic Background"
           fill
-          className="object-cover opacity-90 brightness-110 transition-opacity duration-1000"
+          className="object-cover opacity-90 brightness-110"
           style={{ objectPosition: '30% 40%' }}
           data-ai-hint="signature rose background"
           priority
@@ -50,10 +50,10 @@ export function Hero() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-pink/20 text-rose-pink text-xs font-bold uppercase tracking-[0.3em] border border-white/10 backdrop-blur-md"
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-pink/20 text-rose-pink text-[10px] font-bold uppercase tracking-[0.3em] border border-white/10 backdrop-blur-md"
               >
                 <span className="flex items-center gap-2">
-                  <Sparkles className="w-4 h-4" /> The Next Generation of Fantasy
+                  <Sparkles className="w-3.5 h-3.5" /> The Next Generation of Fantasy
                 </span>
               </motion.div>
               
@@ -68,12 +68,12 @@ export function Hero() {
             </div>
 
             <div className="flex flex-wrap items-center gap-6 pt-6">
-              <Button asChild className="h-12 px-8 rounded-full bg-rose-pink text-white hover:bg-rose-pink/90 text-sm font-bold uppercase tracking-widest shadow-2xl shadow-rose-pink/30 group">
+              <Button asChild className="h-10 px-6 rounded-full bg-rose-pink text-white hover:bg-rose-pink/90 text-xs font-bold uppercase tracking-widest shadow-2xl shadow-rose-pink/30 group">
                 <Link href="/books">
                   Explore Stories <ArrowRight className="ml-3 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
-              <Button variant="outline" className="h-12 px-8 rounded-full border-white/40 bg-white/5 backdrop-blur-md text-white hover:bg-white hover:text-black transition-all text-sm font-bold uppercase tracking-widest group">
+              <Button variant="outline" className="h-10 px-6 rounded-full border-white/40 bg-white/5 backdrop-blur-md text-white hover:bg-white hover:text-black transition-all text-xs font-bold uppercase tracking-widest group">
                 <Play className="mr-3 w-4 h-4 fill-current" /> Watch Trailer
               </Button>
             </div>
@@ -90,3 +90,4 @@ export function Hero() {
     </section>
   );
 }
+

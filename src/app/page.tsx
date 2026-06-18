@@ -106,14 +106,14 @@ export default function Home() {
               >
                 <div className="space-y-6">
                   <div className="space-y-0.5">
-                    <h3 className="font-headline text-2xl md:text-3xl tracking-widest uppercase font-bold text-rose-pink">PETALS</h3>
-                    <p className="text-[10px] uppercase tracking-[0.5em] text-muted-foreground font-bold">Studio</p>
+                    <h3 className="font-headline text-3xl md:text-5xl tracking-[0.2em] uppercase font-bold text-rose-pink">PETALS</h3>
+                    <p className="text-[12px] uppercase tracking-[0.5em] text-muted-foreground font-bold">Studio</p>
                   </div>
                 </div>
 
                 <h2 className="font-headline text-3xl md:text-4xl leading-tight">
-                  Where Imagination <br />
-                  <span className="italic text-rose-pink">Meets Elegance</span>
+                  Crafting illustrated stories that <br />
+                  <span className="italic text-rose-pink">unfold like petals, blooming layer by layer.</span>
                 </h2>
                 
                 <p className="text-lg md:text-xl text-muted-foreground font-headline italic leading-relaxed">
@@ -142,7 +142,7 @@ export default function Home() {
                   Our stories celebrate kindness, imagination, wonder, courage, and emotional growth. We believe fantasy should feel like a sanctuary.
                 </p>
               </div>
-              <Button size="sm" className="bg-rose-pink text-white rounded-full px-10 h-11 uppercase tracking-widest text-xs font-bold shadow-lg shadow-rose-pink/20">
+              <Button size="sm" className="bg-rose-pink text-white rounded-full px-10 h-10 uppercase tracking-widest text-xs font-bold shadow-lg shadow-rose-pink/20">
                 Learn Our Story
               </Button>
             </div>
@@ -191,10 +191,10 @@ export default function Home() {
                   A young ocean-born girl named Alora must uncover the truth behind the legendary Crystal Rose before darkness consumes everything she loves.
                 </p>
                 <div className="flex flex-wrap gap-4 pt-4">
-                  <Button size="sm" className="bg-rose-pink text-white hover:bg-rose-pink/90 rounded-full px-10 h-11 text-sm shadow-xl shadow-rose-pink/20 font-bold uppercase tracking-widest">
+                  <Button size="sm" className="bg-rose-pink text-white hover:bg-rose-pink/90 rounded-full px-10 h-10 text-xs shadow-xl shadow-rose-pink/20 font-bold uppercase tracking-widest">
                     Read Book
                   </Button>
-                  <Button variant="outline" size="sm" className="border-rose-pink text-rose-pink hover:bg-rose-pink/5 rounded-full px-10 h-11 text-sm font-bold uppercase tracking-widest">
+                  <Button variant="outline" size="sm" className="border-rose-pink text-rose-pink hover:bg-rose-pink/5 rounded-full px-10 h-10 text-xs font-bold uppercase tracking-widest">
                     Watch Trailer
                   </Button>
                 </div>
@@ -295,7 +295,7 @@ export default function Home() {
                 <h2 className="font-headline text-5xl md:text-6xl">Blooming Collection</h2>
                 <p className="text-xl text-muted-foreground italic font-headline">Explore our world of gentle fantasy.</p>
               </div>
-              <Button variant="outline" size="sm" className="border-rose-pink text-rose-pink rounded-full px-8 h-11 uppercase tracking-widest text-xs font-bold">
+              <Button variant="outline" size="sm" className="border-rose-pink text-rose-pink rounded-full px-8 h-10 uppercase tracking-widest text-xs font-bold">
                 View All Books
               </Button>
             </div>
@@ -321,7 +321,7 @@ export default function Home() {
                         data-ai-hint="book cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
-                        <Button size="sm" className="w-full bg-white text-black rounded-full h-11 font-bold uppercase tracking-widest text-xs">
+                        <Button size="sm" className="w-full bg-white text-black rounded-full h-10 font-bold uppercase tracking-widest text-xs">
                           Read Story
                         </Button>
                       </div>
@@ -354,7 +354,7 @@ export default function Home() {
                   placeholder="Enter your magical email..."
                   className="flex-1 h-16 rounded-full bg-white/50 border-rose-pink/20 px-8 text-lg focus:outline-none focus:ring-2 focus:ring-rose-pink/50 transition-all"
                 />
-                <Button size="sm" className="bg-rose-pink text-white rounded-full px-12 h-16 text-sm shadow-xl shadow-rose-pink/20 uppercase tracking-widest font-bold">
+                <Button size="sm" className="bg-rose-pink text-white rounded-full px-12 h-16 text-xs shadow-xl shadow-rose-pink/20 uppercase tracking-widest font-bold">
                   Subscribe
                 </Button>
               </div>
@@ -367,3 +367,4 @@ export default function Home() {
     </div>
   );
 }
+
