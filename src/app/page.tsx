@@ -17,10 +17,28 @@ import {
   Heart, 
   Play, 
   ChevronRight,
-  Mail
+  Mail,
+  Instagram,
+  Youtube,
+  Linkedin
 } from "lucide-react";
 import { CharacterShowcase } from "@/components/Petals/CharacterShowcase";
 import { DreamweaverPortal } from "@/components/Petals/DreamweaverPortal";
+
+const AmazonIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    {...props}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M3 13.5c1.5 1 4.5 2.5 9 2.5s7.5-1.5 9-2.5" />
+    <path d="M17.5 13.5c1 0 3.5 0 3.5 0l0-3.5" />
+  </svg>
+);
 
 const services = [
   {
@@ -119,6 +137,21 @@ export default function Home() {
                 <p className="text-lg md:text-xl text-muted-foreground font-headline italic leading-relaxed">
                   PETALS is a premium illustration-first fantasy storytelling and animation company focused on emotionally comforting, cinematic, and artistically elegant experiences for children, families, and fantasy audiences.
                 </p>
+
+                <div className="flex items-center gap-6 pt-2">
+                  <a href="#" className="text-muted-foreground hover:text-rose-pink transition-colors">
+                    <Instagram className="w-3.5 h-3.5" />
+                  </a>
+                  <a href="#" className="text-muted-foreground hover:text-rose-pink transition-colors">
+                    <Youtube className="w-3.5 h-3.5" />
+                  </a>
+                  <a href="#" className="text-muted-foreground hover:text-rose-pink transition-colors">
+                    <AmazonIcon className="w-3.5 h-3.5" />
+                  </a>
+                  <a href="#" className="text-muted-foreground hover:text-rose-pink transition-colors">
+                    <Linkedin className="w-3.5 h-3.5" />
+                  </a>
+                </div>
                 
                 <div className="h-1 w-24 bg-rose-pink/20 rounded-full" />
               </motion.div>
@@ -367,4 +400,3 @@ export default function Home() {
     </div>
   );
 }
-

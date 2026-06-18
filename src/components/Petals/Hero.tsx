@@ -68,12 +68,12 @@ export function Hero() {
             </div>
 
             <div className="flex flex-wrap items-center gap-6 pt-6">
-              <Button asChild className="h-10 px-6 rounded-full bg-rose-pink text-white hover:bg-rose-pink/90 text-xs font-bold uppercase tracking-widest shadow-2xl shadow-rose-pink/30 group">
+              <Button asChild className="h-10 px-6 rounded-full bg-rose-pink text-white hover:bg-rose-pink/90 text-[10px] font-bold uppercase tracking-widest shadow-2xl shadow-rose-pink/30 group">
                 <Link href="/books">
                   Explore Stories <ArrowRight className="ml-3 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
-              <Button variant="outline" className="h-10 px-6 rounded-full border-white/40 bg-white/5 backdrop-blur-md text-white hover:bg-white hover:text-black transition-all text-xs font-bold uppercase tracking-widest group">
+              <Button variant="outline" className="h-10 px-6 rounded-full border-white/40 bg-white/5 backdrop-blur-md text-white hover:bg-white hover:text-black transition-all text-[10px] font-bold uppercase tracking-widest group">
                 <Play className="mr-3 w-4 h-4 fill-current" /> Watch Trailer
               </Button>
             </div>
@@ -90,4 +90,3 @@ export function Hero() {
     </section>
   );
 }
-
