@@ -13,28 +13,30 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0a0a]">
-      {/* Background with Magic Blur */}
+      {/* Background with Cinematic Overlays */}
       <div className="absolute inset-0 z-0">
         <Image 
           src={roseImg?.imageUrl || ""}
           alt="Cinematic Background"
           fill
-          className="object-cover opacity-40 scale-105"
+          className="object-cover opacity-50 scale-105"
           data-ai-hint="signature rose background"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent" />
+        {/* Dark Vignette Overlay for Readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/60 to-transparent" />
+        <div className="absolute inset-0 bg-black/30" />
+        {/* Bottom Transition Gradient */}
         <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-pearl-white to-transparent" />
       </div>
 
       <div className="container mx-auto px-12 relative z-10 pt-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
+        <div className="max-w-4xl">
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="lg:col-span-7 space-y-10"
+            className="space-y-10"
           >
             <div className="space-y-6">
               <motion.div
@@ -51,7 +53,7 @@ export function Hero() {
                 <span className="italic text-rose-pink">Bloom</span> Into Worlds
               </h1>
               
-              <p className="max-w-2xl text-xl text-white/70 leading-relaxed font-headline italic">
+              <p className="max-w-2xl text-xl text-white/80 leading-relaxed font-headline italic">
                 Creating magical storybooks, enchanting characters, and cinematic animated adventures that capture the heart of imagination.
               </p>
             </div>
@@ -67,32 +69,14 @@ export function Hero() {
               </Button>
             </div>
           </motion.div>
-
-          {/* Floating Element */}
-          <div className="lg:col-span-5 relative h-[600px] hidden lg:flex items-center justify-center">
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8, rotate: -20 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ duration: 1.5, delay: 0.2 }}
-              className="relative w-full h-full drop-shadow-[0_0_100px_rgba(247,183,195,0.4)]"
-            >
-              <Image 
-                src={roseImg?.imageUrl || ""}
-                alt="Petals Signature Rose"
-                fill
-                className="object-contain"
-                data-ai-hint="pink rose flower"
-              />
-              
-              {/* Floating Dust Particles */}
-              <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-fairy-gold rounded-full blur-[2px] animate-pulse" />
-                <div className="absolute bottom-1/3 right-1/4 w-1 h-1 bg-white rounded-full blur-[1px] animate-pulse delay-700" />
-                <div className="absolute top-1/2 right-1/2 w-3 h-3 bg-rose-pink rounded-full blur-[4px] animate-pulse delay-1000" />
-              </div>
-            </motion.div>
-          </div>
         </div>
+      </div>
+
+      {/* Subtle Floating Dust Particles */}
+      <div className="absolute inset-0 pointer-events-none z-[5]">
+        <div className="absolute top-1/4 left-1/3 w-2 h-2 bg-fairy-gold rounded-full blur-[2px] animate-pulse opacity-40" />
+        <div className="absolute bottom-1/3 right-1/4 w-1 h-1 bg-white rounded-full blur-[1px] animate-pulse delay-700 opacity-30" />
+        <div className="absolute top-1/2 right-1/3 w-3 h-3 bg-rose-pink rounded-full blur-[4px] animate-pulse delay-1000 opacity-20" />
       </div>
     </section>
   );
