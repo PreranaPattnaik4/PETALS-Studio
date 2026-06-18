@@ -68,7 +68,7 @@ export default function AboutPage() {
 
       <main>
         {/* Cinematic Curved Hero Section */}
-        <section className="relative pt-64 pb-96 overflow-hidden bg-pearl-white min-h-[85vh] flex items-center">
+        <section className="relative pt-40 pb-64 overflow-hidden bg-pearl-white min-h-[90vh] flex items-center">
           <div className="absolute inset-0 z-0">
             <Image 
               src={heroImg?.imageUrl || ""}
@@ -77,16 +77,14 @@ export default function AboutPage() {
               className="object-cover"
               priority
             />
-            {/* Minimal gradient for readability on the right side */}
-            <div className="absolute inset-0 bg-gradient-to-l from-black/30 via-transparent to-transparent opacity-40" />
           </div>
           
-          <div className="container mx-auto px-6 relative z-10 flex justify-end">
-            <div className="max-w-2xl text-right space-y-6">
+          <div className="container mx-auto px-12 relative z-10 flex justify-start">
+            <div className="max-w-2xl text-left space-y-6">
               <motion.div
-                initial={{ opacity: 0, x: 20 }}
+                initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-[0.3em] border border-white/10 backdrop-blur-md"
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/10 text-white text-[10px] font-bold uppercase tracking-[0.3em] border border-white/20 backdrop-blur-md"
               >
                 <Sparkles className="w-3.5 h-3.5" /> Discover Our Heart
               </motion.div>
