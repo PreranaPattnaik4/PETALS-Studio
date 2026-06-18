@@ -25,6 +25,7 @@ import {
 import { CharacterShowcase } from "@/components/Petals/CharacterShowcase";
 import { DreamweaverPortal } from "@/components/Petals/DreamweaverPortal";
 import { ShareSection } from "@/components/Petals/ShareSection";
+import { FinalCTA } from "@/components/Petals/FinalCTA";
 
 const AmazonIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -398,6 +399,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Final CTA Section */}
+        <FinalCTA />
 
         <Footer />
       </main>
