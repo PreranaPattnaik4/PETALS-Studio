@@ -201,14 +201,11 @@ export default function BooksPage() {
               </div>
 
               <div className="flex flex-wrap gap-4 pt-4">
-                <Button size="lg" className="bg-rose-pink text-white hover:bg-rose-pink/90 rounded-2xl px-8 h-14 text-lg shadow-xl shadow-rose-pink/20">
+                <Button size="sm" className="bg-rose-pink text-white hover:bg-rose-pink/90 rounded-2xl px-8 h-10 text-xs font-bold uppercase tracking-widest shadow-xl shadow-rose-pink/20">
                   <ShoppingBag className="mr-2 w-5 h-5" /> Buy Now
                 </Button>
-                <Button variant="outline" size="lg" className="border-rose-pink text-rose-pink hover:bg-rose-pink/5 rounded-2xl px-8 h-14 text-lg">
+                <Button variant="outline" size="sm" className="border-rose-pink text-rose-pink hover:bg-rose-pink/5 rounded-2xl px-8 h-10 text-xs font-bold uppercase tracking-widest">
                   <FileText className="mr-2 w-5 h-5" /> Read Sample
-                </Button>
-                <Button variant="ghost" size="lg" className="text-fairy-gold hover:text-fairy-gold/80 h-14 text-lg">
-                  <Play className="mr-2 w-5 h-5 fill-current" /> Watch Trailer
                 </Button>
               </div>
 
@@ -272,6 +269,41 @@ export default function BooksPage() {
                 </motion.div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Community Call to Action (Inspired by Vooks) */}
+        <section className="relative py-32 overflow-hidden">
+          <div className="absolute inset-0 z-0">
+            <Image 
+              src={crystalRoseBg?.imageUrl || ""}
+              alt="Community Background"
+              fill
+              className="object-cover brightness-[0.4]"
+              data-ai-hint="magical forest landscape"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-pearl-white via-transparent to-pearl-white" />
+          </div>
+
+          <div className="container mx-auto px-12 relative z-10 text-center space-y-8">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="max-w-3xl mx-auto space-y-6"
+            >
+              <h2 className="font-headline text-5xl md:text-7xl text-white">
+                Unfold Their <span className="italic text-rose-pink">Imagination</span>
+              </h2>
+              <p className="text-xl text-white/80 font-headline italic leading-relaxed">
+                Join our community of dreamers to access exclusive lore, interactive activities, and the full collection of PETALS storybooks.
+              </p>
+              <div className="pt-4">
+                <Button size="sm" className="bg-rose-pink text-white hover:bg-rose-pink/90 rounded-full px-10 h-10 font-bold uppercase tracking-widest shadow-xl shadow-rose-pink/20">
+                  Start Your Magical Journey
+                </Button>
+              </div>
+            </motion.div>
           </div>
         </section>
 
@@ -359,7 +391,7 @@ export default function BooksPage() {
                           asChild
                           variant="default"
                           size="sm"
-                          className="bg-rose-pink text-white hover:bg-rose-pink/90 rounded-xl shadow-md h-10 text-xs"
+                          className="bg-rose-pink text-white hover:bg-rose-pink/90 rounded-xl shadow-md h-10 text-xs font-bold uppercase tracking-widest"
                         >
                           <a href={book.amazonUrl} target="_blank" rel="noopener noreferrer">
                             <ShoppingBag className="mr-2 w-3.5 h-3.5" /> Buy
@@ -369,7 +401,7 @@ export default function BooksPage() {
                           asChild
                           variant="outline"
                           size="sm"
-                          className="border-fairy-gold/50 text-fairy-gold hover:bg-fairy-gold/5 rounded-xl h-10 text-xs"
+                          className="border-fairy-gold/50 text-fairy-gold hover:bg-fairy-gold/5 rounded-xl h-10 text-xs font-bold uppercase tracking-widest"
                         >
                           <a href={book.whatsappUrl} target="_blank" rel="noopener noreferrer">
                             <Users className="mr-2 w-3.5 h-3.5" /> Community
