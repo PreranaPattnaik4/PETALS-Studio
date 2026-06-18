@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useRef, useEffect } from 'react';
@@ -75,7 +76,7 @@ export function PosterCreator() {
   const [historyIndex, setHistoryIndex] = useState(-1);
 
   const characterStickers = PlaceHolderImages.filter(img => 
-    img.id.startsWith('char-') || img.id === 'petals-logo'
+    img.id.startsWith('char-') || img.id.startsWith('sticker-') || img.id === 'petals-logo'
   );
 
   const backgroundPresets = PlaceHolderImages.filter(img => 

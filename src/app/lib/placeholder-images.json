@@ -56,6 +56,66 @@
       "imageHint": "shadow weaver portrait"
     },
     {
+      "id": "sticker-rose",
+      "description": "Magical pink rose sticker",
+      "imageUrl": "https://picsum.photos/seed/sticker-rose/400/400",
+      "imageHint": "pink rose sticker"
+    },
+    {
+      "id": "sticker-butterfly",
+      "description": "Glistening butterfly sticker",
+      "imageUrl": "https://picsum.photos/seed/sticker-butterfly/400/400",
+      "imageHint": "butterfly sticker"
+    },
+    {
+      "id": "sticker-star",
+      "description": "Sparkling golden star sticker",
+      "imageUrl": "https://picsum.photos/seed/sticker-star/400/400",
+      "imageHint": "star sticker"
+    },
+    {
+      "id": "sticker-moon",
+      "description": "Silver crescent moon sticker",
+      "imageUrl": "https://picsum.photos/seed/sticker-moon/400/400",
+      "imageHint": "moon sticker"
+    },
+    {
+      "id": "sticker-crown",
+      "description": "Fairy tale crown sticker",
+      "imageUrl": "https://picsum.photos/seed/sticker-crown/400/400",
+      "imageHint": "crown sticker"
+    },
+    {
+      "id": "sticker-wand",
+      "description": "Magic wand sticker",
+      "imageUrl": "https://picsum.photos/seed/sticker-wand/400/400",
+      "imageHint": "magic wand sticker"
+    },
+    {
+      "id": "sticker-key",
+      "description": "Ancient enchanted key sticker",
+      "imageUrl": "https://picsum.photos/seed/sticker-key/400/400",
+      "imageHint": "key sticker"
+    },
+    {
+      "id": "sticker-potion",
+      "description": "Magical potion bottle sticker",
+      "imageUrl": "https://picsum.photos/seed/sticker-potion/400/400",
+      "imageHint": "potion bottle sticker"
+    },
+    {
+      "id": "sticker-heart",
+      "description": "Crystal heart sticker",
+      "imageUrl": "https://picsum.photos/seed/sticker-heart/400/400",
+      "imageHint": "heart sticker"
+    },
+    {
+      "id": "sticker-feather",
+      "description": "Enchanted bird feather sticker",
+      "imageUrl": "https://picsum.photos/seed/sticker-feather/400/400",
+      "imageHint": "feather sticker"
+    },
+    {
       "id": "story-bedtime",
       "description": "Gentle fantasy bedtime stories illustration",
       "imageUrl": "https://picsum.photos/seed/bedtime/600/400",
