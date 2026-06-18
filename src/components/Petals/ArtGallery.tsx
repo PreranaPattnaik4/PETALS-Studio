@@ -7,58 +7,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogTrigger, DialogClose } from '@/components/ui/dialog';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { Sparkles, ArrowRight, BookOpen } from 'lucide-react';
 
 const categories = ["All", "Characters", "Portraits", "Watercolor", "Landscapes"];
 
 const artworks = [
-  { 
-    id: "featured-sisters", 
-    category: "Characters", 
-    url: PlaceHolderImages.find(img => img.id === 'gallery-sisters')?.imageUrl || "", 
-    title: "The Bond of Two Hearts: RoseBella & Lunaria",
-    description: `🌹 RoseBella
-kind-hearted, gentle, loving, and deeply adored by everyone.
-But RoseBella’s younger sister,
-🌙 Lunaria
-was different.
-Lunaria was curious, emotional, independent, and deeply connected to strange things others feared:
-dark forests
-wounded creatures
-forgotten magic
-lonely places
-
-As a child, Lunaria rescued a tiny black kitten named:
-🖤 Nyx
-Though harmless and affectionate, villagers feared the kitten because of old superstitions.
-Lunaria could never understand:
-“Why do people fear things that never hurt anyone?”
-This slowly became the beginning of her loneliness.
-
-RoseBella always comforted and protected her younger sister.
-The sisters loved each other deeply.
-They played beneath silver trees with:
-a small deer
-two little birds
-moonflowers
-songs
-magical stories
-
-But while RoseBella was naturally loved by everyone,
-Lunaria slowly began feeling emotionally different and misunderstood.
-
-One day Lunaria discovered an ancient magical book:
-📖 Moonlight Veils
-At first, the book showed only gentle magic:
-healing light
-moonfire
-emotional magic
-peaceful spells
-
-Lunaria secretly practiced harmless magic beneath moonlight while Nyx slept beside her.
-But society feared magic.
-After a misunderstanding involving Lunaria healing a wounded deer with magic, villagers began whispering that she was dangerous.
-Their fear slowly isolated her emotionally.`
-  },
   {
     id: "moonlit-whispers",
     category: "Characters",
@@ -173,6 +126,16 @@ Their fear slowly isolated her emotionally.`
   }
 ];
 
+const featuredStory = {
+  id: "featured-sisters", 
+  category: "Featured Story", 
+  url: PlaceHolderImages.find(img => img.id === 'gallery-sisters')?.imageUrl || "", 
+  title: "The Bond of Two Hearts: RoseBella & Lunaria",
+  description: `RoseBella and Lunaria were sisters who shared more than just blood; they shared a destiny that would change their kingdom forever. 
+
+While RoseBella was adored for her gentleness and grace, Lunaria was misunderstood for her connection to the ancient, whispered magic of the dark forests. Together, they navigated a world that feared what it could not understand, proving that the strongest magic of all is the bond of sisterhood.`
+};
+
 export function ArtGallery() {
   const [activeCategory, setActiveCategory] = useState("All");
 
@@ -183,34 +146,95 @@ export function ArtGallery() {
   return (
     <section className="py-24 bg-white/30">
       <div className="container mx-auto px-6">
+        {/* Header Section */}
         <div className="text-center mb-16 space-y-4">
-          <h2 className="font-headline text-4xl md:text-5xl">Enchanted Illustrations</h2>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-pink/10 text-rose-pink text-[10px] font-bold uppercase tracking-[0.3em] border border-rose-pink/20"
+          >
+            <Sparkles className="w-3.5 h-3.5" /> Studio Portfolio
+          </motion.div>
+          <h2 className="font-headline text-5xl md:text-6xl">Enchanted Illustrations</h2>
           <div className="space-y-2">
             <p className="text-muted-foreground italic font-headline text-2xl">
               Illustrations That Tell Their Own Stories
             </p>
-            <p className="text-muted-foreground italic font-headline text-lg mb-8">
+            <p className="text-muted-foreground italic font-headline text-lg max-w-2xl mx-auto">
               Where every brushstroke holds a world waiting to bloom.
             </p>
           </div>
-          <div className="flex flex-wrap justify-center gap-4">
-            {categories.map((cat) => (
-              <Button
-                key={cat}
-                variant={activeCategory === cat ? "default" : "ghost"}
-                onClick={() => setActiveCategory(cat)}
-                className={`rounded-full px-10 h-12 text-sm font-bold uppercase tracking-widest transition-all ${
-                  activeCategory === cat 
-                    ? "bg-rose-pink hover:bg-rose-pink text-white shadow-lg shadow-rose-pink/20" 
-                    : "text-muted-foreground hover:text-rose-pink hover:bg-rose-pink/5"
-                }`}
-              >
-                {cat}
-              </Button>
-            ))}
-          </div>
         </div>
 
+        {/* Big Featured Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-24 group relative"
+        >
+          <div className="absolute inset-0 bg-rose-pink/10 blur-[100px] rounded-full scale-110 opacity-30 group-hover:opacity-50 transition-opacity" />
+          <div className="relative glass-morphism rounded-[4rem] overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-0 border border-white/40 shadow-2xl">
+            <div className="lg:col-span-7 relative h-[400px] lg:h-[600px] overflow-hidden">
+              <Image
+                src={featuredStory.url}
+                alt={featuredStory.title}
+                fill
+                className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                priority
+              />
+            </div>
+            <div className="lg:col-span-5 p-8 md:p-16 flex flex-col justify-center space-y-8 bg-white/40 backdrop-blur-md">
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 text-rose-pink font-bold uppercase tracking-[0.2em] text-xs">
+                  <BookOpen className="w-4 h-4" /> Featured Tale
+                </div>
+                <h3 className="font-headline text-4xl md:text-5xl leading-tight">
+                  {featuredStory.title}
+                </h3>
+                <p className="text-xl text-muted-foreground italic font-headline leading-relaxed">
+                  {featuredStory.description}
+                </p>
+              </div>
+              
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button className="w-fit bg-rose-pink text-white h-12 rounded-2xl px-8 font-bold uppercase tracking-widest text-xs shadow-lg shadow-rose-pink/20 group/btn">
+                    Read Full Lore <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-4xl p-0 overflow-hidden bg-white/95 backdrop-blur-xl border-none shadow-2xl rounded-[3rem]">
+                  <div className="p-12 md:p-16 overflow-y-auto max-h-[80vh] custom-scrollbar">
+                    <h3 className="font-headline text-5xl mb-8">{featuredStory.title}</h3>
+                    <div className="whitespace-pre-wrap text-muted-foreground leading-relaxed italic font-headline text-xl">
+                      {`🌹 RoseBella\nkind-hearted, gentle, loving, and deeply adored by everyone.\nBut RoseBella’s younger sister,\n🌙 Lunaria\nwas different.\nLunaria was curious, emotional, independent, and deeply connected to strange things others feared:\ndark forests\nwounded creatures\nforgotten magic\nlonely places\n\nAs a child, Lunaria rescued a tiny black kitten named:\n🖤 Nyx\nThough harmless and affectionate, villagers feared the kitten because of old superstitions.\nLunaria could never understand:\n“Why do people fear things that never hurt anyone?”\nThis slowly became the beginning of her loneliness.\n\nRoseBella always comforted and protected her younger sister.\nThe sisters loved each other deeply.\nThey played beneath silver trees with:\na small deer\ntwo little birds\nmoonflowers\nsongs\nmagical stories\n\nBut while RoseBella was naturally loved by everyone,\nLunaria slowly began feeling emotionally different and misunderstood.\n\nOne day Lunaria discovered an ancient magical book:\n📖 Moonlight Veils\nAt first, the book showed only gentle magic:\nhealing light\nmoonfire\nemotional magic\npeaceful spells\n\nLunaria secretly practiced harmless magic beneath moonlight while Nyx slept beside her.\nBut society feared magic.\nAfter a misunderstanding involving Lunaria healing a wounded deer with magic, villagers began whispering that she was dangerous.\nTheir fear slowly isolated her emotionally.`}
+                    </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Filter Bar */}
+        <div className="flex flex-wrap justify-center gap-4 mb-16">
+          {categories.map((cat) => (
+            <Button
+              key={cat}
+              variant={activeCategory === cat ? "default" : "ghost"}
+              onClick={() => setActiveCategory(cat)}
+              className={`rounded-full px-10 h-12 text-sm font-bold uppercase tracking-widest transition-all ${
+                activeCategory === cat 
+                  ? "bg-rose-pink hover:bg-rose-pink text-white shadow-lg shadow-rose-pink/20" 
+                  : "text-muted-foreground hover:text-rose-pink hover:bg-rose-pink/5"
+              }`}
+            >
+              {cat}
+            </Button>
+          ))}
+        </div>
+
+        {/* Masonry Grid */}
         <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
           <AnimatePresence mode="popLayout">
             {filteredArt.map((art) => (
