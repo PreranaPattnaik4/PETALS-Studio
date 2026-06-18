@@ -19,7 +19,6 @@ import {
   Sparkles,
   Upload,
   RefreshCw,
-  Check,
   Wand2,
   Cake,
   Palette,
@@ -153,32 +152,26 @@ export function PosterCreator() {
       toast({ title: "Magic Complete!", description: "Your AI creation is ready." });
     } catch (err: any) {
       console.error(err);
-      const msg = err?.message?.includes("Body exceeded") ? "The photo is too large for our magical portal. Please use a smaller file." : "The magic faded too soon. Please try again.";
-      toast({ variant: "destructive", title: "Enchantment Failed", description: msg });
+      toast({ variant: "destructive", title: "Enchantment Failed", description: "The magic faded too soon. Please try again." });
     } finally {
       setIsGenerating(false);
     }
   };
 
   const downloadPoster = async () => {
-    if (!canvasRef.current && !aiResultImage) return;
     setIsExporting(true);
     try {
-      let url = "";
       if (aiResultImage) {
-        // Download the AI generated image. It's a base64 data URI from Genkit.
-        url = aiResultImage;
-      } else if (canvasRef.current) {
-        url = await toPng(canvasRef.current, { cacheBust: true, quality: 1 });
-      }
-
-      if (url.startsWith('data:')) {
         const link = document.createElement('a');
-        link.download = `petals-creation-${Date.now()}.png`;
+        link.download = `petals-ai-creation-${Date.now()}.png`;
+        link.href = aiResultImage;
+        link.click();
+      } else if (canvasRef.current) {
+        const url = await toPng(canvasRef.current, { cacheBust: true, quality: 1 });
+        const link = document.createElement('a');
+        link.download = `petals-manual-creation-${Date.now()}.png`;
         link.href = url;
         link.click();
-      } else {
-        window.open(url, '_blank');
       }
       toast({ title: "Success!", description: "Your magical creation has been saved." });
     } catch (err) {
@@ -293,7 +286,7 @@ export function PosterCreator() {
                 <div className="w-16 h-16 rounded-3xl bg-rose-pink/10 text-rose-pink flex items-center justify-center mx-auto mb-4">
                   <Palette className="w-8 h-8" />
                 </div>
-                <h3 className="font-headline text-2xl">Signature Wall Art</h3>
+                <h3 className="font-headline text-2xl">🌹 Wall Art Creator</h3>
                 <p className="text-sm text-muted-foreground italic leading-relaxed">
                   Generate a premium fantasy wall art piece featuring the signature PETALS crystal rose and luxury typography.
                 </p>
@@ -363,11 +356,6 @@ export function PosterCreator() {
                 )}
 
                 <div className="text-center space-y-4">
-                  <p className="text-[10px] text-muted-foreground italic">
-                    {birthdaySubMode === 'fixed' 
-                      ? "Create an enchanting crystal rose birthday card." 
-                      : "Create a magical portrait of your loved one."}
-                  </p>
                   <Button 
                     onClick={handleAiGeneration} 
                     disabled={isGenerating || (birthdaySubMode === 'personalized' && (!personalizedPhoto || !birthdayName))}

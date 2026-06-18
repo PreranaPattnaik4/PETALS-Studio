@@ -5,7 +5,6 @@
 
 import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
-import { googleAI } from '@genkit-ai/google-genai';
 
 // --- Wall Art Flow ---
 export async function generateWallArt(): Promise<string> {
