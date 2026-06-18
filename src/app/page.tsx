@@ -72,6 +72,38 @@ export default function Home() {
       <main>
         <Hero />
 
+        {/* About Section - Moved Above Spotlight */}
+        <section id="about" className="py-32 bg-rose-pink/5">
+          <div className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+            <div className="space-y-8">
+              <h2 className="font-headline text-5xl md:text-6xl leading-tight">
+                Our Mission: <br />
+                <span className="italic text-rose-pink">Emotion In Every Petal</span>
+              </h2>
+              <div className="space-y-6 text-xl text-muted-foreground font-headline italic leading-relaxed">
+                <p>
+                  PETALS is a premium illustration-first fantasy media studio dedicated to creating magical stories, enchanting illustrations, cinematic animations, and emotionally comforting universes.
+                </p>
+                <p>
+                  Our stories celebrate kindness, imagination, wonder, courage, and emotional growth. We believe fantasy should feel like a sanctuary.
+                </p>
+              </div>
+              <Button size="lg" className="bg-rose-pink text-white rounded-full px-10 h-12 uppercase tracking-widest text-xs font-bold">
+                Learn Our Story
+              </Button>
+            </div>
+            <div className="relative aspect-square">
+              <Image 
+                src={PlaceHolderImages.find(img => img.id === 'hero-main')?.imageUrl || ""}
+                alt="Studio Mission"
+                fill
+                className="object-contain"
+                data-ai-hint="storybook illustration"
+              />
+            </div>
+          </div>
+        </section>
+
         {/* Featured Book Spotlight */}
         <section className="py-32 relative overflow-hidden">
           <div className="container mx-auto px-6">
@@ -105,10 +137,10 @@ export default function Home() {
                   A young ocean-born girl named Alora must uncover the truth behind the legendary Crystal Rose before darkness consumes everything she loves.
                 </p>
                 <div className="flex flex-wrap gap-4 pt-4">
-                  <Button size="lg" className="bg-rose-pink text-white hover:bg-rose-pink/90 rounded-full px-10 h-14 text-lg shadow-xl shadow-rose-pink/20">
+                  <Button size="lg" className="bg-rose-pink text-white hover:bg-rose-pink/90 rounded-full px-10 h-12 text-lg shadow-xl shadow-rose-pink/20">
                     Read Book
                   </Button>
-                  <Button variant="outline" size="lg" className="border-rose-pink text-rose-pink hover:bg-rose-pink/5 rounded-full px-10 h-14 text-lg">
+                  <Button variant="outline" size="lg" className="border-rose-pink text-rose-pink hover:bg-rose-pink/5 rounded-full px-10 h-12 text-lg">
                     Watch Trailer
                   </Button>
                 </div>
@@ -245,38 +277,6 @@ export default function Home() {
                   </motion.div>
                 );
               })}
-            </div>
-          </div>
-        </section>
-
-        {/* About Section */}
-        <section id="about" className="py-32 bg-rose-pink/5">
-          <div className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-            <div className="space-y-8">
-              <h2 className="font-headline text-5xl md:text-6xl leading-tight">
-                Our Mission: <br />
-                <span className="italic text-rose-pink">Emotion In Every Petal</span>
-              </h2>
-              <div className="space-y-6 text-xl text-muted-foreground font-headline italic leading-relaxed">
-                <p>
-                  PETALS is a premium illustration-first fantasy media studio dedicated to creating magical stories, enchanting illustrations, cinematic animations, and emotionally comforting universes.
-                </p>
-                <p>
-                  Our stories celebrate kindness, imagination, wonder, courage, and emotional growth. We believe fantasy should feel like a sanctuary.
-                </p>
-              </div>
-              <Button size="lg" className="bg-rose-pink text-white rounded-full px-10 h-14 uppercase tracking-widest text-xs font-bold">
-                Learn Our Story
-              </Button>
-            </div>
-            <div className="relative aspect-square">
-              <Image 
-                src={PlaceHolderImages.find(img => img.id === 'hero-main')?.imageUrl || ""}
-                alt="Studio Mission"
-                fill
-                className="object-contain"
-                data-ai-hint="storybook illustration"
-              />
             </div>
           </div>
         </section>
