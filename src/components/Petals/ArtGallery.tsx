@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogTrigger, DialogClose } from '@/components/ui/dialog';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { Sparkles, ArrowRight, BookOpen, MapPin } from 'lucide-react';
+import { Sparkles, ArrowRight, MapPin } from 'lucide-react';
 
 const categories = ["All", "Characters", "Portraits", "Watercolor", "Landscapes"];
 
@@ -116,6 +116,27 @@ const artworks = [
     url: PlaceHolderImages.find(img => img.id === 'gallery-celestial-dreamscape')?.imageUrl || "",
     title: "The Celestial Dreamscape",
     description: "A mystical journey across the starlit horizon of the PETALS universe. This celestial landscape represents the bridge between our world and the infinite realms of imagination."
+  },
+  {
+    id: "moon-forest",
+    category: "Landscapes",
+    url: PlaceHolderImages.find(img => img.id === 'gallery-moon-forest')?.imageUrl || "",
+    title: "The Silver Moon Forest",
+    description: "Deep within the silver-lit woods, where the trees whisper in forgotten tongues and the moonbeams dance upon the mossy floor. A place of quiet reflection and ancient magic."
+  },
+  {
+    id: "floating-isles",
+    category: "Landscapes",
+    url: PlaceHolderImages.find(img => img.id === 'gallery-floating-isles')?.imageUrl || "",
+    title: "The Floating Isles of Aethelgard",
+    description: "Soaring above the clouds, the floating isles are home to the wind-whisperers and the great crystalline eagles. A realm where gravity is but a suggestion and the air is filled with starlight."
+  },
+  {
+    id: "ancient-bloom",
+    category: "Watercolor",
+    url: PlaceHolderImages.find(img => img.id === 'gallery-ancient-bloom')?.imageUrl || "",
+    title: "The Ancient Bloom of the Deep",
+    description: "A rare watercolor study of the Ancient Bloom, a mythical flower said to grow only once every century in the most hidden trenches of the shimmering sea."
   }
 ];
 

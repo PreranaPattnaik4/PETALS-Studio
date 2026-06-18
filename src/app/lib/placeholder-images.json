@@ -210,6 +210,24 @@
       "description": "Whispers of the Moonlit Kingdom",
       "imageUrl": "https://www.dropbox.com/scl/fi/88rtm5xfh6bemell6bru5/8d977113-88f3-4cbb-b46a-cb8c04f8883b-1.png?rlkey=mtm64710ni5gbe046mdvk2jkv&st=w2quaoih&raw=1",
       "imageHint": "moonlit fantasy portrait"
+    },
+    {
+      "id": "gallery-moon-forest",
+      "description": "The Silver Moon Forest of the Crystal Rose",
+      "imageUrl": "https://picsum.photos/seed/moonforest/800/1000",
+      "imageHint": "moonlight forest"
+    },
+    {
+      "id": "gallery-floating-isles",
+      "description": "The Floating Isles of Aethelgard",
+      "imageUrl": "https://picsum.photos/seed/floatingisles/800/1000",
+      "imageHint": "floating islands"
+    },
+    {
+      "id": "gallery-ancient-bloom",
+      "description": "The Ancient Bloom of the Deep",
+      "imageUrl": "https://picsum.photos/seed/ancientbloom/800/1000",
+      "imageHint": "magical flower"
     }
   ]
 }
