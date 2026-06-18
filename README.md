@@ -11,34 +11,20 @@ PETALS is a premium, illustration-first fantasy media studio dedicated to creati
 - **Character Showcase**: Immersive sections for Alora, RoseBella, Nerina, and Vespera.
 - **Art Gallery**: A sophisticated display of the studio's visual lore.
 - **Story Collections**: A modern grid showcasing original storybooks.
-- **AI-Powered Storyweaver**: Genkit integration for generating story concepts (Prototype).
+- **AI-Powered Storyweaver**: Genkit integration for generating story concepts.
 
 ## 🛠️ Tech Stack
 
-- **Framework**: [Next.js 15 (App Router)](https://nextjs.org/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Components**: [Shadcn UI](https://ui.shadcn.com/)
-- **Animations**: [Framer Motion](https://www.framer.com/motion/)
-- **Icons**: [Lucide React](https://lucide.dev/)
-- **AI Features**: [Firebase Genkit](https://firebase.google.com/docs/genkit)
+- **Framework**: Next.js 15 (App Router)
+- **Styling**: Tailwind CSS
+- **Components**: Shadcn UI
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
+- **AI Features**: Firebase Genkit
 
-## 🚀 Getting Started
+## 🚀 How to Push to GitHub (1st Time)
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-
-Open [http://localhost:9002](http://localhost:9002) with your browser to see the result.
-
-## 📤 How to Push to GitHub
-
-If you haven't initialized a repository yet, follow these steps in your terminal:
+Follow these steps in your terminal to upload this project to your GitHub repository:
 
 1. **Initialize Git**:
    ```bash
@@ -52,10 +38,10 @@ If you haven't initialized a repository yet, follow these steps in your terminal
 
 3. **Commit Changes**:
    ```bash
-   git commit -m "Initial commit: PETALS Studio Premium Redesign"
+   git commit -m "Initial commit: PETALS Studio Premium Setup"
    ```
 
-4. **Add Remote Origin** (Replace with your actual GitHub URL):
+4. **Add Remote Origin**:
    ```bash
    git remote add origin https://github.com/PreranaPattnaik4/PETALS-Studio.git
    ```
