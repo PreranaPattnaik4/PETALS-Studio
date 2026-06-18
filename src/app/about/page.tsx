@@ -232,28 +232,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Closing Section */}
-        <section className="py-40 text-center bg-rose-pink relative overflow-hidden">
-          <div className="container mx-auto px-6 max-w-4xl relative z-10">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.98 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="space-y-10"
-            >
-              <Quote className="w-16 h-16 text-white/30 mx-auto" />
-              <h2 className="font-headline text-6xl md:text-8xl text-white">Welcome to PETALS</h2>
-              <p className="text-2xl md:text-3xl text-white/90 font-headline italic max-w-2xl mx-auto leading-relaxed">
-                A place where imagination blossoms, stories come alive, and every creation begins with a single petal of inspiration.
-              </p>
-            </motion.div>
-          </div>
-          
-          {/* Background Decoration */}
-          <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 blur-[100px] rounded-full -translate-x-1/2 -translate-y-1/2" />
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-black/10 blur-[120px] rounded-full translate-x-1/3 translate-y-1/3" />
-        </section>
-
         <FinalCTA />
         <Footer />
       </main>
