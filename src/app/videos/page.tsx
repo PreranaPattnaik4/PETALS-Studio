@@ -5,11 +5,12 @@ import { Navbar } from "@/components/Petals/Navbar";
 import { Footer } from "@/components/Petals/Footer";
 import { FloatingPetals } from "@/components/Petals/FloatingPetals";
 import { Button } from "@/components/ui/button";
-import { Play, Sparkles, Film, Clock, ChevronRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { Play, Sparkles, Film, Clock, ChevronRight, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { useState } from 'react';
+import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog";
 
 const categories = ["All", "Short Films", "Character Promos", "Story Teasers"];
 
@@ -20,7 +21,8 @@ const videos = [
     category: "Short Films",
     duration: "4:20",
     image: "https://picsum.photos/seed/v1/800/450",
-    description: "Witness the moment Alora discovers her hidden destiny beneath the waves."
+    description: "Witness the moment Alora discovers her hidden destiny beneath the waves.",
+    videoUrl: null
   },
   {
     id: 2,
@@ -28,7 +30,8 @@ const videos = [
     category: "Story Teasers",
     duration: "1:45",
     image: "https://picsum.photos/seed/v2/800/450",
-    description: "A glimpse into the shimmering world of the Glass Kingdom."
+    description: "A glimpse into the shimmering world of the Glass Kingdom.",
+    videoUrl: null
   },
   {
     id: 3,
@@ -36,7 +39,8 @@ const videos = [
     category: "Character Promos",
     duration: "2:10",
     image: "https://picsum.photos/seed/v3/800/450",
-    description: "Experience the soothing melodies of the Ocean's Guardian."
+    description: "Experience the soothing melodies of the Ocean's Guardian.",
+    videoUrl: null
   },
   {
     id: 4,
@@ -44,7 +48,8 @@ const videos = [
     category: "Short Films",
     duration: "5:30",
     image: "https://picsum.photos/seed/v4/800/450",
-    description: "A young stargazer's journey to bring light back to the world."
+    description: "A young stargazer's journey to bring light back to the world.",
+    videoUrl: null
   },
   {
     id: 5,
@@ -52,20 +57,23 @@ const videos = [
     category: "Story Teasers",
     duration: "1:15",
     image: "https://picsum.photos/seed/v5/800/450",
-    description: "The seasonal bloom of the sacred moonflowers in motion."
+    description: "The seasonal bloom of the sacred moonflowers in motion.",
+    videoUrl: null
   },
   {
     id: 6,
     title: "Guardians of Dreams",
     category: "Character Promos",
-    duration: "3:05",
+    duration: "0:08",
     image: "https://picsum.photos/seed/v6/800/450",
-    description: "Meet the protectors of the realm of sleep."
+    description: "Meet the protectors of the realm of sleep.",
+    videoUrl: "https://dl.dropboxusercontent.com/scl/fi/e5q2ljsvktv7ezdwu4x6g/_scene_2_816_sec__starlet_appears_visual_starlet_f_fc0bf0b59e.mp4?rlkey=d4af1u96ftmum7xl6sdqc0510&raw=1"
   }
 ];
 
 export default function VideosPage() {
   const [activeCategory, setActiveCategory] = useState("All");
+  const [selectedVideo, setSelectedVideo] = useState<typeof videos[0] | null>(null);
   const heroImage = PlaceHolderImages.find(img => img.id === 'crystal-rose-universe');
 
   const filteredVideos = activeCategory === "All" 
@@ -141,7 +149,7 @@ export default function VideosPage() {
                 {/* Cinematic Overlays */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
                 
-                {/* Play Button Overlay - Updated to White/Pink Theme */}
+                {/* Play Button Overlay */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <motion.div 
                     whileHover={{ scale: 1.1 }}
@@ -268,50 +276,78 @@ export default function VideosPage() {
           <div className="container mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
               {filteredVideos.map((video, index) => (
-                <motion.div
-                  key={video.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="group space-y-6"
-                >
-                  <div className="relative aspect-video rounded-[2.5rem] overflow-hidden shadow-lg group-hover:shadow-2xl transition-all duration-500 border border-white/40 bg-white">
-                    <Image 
-                      src={video.image}
-                      alt={video.title}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                      data-ai-hint="video thumbnail"
-                    />
-                    {/* Play Button Overlay */}
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-center justify-center">
-                      <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white scale-90 group-hover:scale-105 transition-all duration-500 border border-white/40 shadow-xl">
-                        <Play className="w-6 h-6 fill-current translate-x-0.5" />
+                <Dialog key={video.id}>
+                  <DialogTrigger asChild>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                      className="group space-y-6 cursor-pointer"
+                    >
+                      <div className="relative aspect-video rounded-[2.5rem] overflow-hidden shadow-lg group-hover:shadow-2xl transition-all duration-500 border border-white/40 bg-white">
+                        <Image 
+                          src={video.image}
+                          alt={video.title}
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-110"
+                          data-ai-hint="video thumbnail"
+                        />
+                        {/* Play Button Overlay */}
+                        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-center justify-center">
+                          <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white scale-90 group-hover:scale-105 transition-all duration-500 border border-white/40 shadow-xl">
+                            <Play className="w-6 h-6 fill-current translate-x-0.5" />
+                          </div>
+                        </div>
+                        {/* Duration Badge */}
+                        <div className="absolute bottom-6 right-6 px-3 py-1 rounded-lg bg-black/60 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-widest border border-white/10">
+                          {video.duration}
+                        </div>
                       </div>
-                    </div>
-                    {/* Duration Badge */}
-                    <div className="absolute bottom-6 right-6 px-3 py-1 rounded-lg bg-black/60 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-widest border border-white/10">
-                      {video.duration}
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-4 px-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-rose-pink">{video.category}</span>
-                      <div className="flex items-center gap-2 text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
-                        <Clock className="w-3.5 h-3.5" /> {video.duration}
+                      
+                      <div className="space-y-4 px-4">
+                        <div className="flex items-center justify-between">
+                          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-rose-pink">{video.category}</span>
+                          <div className="flex items-center gap-2 text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
+                            <Clock className="w-3.5 h-3.5" /> {video.duration}
+                          </div>
+                        </div>
+                        <h3 className="font-headline text-2xl group-hover:text-rose-pink transition-colors leading-tight">{video.title}</h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed italic font-headline line-clamp-2 border-l-2 border-rose-pink/20 pl-4">
+                          {video.description}
+                        </p>
+                        <Button variant="link" className="p-0 h-auto text-rose-pink text-[10px] font-bold uppercase tracking-widest group/link">
+                          Watch Video <ChevronRight className="ml-1 w-3.5 h-3.5 transition-transform group-hover/link:translate-x-1" />
+                        </Button>
                       </div>
-                    </div>
-                    <h3 className="font-headline text-2xl group-hover:text-rose-pink transition-colors leading-tight">{video.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed italic font-headline line-clamp-2 border-l-2 border-rose-pink/20 pl-4">
-                      {video.description}
-                    </p>
-                    <Button variant="link" className="p-0 h-auto text-rose-pink text-[10px] font-bold uppercase tracking-widest group/link">
-                      Watch Video <ChevronRight className="ml-1 w-3.5 h-3.5 transition-transform group-hover/link:translate-x-1" />
-                    </Button>
-                  </div>
-                </motion.div>
+                    </motion.div>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-5xl p-0 overflow-hidden bg-black border-none rounded-[3rem] shadow-2xl">
+                    <DialogTitle className="sr-only">{video.title}</DialogTitle>
+                    {video.videoUrl ? (
+                      <div className="aspect-video w-full bg-black">
+                        <video 
+                          controls 
+                          autoPlay 
+                          className="w-full h-full"
+                          src={video.videoUrl}
+                        />
+                      </div>
+                    ) : (
+                      <div className="aspect-video w-full bg-neutral-900 flex items-center justify-center text-center p-12">
+                        <div className="space-y-6">
+                          <div className="w-20 h-20 rounded-full bg-rose-pink/10 flex items-center justify-center mx-auto">
+                            <Clock className="w-10 h-10 text-rose-pink" />
+                          </div>
+                          <h3 className="text-3xl font-headline text-white italic">Coming Soon to the Studio</h3>
+                          <p className="text-white/40 max-w-sm mx-auto italic font-headline">
+                            This cinematic journey is currently being woven in our production greenhouse. Check back soon for the premiere.
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                  </DialogContent>
+                </Dialog>
               ))}
             </div>
           </div>
@@ -338,3 +374,4 @@ export default function VideosPage() {
     </div>
   );
 }
+
