@@ -145,6 +145,7 @@ const featureCards = [
 export default function BooksPage() {
   const crystalRoseBg = PlaceHolderImages.find(img => img.id === 'crystal-rose-universe');
   const featuredBookCover = PlaceHolderImages.find(img => img.id === 'book-whispers');
+  const communityBg = PlaceHolderImages.find(img => img.id === 'book-community-bg');
 
   return (
     <div className="min-h-screen bg-pearl-white">
@@ -276,11 +277,11 @@ export default function BooksPage() {
         <section className="relative py-32 overflow-hidden">
           <div className="absolute inset-0 z-0">
             <Image 
-              src={crystalRoseBg?.imageUrl || ""}
+              src={communityBg?.imageUrl || ""}
               alt="Community Background"
               fill
-              className="object-cover brightness-[0.4]"
-              data-ai-hint="magical forest landscape"
+              className="object-cover brightness-[0.6]"
+              data-ai-hint="magical grotto"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-pearl-white via-transparent to-pearl-white" />
           </div>
@@ -292,10 +293,10 @@ export default function BooksPage() {
               viewport={{ once: true }}
               className="max-w-3xl mx-auto space-y-6"
             >
-              <h2 className="font-headline text-5xl md:text-7xl text-white">
+              <h2 className="font-headline text-5xl md:text-7xl text-white drop-shadow-lg">
                 Unfold Their <span className="italic text-rose-pink">Imagination</span>
               </h2>
-              <p className="text-xl text-white/80 font-headline italic leading-relaxed">
+              <p className="text-xl text-white font-headline italic leading-relaxed drop-shadow-md">
                 Join our community of dreamers to access exclusive lore, interactive activities, and the full collection of PETALS storybooks.
               </p>
               <div className="pt-4">
