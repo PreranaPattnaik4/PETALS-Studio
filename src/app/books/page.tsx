@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { motion } from "framer-motion";
+import { Dialog, DialogContent, DialogTrigger, DialogClose } from "@/components/ui/dialog";
 import { 
   ShoppingBag, 
   Users, 
@@ -15,9 +16,8 @@ import {
   BookOpen, 
   Sparkles, 
   Heart, 
-  Play, 
   FileText,
-  Wind
+  ArrowRight
 } from "lucide-react";
 
 const books = [
@@ -141,6 +141,14 @@ const featureCards = [
   { icon: "🦋", text: "Beautiful Fantasy World" },
   { icon: "💎", text: "Themes of Healing & Forgiveness" },
 ];
+
+const featuredTaleSisters = {
+  id: "featured-sisters", 
+  category: "Featured Tale", 
+  url: PlaceHolderImages.find(img => img.id === 'gallery-sisters')?.imageUrl || "", 
+  title: "The Bond of Two Hearts: RoseBella & Lunaria",
+  description: `RoseBella and Lunaria were sisters who shared more than just blood; they shared a destiny that would change their kingdom forever. Together, they navigated a world that feared what it could not understand.`
+};
 
 export default function BooksPage() {
   const crystalRoseBg = PlaceHolderImages.find(img => img.id === 'crystal-rose-universe');
@@ -273,6 +281,80 @@ export default function BooksPage() {
           </div>
         </section>
 
+        {/* Big Featured Card: RoseBella & Lunaria (Moved from Gallery) */}
+        <section className="py-32 relative overflow-hidden bg-white/30">
+          <div className="container mx-auto px-12">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="group relative"
+            >
+              <div className="absolute inset-0 bg-rose-pink/10 blur-[100px] rounded-full scale-110 opacity-30 group-hover:opacity-50 transition-opacity" />
+              <div className="relative glass-morphism rounded-[4rem] overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-0 border border-white/40 shadow-2xl">
+                <div className="lg:col-span-7 relative h-[400px] lg:h-[600px] overflow-hidden">
+                  <Image
+                    src={featuredTaleSisters.url}
+                    alt={featuredTaleSisters.title}
+                    fill
+                    className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                  />
+                </div>
+                <div className="lg:col-span-5 p-8 md:p-16 flex flex-col justify-center space-y-8 bg-white/40 backdrop-blur-md">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2 text-rose-pink font-bold uppercase tracking-[0.2em] text-xs">
+                      <BookOpen className="w-4 h-4" /> Featured Tale
+                    </div>
+                    <h3 className="font-headline text-4xl md:text-5xl leading-tight">
+                      {featuredTaleSisters.title}
+                    </h3>
+                    <p className="text-xl text-muted-foreground italic font-headline leading-relaxed">
+                      {featuredTaleSisters.description}
+                    </p>
+                  </div>
+                  
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button className="w-fit bg-rose-pink text-white h-12 rounded-2xl px-8 font-bold uppercase tracking-widest text-xs shadow-lg shadow-rose-pink/20 group/btn">
+                        Read Full Lore <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-4xl p-0 overflow-hidden bg-white/95 backdrop-blur-xl border-none shadow-2xl rounded-[3rem]">
+                      <div className="p-12 md:p-16 overflow-y-auto max-h-[80vh] custom-scrollbar">
+                        <h3 className="font-headline text-5xl mb-8">{featuredTaleSisters.title}</h3>
+                        <div className="whitespace-pre-wrap text-muted-foreground leading-relaxed italic font-headline text-xl">
+                          {`🌹 RoseBella\nkind-hearted, gentle, loving, and deeply adored by everyone.\nBut RoseBella’s younger sister,\n🌙 Lunaria\nwas different.\nLunaria was curious, emotional, independent, and deeply connected to strange things others feared:\ndark forests\nwounded creatures\nforgotten magic\nlonely places\n\nAs a child, Lunaria rescued a tiny black kitten named:\n🖤 Nyx\nThough harmless and affectionate, villagers feared the kitten because of old superstitions.\nLunaria could never understand:\n“Why do people fear things that never hurt anyone?”\nThis slowly became the beginning of her loneliness.\n\nRoseBella always comforted and protected her younger sister.\nThe sisters loved each other deeply.\nThey played beneath silver trees with:\na small deer\ntwo little birds\nmoonflowers\nsongs\nmagical stories\n\nBut while RoseBella was naturally loved by everyone,\nLunaria slowly began feeling emotionally different and misunderstood.\n\nOne day Lunaria discovered an ancient magical book:\n📖 Moonlight Veils\nAt first, the book showed only gentle magic:\nhealing light\nmoonfire\nemotional magic\npeaceful spells\n\nLunaria secretly practiced harmless magic beneath moonlight while Nyx slept beside her.\nBut society feared magic.\nAfter a misunderstanding involving Lunaria healing a wounded deer with magic, villagers began whispering that she was dangerous.\nTheir fear slowly isolated her emotionally.`}
+                        </div>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Quote Section */}
+        <section className="py-32 relative text-center">
+          <div className="container mx-auto px-12 max-w-4xl">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <Sparkles className="w-12 h-12 text-fairy-gold mx-auto opacity-50" />
+              <blockquote className="font-headline text-3xl md:text-5xl leading-tight text-foreground/80 italic">
+                &quot;Emotions are powerful... but the choices we make while feeling them shape our destiny.&quot;
+              </blockquote>
+              <div className="flex justify-center">
+                <div className="w-24 h-px bg-rose-pink/30" />
+              </div>
+              <p className="font-headline text-2xl text-rose-pink uppercase tracking-widest">A Petals Original Tale</p>
+            </motion.div>
+          </div>
+        </section>
+
         {/* Community Call to Action (Inspired by Vooks) */}
         <section className="relative py-48 md:py-64 overflow-hidden">
           <div className="absolute inset-0 z-0">
@@ -308,29 +390,8 @@ export default function BooksPage() {
           </div>
         </section>
 
-        {/* Quote Section */}
-        <section className="py-32 relative text-center">
-          <div className="container mx-auto px-12 max-w-4xl">
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="space-y-8"
-            >
-              <Sparkles className="w-12 h-12 text-fairy-gold mx-auto opacity-50" />
-              <blockquote className="font-headline text-3xl md:text-5xl leading-tight text-foreground/80 italic">
-                &quot;Emotions are powerful... but the choices we make while feeling them shape our destiny.&quot;
-              </blockquote>
-              <div className="flex justify-center">
-                <div className="w-24 h-px bg-rose-pink/30" />
-              </div>
-              <p className="font-headline text-2xl text-rose-pink uppercase tracking-widest">A Petals Original Tale</p>
-            </motion.div>
-          </div>
-        </section>
-
         {/* More Stories Grid */}
-        <section className="pb-32">
+        <section className="pb-32 pt-24">
           <div className="container mx-auto px-12">
             <div className="flex items-center justify-between mb-16">
               <div className="space-y-2">
