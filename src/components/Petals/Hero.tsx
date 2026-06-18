@@ -19,21 +19,21 @@ export function Hero() {
           src={roseImg?.imageUrl || ""}
           alt="Cinematic Background"
           fill
-          className="object-cover opacity-80 brightness-110 scale-105 transition-all duration-1000"
+          className="object-cover opacity-90 brightness-110 scale-105 transition-all duration-1000"
           data-ai-hint="signature rose background"
           priority
         />
         
-        {/* Specific Lighter Gradient Overlay for Readability and Rose Reveal */}
+        {/* Specific Lighter Gradient Overlay as requested */}
         <div 
           className="absolute inset-0 z-10" 
           style={{ 
-            background: 'linear-gradient(to right, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.05) 100%)' 
+            background: 'linear-gradient(to right, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.12) 50%, rgba(0,0,0,0.05) 100%)' 
           }} 
         />
         
         {/* Subtle Bottom Transition Gradient */}
-        <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-pearl-white/40 to-transparent z-20" />
+        <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-[#0a0a0a]/40 to-transparent z-20" />
       </div>
 
       <div className="container mx-auto px-12 relative z-30 pt-20">
@@ -54,12 +54,12 @@ export function Hero() {
                 <Sparkles className="w-4 h-4" /> The Next Generation of Fantasy
               </motion.div>
               
-              <h1 className="font-headline text-6xl md:text-8xl text-white leading-[0.9] tracking-tight drop-shadow-2xl">
+              <h1 className="font-headline text-6xl md:text-8xl text-white leading-[0.9] tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
                 Stories That <br />
                 <span className="italic text-rose-pink">Bloom</span> Into Worlds
               </h1>
               
-              <p className="max-w-xl text-xl text-white leading-relaxed font-headline italic drop-shadow-md">
+              <p className="max-w-xl text-xl text-white leading-relaxed font-headline italic drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
                 Creating magical storybooks, enchanting characters, and cinematic animated adventures that capture the heart of imagination.
               </p>
             </div>
