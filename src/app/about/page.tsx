@@ -58,7 +58,7 @@ const creations = [
 ];
 
 export default function AboutPage() {
-  const heroImg = PlaceHolderImages.find(img => img.id === 'crystal-rose-universe');
+  const heroImg = PlaceHolderImages.find(img => img.id === 'hero-main');
   const studioLogo = PlaceHolderImages.find(img => img.id === 'petals-logo');
 
   return (
@@ -69,7 +69,7 @@ export default function AboutPage() {
       <main>
         {/* Cinematic Curved Hero Section */}
         <section className="relative pt-48 pb-64 overflow-hidden bg-rose-pink">
-          <div className="absolute inset-0 opacity-20 mix-blend-overlay">
+          <div className="absolute inset-0 opacity-30 mix-blend-overlay">
             <Image 
               src={heroImg?.imageUrl || ""}
               alt="Background"
@@ -92,7 +92,7 @@ export default function AboutPage() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="font-headline text-5xl md:text-7xl text-white mb-4 drop-shadow-xl"
+              className="font-headline text-5xl md:text-6xl text-white mb-4 drop-shadow-xl"
             >
               About PETALS Studio
             </motion.h1>
