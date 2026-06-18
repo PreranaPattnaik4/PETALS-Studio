@@ -22,6 +22,31 @@ import {
   CheckCircle2
 } from "lucide-react";
 
+const featuredCreations = [
+  {
+    icon: Heart,
+    title: "Publishing & Storybooks",
+    desc: "At the heart of PETALS is our commitment to physical and digital publishing. We create exquisitely illustrated books, fantasy collections, lore guides, and immersive bedtime stories designed to be keepsakes for dreamers of all ages.",
+    details: [
+      "Premium Hardbound Collections",
+      "Digital Immersive Storybooks",
+      "Curated Lore & Art Guides",
+      "Global Amazon Distribution"
+    ]
+  },
+  {
+    icon: Video,
+    title: "Animation & Cinematic Experiences",
+    desc: "We bring stories to life through animated shorts, visual storytelling, cinematic sequences, narrated fantasy experiences, and atmospheric creative productions that bloom with emotion.",
+    details: [
+      "Cinematic 4K Short Films",
+      "Character Animation Reels",
+      "Atmospheric Story Trailers",
+      "Immersive Visual Lore"
+    ]
+  }
+];
+
 const creations = [
   {
     icon: BookOpen,
@@ -32,11 +57,6 @@ const creations = [
     icon: PenTool,
     title: "Fantasy Illustration & Art",
     desc: "Our illustrations celebrate beauty, imagination, and storytelling through enchanting characters, whimsical landscapes, floral fantasy aesthetics, and emotionally expressive artwork."
-  },
-  {
-    icon: Video,
-    title: "Animation & Cinematic Experiences",
-    desc: "We bring stories to life through animated shorts, visual storytelling, cinematic sequences, narrated fantasy experiences, and atmospheric creative productions."
   },
   {
     icon: Palette,
@@ -54,18 +74,6 @@ const creations = [
     desc: "Our creations extend beyond stories into beautiful decorative art, collectible illustrations, children's room décor, and wall prints designed to bring wonder into everyday spaces."
   }
 ];
-
-const featuredCreation = {
-  icon: Heart,
-  title: "Publishing & Storybooks",
-  desc: "At the heart of PETALS is our commitment to physical and digital publishing. We create exquisitely illustrated books, fantasy collections, lore guides, and immersive bedtime stories designed to be keepsakes for dreamers of all ages.",
-  details: [
-    "Premium Hardbound Collections",
-    "Digital Immersive Storybooks",
-    "Curated Lore & Art Guides",
-    "Global Amazon Distribution"
-  ]
-};
 
 export default function AboutPage() {
   const logoImg = PlaceHolderImages.find(img => img.id === 'petals-logo');
@@ -217,46 +225,50 @@ export default function AboutPage() {
               <p className="text-xl text-muted-foreground italic font-headline">Crafting wonders across every magical medium.</p>
             </div>
 
-            {/* Featured Creation Row */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
-              {/* Big Publishing Card */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="lg:col-span-8 bg-rose-pink/5 p-10 md:p-16 rounded-[3.5rem] border border-rose-pink/10 shadow-lg flex flex-col md:flex-row gap-12 items-center group hover:shadow-2xl transition-all duration-500"
-              >
-                <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-white text-rose-pink flex items-center justify-center shrink-0 shadow-xl group-hover:scale-110 transition-transform">
-                  <featuredCreation.icon className="w-12 h-12 md:w-16 md:h-16" />
-                </div>
-                <div className="space-y-6 text-center md:text-left">
-                  <h3 className="font-headline text-3xl md:text-4xl text-rose-pink">{featuredCreation.title}</h3>
-                  <p className="text-lg md:text-xl text-muted-foreground italic font-headline leading-relaxed">
-                    {featuredCreation.desc}
-                  </p>
-                </div>
-              </motion.div>
+            {/* Featured Creations Rows */}
+            <div className="space-y-8 mb-20">
+              {featuredCreations.map((featured, index) => (
+                <div key={index} className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                  {/* Big Featured Card */}
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="lg:col-span-8 bg-rose-pink/5 p-10 md:p-16 rounded-[3.5rem] border border-rose-pink/10 shadow-lg flex flex-col md:flex-row gap-12 items-center group hover:shadow-2xl transition-all duration-500"
+                  >
+                    <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-white text-rose-pink flex items-center justify-center shrink-0 shadow-xl group-hover:scale-110 transition-transform">
+                      <featured.icon className="w-12 h-12 md:w-16 md:h-16" />
+                    </div>
+                    <div className="space-y-6 text-center md:text-left">
+                      <h3 className="font-headline text-3xl md:text-4xl text-rose-pink">{featured.title}</h3>
+                      <p className="text-lg md:text-xl text-muted-foreground italic font-headline leading-relaxed">
+                        {featured.desc}
+                      </p>
+                    </div>
+                  </motion.div>
 
-              {/* Details Card */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="lg:col-span-4 bg-white p-10 md:p-12 rounded-[3.5rem] border border-rose-pink/10 shadow-sm flex flex-col justify-center space-y-8 group hover:shadow-xl transition-all duration-500"
-              >
-                <div className="flex items-center gap-3 text-rose-pink font-bold uppercase tracking-widest text-xs">
-                  <Sparkles className="w-4 h-4" /> Studio Standards
+                  {/* Details Card */}
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 }}
+                    className="lg:col-span-4 bg-white p-10 md:p-12 rounded-[3.5rem] border border-rose-pink/10 shadow-sm flex flex-col justify-center space-y-8 group hover:shadow-xl transition-all duration-500"
+                  >
+                    <div className="flex items-center gap-3 text-rose-pink font-bold uppercase tracking-widest text-xs">
+                      <Sparkles className="w-4 h-4" /> Technical Standards
+                    </div>
+                    <ul className="space-y-4">
+                      {featured.details.map((detail, idx) => (
+                        <li key={idx} className="flex items-center gap-3 text-muted-foreground italic font-headline text-lg">
+                          <CheckCircle2 className="w-5 h-5 text-rose-pink shrink-0" />
+                          {detail}
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
                 </div>
-                <ul className="space-y-4">
-                  {featuredCreation.details.map((detail, idx) => (
-                    <li key={idx} className="flex items-center gap-3 text-muted-foreground italic font-headline text-lg">
-                      <CheckCircle2 className="w-5 h-5 text-rose-pink shrink-0" />
-                      {detail}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
+              ))}
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
