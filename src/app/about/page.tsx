@@ -68,8 +68,8 @@ export default function AboutPage() {
 
       <main>
         {/* Cinematic Curved Hero Section */}
-        <section className="relative pt-48 pb-64 overflow-hidden bg-rose-pink">
-          <div className="absolute inset-0 opacity-30 mix-blend-overlay">
+        <section className="relative pt-48 pb-64 overflow-hidden bg-pearl-white">
+          <div className="absolute inset-0 z-0">
             <Image 
               src={heroImg?.imageUrl || ""}
               alt="Background"
@@ -77,6 +77,8 @@ export default function AboutPage() {
               className="object-cover"
               priority
             />
+            {/* Very subtle gradient to ensure text readability without masking the image */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent opacity-60" />
           </div>
           
           <div className="container mx-auto px-6 relative z-10 text-center space-y-4">
@@ -101,7 +103,7 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-white/90 text-xl md:text-3xl font-headline italic max-w-4xl mx-auto leading-relaxed"
+              className="text-white/90 text-xl md:text-3xl font-headline italic max-w-4xl mx-auto leading-relaxed drop-shadow-lg"
             >
               &quot;Crafting illustrated stories that unfold like petals, blooming layer by layer.&quot;
             </motion.p>
