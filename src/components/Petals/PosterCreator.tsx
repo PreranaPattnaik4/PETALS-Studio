@@ -466,7 +466,7 @@ export function PosterCreator() {
               <motion.div 
                 key="manual-canvas"
                 ref={canvasRef}
-                className="relative aspect-[3/4] w-full max-w-[480px] overflow-hidden rounded-[3rem] shadow-2xl bg-white border border-rose-pink/10"
+                className="relative aspect-[3/4] w-full max-w-[560px] overflow-hidden rounded-[3rem] shadow-2xl bg-white border border-rose-pink/10"
               >
                 <Image src={bgImage} alt="Canvas BG" fill className="object-cover pointer-events-none" />
                 <div className="absolute inset-x-6 bottom-6 p-8 glass-morphism rounded-[2.5rem] text-center space-y-3 pointer-events-none">
@@ -505,9 +505,9 @@ export function PosterCreator() {
                 key="soon-display"
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="w-full max-w-[600px] flex flex-col items-center"
+                className="w-full max-w-[720px] flex flex-col items-center"
               >
-                <div className="text-center space-y-8 py-24 px-12 glass-morphism rounded-[4rem] border border-rose-pink/10 shadow-xl">
+                <div className="text-center space-y-8 py-24 px-12 glass-morphism rounded-[4rem] border border-rose-pink/10 shadow-xl w-full">
                   <div className="relative w-32 h-32 mx-auto">
                     <div className="absolute inset-0 bg-rose-pink/20 blur-2xl animate-pulse rounded-full" />
                     {mode === 'lore-weaver' ? <BookOpen className="w-full h-full text-rose-pink relative" /> :
