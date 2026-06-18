@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { CharacterShowcase } from "@/components/Petals/CharacterShowcase";
 import { DreamweaverPortal } from "@/components/Petals/DreamweaverPortal";
+import { ShareSection } from "@/components/Petals/ShareSection";
 
 const AmazonIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -367,6 +368,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Share Section */}
+        <ShareSection />
 
         {/* Newsletter Section */}
         <section className="py-32 relative overflow-hidden">
