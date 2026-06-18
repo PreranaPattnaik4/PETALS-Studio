@@ -154,6 +154,7 @@ const featuredTaleSisters = {
 export default function BooksPage() {
   const crystalRoseBg = PlaceHolderImages.find(img => img.id === 'crystal-rose-universe');
   const featuredBookCover = PlaceHolderImages.find(img => img.id === 'book-whispers');
+  const brandingBg = PlaceHolderImages.find(img => img.id === 'hero-main');
 
   return (
     <div className="min-h-screen bg-pearl-white">
@@ -256,30 +257,46 @@ export default function BooksPage() {
           </div>
         </section>
 
-        {/* Repositioned Branding Section */}
-        <section className="py-20 relative overflow-hidden bg-rose-pink/5">
-          <div className="container mx-auto px-12 text-center max-w-4xl space-y-8">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-pink/10 text-rose-pink text-[10px] font-bold uppercase tracking-[0.4em] border border-rose-pink/20 backdrop-blur-md">
-              <Sparkles className="w-3.5 h-3.5" /> PETALS Studio
-            </div>
-            
-            <h2 className="font-headline text-5xl md:text-6xl leading-tight text-foreground">
-              Enter a Whimsical World of <br />
-              <span className="italic text-rose-pink">Storybooks and Dreams</span>
-            </h2>
+        {/* Cinematic Branding Section - Positioned just above Featured Tale */}
+        <section className="relative min-h-[500px] flex items-center justify-center py-32 overflow-hidden my-12 mx-6 rounded-[3rem]">
+          <div className="absolute inset-0 z-0">
+            <Image 
+              src={brandingBg?.imageUrl || ""}
+              alt="Storybooks World"
+              fill
+              className="object-cover brightness-50"
+              data-ai-hint="storybook girl illustration"
+            />
+          </div>
+          <div className="container mx-auto px-12 text-center max-w-4xl space-y-8 relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-pink/20 text-rose-pink text-[10px] font-bold uppercase tracking-[0.4em] border border-white/20 backdrop-blur-md">
+                <Sparkles className="w-3.5 h-3.5" /> PETALS Studio
+              </div>
+              
+              <h2 className="font-headline text-5xl md:text-7xl leading-tight text-white drop-shadow-lg">
+                Enter a Whimsical World of <br />
+                <span className="italic text-rose-pink">Storybooks and Dreams</span>
+              </h2>
 
-            <p className="text-xl text-muted-foreground italic font-headline leading-relaxed max-w-2xl mx-auto">
-              Discover magical books, enchanting characters, breathtaking artwork, and unforgettable adventures created by PETALS Studio.
-            </p>
+              <p className="text-xl text-white/90 italic font-headline leading-relaxed max-w-2xl mx-auto drop-shadow-md">
+                Discover magical books, enchanting characters, breathtaking artwork, and unforgettable adventures created by PETALS Studio.
+              </p>
 
-            <div className="flex flex-wrap justify-center gap-4 pt-4">
-              <Button asChild className="bg-rose-pink text-white hover:bg-rose-pink/90 rounded-2xl px-8 h-12 text-xs font-bold uppercase tracking-widest shadow-lg shadow-rose-pink/20">
-                <Link href="/books">Explore Books</Link>
-              </Button>
-              <Button asChild variant="outline" className="border-rose-pink text-rose-pink hover:bg-rose-pink/5 rounded-2xl px-8 h-12 text-xs font-bold uppercase tracking-widest">
-                <Link href="/characters">Meet the Characters</Link>
-              </Button>
-            </div>
+              <div className="flex flex-wrap justify-center gap-6 pt-6">
+                <Button asChild className="bg-rose-pink text-white hover:bg-rose-pink/90 rounded-2xl px-10 h-14 text-sm font-bold uppercase tracking-widest shadow-xl shadow-rose-pink/40 transition-transform hover:scale-105">
+                  <Link href="/books">Explore Books</Link>
+                </Button>
+                <Button asChild variant="outline" className="border-white/40 bg-white/10 backdrop-blur-md text-white hover:bg-white hover:text-black rounded-2xl px-10 h-14 text-sm font-bold uppercase tracking-widest transition-transform hover:scale-105">
+                  <Link href="/characters">Meet the Characters</Link>
+                </Button>
+              </div>
+            </motion.div>
           </div>
         </section>
 
