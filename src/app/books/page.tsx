@@ -129,6 +129,16 @@ const books = [
     description: "Join the forest friends for a magical tea party under the velvet sky of the PETALS realm.",
     amazonUrl: "#",
     whatsappUrl: "#"
+  },
+  {
+    id: "book-map",
+    title: "The Forgotten Map of Floria",
+    subtitle: "A Journey of Discovery",
+    genre: "Exploration",
+    rating: "4.7",
+    description: "Unlock the secrets of an ancient realm using a map that reacts to the heart's truest desires.",
+    amazonUrl: "#",
+    whatsappUrl: "#"
   }
 ];
 
