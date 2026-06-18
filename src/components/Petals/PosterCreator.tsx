@@ -26,15 +26,10 @@ import {
   Loader2,
   Info,
   CheckCircle2,
-  AlertCircle
+  Clock
 } from 'lucide-react';
 import { toPng } from 'html-to-image';
 import { useToast } from '@/hooks/use-toast';
-import { 
-  generateWallArt, 
-  generateBirthdayCard, 
-  generatePersonalizedBirthdayCard 
-} from '@/ai/flows/generate-creator-art-flow';
 
 interface StickerItem {
   id: string;
@@ -66,8 +61,6 @@ export function PosterCreator() {
   // Mode State
   const [mode, setMode] = useState<CreatorMode>('manual');
   const [isExporting, setIsExporting] = useState(false);
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [aiResultImage, setAiResultImage] = useState<string | null>(null);
   
   // Birthday Card sub-mode state
   const [birthdaySubMode, setBirthdaySubMode] = useState<'fixed' | 'personalized'>('fixed');
@@ -93,7 +86,6 @@ export function PosterCreator() {
           let width = img.width;
           let height = img.height;
 
-          // Resize to around 2000-3000px if needed
           const maxDimension = 2500;
           if (width > maxDimension || height > maxDimension) {
             if (width > height) {
@@ -109,8 +101,6 @@ export function PosterCreator() {
           canvas.height = height;
           const ctx = canvas.getContext('2d');
           ctx?.drawImage(img, 0, 0, width, height);
-          
-          // Maintain quality while reducing size
           resolve(canvas.toDataURL('image/jpeg', 0.85));
         };
         img.onerror = reject;
@@ -167,7 +157,7 @@ export function PosterCreator() {
       try {
         const optimized = await optimizeImage(file);
         setBgImage(optimized);
-        toast({ title: "Image Uploaded", description: "Your custom background has been optimized and added." });
+        toast({ title: "Image Uploaded", description: "Your custom background has been added." });
       } catch (err) {
         toast({ variant: "destructive", title: "Upload Failed", description: "Could not process image." });
       }
@@ -180,61 +170,29 @@ export function PosterCreator() {
       try {
         const optimized = await optimizeImage(file);
         setPersonalizedPhoto(optimized);
-        toast({ title: "Photo Ready", description: "Your photo has been optimized for the magic frame." });
+        toast({ title: "Photo Ready", description: "Your photo has been optimized." });
       } catch (err) {
         toast({ variant: "destructive", title: "Upload Failed", description: "Could not process image." });
       }
     }
   };
 
-  const handleAiGeneration = async () => {
-    setIsGenerating(true);
-    setAiResultImage(null);
-    try {
-      let result = "";
-      if (mode === 'wall-art') {
-        result = await generateWallArt();
-      } else if (mode === 'birthday-card') {
-        if (birthdaySubMode === 'fixed') {
-          result = await generateBirthdayCard();
-        } else {
-          if (!personalizedPhoto || !birthdayName) {
-            toast({ variant: "destructive", title: "Missing Information", description: "Please upload a photo and enter a name." });
-            setIsGenerating(false);
-            return;
-          }
-          result = await generatePersonalizedBirthdayCard({
-            photoDataUri: personalizedPhoto,
-            name: birthdayName
-          });
-        }
-      }
-      setAiResultImage(result);
-      toast({ title: "Magic Complete!", description: "Your AI creation is ready." });
-    } catch (err: any) {
-      console.error(err);
-      toast({ variant: "destructive", title: "Enchantment Failed", description: "The magic faded too soon. Please try again." });
-    } finally {
-      setIsGenerating(false);
-    }
-  };
-
   const downloadPoster = async () => {
+    if (mode !== 'manual') {
+      toast({ title: "Feature Coming Soon", description: "AI image export is currently in development." });
+      return;
+    }
+    
     setIsExporting(true);
     try {
-      if (aiResultImage) {
-        const link = document.createElement('a');
-        link.download = `petals-ai-creation-${Date.now()}.png`;
-        link.href = aiResultImage;
-        link.click();
-      } else if (canvasRef.current) {
+      if (canvasRef.current) {
         const url = await toPng(canvasRef.current, { cacheBust: true, quality: 1 });
         const link = document.createElement('a');
         link.download = `petals-manual-creation-${Date.now()}.png`;
         link.href = url;
         link.click();
       }
-      toast({ title: "Success!", description: "Your magical creation has been saved." });
+      toast({ title: "Success!", description: "Your creation has been saved." });
     } catch (err) {
       console.error(err);
       toast({ variant: "destructive", title: "Error", description: "Failed to download. Please try again." });
@@ -244,34 +202,36 @@ export function PosterCreator() {
   };
 
   const shareOnWhatsApp = () => {
-    const text = encodeURIComponent("Look at this magical PETALS creation I made! ✨");
+    const text = encodeURIComponent("Check out my PETALS Studio creation! ✨");
     window.open(`https://wa.me/?text=${text}`, '_blank');
   };
 
   return (
     <div className="flex flex-col gap-12">
       {/* Top Mode Switcher */}
-      <div className="flex justify-center gap-4 p-1.5 bg-rose-pink/5 rounded-3xl border border-rose-pink/10 w-fit mx-auto">
+      <div className="flex flex-wrap justify-center gap-4 p-1.5 bg-rose-pink/5 rounded-3xl border border-rose-pink/10 w-fit mx-auto">
         <Button 
           variant={mode === 'manual' ? 'default' : 'ghost'} 
-          onClick={() => { setMode('manual'); setAiResultImage(null); }}
+          onClick={() => setMode('manual')}
           className={`rounded-2xl px-8 h-12 text-xs font-bold uppercase tracking-widest ${mode === 'manual' ? 'bg-rose-pink text-white' : 'text-muted-foreground'}`}
         >
           <Palette className="mr-2 w-4 h-4" /> Manual Designer
         </Button>
         <Button 
           variant={mode === 'wall-art' ? 'default' : 'ghost'} 
-          onClick={() => { setMode('wall-art'); setAiResultImage(null); }}
-          className={`rounded-2xl px-8 h-12 text-xs font-bold uppercase tracking-widest ${mode === 'wall-art' ? 'bg-rose-pink text-white' : 'text-muted-foreground'}`}
+          onClick={() => setMode('wall-art')}
+          className={`relative rounded-2xl px-8 h-12 text-xs font-bold uppercase tracking-widest ${mode === 'wall-art' ? 'bg-rose-pink text-white' : 'text-muted-foreground'}`}
         >
           🌹 Wall Art Creator
+          <span className="absolute -top-2 -right-2 bg-accent text-accent-foreground text-[8px] px-2 py-0.5 rounded-full border border-rose-pink/20 shadow-sm">Soon</span>
         </Button>
         <Button 
           variant={mode === 'birthday-card' ? 'default' : 'ghost'} 
-          onClick={() => { setMode('birthday-card'); setAiResultImage(null); }}
-          className={`rounded-2xl px-8 h-12 text-xs font-bold uppercase tracking-widest ${mode === 'birthday-card' ? 'bg-rose-pink text-white' : 'text-muted-foreground'}`}
+          onClick={() => setMode('birthday-card')}
+          className={`relative rounded-2xl px-8 h-12 text-xs font-bold uppercase tracking-widest ${mode === 'birthday-card' ? 'bg-rose-pink text-white' : 'text-muted-foreground'}`}
         >
           🎂 Birthday Card Creator
+          <span className="absolute -top-2 -right-2 bg-accent text-accent-foreground text-[8px] px-2 py-0.5 rounded-full border border-rose-pink/20 shadow-sm">Soon</span>
         </Button>
       </div>
 
@@ -280,7 +240,6 @@ export function PosterCreator() {
         <div className="w-full lg:w-96 flex flex-col gap-6 order-2 lg:order-1">
           <div className="glass-morphism rounded-[2.5rem] p-8 space-y-8">
             
-            {/* TABS SWITCHER (Manual Mode focus) */}
             <div className="flex gap-1 p-1 bg-rose-pink/10 rounded-2xl">
               {(['stickers', 'background', 'text', 'guide'] as const).map((tab) => (
                 <button
@@ -306,23 +265,23 @@ export function PosterCreator() {
                 {activeTab === 'guide' ? (
                   <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
                     <div className="p-6 rounded-[2rem] bg-rose-pink/5 border border-rose-pink/10 space-y-4">
-                      <h4 className="font-headline text-xl text-rose-pink">For PETALS Studio</h4>
+                      <h4 className="font-headline text-xl text-rose-pink">Studio Guidelines</h4>
                       <div className="space-y-4 text-sm italic font-headline text-muted-foreground">
                         <div className="flex items-start gap-3">
                           <CheckCircle2 className="w-4 h-4 text-rose-pink mt-1 shrink-0" />
-                          <p><span className="font-bold not-italic">Max Upload Size:</span> 5 MB</p>
+                          <p><span className="font-bold not-italic">Max Upload:</span> 5 MB</p>
                         </div>
                         <div className="flex items-start gap-3">
                           <CheckCircle2 className="w-4 h-4 text-rose-pink mt-1 shrink-0" />
-                          <p><span className="font-bold not-italic">Accepted Formats:</span> JPG, JPEG, PNG, WebP</p>
+                          <p><span className="font-bold not-italic">Formats:</span> JPG, PNG, WebP</p>
                         </div>
                         <div className="flex items-start gap-3">
                           <CheckCircle2 className="w-4 h-4 text-rose-pink mt-1 shrink-0" />
-                          <p><span className="font-bold not-italic">Max Resolution:</span> 4000 × 4000 px</p>
+                          <p><span className="font-bold not-italic">Resolution:</span> Up to 4000px</p>
                         </div>
                       </div>
-                      <div className="pt-4 border-t border-rose-pink/10 text-xs italic leading-relaxed text-muted-foreground">
-                        We automatically optimize large images to maintain quality while ensuring a smooth creative experience.
+                      <div className="pt-4 border-t border-rose-pink/10 text-[10px] italic leading-relaxed text-muted-foreground">
+                        Manual designs are available now. AI-assisted creation is currently in development.
                       </div>
                     </div>
                   </motion.div>
@@ -371,19 +330,17 @@ export function PosterCreator() {
                 ) : mode === 'wall-art' ? (
                   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6 text-center">
                     <div className="w-16 h-16 rounded-3xl bg-rose-pink/10 text-rose-pink flex items-center justify-center mx-auto mb-4">
-                      <Palette className="w-8 h-8" />
+                      <Clock className="w-8 h-8" />
                     </div>
                     <h3 className="font-headline text-2xl">🌹 Wall Art Creator</h3>
-                    <p className="text-sm text-muted-foreground italic leading-relaxed">
-                      Generate a premium fantasy wall art piece featuring the signature PETALS crystal rose and luxury typography.
-                    </p>
+                    <div className="p-4 rounded-xl bg-accent/10 border border-rose-pink/10 text-[11px] italic text-muted-foreground leading-relaxed">
+                      AI generation is currently being fine-tuned. Use the manual designer to create signature art while you wait.
+                    </div>
                     <Button 
-                      onClick={handleAiGeneration} 
-                      disabled={isGenerating}
-                      className="w-full h-14 bg-rose-pink text-white rounded-2xl font-bold uppercase tracking-widest text-xs shadow-xl shadow-rose-pink/20"
+                      disabled
+                      className="w-full h-14 bg-rose-pink/20 text-muted-foreground rounded-2xl font-bold uppercase tracking-widest text-xs"
                     >
-                      {isGenerating ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Wand2 className="w-4 h-4 mr-2" />}
-                      {isGenerating ? "Weaving Art..." : "Generate Wall Art"}
+                      Coming Soon
                     </Button>
                   </motion.div>
                 ) : (
@@ -409,49 +366,19 @@ export function PosterCreator() {
                       </button>
                     </div>
 
-                    {birthdaySubMode === 'personalized' && (
-                      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
-                        <Input 
-                          placeholder="Birthday Person's Name" 
-                          value={birthdayName}
-                          onChange={(e) => setBirthdayName(e.target.value)}
-                          className="bg-white/50 h-14 rounded-2xl border-rose-pink/20"
-                        />
-                        <div className="space-y-2">
-                          <Button 
-                            variant="outline"
-                            onClick={() => personalizedInputRef.current?.click()}
-                            className="w-full h-14 rounded-2xl border-dashed border-2 border-rose-pink/30 flex flex-col items-center justify-center p-0 overflow-hidden"
-                          >
-                            {personalizedPhoto ? (
-                              <div className="relative w-full h-full">
-                                <Image src={personalizedPhoto} alt="Personalized preview" fill className="object-cover opacity-50" />
-                                <div className="absolute inset-0 flex items-center justify-center text-rose-pink font-bold text-[10px] uppercase tracking-widest">
-                                  <RefreshCw className="w-4 h-4 mr-2" /> Change Photo
-                                </div>
-                              </div>
-                            ) : (
-                              <div className="flex items-center gap-2 text-rose-pink text-[10px] font-bold uppercase tracking-widest">
-                                <Upload className="w-4 h-4" /> Upload Person's Photo
-                              </div>
-                            )}
-                          </Button>
-                          <p className="text-[10px] text-center text-muted-foreground italic">
-                            Upload a photo (JPG, PNG, WebP • Max 5 MB)
-                          </p>
-                        </div>
-                        <input type="file" ref={personalizedInputRef} onChange={handlePersonalizedPhotoUpload} className="hidden" accept=".jpg,.jpeg,.png,.webp" />
-                      </motion.div>
-                    )}
-
-                    <div className="text-center space-y-4">
+                    <div className="text-center space-y-6">
+                      <div className="w-16 h-16 rounded-3xl bg-rose-pink/10 text-rose-pink flex items-center justify-center mx-auto mb-2">
+                        <Clock className="w-8 h-8" />
+                      </div>
+                      <h3 className="font-headline text-2xl">Birthday Magic Soon</h3>
+                      <p className="text-xs text-muted-foreground italic leading-relaxed">
+                        Our birthday card weavers are preparing the magical templates. This feature will be blooming soon.
+                      </p>
                       <Button 
-                        onClick={handleAiGeneration} 
-                        disabled={isGenerating || (birthdaySubMode === 'personalized' && (!personalizedPhoto || !birthdayName))}
-                        className="w-full h-14 bg-rose-pink text-white rounded-2xl font-bold uppercase tracking-widest text-xs shadow-xl shadow-rose-pink/20"
+                        disabled
+                        className="w-full h-14 bg-rose-pink/20 text-muted-foreground rounded-2xl font-bold uppercase tracking-widest text-xs"
                       >
-                        {isGenerating ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Cake className="w-4 h-4 mr-2" />}
-                        {isGenerating ? "Preparing Surprise..." : "Generate Birthday Card"}
+                        Coming Soon
                       </Button>
                     </div>
                   </motion.div>
@@ -462,7 +389,7 @@ export function PosterCreator() {
             <div className="pt-8 border-t border-rose-pink/10 space-y-4">
               <Button 
                 onClick={downloadPoster}
-                disabled={isExporting || (mode !== 'manual' && !aiResultImage)}
+                disabled={isExporting || mode !== 'manual'}
                 className="w-full bg-rose-pink text-white h-14 rounded-[1.5rem] font-bold uppercase tracking-widest text-xs shadow-xl shadow-rose-pink/20"
               >
                 {isExporting ? <RefreshCw className="w-4 h-4 mr-2 animate-spin" /> : <Download className="w-4 h-4 mr-2" />}
@@ -484,35 +411,7 @@ export function PosterCreator() {
           <div className="relative p-12 bg-rose-pink/5 rounded-[5rem] border border-rose-pink/10 shadow-inner min-h-[750px] flex items-center justify-center">
             
             <AnimatePresence mode="wait">
-              {aiResultImage ? (
-                <motion.div 
-                  key="ai-result"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="relative aspect-[3/4] w-full max-w-[500px] rounded-[2.5rem] overflow-hidden shadow-2xl bg-white"
-                >
-                  <Image src={aiResultImage} alt="AI Created Art" fill className="object-cover" priority unoptimized />
-                  <div className="absolute top-4 right-4 bg-rose-pink/20 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20 text-[10px] font-bold text-white uppercase tracking-widest flex items-center gap-2">
-                    <Sparkles className="w-3 h-3" /> AI Enchanted
-                  </div>
-                </motion.div>
-              ) : isGenerating ? (
-                <motion.div 
-                  key="generating"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="flex flex-col items-center gap-6"
-                >
-                  <div className="relative">
-                    <div className="w-24 h-24 rounded-full border-4 border-rose-pink/20 border-t-rose-pink animate-spin" />
-                    <Sparkles className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-rose-pink w-8 h-8 animate-pulse" />
-                  </div>
-                  <div className="text-center space-y-2">
-                    <p className="font-headline text-2xl">Weaving Magic...</p>
-                    <p className="text-sm text-muted-foreground italic">Bringing your vision to life in the PETALS universe.</p>
-                  </div>
-                </motion.div>
-              ) : mode === 'manual' ? (
+              {mode === 'manual' ? (
                 <motion.div 
                   key="manual-canvas"
                   ref={canvasRef}
@@ -555,17 +454,22 @@ export function PosterCreator() {
                 </motion.div>
               ) : (
                 <motion.div 
-                  key="empty-state"
+                  key="ai-coming-soon"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   className="text-center space-y-6 max-w-sm"
                 >
-                  <div className="w-20 h-20 rounded-full bg-rose-pink/10 flex items-center justify-center mx-auto text-rose-pink">
-                    <Wand2 className="w-10 h-10" />
+                  <div className="w-24 h-24 rounded-full bg-rose-pink/10 flex items-center justify-center mx-auto text-rose-pink animate-pulse">
+                    <Clock className="w-12 h-12" />
                   </div>
-                  <div className="space-y-2">
-                    <p className="font-headline text-xl">Ready for Enchantment?</p>
-                    <p className="text-sm text-muted-foreground italic">Use the sidebar to generate a custom AI creation.</p>
+                  <div className="space-y-4">
+                    <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-rose-pink/10 text-rose-pink text-[10px] font-bold uppercase tracking-widest border border-rose-pink/20">
+                      <Sparkles className="w-3.5 h-3.5" /> Coming Soon
+                    </div>
+                    <h2 className="font-headline text-3xl">AI Enchantment</h2>
+                    <p className="text-sm text-muted-foreground italic leading-relaxed">
+                      Our weavers are currently crafting the AI models for this mode. Please use the <strong>Manual Designer</strong> to create your magical posters in the meantime.
+                    </p>
                   </div>
                 </motion.div>
               )}
