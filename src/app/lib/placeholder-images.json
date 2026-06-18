@@ -212,6 +212,12 @@
       "imageHint": "moonlit fantasy portrait"
     },
     {
+      "id": "gallery-seraph-luna",
+      "description": "The Ethereal Seraph of Luna character portrait",
+      "imageUrl": "https://www.dropbox.com/scl/fi/pxpge5plrlxv9jf20pih3/629fde95-3028-4b49-89b1-f20f1340640d.png?rlkey=zpv5frtf15l5hlrykj2r0nssf&st=sqkztg76&raw=1",
+      "imageHint": "celestial angel portrait"
+    },
+    {
       "id": "gallery-moon-forest",
       "description": "The Silver Moon Forest of the Crystal Rose",
       "imageUrl": "https://picsum.photos/seed/moonforest/800/1000",

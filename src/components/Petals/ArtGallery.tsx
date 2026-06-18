@@ -20,6 +20,13 @@ const artworks = [
     description: "In the heart of the silent night, where the moonbeams weave patterns through the ancient trees, the Moonlit Guardian watches over the forgotten paths of the kingdom. A piece that captures the ethereal beauty and quiet strength of the PETALS character universe."
   },
   {
+    id: "seraph-luna",
+    category: "Characters",
+    url: PlaceHolderImages.find(img => img.id === 'gallery-seraph-luna')?.imageUrl || "",
+    title: "The Ethereal Seraph of Luna",
+    description: "A manifestation of pure lunar energy, the Seraph watches over the celestial tides that govern the emotions of the PETALS realm. Her presence brings calm and clarity to those lost in the shadows of doubt."
+  },
+  {
     id: "portrait-alora",
     category: "Portraits",
     url: PlaceHolderImages.find(img => img.id === 'char-alora')?.imageUrl || "",
