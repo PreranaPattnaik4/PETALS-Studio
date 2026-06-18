@@ -23,7 +23,10 @@ import {
   Cake,
   Palette,
   User,
-  Loader2
+  Loader2,
+  Info,
+  CheckCircle2,
+  AlertCircle
 } from 'lucide-react';
 import { toPng } from 'html-to-image';
 import { useToast } from '@/hooks/use-toast';
@@ -44,6 +47,9 @@ interface StickerItem {
 
 type CreatorMode = 'manual' | 'wall-art' | 'birthday-card';
 
+const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
+const ACCEPTED_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+
 export function PosterCreator() {
   const { toast } = useToast();
   const canvasRef = useRef<HTMLDivElement>(null);
@@ -55,7 +61,7 @@ export function PosterCreator() {
   const [title, setTitle] = useState("A Tale of Magic");
   const [description, setDescription] = useState("Where petals bloom and wonders never cease.");
   const [stickers, setStickers] = useState<StickerItem[]>([]);
-  const [activeTab, setActiveTab] = useState<'background' | 'stickers' | 'text'>('stickers');
+  const [activeTab, setActiveTab] = useState<'background' | 'stickers' | 'text' | 'guide'>('stickers');
   
   // Mode State
   const [mode, setMode] = useState<CreatorMode>('manual');
@@ -75,6 +81,65 @@ export function PosterCreator() {
   const backgroundPresets = PlaceHolderImages.filter(img => 
     img.id.startsWith('gallery-') || img.id === 'crystal-rose-universe'
   );
+
+  // Image Optimization Logic
+  const optimizeImage = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new (window as any).Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          let width = img.width;
+          let height = img.height;
+
+          // Resize to around 2000-3000px if needed
+          const maxDimension = 2500;
+          if (width > maxDimension || height > maxDimension) {
+            if (width > height) {
+              height *= maxDimension / width;
+              width = maxDimension;
+            } else {
+              width *= maxDimension / height;
+              height = maxDimension;
+            }
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx?.drawImage(img, 0, 0, width, height);
+          
+          // Maintain quality while reducing size
+          resolve(canvas.toDataURL('image/jpeg', 0.85));
+        };
+        img.onerror = reject;
+        img.src = e.target?.result as string;
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const validateFile = (file: File) => {
+    if (!ACCEPTED_TYPES.includes(file.type)) {
+      toast({
+        variant: "destructive",
+        title: "Unsupported Format",
+        description: "Please upload a JPG, PNG, or WebP image."
+      });
+      return false;
+    }
+    if (file.size > MAX_FILE_SIZE) {
+      toast({
+        variant: "destructive",
+        title: "File Too Large",
+        description: "Image size must be less than 5 MB."
+      });
+      return false;
+    }
+    return true;
+  };
 
   const addSticker = (url: string) => {
     const newSticker: StickerItem = {
@@ -96,33 +161,29 @@ export function PosterCreator() {
     setStickers(stickers.map(s => s.id === id ? { ...s, ...updates } : s));
   };
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        if (event.target?.result) {
-          setBgImage(event.target.result as string);
-        }
-      };
-      reader.readAsDataURL(file);
+    if (file && validateFile(file)) {
+      try {
+        const optimized = await optimizeImage(file);
+        setBgImage(optimized);
+        toast({ title: "Image Uploaded", description: "Your custom background has been optimized and added." });
+      } catch (err) {
+        toast({ variant: "destructive", title: "Upload Failed", description: "Could not process image." });
+      }
     }
   };
 
-  const handlePersonalizedPhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePersonalizedPhotoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) {
-      if (file.size > 4 * 1024 * 1024) {
-        toast({ variant: "destructive", title: "File too large", description: "Please upload a photo smaller than 4MB." });
-        return;
+    if (file && validateFile(file)) {
+      try {
+        const optimized = await optimizeImage(file);
+        setPersonalizedPhoto(optimized);
+        toast({ title: "Photo Ready", description: "Your photo has been optimized for the magic frame." });
+      } catch (err) {
+        toast({ variant: "destructive", title: "Upload Failed", description: "Could not process image." });
       }
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        if (event.target?.result) {
-          setPersonalizedPhoto(event.target.result as string);
-        }
-      };
-      reader.readAsDataURL(file);
     }
   };
 
@@ -219,30 +280,54 @@ export function PosterCreator() {
         <div className="w-full lg:w-96 flex flex-col gap-6 order-2 lg:order-1">
           <div className="glass-morphism rounded-[2.5rem] p-8 space-y-8">
             
-            {/* MANUAL MODE */}
-            {mode === 'manual' && (
-              <>
-                <div className="flex gap-2 p-1 bg-rose-pink/10 rounded-2xl">
-                  {(['stickers', 'background', 'text'] as const).map((tab) => (
-                    <button
-                      key={tab}
-                      onClick={() => setActiveTab(tab)}
-                      className={`flex-1 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all ${
-                        activeTab === tab 
-                          ? "bg-white text-rose-pink shadow-sm" 
-                          : "text-muted-foreground hover:text-rose-pink"
-                      }`}
-                    >
-                      {tab === 'stickers' && <Sticker className="w-3.5 h-3.5 mx-auto mb-1" />}
-                      {tab === 'background' && <ImageIcon className="w-3.5 h-3.5 mx-auto mb-1" />}
-                      {tab === 'text' && <Type className="w-3.5 h-3.5 mx-auto mb-1" />}
-                      {tab}
-                    </button>
-                  ))}
-                </div>
+            {/* TABS SWITCHER (Manual Mode focus) */}
+            <div className="flex gap-1 p-1 bg-rose-pink/10 rounded-2xl">
+              {(['stickers', 'background', 'text', 'guide'] as const).map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`flex-1 py-3 rounded-xl text-[9px] font-bold uppercase tracking-widest transition-all flex flex-col items-center gap-1.5 ${
+                    activeTab === tab 
+                      ? "bg-white text-rose-pink shadow-sm" 
+                      : "text-muted-foreground hover:text-rose-pink"
+                  }`}
+                >
+                  {tab === 'stickers' && <Sticker className="w-3.5 h-3.5" />}
+                  {tab === 'background' && <ImageIcon className="w-3.5 h-3.5" />}
+                  {tab === 'text' && <Type className="w-3.5 h-3.5" />}
+                  {tab === 'guide' && <Info className="w-3.5 h-3.5" />}
+                  {tab === 'guide' ? 'Studio' : tab}
+                </button>
+              ))}
+            </div>
 
-                <div className="h-[400px] overflow-y-auto pr-4 custom-scrollbar">
-                  <AnimatePresence mode="wait">
+            <div className="h-[450px] overflow-y-auto pr-2 custom-scrollbar">
+              <AnimatePresence mode="wait">
+                {activeTab === 'guide' ? (
+                  <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
+                    <div className="p-6 rounded-[2rem] bg-rose-pink/5 border border-rose-pink/10 space-y-4">
+                      <h4 className="font-headline text-xl text-rose-pink">For PETALS Studio</h4>
+                      <div className="space-y-4 text-sm italic font-headline text-muted-foreground">
+                        <div className="flex items-start gap-3">
+                          <CheckCircle2 className="w-4 h-4 text-rose-pink mt-1 shrink-0" />
+                          <p><span className="font-bold not-italic">Max Upload Size:</span> 5 MB</p>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <CheckCircle2 className="w-4 h-4 text-rose-pink mt-1 shrink-0" />
+                          <p><span className="font-bold not-italic">Accepted Formats:</span> JPG, JPEG, PNG, WebP</p>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <CheckCircle2 className="w-4 h-4 text-rose-pink mt-1 shrink-0" />
+                          <p><span className="font-bold not-italic">Max Resolution:</span> 4000 × 4000 px</p>
+                        </div>
+                      </div>
+                      <div className="pt-4 border-t border-rose-pink/10 text-xs italic leading-relaxed text-muted-foreground">
+                        We automatically optimize large images to maintain quality while ensuring a smooth creative experience.
+                      </div>
+                    </div>
+                  </motion.div>
+                ) : mode === 'manual' ? (
+                  <>
                     {activeTab === 'stickers' && (
                       <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} className="grid grid-cols-2 gap-4">
                         {characterStickers.map((char) => (
@@ -255,10 +340,17 @@ export function PosterCreator() {
 
                     {activeTab === 'background' && (
                       <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} className="space-y-6">
-                        <Button onClick={() => fileInputRef.current?.click()} className="w-full h-14 rounded-2xl border-dashed border-2 border-rose-pink/30 bg-transparent text-rose-pink hover:bg-rose-pink/5">
-                          <Upload className="mr-2 w-4 h-4" /> Upload Custom
-                        </Button>
-                        <input type="file" ref={fileInputRef} onChange={handleFileUpload} className="hidden" accept="image/*" />
+                        <div className="space-y-2">
+                          <Button onClick={() => fileInputRef.current?.click()} className="w-full h-14 rounded-2xl border-dashed border-2 border-rose-pink/30 bg-transparent text-rose-pink hover:bg-rose-pink/5 flex flex-col gap-1 items-center justify-center p-0">
+                            <div className="flex items-center gap-2">
+                              <Upload className="w-4 h-4" /> <span>Upload Background</span>
+                            </div>
+                          </Button>
+                          <p className="text-[10px] text-center text-muted-foreground italic">
+                            Upload a photo (JPG, PNG, WebP • Max 5 MB)
+                          </p>
+                        </div>
+                        <input type="file" ref={fileInputRef} onChange={handleFileUpload} className="hidden" accept=".jpg,.jpeg,.png,.webp" />
                         <div className="grid grid-cols-2 gap-4">
                           {backgroundPresets.map((bg) => (
                             <button key={bg.id} onClick={() => setBgImage(bg.imageUrl)} className={`relative aspect-[3/4] rounded-xl overflow-hidden border-2 transition-all ${bgImage === bg.imageUrl ? "border-rose-pink" : "border-transparent"}`}>
@@ -275,98 +367,97 @@ export function PosterCreator() {
                         <Textarea placeholder="Lore Snippet" value={description} onChange={(e) => setDescription(e.target.value)} className="bg-white/50 rounded-2xl border-rose-pink/20 min-h-[120px]" />
                       </motion.div>
                     )}
-                  </AnimatePresence>
-                </div>
-              </>
-            )}
-
-            {/* AI WALL ART MODE */}
-            {mode === 'wall-art' && (
-              <div className="space-y-6 text-center">
-                <div className="w-16 h-16 rounded-3xl bg-rose-pink/10 text-rose-pink flex items-center justify-center mx-auto mb-4">
-                  <Palette className="w-8 h-8" />
-                </div>
-                <h3 className="font-headline text-2xl">🌹 Wall Art Creator</h3>
-                <p className="text-sm text-muted-foreground italic leading-relaxed">
-                  Generate a premium fantasy wall art piece featuring the signature PETALS crystal rose and luxury typography.
-                </p>
-                <Button 
-                  onClick={handleAiGeneration} 
-                  disabled={isGenerating}
-                  className="w-full h-14 bg-rose-pink text-white rounded-2xl font-bold uppercase tracking-widest text-xs shadow-xl shadow-rose-pink/20"
-                >
-                  {isGenerating ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Wand2 className="w-4 h-4 mr-2" />}
-                  {isGenerating ? "Weaving Art..." : "Generate Wall Art"}
-                </Button>
-              </div>
-            )}
-
-            {/* AI BIRTHDAY CARD MODE */}
-            {mode === 'birthday-card' && (
-              <div className="space-y-8">
-                <div className="flex gap-2 p-1 bg-rose-pink/10 rounded-2xl">
-                  <button
-                    onClick={() => setBirthdaySubMode('fixed')}
-                    className={`flex-1 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all flex flex-col items-center gap-1 ${
-                      birthdaySubMode === 'fixed' ? "bg-white text-rose-pink shadow-sm" : "text-muted-foreground hover:text-rose-pink"
-                    }`}
-                  >
-                    <Sparkles className="w-3.5 h-3.5" />
-                    🌸 PETALS Birthday Card
-                  </button>
-                  <button
-                    onClick={() => setBirthdaySubMode('personalized')}
-                    className={`flex-1 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all flex flex-col items-center gap-1 ${
-                      birthdaySubMode === 'personalized' ? "bg-white text-rose-pink shadow-sm" : "text-muted-foreground hover:text-rose-pink"
-                    }`}
-                  >
-                    <User className="w-3.5 h-3.5" />
-                    📸 Personalized Photo
-                  </button>
-                </div>
-
-                {birthdaySubMode === 'personalized' && (
-                  <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
-                    <Input 
-                      placeholder="Birthday Person's Name" 
-                      value={birthdayName}
-                      onChange={(e) => setBirthdayName(e.target.value)}
-                      className="bg-white/50 h-14 rounded-2xl border-rose-pink/20"
-                    />
+                  </>
+                ) : mode === 'wall-art' ? (
+                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6 text-center">
+                    <div className="w-16 h-16 rounded-3xl bg-rose-pink/10 text-rose-pink flex items-center justify-center mx-auto mb-4">
+                      <Palette className="w-8 h-8" />
+                    </div>
+                    <h3 className="font-headline text-2xl">🌹 Wall Art Creator</h3>
+                    <p className="text-sm text-muted-foreground italic leading-relaxed">
+                      Generate a premium fantasy wall art piece featuring the signature PETALS crystal rose and luxury typography.
+                    </p>
                     <Button 
-                      variant="outline"
-                      onClick={() => personalizedInputRef.current?.click()}
-                      className="w-full h-14 rounded-2xl border-dashed border-2 border-rose-pink/30 flex flex-col items-center justify-center p-0 overflow-hidden"
+                      onClick={handleAiGeneration} 
+                      disabled={isGenerating}
+                      className="w-full h-14 bg-rose-pink text-white rounded-2xl font-bold uppercase tracking-widest text-xs shadow-xl shadow-rose-pink/20"
                     >
-                      {personalizedPhoto ? (
-                        <div className="relative w-full h-full">
-                          <Image src={personalizedPhoto} alt="Personalized preview" fill className="object-cover opacity-50" />
-                          <div className="absolute inset-0 flex items-center justify-center text-rose-pink font-bold text-[10px] uppercase tracking-widest">
-                            <RefreshCw className="w-4 h-4 mr-2" /> Change Photo
-                          </div>
-                        </div>
-                      ) : (
-                        <div className="flex items-center gap-2 text-rose-pink text-[10px] font-bold uppercase tracking-widest">
-                          <Upload className="w-4 h-4" /> Upload Person's Photo
-                        </div>
-                      )}
+                      {isGenerating ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Wand2 className="w-4 h-4 mr-2" />}
+                      {isGenerating ? "Weaving Art..." : "Generate Wall Art"}
                     </Button>
-                    <input type="file" ref={personalizedInputRef} onChange={handlePersonalizedPhotoUpload} className="hidden" accept="image/*" />
+                  </motion.div>
+                ) : (
+                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-8">
+                    <div className="flex gap-2 p-1 bg-rose-pink/10 rounded-2xl">
+                      <button
+                        onClick={() => setBirthdaySubMode('fixed')}
+                        className={`flex-1 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all flex flex-col items-center gap-1 ${
+                          birthdaySubMode === 'fixed' ? "bg-white text-rose-pink shadow-sm" : "text-muted-foreground hover:text-rose-pink"
+                        }`}
+                      >
+                        <Sparkles className="w-3.5 h-3.5" />
+                        🌸 PETALS Design
+                      </button>
+                      <button
+                        onClick={() => setBirthdaySubMode('personalized')}
+                        className={`flex-1 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all flex flex-col items-center gap-1 ${
+                          birthdaySubMode === 'personalized' ? "bg-white text-rose-pink shadow-sm" : "text-muted-foreground hover:text-rose-pink"
+                        }`}
+                      >
+                        <User className="w-3.5 h-3.5" />
+                        📸 Personalized Photo
+                      </button>
+                    </div>
+
+                    {birthdaySubMode === 'personalized' && (
+                      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
+                        <Input 
+                          placeholder="Birthday Person's Name" 
+                          value={birthdayName}
+                          onChange={(e) => setBirthdayName(e.target.value)}
+                          className="bg-white/50 h-14 rounded-2xl border-rose-pink/20"
+                        />
+                        <div className="space-y-2">
+                          <Button 
+                            variant="outline"
+                            onClick={() => personalizedInputRef.current?.click()}
+                            className="w-full h-14 rounded-2xl border-dashed border-2 border-rose-pink/30 flex flex-col items-center justify-center p-0 overflow-hidden"
+                          >
+                            {personalizedPhoto ? (
+                              <div className="relative w-full h-full">
+                                <Image src={personalizedPhoto} alt="Personalized preview" fill className="object-cover opacity-50" />
+                                <div className="absolute inset-0 flex items-center justify-center text-rose-pink font-bold text-[10px] uppercase tracking-widest">
+                                  <RefreshCw className="w-4 h-4 mr-2" /> Change Photo
+                                </div>
+                              </div>
+                            ) : (
+                              <div className="flex items-center gap-2 text-rose-pink text-[10px] font-bold uppercase tracking-widest">
+                                <Upload className="w-4 h-4" /> Upload Person's Photo
+                              </div>
+                            )}
+                          </Button>
+                          <p className="text-[10px] text-center text-muted-foreground italic">
+                            Upload a photo (JPG, PNG, WebP • Max 5 MB)
+                          </p>
+                        </div>
+                        <input type="file" ref={personalizedInputRef} onChange={handlePersonalizedPhotoUpload} className="hidden" accept=".jpg,.jpeg,.png,.webp" />
+                      </motion.div>
+                    )}
+
+                    <div className="text-center space-y-4">
+                      <Button 
+                        onClick={handleAiGeneration} 
+                        disabled={isGenerating || (birthdaySubMode === 'personalized' && (!personalizedPhoto || !birthdayName))}
+                        className="w-full h-14 bg-rose-pink text-white rounded-2xl font-bold uppercase tracking-widest text-xs shadow-xl shadow-rose-pink/20"
+                      >
+                        {isGenerating ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Cake className="w-4 h-4 mr-2" />}
+                        {isGenerating ? "Preparing Surprise..." : "Generate Birthday Card"}
+                      </Button>
+                    </div>
                   </motion.div>
                 )}
-
-                <div className="text-center space-y-4">
-                  <Button 
-                    onClick={handleAiGeneration} 
-                    disabled={isGenerating || (birthdaySubMode === 'personalized' && (!personalizedPhoto || !birthdayName))}
-                    className="w-full h-14 bg-rose-pink text-white rounded-2xl font-bold uppercase tracking-widest text-xs shadow-xl shadow-rose-pink/20"
-                  >
-                    {isGenerating ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Cake className="w-4 h-4 mr-2" />}
-                    {isGenerating ? "Preparing Surprise..." : "Generate Birthday Card"}
-                  </Button>
-                </div>
-              </div>
-            )}
+              </AnimatePresence>
+            </div>
 
             <div className="pt-8 border-t border-rose-pink/10 space-y-4">
               <Button 
@@ -390,7 +481,7 @@ export function PosterCreator() {
 
         {/* Main Canvas Area */}
         <div className="flex-1 w-full order-1 lg:order-2">
-          <div className="relative p-12 bg-rose-pink/5 rounded-[5rem] border border-rose-pink/10 shadow-inner min-h-[700px] flex items-center justify-center">
+          <div className="relative p-12 bg-rose-pink/5 rounded-[5rem] border border-rose-pink/10 shadow-inner min-h-[750px] flex items-center justify-center">
             
             <AnimatePresence mode="wait">
               {aiResultImage ? (
