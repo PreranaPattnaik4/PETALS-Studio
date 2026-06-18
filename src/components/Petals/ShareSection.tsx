@@ -1,4 +1,3 @@
-
 "use client";
 
 import { motion } from "framer-motion";
@@ -8,7 +7,6 @@ import {
   Instagram, 
   Youtube, 
   Linkedin, 
-  Twitter,
   Home,
   BookOpen,
   Users,
@@ -24,7 +22,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // Social Share Icons (Custom SVGs for missing Lucide icons)
 const PinterestIcon = () => (
@@ -54,8 +52,14 @@ const XIcon = () => (
 export function ShareSection() {
   const { toast } = useToast();
   const [copied, setCopied] = useState(false);
+  const [siteUrl, setSiteUrl] = useState("https://petalsstudio.com");
   
-  const siteUrl = typeof window !== 'undefined' ? window.location.origin : "https://petalsstudio.com";
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setSiteUrl(window.location.origin);
+    }
+  }, []);
+
   const shareText = "Explore the whimsical world of PETALS Studio - where stories bloom like roses! 🌸";
 
   const handleCopyLink = () => {
