@@ -4,6 +4,7 @@
 import { Navbar } from "@/components/Petals/Navbar";
 import { Footer } from "@/components/Petals/Footer";
 import { FloatingPetals } from "@/components/Petals/FloatingPetals";
+import { FinalCTA } from "@/components/Petals/FinalCTA";
 import { Button } from "@/components/ui/button";
 import { Play, Sparkles, Film, Clock, ChevronRight, X, Youtube, ShoppingBag, Instagram } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -401,6 +402,7 @@ export default function VideosPage() {
           </div>
         </section>
 
+        <FinalCTA />
         <Footer />
       </main>
     </div>

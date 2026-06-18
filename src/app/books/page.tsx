@@ -4,6 +4,7 @@
 import { Navbar } from "@/components/Petals/Navbar";
 import { Footer } from "@/components/Petals/Footer";
 import { FloatingPetals } from "@/components/Petals/FloatingPetals";
+import { FinalCTA } from "@/components/Petals/FinalCTA";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
@@ -404,6 +405,7 @@ export default function BooksPage() {
           </div>
         </section>
 
+        <FinalCTA />
         <Footer />
       </main>
     </div>

@@ -5,6 +5,7 @@ import { Navbar } from "@/components/Petals/Navbar";
 import { Footer } from "@/components/Petals/Footer";
 import { FloatingPetals } from "@/components/Petals/FloatingPetals";
 import { PosterCreator } from "@/components/Petals/PosterCreator";
+import { FinalCTA } from "@/components/Petals/FinalCTA";
 import { motion } from "framer-motion";
 import { Sparkles, Wand2 } from "lucide-react";
 
@@ -76,9 +77,9 @@ export default function CreatorPage() {
             </div>
           </section>
         </div>
+        <FinalCTA />
+        <Footer />
       </main>
-
-      <Footer />
     </div>
   );
 }

@@ -5,6 +5,7 @@ import { Navbar } from "@/components/Petals/Navbar";
 import { Footer } from "@/components/Petals/Footer";
 import { CharacterShowcase } from "@/components/Petals/CharacterShowcase";
 import { FloatingPetals } from "@/components/Petals/FloatingPetals";
+import { FinalCTA } from "@/components/Petals/FinalCTA";
 
 export default function CharactersPage() {
   return (
@@ -13,6 +14,7 @@ export default function CharactersPage() {
       <Navbar />
       <main className="relative pt-24">
         <CharacterShowcase />
+        <FinalCTA />
         <Footer />
       </main>
     </div>

@@ -4,6 +4,7 @@
 import { Navbar } from "@/components/Petals/Navbar";
 import { Footer } from "@/components/Petals/Footer";
 import { FloatingPetals } from "@/components/Petals/FloatingPetals";
+import { FinalCTA } from "@/components/Petals/FinalCTA";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
@@ -253,6 +254,7 @@ export default function AboutPage() {
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-black/10 blur-[120px] rounded-full translate-x-1/3 translate-y-1/3" />
         </section>
 
+        <FinalCTA />
         <Footer />
       </main>
     </div>
