@@ -9,14 +9,11 @@ import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { motion } from "framer-motion";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import Link from "next/link";
 import { 
   ShoppingBag, 
   Users, 
   Star, 
   BookOpen, 
-  Sparkles, 
-  Heart, 
   FileText,
   ArrowRight
 } from "lucide-react";
@@ -160,8 +157,13 @@ export default function BooksPage() {
       <Navbar />
 
       <main className="relative">
-        {/* Featured Hero Section */}
-        <section className="relative min-h-[75vh] flex items-center pt-24 overflow-hidden">
+        {/* Final CTA placed dynamically at the top as the main Hero Section */}
+        <div className="pt-20">
+          <FinalCTA />
+        </div>
+
+        {/* Spotlight Showcase Section */}
+        <section className="relative min-h-[65vh] flex items-center py-20 overflow-hidden">
           <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 bg-gradient-to-b from-rose-pink/10 via-transparent to-pearl-white" />
           </div>
@@ -247,9 +249,6 @@ export default function BooksPage() {
             </div>
           </div>
         </section>
-
-        {/* Repositioned Final CTA */}
-        <FinalCTA />
 
         {/* Big Featured Card: RoseBella & Lunaria */}
         <section className="py-24 relative overflow-hidden bg-white/30">
@@ -391,9 +390,9 @@ export default function BooksPage() {
             </div>
           </div>
         </section>
-
-        <Footer />
       </main>
+
+      <Footer />
     </div>
   );
 }
