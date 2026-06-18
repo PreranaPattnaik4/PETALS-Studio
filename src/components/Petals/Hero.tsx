@@ -11,6 +11,13 @@ import Link from 'next/link';
 export function Hero() {
   const roseImg = PlaceHolderImages.find(img => img.id === 'hero-rose');
 
+  const scrollToContent = () => {
+    window.scrollTo({
+      top: window.innerHeight,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0a0a]">
       {/* Background with Cinematic Overlays */}
@@ -80,6 +87,28 @@ export function Hero() {
           </motion.div>
         </div>
       </div>
+
+      {/* Scroll Down Button */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 1 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30"
+      >
+        <button 
+          onClick={scrollToContent}
+          className="flex flex-col items-center gap-3 group text-white/40 hover:text-white transition-colors"
+        >
+          <span className="text-[9px] font-bold uppercase tracking-[0.4em]">Scroll Down</span>
+          <div className="w-6 h-10 rounded-full border border-white/20 flex justify-center p-1.5">
+            <motion.div 
+              animate={{ y: [0, 12, 0] }}
+              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+              className="w-1 h-1 bg-rose-pink rounded-full"
+            />
+          </div>
+        </button>
+      </motion.div>
 
       {/* Subtle Floating Dust Particles */}
       <div className="absolute inset-0 pointer-events-none z-40">
