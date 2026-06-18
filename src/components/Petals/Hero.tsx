@@ -19,19 +19,25 @@ export function Hero() {
           src={roseImg?.imageUrl || ""}
           alt="Cinematic Background"
           fill
-          className="object-cover opacity-50 scale-105"
+          className="object-cover opacity-80 brightness-110 scale-105 transition-all duration-1000"
           data-ai-hint="signature rose background"
           priority
         />
-        {/* Dark Vignette Overlay for Readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/60 to-transparent" />
-        <div className="absolute inset-0 bg-black/30" />
-        {/* Bottom Transition Gradient */}
-        <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-pearl-white to-transparent" />
+        
+        {/* Specific Lighter Gradient Overlay for Readability and Rose Reveal */}
+        <div 
+          className="absolute inset-0 z-10" 
+          style={{ 
+            background: 'linear-gradient(to right, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.05) 100%)' 
+          }} 
+        />
+        
+        {/* Subtle Bottom Transition Gradient */}
+        <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-pearl-white/40 to-transparent z-20" />
       </div>
 
-      <div className="container mx-auto px-12 relative z-10 pt-20">
-        <div className="max-w-4xl">
+      <div className="container mx-auto px-12 relative z-30 pt-20">
+        <div className="max-w-full lg:max-w-[50%]">
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -48,12 +54,12 @@ export function Hero() {
                 <Sparkles className="w-4 h-4" /> The Next Generation of Fantasy
               </motion.div>
               
-              <h1 className="font-headline text-7xl md:text-9xl text-white leading-[0.9] tracking-tight">
+              <h1 className="font-headline text-6xl md:text-8xl text-white leading-[0.9] tracking-tight drop-shadow-2xl">
                 Stories That <br />
                 <span className="italic text-rose-pink">Bloom</span> Into Worlds
               </h1>
               
-              <p className="max-w-2xl text-xl text-white/80 leading-relaxed font-headline italic">
+              <p className="max-w-xl text-xl text-white leading-relaxed font-headline italic drop-shadow-md">
                 Creating magical storybooks, enchanting characters, and cinematic animated adventures that capture the heart of imagination.
               </p>
             </div>
@@ -64,7 +70,7 @@ export function Hero() {
                   Explore Stories <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
-              <Button variant="outline" size="lg" className="h-16 px-12 rounded-full border-white/20 bg-white/5 backdrop-blur-md text-white hover:bg-white hover:text-black transition-all text-lg font-bold uppercase tracking-widest group">
+              <Button variant="outline" size="lg" className="h-16 px-12 rounded-full border-white/40 bg-white/5 backdrop-blur-md text-white hover:bg-white hover:text-black transition-all text-lg font-bold uppercase tracking-widest group">
                 <Play className="mr-3 w-5 h-5 fill-current" /> Watch Trailer
               </Button>
             </div>
@@ -73,7 +79,7 @@ export function Hero() {
       </div>
 
       {/* Subtle Floating Dust Particles */}
-      <div className="absolute inset-0 pointer-events-none z-[5]">
+      <div className="absolute inset-0 pointer-events-none z-40">
         <div className="absolute top-1/4 left-1/3 w-2 h-2 bg-fairy-gold rounded-full blur-[2px] animate-pulse opacity-40" />
         <div className="absolute bottom-1/3 right-1/4 w-1 h-1 bg-white rounded-full blur-[1px] animate-pulse delay-700 opacity-30" />
         <div className="absolute top-1/2 right-1/3 w-3 h-3 bg-rose-pink rounded-full blur-[4px] animate-pulse delay-1000 opacity-20" />
