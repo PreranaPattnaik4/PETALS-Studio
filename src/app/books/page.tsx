@@ -61,16 +61,6 @@ const featuredTaleSisters = {
 
 const books = [
   { 
-    id: "book-whispers", 
-    title: "Beneath the Whispering Waves", 
-    subtitle: "A Tale of Sisterhood & Destiny", 
-    genre: "Ocean Fantasy", 
-    rating: "4.9", 
-    description: "Alora must uncover the truth behind the legendary Crystal Rose before darkness consumes everything she loves.", 
-    amazonUrl: "#", 
-    whatsappUrl: "#" 
-  },
-  { 
     id: "book-mermaids", 
     title: "Songs of the Shimmering Sea", 
     subtitle: "The Melodies of Alora", 
@@ -129,6 +119,16 @@ const books = [
     description: "Join the wind-whisperers on their journey through the floating isles of Aethelgard.", 
     amazonUrl: "#", 
     whatsappUrl: "#" 
+  },
+  {
+    id: "book-tea",
+    title: "The Midnight Tea Party",
+    subtitle: "A Whimsical Gathering",
+    genre: "Gentle Fantasy",
+    rating: "4.9",
+    description: "Join the forest friends for a magical tea party under the velvet sky of the PETALS realm.",
+    amazonUrl: "#",
+    whatsappUrl: "#"
   }
 ];
 
@@ -141,7 +141,7 @@ export default function BooksPage() {
       <Navbar />
 
       <main className="relative">
-        {/* Final CTA placed dynamically at the top as the main Hero Section */}
+        {/* Cinematic Hero Section - FinalCTA serves as the hero here */}
         <div className="pt-20">
           <FinalCTA />
         </div>
