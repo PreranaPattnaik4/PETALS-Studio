@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Navbar } from "@/components/Petals/Navbar";
@@ -230,20 +229,20 @@ export default function AboutPage() {
               <p className="text-xl text-muted-foreground italic font-headline">Crafting wonders across every magical medium.</p>
             </div>
 
-            {/* Row 1: Publishing Featured Card (Big) */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-12">
+            {/* Row 1: Publishing Featured Card (Big) - Made Smaller */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-8">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="lg:col-span-8 bg-rose-pink/5 p-12 md:p-24 rounded-[3.5rem] border border-rose-pink/10 shadow-lg flex flex-col md:flex-row gap-12 items-center group hover:shadow-2xl transition-all duration-500 min-h-[450px]"
+                className="lg:col-span-8 bg-rose-pink/5 p-8 md:p-12 rounded-[2.5rem] border border-rose-pink/10 shadow-lg flex flex-col md:flex-row gap-8 items-center group hover:shadow-xl transition-all duration-500 min-h-[300px]"
               >
-                <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-white text-rose-pink flex items-center justify-center shrink-0 shadow-xl group-hover:scale-110 transition-transform">
-                  <publishingFeature.icon className="w-12 h-12 md:w-16 md:h-16" />
+                <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white text-rose-pink flex items-center justify-center shrink-0 shadow-lg group-hover:scale-110 transition-transform">
+                  <publishingFeature.icon className="w-10 h-10 md:w-12 md:h-12" />
                 </div>
-                <div className="space-y-6 text-center md:text-left">
-                  <h3 className="font-headline text-3xl md:text-4xl text-rose-pink">{publishingFeature.title}</h3>
-                  <p className="text-lg md:text-xl text-muted-foreground italic font-headline leading-relaxed">
+                <div className="space-y-4 text-center md:text-left">
+                  <h3 className="font-headline text-2xl md:text-3xl text-rose-pink">{publishingFeature.title}</h3>
+                  <p className="text-base md:text-lg text-muted-foreground italic font-headline leading-relaxed">
                     {publishingFeature.desc}
                   </p>
                 </div>
@@ -254,15 +253,15 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="lg:col-span-4 bg-white p-10 md:p-12 rounded-[3.5rem] border border-rose-pink/10 shadow-sm flex flex-col justify-center space-y-10 group hover:shadow-xl transition-all duration-500 min-h-[450px]"
+                className="lg:col-span-4 bg-white p-8 rounded-[2.5rem] border border-rose-pink/10 shadow-sm flex flex-col justify-center space-y-6 group hover:shadow-xl transition-all duration-500 min-h-[300px]"
               >
-                <div className="flex items-center gap-3 text-rose-pink font-bold uppercase tracking-widest text-xs">
-                  <Sparkles className="w-4 h-4" /> Technical Standards
+                <div className="flex items-center gap-2 text-rose-pink font-bold uppercase tracking-widest text-[10px]">
+                  <Sparkles className="w-3.5 h-3.5" /> Technical Standards
                 </div>
-                <ul className="space-y-6">
+                <ul className="space-y-4">
                   {publishingFeature.details.map((detail, idx) => (
-                    <li key={idx} className="flex items-center gap-3 text-muted-foreground italic font-headline text-lg">
-                      <CheckCircle2 className="w-5 h-5 text-rose-pink shrink-0" />
+                    <li key={idx} className="flex items-center gap-2.5 text-muted-foreground italic font-headline text-sm">
+                      <CheckCircle2 className="w-4 h-4 text-rose-pink shrink-0" />
                       {detail}
                     </li>
                   ))}
@@ -270,8 +269,8 @@ export default function AboutPage() {
               </motion.div>
             </div>
 
-            {/* Row 2: Animation & Illustration Side-by-Side */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch mb-24">
+            {/* Row 2: Animation & Illustration Side-by-Side - Made Smaller */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch mb-16">
               {secondaryFeatures.map((featured, index) => (
                 <motion.div 
                   key={index}
@@ -279,24 +278,24 @@ export default function AboutPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-rose-pink/5 p-12 md:p-16 rounded-[3.5rem] border border-rose-pink/10 shadow-lg flex flex-col gap-10 group hover:shadow-2xl transition-all duration-500 min-h-[450px]"
+                  className="bg-rose-pink/5 p-8 md:p-10 rounded-[2.5rem] border border-rose-pink/10 shadow-lg flex flex-col gap-8 group hover:shadow-xl transition-all duration-500 min-h-[320px]"
                 >
-                  <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
-                    <div className="w-20 h-20 rounded-full bg-white text-rose-pink flex items-center justify-center shrink-0 shadow-xl group-hover:scale-110 transition-transform">
-                      <featured.icon className="w-10 h-10" />
+                  <div className="flex flex-col md:flex-row gap-6 items-center md:items-start">
+                    <div className="w-16 h-16 rounded-full bg-white text-rose-pink flex items-center justify-center shrink-0 shadow-lg group-hover:scale-110 transition-transform">
+                      <featured.icon className="w-8 h-8" />
                     </div>
-                    <div className="space-y-4 text-center md:text-left">
-                      <h3 className="font-headline text-3xl text-rose-pink leading-tight">{featured.title}</h3>
-                      <p className="text-muted-foreground italic font-headline leading-relaxed text-lg">
+                    <div className="space-y-2 text-center md:text-left">
+                      <h3 className="font-headline text-2xl text-rose-pink leading-tight">{featured.title}</h3>
+                      <p className="text-muted-foreground italic font-headline leading-relaxed text-base">
                         {featured.desc}
                       </p>
                     </div>
                   </div>
-                  <div className="pt-6 border-t border-rose-pink/10">
-                    <ul className="grid grid-cols-1 gap-4">
+                  <div className="pt-4 border-t border-rose-pink/10 mt-auto">
+                    <ul className="grid grid-cols-1 gap-2.5">
                       {featured.details.map((detail, idx) => (
-                        <li key={idx} className="flex items-center gap-3 text-muted-foreground italic font-headline text-sm">
-                          <CheckCircle2 className="w-4 h-4 text-rose-pink shrink-0" />
+                        <li key={idx} className="flex items-center gap-2 text-muted-foreground italic font-headline text-xs">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-rose-pink shrink-0" />
                           {detail}
                         </li>
                       ))}
@@ -333,4 +332,3 @@ export default function AboutPage() {
     </div>
   );
 }
-
