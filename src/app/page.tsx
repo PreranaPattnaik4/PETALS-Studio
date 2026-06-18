@@ -85,7 +85,7 @@ export default function Home() {
                 transition={{ duration: 0.8 }}
                 className="glass-morphism rounded-[3rem] p-12 flex flex-col items-center justify-center text-center group hover:shadow-2xl transition-all duration-500"
               >
-                <div className="relative w-48 h-48 md:w-64 md:h-64 overflow-hidden rounded-full border-2 border-rose-pink/20 shadow-xl group-hover:scale-105 transition-transform duration-500">
+                <div className="relative w-56 h-56 md:w-72 md:h-72 overflow-hidden rounded-full border-2 border-rose-pink/20 shadow-xl group-hover:scale-105 transition-transform duration-500">
                   <Image 
                     src={studioLogo?.imageUrl || ""}
                     alt="Petals Studio Logo"
@@ -105,11 +105,6 @@ export default function Home() {
                 className="glass-morphism rounded-[3rem] p-12 flex flex-col justify-center space-y-8 hover:shadow-2xl transition-all duration-500"
               >
                 <div className="space-y-6">
-                  <div className="inline-flex items-center gap-2 text-rose-pink">
-                    <Sparkles className="w-5 h-5" />
-                    <span className="text-sm font-bold uppercase tracking-widest">Our Identity</span>
-                  </div>
-
                   <div className="space-y-0.5">
                     <h3 className="font-headline text-2xl md:text-3xl tracking-widest uppercase font-bold text-rose-pink">PETALS</h3>
                     <p className="text-[10px] uppercase tracking-[0.5em] text-muted-foreground font-bold">Studio</p>
