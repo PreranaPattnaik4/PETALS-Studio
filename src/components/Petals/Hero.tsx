@@ -20,16 +20,16 @@ export function Hero() {
           alt="Cinematic Background"
           fill
           className="object-cover opacity-90 brightness-110 transition-opacity duration-1000"
-          style={{ objectPosition: '50% 40%' }}
+          style={{ objectPosition: '30% 40%' }}
           data-ai-hint="signature rose background"
           priority
         />
         
-        {/* Specific Lighter Gradient Overlay as requested */}
+        {/* Lighter Gradient Overlay - Flipped to accommodate right-side text */}
         <div 
           className="absolute inset-0 z-10" 
           style={{ 
-            background: 'linear-gradient(to right, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.12) 50%, rgba(0,0,0,0.05) 100%)' 
+            background: 'linear-gradient(to left, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.05) 100%)' 
           }} 
         />
         
@@ -37,13 +37,13 @@ export function Hero() {
         <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-[#0a0a0a]/40 to-transparent z-20" />
       </div>
 
-      <div className="container mx-auto px-12 relative z-30 pt-20">
-        <div className="max-w-full lg:max-w-[50%]">
+      <div className="container mx-auto px-12 lg:pr-32 relative z-30 pt-20 flex justify-end">
+        <div className="max-w-full lg:max-w-[45%]">
           <motion.div 
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="space-y-10"
+            className="space-y-10 text-left"
           >
             <div className="space-y-6">
               <motion.div
