@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from 'next/image';
@@ -8,7 +9,6 @@ import { Sparkles, Play, ArrowRight } from "lucide-react";
 import Link from 'next/link';
 
 export function Hero() {
-  const crystalRoseBg = PlaceHolderImages.find(img => img.id === 'crystal-rose-universe');
   const roseImg = PlaceHolderImages.find(img => img.id === 'hero-rose');
 
   return (
@@ -16,11 +16,11 @@ export function Hero() {
       {/* Background with Magic Blur */}
       <div className="absolute inset-0 z-0">
         <Image 
-          src={crystalRoseBg?.imageUrl || ""}
+          src={roseImg?.imageUrl || ""}
           alt="Cinematic Background"
           fill
-          className="object-cover opacity-30 scale-105"
-          data-ai-hint="fantasy kingdom background"
+          className="object-cover opacity-40 scale-105"
+          data-ai-hint="signature rose background"
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent" />
@@ -68,7 +68,7 @@ export function Hero() {
             </div>
           </motion.div>
 
-          {/* Signature Rose Element */}
+          {/* Floating Element */}
           <div className="lg:col-span-5 relative h-[600px] hidden lg:flex items-center justify-center">
             <motion.div 
               initial={{ opacity: 0, scale: 0.8, rotate: -20 }}
