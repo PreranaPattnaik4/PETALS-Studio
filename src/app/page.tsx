@@ -237,7 +237,10 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Services / Expertise */}
+        {/* Share Section (Moved Here) */}
+        <ShareSection />
+
+        {/* Services / Expertise (Studio Expertise) */}
         <section className="py-32 bg-white/50 backdrop-blur-sm border-y border-rose-pink/10">
           <div className="container mx-auto px-6">
             <div className="text-center mb-24 space-y-6">
@@ -368,9 +371,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        {/* Share Section */}
-        <ShareSection />
 
         {/* Newsletter Section */}
         <section className="py-32 relative overflow-hidden">
