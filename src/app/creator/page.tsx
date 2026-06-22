@@ -99,23 +99,30 @@ export default function CreatorPage() {
                 <Sparkles className="w-3.5 h-3.5" /> THE FUTURE OF CREATIVE STORYTELLING
               </motion.div>
               
-              <motion.h1
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="font-headline text-5xl md:text-7xl text-foreground leading-tight"
+                className="space-y-4"
               >
-                Create With The Power of <br />
-                <span className="italic text-rose-pink">Imagination & AI</span>
-              </motion.h1>
+                <h1 className="font-headline text-5xl md:text-8xl text-foreground leading-tight">
+                  Creator Studio
+                </h1>
+                <p className="text-2xl md:text-4xl text-rose-pink font-headline italic">
+                  Where Imagination Blooms Into Stories, Art & Adventures
+                </p>
+                <p className="text-sm md:text-base text-muted-foreground uppercase tracking-[0.3em] font-bold opacity-60">
+                  Powered by Google&apos;s Creative AI Ecosystem
+                </p>
+              </motion.div>
               
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="text-xl md:text-2xl text-muted-foreground font-headline italic max-w-4xl mx-auto leading-relaxed"
+                className="text-xl text-muted-foreground font-headline italic max-w-4xl mx-auto leading-relaxed pt-8"
               >
-                PETALS Studio is building a next-generation creative platform where children, parents, educators, and storytellers can transform their imagination into magical stories, characters, artwork, music, and cinematic adventures using Google&apos;s AI ecosystem.
+                PETALS Studio is building a next-generation creative platform where children, parents, educators, and storytellers can transform their imagination into magical stories, characters, artwork, music, and cinematic adventures.
               </motion.p>
             </div>
 

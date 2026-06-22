@@ -26,7 +26,7 @@ export function Navbar() {
     { name: 'Videos', href: '/videos' },
     { name: 'Characters', href: '/characters' },
     { name: 'Gallery', href: '/gallery' },
-    { name: 'Creator', href: '/creator', icon: Wand2 },
+    { name: 'Creator Studio', href: '/creator', icon: Wand2 },
     { name: 'About', href: '/about' },
   ];
 
@@ -55,7 +55,7 @@ export function Navbar() {
             <Link 
               key={link.name} 
               href={link.href} 
-              className={`text-xs font-bold uppercase tracking-widest hover:text-rose-pink transition-colors flex items-center gap-2 ${link.name === 'Creator' ? 'text-rose-pink' : ''}`}
+              className={`text-xs font-bold uppercase tracking-widest hover:text-rose-pink transition-colors flex items-center gap-2 ${link.name === 'Creator Studio' ? 'text-rose-pink' : ''}`}
             >
               {link.icon && <link.icon className="w-3.5 h-3.5" />}
               {link.name}

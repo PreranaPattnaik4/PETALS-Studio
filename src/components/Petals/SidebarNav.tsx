@@ -17,7 +17,7 @@ export function SidebarNav() {
     { name: 'Videos', href: '/videos' },
     { name: 'Characters', href: '/characters' },
     { name: 'Gallery', href: '/gallery' },
-    { name: 'Creator', href: '/creator' },
+    { name: 'Creator Studio', href: '/creator' },
     { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' },
   ];
