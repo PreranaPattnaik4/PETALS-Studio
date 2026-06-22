@@ -10,19 +10,19 @@
     --card-foreground: 350 40% 20%;
     --popover: 0 0% 100%;
     --popover-foreground: 350 40% 20%;
-    --primary: 348 78% 84%;
-    --primary-foreground: 350 40% 20%;
+    --primary: 25 30% 50%;
+    --primary-foreground: 0 0% 100%;
     --secondary: 19 100% 90%;
     --secondary-foreground: 350 40% 20%;
     --muted: 24 20% 92%;
     --muted-foreground: 350 10% 45%;
-    --accent: 256 100% 91%;
+    --accent: 25 30% 95%;
     --accent-foreground: 350 40% 20%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 348 30% 90%;
-    --input: 348 30% 90%;
-    --ring: 348 78% 84%;
+    --border: 25 20% 90%;
+    --input: 25 20% 90%;
+    --ring: 25 30% 50%;
     --radius: 1.5rem;
   }
 }
@@ -34,8 +34,8 @@
   body {
     @apply bg-background text-foreground selection:bg-rose-pink selection:text-white;
     background-image: 
-      radial-gradient(at 0% 0%, hsla(348, 78%, 84%, 0.1) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, hsla(256, 100%, 91%, 0.1) 0px, transparent 50%);
+      radial-gradient(at 0% 0%, hsla(25, 30%, 50%, 0.05) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, hsla(33, 41%, 59%, 0.05) 0px, transparent 50%);
   }
 }
 
@@ -50,7 +50,7 @@
 }
 
 .glass-morphism {
-  @apply bg-white/20 backdrop-blur-xl border border-white/30 shadow-[0_8px_32px_0_rgba(247,183,195,0.15)];
+  @apply bg-white/20 backdrop-blur-xl border border-white/30 shadow-[0_8px_32px_0_rgba(166,123,91,0.1)];
 }
 
 .glass-morphism-dark {
@@ -62,5 +62,5 @@
 }
 
 .premium-shadow {
-  @apply shadow-[0_20px_50px_rgba(247,183,195,0.2)];
+  @apply shadow-[0_20px_50px_rgba(166,123,91,0.15)];
 }

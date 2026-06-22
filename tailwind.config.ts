@@ -1,4 +1,3 @@
-
 import type {Config} from 'tailwindcss';
 
 export default {
@@ -66,12 +65,12 @@ export default {
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))',
         },
-        'rose-pink': '#F7B7C3',
-        'blush-peach': '#FFDCCB',
+        'rose-pink': '#A67B5B', // Camel Brown
+        'blush-peach': '#E5C9A1',
         'soft-lavender': '#DCCFFF',
         'pearl-white': '#FFF9F5',
         'moonlight-blue': '#D9ECFF',
-        'rose-gold': '#E5B4A3',
+        'rose-gold': '#C19A6B', // Camel/Gold blend
         'fairy-gold': '#F5D76E',
       },
       borderRadius: {
