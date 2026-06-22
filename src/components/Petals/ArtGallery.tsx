@@ -173,13 +173,10 @@ export function ArtGallery() {
             <p className="text-muted-foreground italic font-headline text-2xl">
               Illustrations That Tell Their Own Stories
             </p>
-            <p className="text-muted-foreground italic font-headline text-lg max-w-2xl mx-auto">
-              Where every brushstroke holds a world waiting to bloom.
-            </p>
           </div>
         </div>
 
-        {/* Big Featured Card Two - Image Right (Featured at Top) */}
+        {/* Big Featured Card Two - Hero image remains large */}
         <AnimatePresence>
           {activeCategory === "All" && (
             <motion.div
@@ -274,7 +271,7 @@ export function ArtGallery() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6"
+              className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6 space-y-6"
             >
               {filteredArt.map((art) => (
                 <motion.div
@@ -292,14 +289,14 @@ export function ArtGallery() {
                         <Image
                           src={art.url}
                           alt={art.title}
-                          width={600}
-                          height={800}
+                          width={400}
+                          height={533}
                           className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
                           <div className="text-white">
-                            <p className="text-[10px] uppercase tracking-widest mb-2 font-bold text-rose-pink">{art.category}</p>
-                            <h3 className="font-headline text-2xl leading-tight">{art.title}</h3>
+                            <p className="text-[10px] uppercase tracking-widest mb-1 font-bold text-rose-pink">{art.category}</p>
+                            <h3 className="font-headline text-xl leading-tight">{art.title}</h3>
                           </div>
                         </div>
                       </div>

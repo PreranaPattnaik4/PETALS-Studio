@@ -65,10 +65,7 @@ export function FinalCTA() {
         transition={{ duration: 1 }}
         className="container mx-auto max-w-7xl relative"
       >
-        {/* Curved / Floating Card Effect Container */}
         <div className="relative min-h-[600px] md:min-h-[700px] rounded-[3rem] overflow-hidden shadow-2xl">
-          
-          {/* Background Image with Overlay */}
           <Image
             src="https://www.dropbox.com/scl/fi/9fakorbmuh1bi4onk84a7/ChatGPT-Image-Jun-18-2026-07_29_29-PM.png?rlkey=qytc1rkbmoecgdidj8av8k6hx&st=bcsd1n4o&raw=1"
             alt="PETALS Studio Fantasy World"
@@ -78,10 +75,7 @@ export function FinalCTA() {
           />
           <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px]" />
           
-          {/* Content Wrapper */}
           <div className="relative z-10 h-full flex flex-col items-center justify-center text-center p-8 md:p-16 space-y-12">
-            
-            {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -91,7 +85,6 @@ export function FinalCTA() {
               <Sparkles className="w-3.5 h-3.5" /> PETALS Studio
             </motion.div>
 
-            {/* Headline & Description */}
             <div className="space-y-6 max-w-4xl">
               <h2 className="font-headline text-5xl md:text-7xl text-white leading-tight">
                 Enter a Whimsical World of <br />
@@ -102,7 +95,6 @@ export function FinalCTA() {
               </p>
             </div>
 
-            {/* Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full sm:w-auto">
               <Button asChild size="lg" className="w-full sm:w-auto bg-rose-pink text-white hover:bg-rose-pink/90 rounded-full px-12 h-14 text-sm font-bold uppercase tracking-widest shadow-xl shadow-rose-pink/30 group">
                 <Link href="/books">
@@ -110,13 +102,12 @@ export function FinalCTA() {
                 </Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="w-full sm:w-auto border-white/40 bg-white/5 backdrop-blur-md text-white hover:bg-white hover:text-black transition-all rounded-full px-12 h-14 text-sm font-bold uppercase tracking-widest group">
-                <Link href="/characters">
+                <Link href="/gallery">
                   <Sparkles className="mr-3 w-5 h-5" /> Meet the Characters
                 </Link>
               </Button>
             </div>
 
-            {/* Feature Cards Row */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full pt-8">
               {featureCards.map((card, i) => (
                 <motion.div
@@ -136,7 +127,6 @@ export function FinalCTA() {
               ))}
             </div>
 
-            {/* Social Icons Row */}
             <div className="pt-8 space-y-6 w-full">
               <div className="flex items-center gap-4 opacity-30">
                 <div className="h-px flex-1 bg-white" />
@@ -157,11 +147,6 @@ export function FinalCTA() {
               </div>
             </div>
           </div>
-          
-          {/* Subtle Sparkle Particles */}
-          <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-white rounded-full blur-[1px] animate-pulse" />
-          <div className="absolute top-3/4 right-1/3 w-1 h-1 bg-fairy-gold rounded-full blur-[1px] animate-pulse delay-500" />
-          <div className="absolute bottom-1/4 left-1/2 w-1.5 h-1.5 bg-rose-pink rounded-full blur-[2px] animate-pulse delay-1000" />
         </div>
       </motion.div>
     </section>
