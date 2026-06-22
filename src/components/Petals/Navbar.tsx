@@ -24,7 +24,6 @@ export function Navbar() {
     { name: 'Home', href: '/' },
     { name: 'Books', href: '/books' },
     { name: 'Videos', href: '/videos' },
-    { name: 'Characters', href: '/characters' },
     { name: 'Gallery', href: '/gallery' },
     { name: 'Creator Studio', href: '/creator', icon: Wand2 },
     { name: 'About', href: '/about' },

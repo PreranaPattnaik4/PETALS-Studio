@@ -1,22 +1,20 @@
 
 "use client";
 
-import { Navbar } from "@/components/Petals/Navbar";
-import { Footer } from "@/components/Petals/Footer";
-import { CharacterShowcase } from "@/components/Petals/CharacterShowcase";
-import { FloatingPetals } from "@/components/Petals/FloatingPetals";
-import { FinalCTA } from "@/components/Petals/FinalCTA";
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function CharactersPage() {
+  const router = useRouter();
+
+  useEffect(() => {
+    // Redirect to the new home for characters within the Gallery
+    router.replace('/gallery');
+  }, [router]);
+
   return (
-    <div className="min-h-screen bg-pearl-white">
-      <FloatingPetals />
-      <Navbar />
-      <main className="relative pt-24">
-        <CharacterShowcase />
-        <FinalCTA />
-        <Footer />
-      </main>
+    <div className="min-h-screen bg-pearl-white flex items-center justify-center">
+      <p className="text-rose-pink font-headline italic">Moving to the Gallery...</p>
     </div>
   );
 }
