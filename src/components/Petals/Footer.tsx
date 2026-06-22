@@ -62,8 +62,8 @@ export function Footer() {
             <ul className="space-y-6 text-xs font-bold uppercase tracking-widest text-white/60">
               <li><Link href="/books" className="hover:text-white transition-colors">Book Library</Link></li>
               <li><Link href="/videos" className="hover:text-white transition-colors">Animations</Link></li>
-              <li><Link href="/gallery" className="hover:text-white transition-colors">Art Gallery</Link></li>
               <li><Link href="/creator" className="hover:text-white transition-colors">Creator Studio</Link></li>
+              <li><Link href="/gallery" className="hover:text-white transition-colors">Art Gallery</Link></li>
             </ul>
           </div>
 
