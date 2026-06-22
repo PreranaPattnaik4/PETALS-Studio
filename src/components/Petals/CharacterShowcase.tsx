@@ -105,8 +105,8 @@ export function CharacterShowcase({ excludeIds = [] }: CharacterShowcaseProps) {
                   isEven ? "" : "lg:flex-row-reverse"
                 }`}
               >
-                {/* Image Section - Reduced size by using span 5 */}
-                <div className={`lg:col-span-5 relative aspect-[4/5] md:aspect-square group ${
+                {/* Image Section - Reduced size by using span 4 */}
+                <div className={`lg:col-span-4 relative aspect-[4/5] group ${
                   isEven ? "lg:order-1" : "lg:order-2"
                 }`}>
                   <div className={`absolute inset-0 bg-gradient-to-br ${char.accent} rounded-[4rem] blur-2xl opacity-50 group-hover:opacity-80 transition-opacity`} />
@@ -122,8 +122,8 @@ export function CharacterShowcase({ excludeIds = [] }: CharacterShowcaseProps) {
                   </div>
                 </div>
 
-                {/* Content Section - Increased size by using span 7 */}
-                <div className={`lg:col-span-7 space-y-8 ${
+                {/* Content Section - Increased size by using span 8 */}
+                <div className={`lg:col-span-8 space-y-8 ${
                   isEven ? "lg:order-2 lg:pl-12" : "lg:order-1 lg:pr-12"
                 }`}>
                   <div className="space-y-4">
